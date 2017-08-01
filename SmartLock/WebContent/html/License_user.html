@@ -23,9 +23,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script language="javaScript">
-	
-	</script>
 </head>
 
 <body>
@@ -121,7 +118,7 @@
 					</button>
 					</div>
 				</div>
-				
+
 			</div>
 				<br>
 				<!-- 검색필터-->
@@ -146,7 +143,21 @@
                 			</tr>
                 		</thead>
                 		<tbody align="center">
-                			<tr>
+							<tr data-repeat="list">
+								<td data-bind="no" class="data-no">1</td>
+								<td data-bind="소프트웨어">Microsoft Excel</td>
+								<td data-bind="장치명">My-Mac</td>
+								<td data-bind="회사명">Microsoft</td>
+								<td data-bind="시작일자">2016-11-31</td>
+								<td data-bind="만료기간">9999-99-99</td>
+								<td data-bind="상태발급완료"><span class="label label-success">발급 완료</span></td>
+								<td data-bind="상태데모버전"><span class="label label-success" onmouseout="this.style.background='#5cb85c';
+                				this.innerText='데모 버전';" onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';">데모 버전</span></td>
+								<td data-bind="상태발급대기"><span class="label label-warning">발급 대기</span></td>
+								<td data-bind="상태발급거절"><span class="label label-danger" onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';" onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';">발급거절</span></td>
+							</tr>
+							<!--
+                			<tr class="repeat-test">
         						<td data-title="No.">1</td>
                 				<td data-title="소프트웨어">Microsoft Excel</td>
                 				<td data-title="장치명">My-Mac</td>
@@ -239,6 +250,7 @@
                 				<td data-title="만료기간">0000-00-00</td>
 								<td data-title="상태"><span class="label label-danger" onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';" onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';">발급거절</span></td>
 							</tr>
+							-->
             		</tbody>
             	</table>
             </div>
@@ -292,6 +304,172 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+	<script src="js/jquery-repeat.js"></script>
+	<script language="javaScript">
+
+		/*
+		데이터를 가져옵니다.
+
+		query: {
+			option1: "",
+			option2: "",
+			str: "",
+			page: ""
+		}
+		*/
+		var requestData = function(query) {
+		    /*
+            $.ajax({
+                url : "/",
+                type : "GET",
+                dataType : "json",
+                data : query,
+                success : function (data){
+                    if(data.result == "success") {
+                        repeatData(data['description']);
+                    } else {
+
+                    }
+                },
+                error : function(data, textStatus, errorThrown) {
+
+                }
+            });
+            */
+
+            var sample = [{
+                no: "1",
+                소프트웨어: "Microsoft Excel",
+                장치명: "My-Mac",
+                회사명: "Microsoft",
+                시작일자: "2016-11-31",
+                만료기간: "9999-99-99",
+                상태: "발급완료"
+            }, {
+                no: "2",
+                소프트웨어: "Microsoft Excel",
+                장치명: "Home-PC",
+                회사명: "Microsoft",
+                시작일자: "2016-11-31",
+                만료기간: "9999-99-99",
+                상태: "발급완료"
+            }, {
+                no: "3",
+                소프트웨어: "Microsoft Excel",
+                장치명: "Office-PC",
+                회사명: "Microsoft",
+                시작일자: "2016-11-31",
+                만료기간: "9999-99-99",
+                상태: "발급완료"
+            }, {
+                no: "4",
+                소프트웨어: "Parallels Desktop",
+                장치명: "GD's Phone",
+                회사명: "Microsoft",
+                시작일자: "2017-03-21",
+                만료기간: "2017-04-21",
+                상태: "데모버전"
+            }, {
+                no: "5",
+                소프트웨어: "Parallels Desktop",
+                장치명: "Parallels International",
+                회사명: "Microsoft",
+                시작일자: "2017-03-21",
+                만료기간: "2017-04-21",
+                상태: "데모버전"
+            }, {
+                no: "6",
+                소프트웨어: "Parallels Desktop",
+                장치명: "Office-PC",
+                회사명: "Microsoft",
+                시작일자: "2017-03-21",
+                만료기간: "2017-04-21",
+                상태: "데모버전"
+            }, {
+                no: "7",
+                소프트웨어: "Adobe CC",
+                장치명: "Home-PC",
+                회사명: "Adobe",
+                시작일자: "0000-00-00",
+                만료기간: "0000-00-00",
+                상태: "발급대기"
+            }, {
+                no: "8",
+                소프트웨어: "Adobe CC",
+                장치명: "Office-PC",
+                회사명: "Adobe",
+                시작일자: "0000-00-00",
+                만료기간: "0000-00-00",
+                상태: "발급대기"
+            }, {
+                no: "9",
+                소프트웨어: "Football Manager",
+                장치명: "Office-PC",
+                회사명: "Sega",
+                시작일자: "0000-00-00",
+                만료기간: "0000-00-00",
+                상태: "발급거절"
+            }, {
+                no: "10",
+                소프트웨어: "Football Manager",
+                장치명: "GD's Phone",
+                회사명: "Sega",
+                시작일자: "0000-00-00",
+                만료기간: "0000-00-00",
+                상태: "발급거절"
+            }];
+
+            repeatData(sample);
+		};
+
+		/*
+		 리스트를 반복합니다.
+
+		 data: [{
+			 no: "1",
+			 소프트웨어: "Microsoft Excel",
+			 장치명: "My-Mac",
+			 회사명: "Microsoft",
+			 시작일자: "2016-11-31",
+			 만료기간: "9999-99-99",
+			 상태: "발급완료|데모버전|발급대기|발급거절"
+		 }, ...]
+		 */
+        var repeatData = function(data) {
+            $("[data-repeat*='list']").repeat(data, function (dom, i, obj) {
+                $(dom).find("[data-bind*='no']").html(obj['no']);
+                $(dom).find("[data-bind*='소프트웨어']").html(obj['소프트웨어']);
+                $(dom).find("[data-bind*='장치명']").html(obj['장치명']);
+                $(dom).find("[data-bind*='회사명']").html(obj['회사명']);
+                $(dom).find("[data-bind*='시작일자']").html(obj['시작일자']);
+                $(dom).find("[data-bind*='만료기간']").html(obj['만료기간']);
+
+                $(dom).find("[data-bind*='상태발급완료']").hide();
+                $(dom).find("[data-bind*='상태데모버전']").hide();
+                $(dom).find("[data-bind*='상태발급대기']").hide();
+                $(dom).find("[data-bind*='상태발급거절']").hide();
+
+                if (obj['상태'] == "발급완료") {
+                    $(dom).find("[data-bind*='상태발급완료']").show();
+                }
+
+                if (obj['상태'] == "데모버전") {
+                    $(dom).find("[data-bind*='상태데모버전']").show();
+                }
+
+                if (obj['상태'] == "발급대기") {
+                    $(dom).find("[data-bind*='상태발급대기']").show();
+                }
+
+                if (obj['상태'] == "발급거절") {
+                    $(dom).find("[data-bind*='상태발급거절']").show();
+                }
+            });
+        };
+
+        // 초기데이터를 요청합니다.
+        requestData();
+	</script>
 </body>
 
 </html>
