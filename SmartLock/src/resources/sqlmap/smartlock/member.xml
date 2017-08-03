@@ -2,16 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-	<!-- 공통 코드 목록조회 -->
-	<select id="memberSelect" parameterType="smartlock.test.vo.TestVO"
-		resultType="smartlock.test.vo.TestVO">
-		SELECT id,
-		       password,
-		       authority,
-		       phone_number,
-		       email,
-		       corp_id
+	<select id="memberSelect" parameterType="smartlock.member.vo.MemberVO"
+		resultType="smartlock.member.vo.MemberVO">
+		SELECT ID,
+		       PASSWORD,
+		       NAME,
+		       AUTHORITY,
+		       PHONE_NUMBER,
+		       EMAIL,
+		       CORP_ID
 		  FROM user 
-		 WHERE id = #{id}
+		 WHERE ID = #{id}
 	</select>
+	<insert id="memberInsert" parameterType="smartlock.member.vo.MemberVO">
+		INSERT INTO user (ID,
+		       PASSWORD,
+		       NAME,
+		       AUTHORITY,
+		       PHONE_NUMBER,
+		       EMAIL,
+		       CORP_ID)
+		VALUES (#{id},
+		       	#{password},
+		       	#{name},
+		       	#{authority},
+		       	#{phone_number},
+		       	#{email},
+		       	#{corp_id})
+	</insert>
 </mapper>

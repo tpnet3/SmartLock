@@ -2860,6 +2860,27 @@ output {
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
 }
 
+.form-control-btn {
+	display: block;
+	width: 70%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
 .form-control:focus {
 	border-color: #66afe9;
 	outline: 0;
@@ -4939,7 +4960,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	background-color: #ddd
 }
 
-<-- 축소했을 때 메뉴 숨김 버튼 색--> 
+<-- 異뺤냼�뻽�쓣 �븣 硫붾돱 �닲源� 踰꾪듉 �깋--> 
 .navbar-toggle .icon-bar {
 	background-color: #f2f2f2
 }

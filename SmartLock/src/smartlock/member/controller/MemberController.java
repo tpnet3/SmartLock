@@ -40,4 +40,37 @@ public class MemberController {
 	public ModelAndView signup() {
 		return new ModelAndView("/smartlock/member/signup");
 	}
+	
+	@RequestMapping(value="/ckeck/id", method=RequestMethod.GET)
+	public ModelAndView ckeckId(HttpServletRequest request,
+			@RequestParam("id") String id) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+
+		return memberService.ckeckId(map);
+	}
+	
+	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	public ModelAndView signupPost(HttpServletRequest request,
+			@RequestParam("id") String id, 
+			@RequestParam("pwd") String pwd,
+			@RequestParam("name") String name,
+			@RequestParam("email") String email,
+			@RequestParam("phone") String phone,
+			@RequestParam("corp_id") String company) throws Exception{
+		System.out.println(1251251);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		map.put("name", name);
+		map.put("email", email);
+		map.put("phone", phone);
+		map.put("company", company);
+
+		return memberService.signupPost(map);
+	}
+	@RequestMapping(value="/signup/ok", method=RequestMethod.GET)
+	public ModelAndView signupPost() throws Exception{
+		return new ModelAndView("/smartlock/member/signup_ok");
+	}
 }
