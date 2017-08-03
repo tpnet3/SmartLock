@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="license">
+	<!-- 공통 코드 목록조회 -->
+	<select id="selectLicense" parameterType="smartlock.License.vo.LicenseVO"
+		resultType="smartlock.License.vo.LicenseVO">
+		SELECT id,
+		       user_id,
+		       start_date,
+		       end_date,
+		       sw_id,
+		       state
+		  FROM license 
+		 WHERE id = '0'
+	</select>
+</mapper>
