@@ -1,5 +1,6 @@
 package smartlock.member.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -26,7 +27,7 @@ public class MemberService {
 		vo.setId(map.get("id"));
 		vo.setPassword(Util.encrypt(map.get("pwd")));
 		
-		MemberVO resultVO = (MemberVO)commonDAO.selectOne("test.selectTest", vo);
+		MemberVO resultVO = (MemberVO)commonDAO.selectOne("member.memberSelect", vo);
 		
 		// 존재하지 않는 아이디
 		if(resultVO.getId() == null) {
@@ -42,7 +43,44 @@ public class MemberService {
 		return new ModelAndView("jsonView");
 	}
 	
-	public ModelAndView register() {
-		return null;
+	public ModelAndView ckeckId(Map<String, Object> map) throws Exception {
+		MemberVO vo = new MemberVO();
+		vo.setId(map.get("id").toString());
+		
+		MemberVO resultVO = (MemberVO)commonDAO.selectOne("member.memberSelect", vo);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		//System.out.println(resultVO.getId());
+		
+		if(resultVO == null) {
+			resultMap.put("status", "success");
+			resultMap.put("data", "ok");
+		} else {
+			resultMap.put("status", "success");
+			resultMap.put("data", "duplication");
+		}
+		
+		return new ModelAndView("jsonView", resultMap);
+	}
+	
+	public ModelAndView signupPost(Map<String, Object> map) throws Exception{
+		MemberVO vo = new MemberVO();
+		vo.setId(map.get("id").toString());
+		vo.setPassword(Util.encrypt(map.get("pwd").toString()));
+		vo.setName(map.get("name").toString());
+		vo.setEmail(map.get("email").toString());
+		vo.setPhone_number(map.get("phone").toString());
+		vo.setCorp_id(1);
+//		CorperationVO corpVO = new CorperationVO();
+//		corpVO.setCorp_name(map.get("corp_id"));
+		
+		commonDAO.insert("member.memberInsert", vo);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("status", "success");
+		resultMap.put("data", vo);
+		
+		return new ModelAndView("jsonView", resultMap);
 	}
 }
