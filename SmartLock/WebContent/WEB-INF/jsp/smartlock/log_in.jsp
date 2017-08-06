@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="card card-container">
-        <img id="logo-img" class="logo-img" src="./img/login.png" />
+        <img id="logo-img" class="logo-img" src="html/img/login.png" />
         <form class="form-signin">
             <input type="id" id="inputID" class="form-control" placeholder="아이디" required autofocus>
             <input type="pwd" id="inputPwd" class="form-control" placeholder="비밀번호" required>

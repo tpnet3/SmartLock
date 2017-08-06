@@ -23,7 +23,7 @@
 				onclick="location.href='sign_up_user.jsp' ">
 				<img class="img-responsive"
 					style="margin-left: auto; margin-right: auto; display: block;"
-					width="100px" src=".\img\user.png" alt="">
+					width="100px" src="html/img/user.png" alt="">
 				<h2>개인회원</h2>
 				<h4>일반 소비자 회원가입</h4>
 			</button>
@@ -34,7 +34,7 @@
 				onclick="location.href='sign_up_manager.jsp'">
 				<img class="img-responsive"
 					style="margin-left: auto; margin-right: auto; display: block;"
-					width="100px" src=".\img\building.png" alt="">
+					width="100px" src="html/img/building.png" alt="">
 				<h2>기업회원</h2>
 				<h4>사업자 회원가입</h4>
 			</button>

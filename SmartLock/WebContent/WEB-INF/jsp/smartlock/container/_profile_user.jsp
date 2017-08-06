@@ -15,7 +15,7 @@
 						<div class="col-lg-12">
 							<img class="img-responsive"
 								style="margin-left: auto; margin-right: auto; display: block;"
-								width="100px" src=".\img\profile.png" alt=""> <br>
+								width="100px" src="html/img/profile.png" alt=""> <br>
 							<div class="col-md-12" align="center">
 								<input id="filebutton" name="filebutton" class="input-file"
 									type="file">

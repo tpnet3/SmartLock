@@ -47,7 +47,7 @@
 		<div class="col-lg-12">
 		<br><br>
 			<img class="img-responsive" style="margin-left: auto; margin-right: auto; display: block;"
-			 width="100px"  src=".\img\success.png" alt="">
+			 width="100px"  src="html/img/success.png" alt="">
 			<h1 align="center">정상적으로 로그아웃 되었습니다.</h1>
 			<h3 align="center">스마트락을 이용해주셔서 감사합니다.</h3>
 		</div>

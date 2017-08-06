@@ -42,7 +42,7 @@
                     <ul class="dropdown-menu">
                         <li><br>
                             <div class="col-md-5">
-                                <img class="img-responsive" style="margin-left: 15px; margin-right: 20px" align="left" width="100px" src=".\img\profile.png" alt=""></div>
+                                <img class="img-responsive" style="margin-left: 15px; margin-right: 20px" align="left" width="100px" src="html/img/profile.png" alt=""></div>
                             <div class="col-md-7">
                                 <h4>홍길동 님</h4>
                                 <h5>example@google.com</h5>
