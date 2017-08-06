@@ -29,7 +29,7 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="log_in.jsp">로그인</a></li>
+				<li><a href="/login">로그인</a></li>
 				<li class="divider-vertical"></li>
 				<li><a href="sign_up_select.jsp">회원가입</a></li>
 			</ul>

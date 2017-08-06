@@ -69,6 +69,7 @@ public class MemberController {
 
 		return memberService.signupPost(map);
 	}
+
 	@RequestMapping(value="/signup/ok", method=RequestMethod.GET)
 	public ModelAndView signupPost() throws Exception{
 		return new ModelAndView("/smartlock/sign_up_finish");
