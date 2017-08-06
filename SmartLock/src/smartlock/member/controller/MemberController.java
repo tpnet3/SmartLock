@@ -22,7 +22,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView login() {
-		return new ModelAndView("/smartlock/member/login");
+		return new ModelAndView("/smartlock/log_in");
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -38,7 +38,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public ModelAndView signup() {
-		return new ModelAndView("/smartlock/member/signup");
+		return new ModelAndView("/smartlock/sign_up");
 	}
 	
 	@RequestMapping(value="/ckeck/id", method=RequestMethod.GET)
@@ -71,6 +71,6 @@ public class MemberController {
 	}
 	@RequestMapping(value="/signup/ok", method=RequestMethod.GET)
 	public ModelAndView signupPost() throws Exception{
-		return new ModelAndView("/smartlock/member/signup_ok");
+		return new ModelAndView("/smartlock/sign_up_finish");
 	}
 }
