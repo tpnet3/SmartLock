@@ -38,7 +38,14 @@ public class MemberController {
 	
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public ModelAndView signup() {
-		return new ModelAndView("/smartlock/sign_up");
+
+		// 일반사용자 회원가입
+		// return new ModelAndView("/smartlock/sign_up_user");
+
+		// 사업자 회원가입
+		// return new ModelAndView("/smartlock/sign_up_manager");
+
+		return new ModelAndView("/smartlock/sign_up_user");
 	}
 	
 	@RequestMapping(value="/ckeck/id", method=RequestMethod.GET)
