@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="include/_header.jsp">
-    <jsp:param name="_nav" value="404" />
+    <jsp:param name="_nav" value="notice" />
+    <jsp:param name="_css" value="/html/css/mouse-over.css" />
 </jsp:include>
 
 <!-- Page Content -->
@@ -31,22 +32,15 @@
                 <p>화면을 아직 안만들었어요.</p>
             </div>
         </div>
+
     </div>
+    <!-- /.row -->
+    <hr>
 
     <!-- Footer -->
     <jsp:include page="include/_footer_content.jsp" />
 
 </div>
-<!-- /.container -->
 
 <jsp:include page="include/_jslib.jsp" />
-
-<!-- Script to Activate the Carousel -->
-<script>
-    $('.carousel').carousel({
-        interval : 5000
-        //changes the speed
-    })
-</script>
-
 <jsp:include page="include/_footer.jsp" />

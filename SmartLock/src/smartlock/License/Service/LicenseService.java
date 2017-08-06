@@ -17,6 +17,11 @@ public class LicenseService {
 	public ModelAndView test() throws Exception{
 		LicenseVO vo = (LicenseVO)commonDAO.selectOne("license.selectLicense", null);
 		System.out.println(vo);
-		return new ModelAndView("/smartlock/test/aa");
+
+		// /smartlock/test/aa.jsp 는 커밋하면서 제거됨
+		// return new ModelAndView("/smartlock/test/aa");
+
+		// TODO: 올바른 파일로 수정이 필요합니다.
+		return new ModelAndView("/smartlock/license");
 	}
 }

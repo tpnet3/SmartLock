@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="components/_header.jsp">
+<jsp:include page="include/_header.jsp">
 	<jsp:param name="_title" value="" />
 	<jsp:param name="_nav" value="" />
 </jsp:include>
@@ -25,7 +25,7 @@
 				<li><a href="Main.html">Home</a></li>
 				<li><a href="about_us.jsp">About Us</a></li>
 				<li><a href="software.jsp">Software</a></li>
-				<li><a href="container/_download_guest.jsp">Download</a></li>
+				<li><a href="download.jsp">Download</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -71,10 +71,10 @@
 	</div>
 
 	<!-- Footer -->
-	<jsp:include page="components/_footer_content.jsp" />
+	<jsp:include page="include/_footer_content.jsp" />
 
 </div>
 <!-- /.container -->
 
-<jsp:include page="components/_jslib.jsp" />
-<jsp:include page="components/_footer.jsp" />
+<jsp:include page="include/_jslib.jsp" />
+<jsp:include page="include/_footer.jsp" />

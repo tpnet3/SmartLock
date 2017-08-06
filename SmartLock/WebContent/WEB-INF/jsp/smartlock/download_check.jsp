@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="components/_header.jsp">
+<jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="download" />
 </jsp:include>
 
@@ -28,7 +28,7 @@
 			href="/html/img/Microsoft_Excel.png" download>다운로드</a>
 			<a class="btn btn-lg btn-default btn-block"
 			style="margin-left: auto; margin-right: auto; display: inline-block;width: 100px; "
-			href="container/_download_user.jsp">취소</a></div>
+			href="download.jsp">취소</a></div>
 			</div>
 
 	<div class="col-md-12">
@@ -37,10 +37,10 @@
 	</div>
 
 	<!-- Footer -->
-	<jsp:include page="components/_footer_content.jsp" />
+	<jsp:include page="include/_footer_content.jsp" />
 
 </div>
 <!-- /.container -->
 
-<jsp:include page="components/_jslib.jsp" />
-<jsp:include page="components/_footer.jsp" />
+<jsp:include page="include/_jslib.jsp" />
+<jsp:include page="include/_footer.jsp" />
