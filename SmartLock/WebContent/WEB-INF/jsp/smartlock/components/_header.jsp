@@ -23,13 +23,13 @@
     <% } %>
 
     <!-- Bootstrap Core CSS -->
-    <link href="html/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/html/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="html/css/modern-business.css" rel="stylesheet">
+    <link href="/html/css/modern-business.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="html/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/html/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <% if (_css != null) { %>
         <% for (int i = 0; i < _css.length; i++) { %>

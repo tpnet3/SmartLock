@@ -59,7 +59,7 @@
 				</div>
 				<div class="panel-body">
 					<div>
-						<img src="html/img/smartphone.png"
+						<img src="/html/img/smartphone.png"
 							style="margin-left: auto; margin-right: auto; display: auto"
 							width="100px">
 						<p></p>
@@ -87,7 +87,7 @@
 				</div>
 				<div class="panel-body">
 					<div>
-						<img src="html/img/pc.png"
+						<img src="/html/img/pc.png"
 							style="margin-left: auto; margin-right: auto; display: auto"
 							width="100px">
 						<p></p>
@@ -115,7 +115,7 @@
 				</div>
 				<div class="panel-body">
 					<div>
-						<img src="html/img/pc.png"
+						<img src="/html/img/pc.png"
 							style="margin-left: auto; margin-right: auto; display: auto"
 							width="100px">
 						<p></p>
@@ -143,7 +143,7 @@
 				</div>
 				<div class="panel-body">
 					<div>
-						<img src="html/img/pc.png"
+						<img src="/html/img/pc.png"
 							style="margin-left: auto; margin-right: auto; display: auto"
 							width="100px">
 						<p></p>

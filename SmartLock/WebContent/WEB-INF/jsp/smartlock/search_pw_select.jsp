@@ -2,7 +2,7 @@
 
 <jsp:include page="components/_header.jsp">
 	<jsp:param name="_nav" value="" />
-	<jsp:param name="_css" value="html/css/login.css" />
+	<jsp:param name="_css" value="/html/css/login.css" />
 </jsp:include>
 
 <div class="container">

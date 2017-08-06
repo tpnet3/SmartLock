@@ -2,7 +2,7 @@
 
 <jsp:include page="components/_header.jsp">
     <jsp:param name="_nav" value="statistics" />
-    <jsp:param name="_css" value="html/css/statistics.css" />
+    <jsp:param name="_css" value="/html/css/statistics.css" />
 </jsp:include>
 
 <!-- Header Carousel -->

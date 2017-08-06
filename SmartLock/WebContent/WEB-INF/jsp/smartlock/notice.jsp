@@ -2,7 +2,7 @@
 
 <jsp:include page="components/_header.jsp">
     <jsp:param name="_nav" value="notice" />
-    <jsp:param name="_css" value="html/css/mouse-over.css" />
+    <jsp:param name="_css" value="/html/css/mouse-over.css" />
 </jsp:include>
 
 <!-- Page Content -->
