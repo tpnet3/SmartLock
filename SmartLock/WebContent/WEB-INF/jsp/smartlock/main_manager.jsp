@@ -48,8 +48,7 @@
 
 <!-- Page Content -->
 <div class="container">
-    <br>
-    <br>
+    <br> <br>
     <!-- Marketing Icons Section -->
     <div class="row">
         <div class="col-md-2"></div>
@@ -104,24 +103,14 @@
     <!-- Portfolio Section -->
     <div class="row"></div>
 
-    <br><br><br>
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
-        <a class="btn btn-lg btn-default btn-block" href="Sign_up_select.html">지금 시작하기</a>
-    </div>
-    <div class="col-md-4">
-    </div>
     <br>
-    <div class="col-md-12">
-        <hr>
-    </div>
 
-    <!-- Footer -->
-    <jsp:include page="include/_footer_content.jsp" />
-
+    <hr>
 </div>
 <!-- /.container -->
+
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
 
 <jsp:include page="include/_jslib.jsp" />
 

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="components/_header.jsp">
+<jsp:include page="include/_header.jsp">
     <jsp:param name="_title" value="About us" />
     <jsp:param name="_nav" value="about_us" />
 </jsp:include>
@@ -171,10 +171,10 @@
     <hr>
 
     <!-- Footer -->
-    <jsp:include page="components/_footer_content.jsp" />
+    <jsp:include page="include/_footer_content.jsp" />
 
 </div>
 <!-- /.container -->
 
-<jsp:include page="components/_jslib.jsp" />
-<jsp:include page="components/_footer.jsp" />
+<jsp:include page="include/_jslib.jsp" />
+<jsp:include page="include/_footer.jsp" />
