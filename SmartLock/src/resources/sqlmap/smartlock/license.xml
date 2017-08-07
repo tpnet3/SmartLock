@@ -3,8 +3,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="license">
 	<!-- 공통 코드 목록조회 -->
-	<select id="selectLicense" parameterType="smartlock.License.vo.LicenseVO"
-		resultType="smartlock.License.vo.LicenseVO">
+	<select id="selectLicense" parameterType="smartlock.vo.db.LicenseVO"
+		resultType="smartlock.vo.db.LicenseVO">
 		SELECT id,
 		       user_id,
 		       start_date,
