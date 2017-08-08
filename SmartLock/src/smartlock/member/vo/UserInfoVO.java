@@ -4,7 +4,7 @@ public class UserInfoVO {
 
     private String id;
     private String name;
-    private String authority;
+    private int authority;
     private String email;
     private String phone;
     private String company;
@@ -25,11 +25,11 @@ public class UserInfoVO {
         this.name = name;
     }
 
-    public String getAuthority() {
+    public int getAuthority() {
         return authority;
     }
 
-    public void setAuthority(String authority) {
+    public void setAuthority(int authority) {
         this.authority = authority;
     }
 
