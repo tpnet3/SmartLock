@@ -1,6 +1,4 @@
-package smartlock.vo.req;
-
-import smartlock.common.Util;
+package smartlock.member.vo;
 
 public class SignupReqVO extends UserIdReqVO {
 

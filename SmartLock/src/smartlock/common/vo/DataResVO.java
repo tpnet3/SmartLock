@@ -1,4 +1,4 @@
-package smartlock.vo.res;
+package smartlock.common.vo;
 
 public class DataResVO {
 

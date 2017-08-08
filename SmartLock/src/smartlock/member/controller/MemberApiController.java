@@ -1,15 +1,15 @@
-package smartlock.controller.api;
+package smartlock.member.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import smartlock.service.UserService;
-import smartlock.vo.req.LoginReqVO;
-import smartlock.vo.req.SignupReqVO;
-import smartlock.vo.req.UserIdReqVO;
-import smartlock.vo.res.DataResVO;
+import smartlock.member.service.UserService;
+import smartlock.member.vo.LoginReqVO;
+import smartlock.member.vo.SignupReqVO;
+import smartlock.member.vo.UserIdReqVO;
+import smartlock.common.vo.DataResVO;
 
 import javax.annotation.Resource;
 

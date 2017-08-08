@@ -1,4 +1,4 @@
-package smartlock.vo.db;
+package smartlock.license.vo;
 
 import java.util.Date;
 
