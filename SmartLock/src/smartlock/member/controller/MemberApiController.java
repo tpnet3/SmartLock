@@ -42,6 +42,7 @@ public class MemberApiController {
                 dataResVO.setData(null);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             dataResVO.setStatus("error");
             dataResVO.setData("error");
         }
@@ -71,6 +72,7 @@ public class MemberApiController {
                 dataResVO.setData("ok");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             dataResVO.setStatus("error");
             dataResVO.setData("error");
         }
@@ -100,6 +102,7 @@ public class MemberApiController {
                 dataResVO.setData(null);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             dataResVO.setStatus("error");
             dataResVO.setData("error");
         }

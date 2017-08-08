@@ -6,6 +6,7 @@ $("#login-btn").on("click", function() {
 	$.ajax({
 		url : "/login",
 		type : "POST",
+        contentType: "application/json",
 		dataType : "json",
 		data : data,
 		success : function (data){
@@ -94,16 +95,16 @@ $("#signup-btn").on("click", function() {
 		return;
 	}
 	if($("#checked-id").val() != $("#id").val()) {
-		$("#is-ckeck-id").val("false");
+		$("#is-check-id").val("false");
 	} else {
-		$("#is-ckeck-id").val("true");
+		$("#is-check-id").val("true");
 	}
-	if($("#is-ckeck-id").val() == "false") {
+	if($("#is-check-id").val() == "false") {
 		$("#id").focus();
 		alert("아이디 중복체크를 하세요.");
 		return;
 	}
-	if($("#pwd").val() != $("#ckeck-pwd").val()) {
+	if($("#pwd").val() != $("#check-pwd").val()) {
 		$("#check-pwd").focus();
 		alert("비밀번호가 다릅니다.");
 		return;
@@ -112,6 +113,7 @@ $("#signup-btn").on("click", function() {
 	$.ajax({
 		url : "/signup",
 		type : "POST",
+        contentType: "application/json",
 		dataType : "json",
 		data : {
 			"id" : $("#id").val(),
