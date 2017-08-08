@@ -14,9 +14,9 @@ public class MainWebController {
     public ModelAndView home(HttpServletRequest request) {
         String authority = (String) request.getSession().getAttribute("authority");
 
-        if (authority.equals("0")) {
+        if (authority != null && authority.equals("0")) {
             return new ModelAndView("/smartlock/main_user");
-        } else if (authority.equals("1")) {
+        } else if (authority != null && authority.equals("1")) {
             return new ModelAndView("/smartlock/main_manager");
         } else {
             return new ModelAndView("/smartlock/main");
@@ -37,7 +37,7 @@ public class MainWebController {
     public ModelAndView download(HttpServletRequest request) {
         String authority = (String) request.getSession().getAttribute("authority");
 
-        if (authority.equals("0")) {
+        if (authority != null && authority.equals("0")) {
             return new ModelAndView("/smartlock/download_user");
         } else {
             return new ModelAndView("/smartlock/download");
