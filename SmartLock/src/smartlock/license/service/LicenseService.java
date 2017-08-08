@@ -1,4 +1,4 @@
-package smartlock.license.servide;
+package smartlock.license.service;
 
 import javax.annotation.Resource;
 
