@@ -1,11 +1,11 @@
-package smartlock.service;
+package smartlock.license.servide;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import smartlock.vo.db.LicenseVO;
+import smartlock.license.vo.LicenseVO;
 import smartlock.common.CommonDAO;
 
 // TODO: LicenseService

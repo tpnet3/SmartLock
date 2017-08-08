@@ -1,4 +1,4 @@
-package smartlock.vo.req;
+package smartlock.member.vo;
 
 public class LoginReqVO extends UserIdReqVO {
 

@@ -1,4 +1,4 @@
-package smartlock.service;
+package smartlock.member.service;
 
 import javax.annotation.Resource;
 
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 import smartlock.common.CommonDAO;
 import smartlock.common.Util;
-import smartlock.vo.db.UserInfoVO;
-import smartlock.vo.db.UserVO;
-import smartlock.vo.req.LoginReqVO;
-import smartlock.vo.req.SignupReqVO;
+import smartlock.member.vo.UserInfoVO;
+import smartlock.member.vo.UserVO;
+import smartlock.member.vo.LoginReqVO;
+import smartlock.member.vo.SignupReqVO;
 
 @Service
 public class UserService {

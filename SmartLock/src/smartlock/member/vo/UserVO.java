@@ -1,7 +1,4 @@
-package smartlock.vo.db;
-
-import smartlock.common.Util;
-import smartlock.vo.req.SignupReqVO;
+package smartlock.member.vo;
 
 public class UserVO {
 	private String id;

@@ -1,4 +1,4 @@
-package smartlock.vo.db;
+package smartlock.member.vo;
 
 public class CorpVO {
 

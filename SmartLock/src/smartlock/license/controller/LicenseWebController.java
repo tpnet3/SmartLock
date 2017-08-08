@@ -1,4 +1,4 @@
-package smartlock.controller.web;
+package smartlock.license.controller;
 
 import javax.annotation.Resource;
 
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import smartlock.service.LicenseService;
+import smartlock.license.servide.LicenseService;
 
 // TODO: LicenseWebController
 
