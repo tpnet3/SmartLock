@@ -108,7 +108,7 @@
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-        <a class="btn btn-lg btn-default btn-block" href="/signup">지금 시작하기</a>
+        <a class="btn btn-lg btn-default btn-block" href="Sign_up_select.html">지금 시작하기</a>
     </div>
     <div class="col-md-4">
     </div>
