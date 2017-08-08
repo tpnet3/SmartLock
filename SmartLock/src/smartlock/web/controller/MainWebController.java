@@ -5,21 +5,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class MainWebController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home() {
-        // TODO: check user
+    public ModelAndView home(HttpServletRequest request) {
+        String authority = (String) request.getSession().getAttribute("authority");
 
-        // guest
-        return new ModelAndView("/smartlock/main");
-
-        // user
-        // return new ModelAndView("/smartlock/main");
-
-        // manager
-        // return new ModelAndView("/smartlock/main");
+        if (authority.equals("0")) {
+            return new ModelAndView("/smartlock/main_user");
+        } else if (authority.equals("1")) {
+            return new ModelAndView("/smartlock/main_manager");
+        } else {
+            return new ModelAndView("/smartlock/main");
+        }
     }
 
     @RequestMapping(value = "/about_us", method = RequestMethod.GET)
@@ -33,7 +34,13 @@ public class MainWebController {
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
-    public ModelAndView download() {
-        return new ModelAndView("/smartlock/download");
+    public ModelAndView download(HttpServletRequest request) {
+        String authority = (String) request.getSession().getAttribute("authority");
+
+        if (authority.equals("0")) {
+            return new ModelAndView("/smartlock/download_user");
+        } else {
+            return new ModelAndView("/smartlock/download");
+        }
     }
 }
