@@ -22,6 +22,7 @@
             resultType="smartlock.member.vo.UserInfoVO">
         SELECT user.id as id
             , user.name as name
+            , user.authority as authority
             , user.email as email
             , user.phone_number as phone
             , corp.name as company

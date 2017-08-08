@@ -1,26 +1,35 @@
-$("#login-btn").on("click", function() {
+$("#login-form").submit(function() {
 	var data = {
 		"id" : $("#id").val(),
 		"pwd" : $("#pwd").val()
 	};
+
 	$.ajax({
 		url : "/login",
 		type : "POST",
         contentType: "application/json",
-		dataType : "json",
-		data : data,
-		success : function (data){
-			if(data.satus == "success") {
-				//메인페이지로이동
-				//href.location="/login";
+		data : JSON.stringify(data),
+		success : function (data) {
+			if(data.status == "success" && data.data) {
+                $.cookie('id', data.data.id);
+                $.cookie('name', data.data.name);
+                $.cookie('authority', data.data.name);
+                $.cookie('email', data.data.email);
+                $.cookie('phone', data.data.phone);
+                $.cookie('company', data.data.company);
+
+				// 메인페이지로이동
+                window.location.href = "/";
 			} else {
 				
 			}
 		},
 		error : function(data, textStatus, errorThrown) {
-			
+			console.log(data);
 		}
 	});
+
+	return false;
 });
 
 $("#check-id-btn").on("click",function(){
