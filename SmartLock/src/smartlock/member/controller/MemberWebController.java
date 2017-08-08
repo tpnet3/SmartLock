@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class MemberWebController {
 
@@ -31,6 +34,19 @@ public class MemberWebController {
 	@RequestMapping(value="/signup/ok", method=RequestMethod.GET)
 	public ModelAndView signupOk() {
 		return new ModelAndView("/smartlock/sign_up_finish");
+	}
+
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request) {
+		HttpSession httpSession = request.getSession();
+		httpSession.setAttribute("id", null);
+		httpSession.setAttribute("name",  null);
+		httpSession.setAttribute("authority", null);
+		httpSession.setAttribute("email", null);
+		httpSession.setAttribute("phone", null);
+		httpSession.setAttribute("company", null);
+
+		return new ModelAndView("redirect:/");
 	}
 
 	@RequestMapping(value="/search_pw", method=RequestMethod.GET)

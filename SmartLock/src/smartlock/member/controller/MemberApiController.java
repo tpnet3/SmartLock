@@ -14,6 +14,7 @@ import smartlock.member.vo.UserInfoVO;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class MemberApiController {
@@ -42,12 +43,13 @@ public class MemberApiController {
                 dataResVO.setStatus("success");
                 dataResVO.setData(userInfoVO);
 
-                request.getSession().setAttribute("id", userInfoVO.getId());
-                request.getSession().setAttribute("name",  userInfoVO.getName());
-                request.getSession().setAttribute("authority", userInfoVO.getAuthority());
-                request.getSession().setAttribute("email", userInfoVO.getEmail());
-                request.getSession().setAttribute("phone", userInfoVO.getPhone());
-                request.getSession().setAttribute("company", userInfoVO.getCompany());
+                HttpSession httpSession = request.getSession();
+                httpSession.setAttribute("id", userInfoVO.getId());
+                httpSession.setAttribute("name",  userInfoVO.getName());
+                httpSession.setAttribute("authority", userInfoVO.getAuthority());
+                httpSession.setAttribute("email", userInfoVO.getEmail());
+                httpSession.setAttribute("phone", userInfoVO.getPhone());
+                httpSession.setAttribute("company", userInfoVO.getCompany());
             } else {
                 // TODO: 비밀번호가 틀렸을 때
                 dataResVO.setStatus("success");
