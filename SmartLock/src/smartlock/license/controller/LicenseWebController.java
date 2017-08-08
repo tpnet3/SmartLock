@@ -1,4 +1,4 @@
-package smartlock.License.controller;
+package smartlock.license.controller;
 
 import javax.annotation.Resource;
 
@@ -6,14 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import smartlock.License.Service.LicenseService;
+import smartlock.license.servide.LicenseService;
+
+// TODO: LicenseWebController
 
 @Controller
-public class LicenseController {
+public class LicenseWebController {
 	
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
-	
+
 	@RequestMapping("/license")
 	public ModelAndView test() throws Exception{
 		return licenseService.test();

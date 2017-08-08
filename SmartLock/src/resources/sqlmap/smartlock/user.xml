@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+    <select id="selectUser"
+            parameterType="String"
+            resultType="smartlock.member.vo.UserVO">
+        SELECT id
+            , password
+            , authority
+            , phone_number
+            , email
+            , corp_id
+            , name
+        FROM user
+        WHERE id = #{value}
+    </select>
+
+    <select id="userInfo"
+            parameterType="String"
+            resultType="smartlock.member.vo.UserInfoVO">
+        SELECT user.id as id
+            , user.name as name
+            , user.email as email
+            , user.phone_number as phone
+            , corp.name as company
+        FROM user
+        LEFT JOIN corp
+        ON corp.id = user.corp_id
+        WHERE user.id = #{value}
+    </select>
+
+    <insert id="insertUser"
+            parameterType="smartlock.member.vo.UserVO">
+        INSERT INTO user (id
+            , password
+            , name
+            , authority
+            , phone_number
+            , email
+            , corp_id)
+        VALUES (#{id}
+            , #{password}
+            , #{name}
+            , #{authority}
+            , #{phoneNumber}
+            , #{email}
+            , #{corpId})
+    </insert>
+
+</mapper>

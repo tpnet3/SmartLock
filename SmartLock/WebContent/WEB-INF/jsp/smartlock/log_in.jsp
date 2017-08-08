@@ -15,7 +15,7 @@
             <button id="login-btn" class="btn btn-lg btn-primary btn-block btn-signin">로그인</button>
         </form><!-- /form -->
         <div class="login-help">
-            <p>비밀번호를 잊으셨나요? <a href="Search_pw.html">여기를 클릭하세요</a></p>
+            <p>비밀번호를 잊으셨나요? <a href="/search_pw">여기를 클릭하세요</a></p>
             <p>아직 회원이 아니신가요? <a href="/signup">지금 가입하세요</a></p>
         </div>
     </div>
