@@ -29,7 +29,7 @@ $("#check-id-btn").on("click",function(){
 	}
 	
 	$.ajax({
-		url : "/ckeck/id",
+		url : "/check/id",
 		type : "GET",
 		dataType : "json",
 		data : {

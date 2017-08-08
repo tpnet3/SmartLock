@@ -20,7 +20,7 @@
 	<div class="col-lg-4" align="center">
 
 			<button type="button" class="btn btn-default btn-circle btn-xl"
-				onclick="location.href='sign_up_user.jsp' ">
+				onclick="location.href='/signup/user' ">
 				<img class="img-responsive"
 					style="margin-left: auto; margin-right: auto; display: block;"
 					width="100px" src="/html/img/user.png" alt="">
@@ -31,7 +31,7 @@
 
 	<div class="col-lg-4" align="center">
 			<button type="button" class="btn btn-default btn-circle btn-xl"
-				onclick="location.href='sign_up_manager.jsp'">
+				onclick="location.href='/signup/manager'">
 				<img class="img-responsive"
 					style="margin-left: auto; margin-right: auto; display: block;"
 					width="100px" src="/html/img/building.png" alt="">
