@@ -5,7 +5,7 @@
 
     <select id="selectUser"
             parameterType="String"
-            resultType="smartlock.vo.db.UserVO">
+            resultType="smartlock.member.vo.UserVO">
         SELECT id
             , password
             , authority
@@ -19,7 +19,7 @@
 
     <select id="userInfo"
             parameterType="String"
-            resultType="smartlock.vo.db.UserInfoVO">
+            resultType="smartlock.member.vo.UserInfoVO">
         SELECT user.id as id
             , user.name as name
             , user.email as email
@@ -32,7 +32,7 @@
     </select>
 
     <insert id="insertUser"
-            parameterType="smartlock.vo.db.UserVO">
+            parameterType="smartlock.member.vo.UserVO">
         INSERT INTO user (id
             , password
             , name
