@@ -10,8 +10,10 @@ import smartlock.member.vo.LoginReqVO;
 import smartlock.member.vo.SignupReqVO;
 import smartlock.member.vo.UserIdReqVO;
 import smartlock.common.vo.DataResVO;
+import smartlock.member.vo.UserInfoVO;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MemberApiController {
@@ -29,13 +31,23 @@ public class MemberApiController {
             method = RequestMethod.POST
     )
     public @ResponseBody DataResVO loginPost(
+            HttpServletRequest request,
             @RequestBody LoginReqVO loginReqVO) {
         DataResVO dataResVO = new DataResVO();
 
         try {
             if (userService.checkPassword(loginReqVO)) {
+                UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
+
                 dataResVO.setStatus("success");
-                dataResVO.setData(userService.getUserInfoVO(loginReqVO.getId()));
+                dataResVO.setData(userInfoVO);
+
+                request.getSession().setAttribute("id", userInfoVO.getId());
+                request.getSession().setAttribute("name",  userInfoVO.getName());
+                request.getSession().setAttribute("authority", userInfoVO.getAuthority());
+                request.getSession().setAttribute("email", userInfoVO.getEmail());
+                request.getSession().setAttribute("phone", userInfoVO.getPhone());
+                request.getSession().setAttribute("company", userInfoVO.getCompany());
             } else {
                 // TODO: 비밀번호가 틀렸을 때
                 dataResVO.setStatus("success");

@@ -11,17 +11,10 @@ $("#login-form").submit(function() {
 		data : JSON.stringify(data),
 		success : function (data) {
 			if(data.status == "success" && data.data) {
-                $.cookie('id', data.data.id);
-                $.cookie('name', data.data.name);
-                $.cookie('authority', data.data.name);
-                $.cookie('email', data.data.email);
-                $.cookie('phone', data.data.phone);
-                $.cookie('company', data.data.company);
-
 				// 메인페이지로이동
                 window.location.href = "/";
 			} else {
-				
+				alert("아이디 또는 비밀번호가 잘못되었습니다");
 			}
 		},
 		error : function(data, textStatus, errorThrown) {

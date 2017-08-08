@@ -3,7 +3,7 @@
 <% String _title = request.getParameter("_title"); %>
 <% String[] _css = request.getParameterValues("_css"); %>
 
-<% String loginType = request.getParameter("login_type"); %>
+<% String authority = (String) request.getSession().getAttribute("authority"); %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -48,9 +48,9 @@
 
 <body>
 
-<% if (loginType != null && loginType.equals("user")) { %>
+<% if (authority != null && authority.equals("0")) { %>
     <jsp:include page="_mainmenu_user.jsp" />
-<% } else if (loginType != null && loginType.equals("manager")) { %>
+<% } else if (authority != null && authority.equals("1")) { %>
     <jsp:include page="_mainmenu_manager.jsp" />
 <% } else { %>
     <jsp:include page="_mainmenu_guest.jsp" />
