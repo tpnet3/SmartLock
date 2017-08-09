@@ -3,15 +3,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="license">
 	<!-- 공통 코드 목록조회 -->
-	<select id="selectLicense" parameterType="smartlock.license.vo.LicenseVO"
+	<select id="selectLicense" parameterType="String"
 		resultType="smartlock.license.vo.LicenseVO">
-		SELECT id,
-		       user_id,
-		       start_date,
-		       end_date,
-		       sw_id,
-		       state
+		SELECT id
+		      , user_id
+		      , start_date
+		      , end_date
+		      , sw_id
+		      , state
 		  FROM license 
-		 WHERE id = '0'
+		 WHERE user_id = #{value}
+	</select>
+	<select id="selectReqLicense" parameterType="int"
+		resultType="smartlock.license.vo.ReqLicenseVO">
+		SELECT id
+		      , user_id
+		      , request_date
+		      , sw_id
+		      , state
+		  FROM req_license
+		 WHERE state = #{value}
 	</select>
 </mapper>
