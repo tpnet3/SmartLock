@@ -32,17 +32,21 @@ public class LicenseWebController {
 	public ModelAndView viewUserLicense(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_user");
 	}
-	
-	@RequestMapping(value = "/license/user/software", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/license/user/filter", method = RequestMethod.POST)
 	public ModelAndView viewUserLicenseByName(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_user");
 	}
 	
-	@RequestMapping(value = "/license/user/request", method = RequestMethod.GET)
+	@RequestMapping(value = "/license/user/request", method = RequestMethod.POST)
 	public ModelAndView viewUserReqLicense(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_user_request");
 	}
 	
+	@RequestMapping(value = "/license/user/request/filter", method = RequestMethod.POST)
+	public ModelAndView viewUserReqLicenseByName(HttpServletRequest request) throws Exception{
+		return new ModelAndView("/smartlock/license_user_request");
+	}
 //	@RequestMapping(value = "/licenseUser_byName", method = RequestMethod.GET)
 //	public ModelAndView viewUserLicenseByName(HttpServletRequest request) throws Exception{
 //		HttpSession httpSession = request.getSession();

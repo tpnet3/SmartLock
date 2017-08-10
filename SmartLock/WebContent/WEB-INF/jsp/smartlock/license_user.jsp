@@ -10,7 +10,12 @@
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">라이센스 요청현황</h2>
+            <h2 class="page-header">라이센스 발급현황</h2>
+            <ol class="breadcrumb">
+                <li class="active">라이센스 발급현황
+                </li>
+                <li><a href="/license/user/request">라이센스 요청현황</a></li>
+            </ol>
         </div>
         <!-- 검색필터-->
         <div class="row">

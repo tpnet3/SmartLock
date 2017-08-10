@@ -14,7 +14,7 @@
             <h1 class="page-header">About Us
             </h1>
             <ol class="breadcrumb">
-                <li><a href="Main.html">Home</a>
+                <li><a href="/">Home</a>
                 </li>
                 <li class="active">About us</li>
             </ol>

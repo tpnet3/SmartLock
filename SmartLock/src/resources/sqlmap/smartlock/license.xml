@@ -2,41 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="license">
-	<!-- 공통 코드 목록조회 -->
+
+	<!-- 개인 라이센스 전체 조회 -->
 	<select id="selectLicense" parameterType="String"
 		resultType="smartlock.license.vo.LicenseVO">
 		SELECT id
-		      , user_id
-		      , start_date
-		      , end_date
-		      , sw_id
-		      , state
-		  FROM license 
-		 WHERE user_id = #{value}
+		, user_id
+		, start_date
+		, end_date
+		, sw_id
+		, state
+		FROM license
+		WHERE user_id = #{value}
 	</select>
-	
+
+	<!-- 소프트웨어명으로 라이센스 조회 -->
 	<select id="selectLicenseByName" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.LicenseVO">
 		SELECT id
-		      , user_id
-		      , start_date
-		      , end_date
-		      , sw_id
-		      , state
-		  FROM license 
-		 WHERE user_id = #{id} 
-		 AND sw_id = (SELECT id FROM software WHERE name = #{name})
+		, user_id
+		, start_date
+		, end_date
+		, sw_id
+		, state
+		FROM license
+		WHERE user_id = #{id}
+		AND sw_id = (SELECT id FROM software WHERE name = #{name})
 	</select>
-	
+
+	<!-- 개인 요청 라이센스 전체 조회 -->
 	<select id="selectReqLicense" parameterType="String"
 		resultType="smartlock.license.vo.ReqLicenseVO">
 		SELECT id
-		      , user_id
-		      , request_date
-		      , sw_id
-		      , state
-		  FROM req_license
-		 WHERE user_id = #{value}
+		, user_id
+		, request_date
+		, sw_id
+		, state
+		FROM req_license
+		WHERE user_id = #{value}
 	</select>
-	
+
+	<!-- 개인 요청 라이센스 전체 조회 -->
+	<select id="selectReqLicenseByName" parameterType="java.util.Map"
+		resultType="smartlock.license.vo.ReqLicenseVO">
+		SELECT id
+		, user_id
+		, request_date
+		, sw_id
+		, state
+		FROM req_license
+		WHERE user_id = #{id}
+		AND sw_id = (SELECT id FROM software WHERE name = #{name})
+	</select>
+
 </mapper>
