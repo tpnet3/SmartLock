@@ -2,6 +2,7 @@ package smartlock.license.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -37,6 +38,11 @@ public class LicenseService {
 	public ArrayList<LicenseVO> viewUserLicense(String id) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectLicense", id);
 	}
+	
+	public ArrayList<LicenseVO> viewUserLicenseByName(Map<String, String> map) throws Exception {
+		return (ArrayList) commonDAO.selectList("license.selectLicenseByName", map);
+	}
+	
 	/**
 	 * 사용자 요청현황 전체 조회
 	 * id로 ArrayList<ReqLicenseVO> 가져오는 메소드 
@@ -47,6 +53,8 @@ public class LicenseService {
 	public ArrayList<ReqLicenseVO> viewUserReqLicense(String id) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectReqLicense", id);
 	}
+	
+	
 
 	public ModelAndView test() throws Exception{
 		LicenseVO vo = (LicenseVO)commonDAO.selectOne("license.selectLicense", null);

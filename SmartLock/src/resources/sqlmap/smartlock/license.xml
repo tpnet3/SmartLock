@@ -24,7 +24,8 @@
 		      , sw_id
 		      , state
 		  FROM license 
-		 WHERE user_id = #{value}
+		 WHERE user_id = #{id} 
+		 AND sw_id = (SELECT id FROM software WHERE name = #{name})
 	</select>
 	
 	<select id="selectReqLicense" parameterType="String"

@@ -15,6 +15,7 @@ import smartlock.license.vo.ReqLicenseVO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class LicenseApiController {
     /**
      * 개인 라이센스 전체 조회
      * @param UserVO 정보
-     * @return 성공시 DataResVO
+     * @return DataResVO
      */
     @RequestMapping(
             value = "/license/user",
@@ -63,8 +64,13 @@ public class LicenseApiController {
         return dataResVO;
     }
 
+    /**
+     * 개인 라이센스 소프트웨어명 별로 조회s
+     * @param UserVo, name (소프트웨어명)
+     * @return DataResVO
+     */
     @RequestMapping(
-            value = "/license/user",
+            value = "/license/user/search",
             method = RequestMethod.GET
     )
     public @ResponseBody DataResVO viewUserLicenseByName(
@@ -75,8 +81,13 @@ public class LicenseApiController {
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
 		ArrayList<LicenseVO> license = new ArrayList<LicenseVO>();
-		//dataResVO = licenseService.viewUserLicense(userVO.getId());
-		license = licenseService.viewUserLicenseByName("swan");
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("name", name);
+		//map.put("id", userVO.getId());
+		map.put("id", "swan");
+		
+		license = licenseService.viewUserLicenseByName(map);
 		
 		try{
 			System.out.println(license);
