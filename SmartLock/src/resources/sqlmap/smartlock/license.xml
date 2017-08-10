@@ -14,6 +14,20 @@
 		  FROM license 
 		 WHERE user_id = #{value}
 	</select>
+	
+	<select id="selectLicenseByName" parameterType="java.util.Map"
+		resultType="smartlock.license.vo.LicenseVO">
+		SELECT id
+		      , user_id
+		      , start_date
+		      , end_date
+		      , sw_id
+		      , state
+		  FROM license 
+		 WHERE user_id = #{id} 
+		 AND sw_id = (SELECT id FROM software WHERE name = #{name})
+	</select>
+	
 	<select id="selectReqLicense" parameterType="String"
 		resultType="smartlock.license.vo.ReqLicenseVO">
 		SELECT id
@@ -24,4 +38,5 @@
 		  FROM req_license
 		 WHERE user_id = #{value}
 	</select>
+	
 </mapper>

@@ -27,10 +27,20 @@ public class LicenseWebController {
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
 
-
-	@RequestMapping(value = "/license/user", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/license/user", method = RequestMethod.POST)
 	public ModelAndView viewUserLicense(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_user");
+	}
+	
+	@RequestMapping(value = "/license/user/software", method = RequestMethod.GET)
+	public ModelAndView viewUserLicenseByName(HttpServletRequest request) throws Exception{
+		return new ModelAndView("/smartlock/license_user");
+	}
+	
+	@RequestMapping(value = "/license/user/request", method = RequestMethod.GET)
+	public ModelAndView viewUserReqLicense(HttpServletRequest request) throws Exception{
+		return new ModelAndView("/smartlock/license_user_request");
 	}
 	
 //	@RequestMapping(value = "/licenseUser_byName", method = RequestMethod.GET)
@@ -54,9 +64,4 @@ public class LicenseWebController {
 //		}
 //	}
 	
-
-	@RequestMapping("/reqLicense")
-	public ArrayList<ReqLicenseVO> viewAllRequest() throws Exception{
-		return licenseService.viewAllRequest();
-	}
 }

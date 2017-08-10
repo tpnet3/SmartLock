@@ -13,6 +13,7 @@ import smartlock.common.CommonDAO;
 import smartlock.common.Util;
 import smartlock.member.vo.UserInfoVO;
 import smartlock.member.vo.UserVO;
+import smartlock.profile.vo.ProfileReqVO;
 import smartlock.member.vo.LoginReqVO;
 import smartlock.member.vo.SignupReqVO;
 
@@ -34,12 +35,12 @@ public class ProfileService {
 	
 	/**
 	 * 
-	 * @param UserVO
+	 * @param ProfileReqVO
 	 * @return void
 	 * @throws Exception DAO 예외
 	 */
-	 public void modifyUser(UserVO userVO) throws Exception{
-		 int cnt = commonDAO.update("user.userUpdate", userVO);
+	 public void updateUser(ProfileReqVO profileReqVO) throws Exception{
+		 int cnt = commonDAO.update("user.userUpdate", profileReqVO);
 		 System.out.println(cnt+"개의 회원이 업데이트 되었습니다.");
 	 }	
 }
