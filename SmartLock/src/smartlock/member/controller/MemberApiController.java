@@ -109,6 +109,9 @@ public class MemberApiController {
             if (userService.signup(signupReqVO)) {
                 dataResVO.setStatus("success");
                 dataResVO.setData(userService.getUserInfoVO(signupReqVO.getId()));
+                
+                // "status": "", "data":{id,....}
+                
             } else {
                 dataResVO.setStatus("success");
                 dataResVO.setData(null);

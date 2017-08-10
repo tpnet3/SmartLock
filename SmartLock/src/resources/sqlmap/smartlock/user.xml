@@ -51,7 +51,7 @@
     </insert>
     
     <update id="updateUser" 
-    		parameterType="smartlock.member.vo.UserVO">
+    		parameterType="smartlock.profile.vo.ProfileReqVO">
     	UPDATE user
 		SET email=#{email}, phone_number=#{phoneNumber}
 		WHERE id=#{id};

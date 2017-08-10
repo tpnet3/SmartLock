@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.portlet.ModelAndView;
 
+import smartlock.member.service.UserService;
 //import smartlock.profile.service.profileService;
 import smartlock.member.vo.*;
+import smartlock.profile.service.ProfileService;
+import smartlock.profile.vo.ProfileReqVO;
 import smartlock.common.vo.DataResVO;
+import smartlock.common.vo.MsgResVO;
 
 import java.sql.SQLException;
 
@@ -20,4 +24,26 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class ProfileApiController {
 	
+	@Resource
+    private ProfileService profileService;
+	
+	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
+	public  @ResponseBody MsgResVO updateProfile(
+			@RequestBody ProfileReqVO profileReqVO){
+		
+		 MsgResVO msgResVO = new MsgResVO();
+		
+		try{			
+			profileService.updateUser(profileReqVO);
+			msgResVO.setStatus("success");
+			msgResVO.setMessage("회원정보 수정이 완료되었습니다.");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			msgResVO.setStatus("error");
+			msgResVO.setMessage("error");
+		}
+		
+		return msgResVO;
+	}
 }
