@@ -19,4 +19,23 @@
 	   WHERE user_id = #{id} 
 	</select>
 	
+	<select id="selectDeviceBySw"
+			parameterType="java.util.Map"
+			resultType="smartlock.device.vo.DeviceVO">
+		SELECT id
+			,  nickname
+			,  sw_id
+			,  type
+			,  mac
+			,  usim
+			,  pin
+			,  serial
+			,  udid
+		FROM device
+	   WHERE user_id = #{id}
+	   	 AND sw_id = (SELECT id
+	   	 				FROM software
+	   	 			   WHERE name=#{sw_id})
+	</select>
+	
 </mapper>
