@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이메일</label>
                             <div class="col-md-3">
-                                <input id="textinput" name="textinput" type="text"
+                                <input id="email" name="textinput" type="text"
                                         class="form-control input-md" value="<%=userVO.getEmail() %>">
                             </div>
                         </div>
@@ -73,14 +73,14 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">전화번호</label>
                             <div class="col-md-3">
-                                <input id="textinput" name="textinput" type="text"
+                                <input id="phone" name="textinput" type="text"
                                         class="form-control input-md" value="<%=userVO.getPhoneNumber() %>">
                             </div>
                         </div>
                         <br>
                         <!-- Button -->
                         <div class="form-group" align="center">
-                            <button class="btn btn-default btn-md"
+                            <button class="profile_btn"
                                     style="height: 40px; width: 80px">submit</button>
                         </div>
 
