@@ -1,4 +1,7 @@
+<%@ page import="smartlock.member.vo.UserVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<% UserVO userVO = (UserVO) session.getAttribute("user"); %>
 
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_nav" value="" />
@@ -20,10 +23,7 @@
                             <img class="img-responsive"
                                  style="margin-left: auto; margin-right: auto; display: block;"
                                  width="100px" src="/html/img/profile.png" alt=""> <br>
-                            <div class="col-md-12" align="center">
-                                <input id="filebutton" name="filebutton" class="input-file"
-                                       type="file">
-                            </div>
+                            
                             <br>
                             <br>
                         </div>
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이름</label>
                             <div class="col-md-7">
-                                <label class="control-label" for="textinput">홍길동</label>
+                                <label class="control-label" for="textinput"><%= userVO.getName() %></label>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">소속</label>
                             <div class="col-md-7">
-                                <label class="control-label" for="textinput">캐드서브 스마트락팀</label>
+                                <label class="control-label" for="textinput"><%= userVO.getCorpId() %></label>
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">아이디</label>
                             <div class="col-md-7">
-                                <label class="control-label" for="textinput">gildonghong123</label>
+                                <label class="control-label" for="textinput"><%= userVO.getId() %></label>
                             </div>
                         </div>
 
@@ -58,19 +58,14 @@
                                 <input id="textinput" name="textinput" type="text"
                                        placeholder="현재 비밀번호" class="form-control input-md">
                             </div>
-                            <div class="col-md-1">
-                                <button>변경</button>
-                            </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이메일</label>
                             <div class="col-md-3">
-                                <label class="control-label" for="textinput">gildonghong123@cadserv.com</label>
-                            </div>
-                            <div class="col-md-1">
-                                <button>변경</button>
+                                <input id="textinput" name="textinput" type="text"
+                                        class="form-control input-md" value="<%=userVO.getEmail() %>">
                             </div>
                         </div>
 
@@ -78,10 +73,8 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">전화번호</label>
                             <div class="col-md-3">
-                                <label class="control-label" for="textinput">010-1234-5678</label>
-                            </div>
-                            <div class="col-md-1">
-                                <button>변경</button>
+                                <input id="textinput" name="textinput" type="text"
+                                        class="form-control input-md" value="<%=userVO.getPhoneNumber() %>">
                             </div>
                         </div>
                         <br>
