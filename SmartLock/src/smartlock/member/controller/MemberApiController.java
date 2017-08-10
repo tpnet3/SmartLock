@@ -42,6 +42,10 @@ public class MemberApiController {
 
                 // TODO: 로그인시 Session data
                 UserVO userVO = userService.getUserVO(loginReqVO.getId());
+
+                // 비밀번호 데이터 null
+                userVO.setPassword(null);
+
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("user", userVO);
             } else {
