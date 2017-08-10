@@ -14,7 +14,11 @@
 		  FROM license 
 		 WHERE user_id = #{value}
 	</select>
+<<<<<<< Updated upstream
 	<select id="selectReqLicense" parameterType="int"
+=======
+	<select id="selectReqLicense" parameterType="String"
+>>>>>>> Stashed changes
 		resultType="smartlock.license.vo.ReqLicenseVO">
 		SELECT id
 		      , user_id
@@ -22,6 +26,10 @@
 		      , sw_id
 		      , state
 		  FROM req_license
+<<<<<<< Updated upstream
 		 WHERE state = #{value}
+=======
+		 WHERE user_id = #{value}
+>>>>>>> Stashed changes
 	</select>
 </mapper>
