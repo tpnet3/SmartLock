@@ -9,6 +9,8 @@ import smartlock.member.vo.UserVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+// TODO: DeviceWebController 구현
+
 @Controller
 public class DeviceWebController {
 
@@ -16,8 +18,6 @@ public class DeviceWebController {
     public ModelAndView device(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
-
-        // TODO: device list 구현
 
         if (userVO != null && userVO.getAuthority() == 0) {
             return new ModelAndView("/smartlock/device_user");
