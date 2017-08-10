@@ -14,9 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
+<<<<<<< HEAD
 import smartlock.license.vo.LicenseVO;
 import smartlock.license.vo.ReqLicenseVO;
 import smartlock.member.vo.UserVO;
+=======
+>>>>>>> master
 
 // TODO: LicenseWebController
 
