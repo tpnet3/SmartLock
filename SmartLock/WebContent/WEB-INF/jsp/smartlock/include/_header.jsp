@@ -1,9 +1,10 @@
+<%@ page import="smartlock.member.vo.UserVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% String _title = request.getParameter("_title"); %>
 <% String[] _css = request.getParameterValues("_css"); %>
 
-<% Integer authority = (Integer) session.getAttribute("authority"); %>
+<% UserVO userVO = (UserVO) session.getAttribute("user"); %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -48,9 +49,9 @@
 
 <body>
 
-<% if (authority != null && authority == 0) { %>
+<% if (userVO != null && userVO.getAuthority() == 0) { %>
     <jsp:include page="_mainmenu_user.jsp" />
-<% } else if (authority != null && authority == 1) { %>
+<% } else if (userVO != null && userVO.getAuthority() == 1) { %>
     <jsp:include page="_mainmenu_manager.jsp" />
 <% } else { %>
     <jsp:include page="_mainmenu_guest.jsp" />

@@ -39,12 +39,7 @@ public class MemberWebController {
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
-		httpSession.setAttribute("id", null);
-		httpSession.setAttribute("name",  null);
-		httpSession.setAttribute("authority", null);
-		httpSession.setAttribute("email", null);
-		httpSession.setAttribute("phone", null);
-		httpSession.setAttribute("company", null);
+		httpSession.setAttribute("user", null);
 
 		return new ModelAndView("redirect:/");
 	}

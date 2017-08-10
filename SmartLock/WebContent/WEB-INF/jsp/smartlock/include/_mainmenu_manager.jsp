@@ -1,8 +1,8 @@
+<%@ page import="smartlock.member.vo.UserVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% String _nav = request.getParameter("_nav"); %>
-<% String name = (String) session.getAttribute("name"); %>
-<% String email = (String) session.getAttribute("email"); %>
+<% UserVO userVO = (UserVO) session.getAttribute("user"); %>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -46,8 +46,8 @@
                             <div class="col-md-5">
                                 <img class="img-responsive" style="margin-left: 15px; margin-right: 20px" align="left" width="100px" src="/html/img/profile.png" alt=""></div>
                             <div class="col-md-7">
-                                <h4><%=name%> 님</h4>
-                                <h5><%=email%></h5>
+                                <h4><%= userVO.getName() %> 님</h4>
+                                <h5><%= userVO.getEmail() %></h5>
                                 <a class="btn btn-sm btn-default btn-block" href="/profile">마이페이지</a>
                                 <br>
                             </div>

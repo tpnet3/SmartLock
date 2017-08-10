@@ -6,11 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import smartlock.member.service.UserService;
-import smartlock.member.vo.LoginReqVO;
-import smartlock.member.vo.SignupReqVO;
-import smartlock.member.vo.UserIdReqVO;
+import smartlock.member.vo.*;
 import smartlock.common.vo.DataResVO;
-import smartlock.member.vo.UserInfoVO;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -38,18 +35,15 @@ public class MemberApiController {
 
         try {
             if (userService.checkPassword(loginReqVO)) {
+                // API data
                 UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
-
                 dataResVO.setStatus("success");
                 dataResVO.setData(userInfoVO);
 
+                // Session data
+                UserVO userVO = userService.getUserVO(loginReqVO.getId());
                 HttpSession httpSession = request.getSession();
-                httpSession.setAttribute("id", userInfoVO.getId());
-                httpSession.setAttribute("name",  userInfoVO.getName());
-                httpSession.setAttribute("authority", userInfoVO.getAuthority());
-                httpSession.setAttribute("email", userInfoVO.getEmail());
-                httpSession.setAttribute("phone", userInfoVO.getPhone());
-                httpSession.setAttribute("company", userInfoVO.getCompany());
+                httpSession.setAttribute("user", userVO);
             } else {
                 // TODO: 비밀번호가 틀렸을 때
                 dataResVO.setStatus("success");

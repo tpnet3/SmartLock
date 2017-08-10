@@ -26,11 +26,11 @@ public class LicenseWebController {
 		/*
 		TODO: user, manager, guest 에 대한 return view 나누기
 		HttpSession httpSession = request.getSession();
-		Integer authority = (Integer) httpSession.getAttribute("authority");
+		UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
-		if (authority != null && authority == 0) {
+		if (userVO != null && userVO.getAuthority() == 0) {
 			return new ModelAndView("/smartlock/license_user");
-		} else if (authority != null && authority == 1) {
+		} else if (userVO != null && userVO.getAuthority() == 1) {
 			return new ModelAndView("/smartlock/license_manager");
 		} else {
 			return new ModelAndView("/smartlock/license");
