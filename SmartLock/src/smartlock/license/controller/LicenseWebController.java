@@ -37,6 +37,8 @@ public class LicenseWebController {
 		}
 		*/
 
+		// TODO: license list 구현
+
 		return licenseService.test();
 	}
 

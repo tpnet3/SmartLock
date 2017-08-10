@@ -10,6 +10,7 @@ public class SoftwareWebController {
 
     @RequestMapping(value = "/software", method = RequestMethod.GET)
     public ModelAndView software() {
+        // TODO: software list 구현
         return new ModelAndView("/smartlock/software");
     }
 }

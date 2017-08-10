@@ -16,6 +16,8 @@ public class DeviceWebController {
         HttpSession httpSession = request.getSession();
         Integer authority = (Integer) httpSession.getAttribute("authority");
 
+        // TODO: device list 구현
+
         if (authority != null && authority == 0) {
             return new ModelAndView("/smartlock/device_user");
         } else {
