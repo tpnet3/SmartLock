@@ -98,6 +98,8 @@
 
 </div>
 
-<jsp:include page="include/_jslib.jsp" />
+<jsp:include page="include/_jslib.jsp" >
+	<jsp:param name="_js" value="/html/js/profile.js" />
+</jsp:include>
 
 <jsp:include page="include/_footer.jsp" />
