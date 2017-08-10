@@ -1,17 +1,16 @@
 package smartlock.device.vo;
 
 public class DeviceVO {
-
-    private int id;
-    private String user_id;
-    private String nickname;
-    private int sw_id;
-    private int type;
-    private String mac;
-    private String usim;
-    private String pin;
-    private String serial;
-    private String udid;
+	private int id;
+	private String user_id;
+	private String nickname;
+	private int sw_id;
+	private int type;
+	private String mac;
+	private String usim;
+	private String pin;
+	private String serial;
+	private String udid;
 	public int getId() {
 		return id;
 	}
@@ -72,11 +71,6 @@ public class DeviceVO {
 	public void setUdid(String udid) {
 		this.udid = udid;
 	}
-	@Override
-	public String toString() {
-		return "DeviceVO [id=" + id + ", user_id=" + user_id + ", nickname=" + nickname + ", sw_id=" + sw_id + ", type="
-				+ type + ", mac=" + mac + ", usim=" + usim + ", pin=" + pin + ", serial=" + serial + ", udid=" + udid
-				+ "]";
-	}
-
+	
+	
 }
