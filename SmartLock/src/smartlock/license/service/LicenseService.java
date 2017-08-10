@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import smartlock.license.controller.LicenseWebController;
 import smartlock.license.vo.LicenseVO;
 import smartlock.license.vo.ReqLicenseVO;
 import smartlock.member.vo.UserVO;
@@ -41,7 +42,6 @@ public class LicenseService {
 		return result;
 	}
 
-	// TODO: 사용되지 않는 메소드
 	public ModelAndView test() throws Exception{
 		System.out.println("hello~");
 		String id = "westham";
@@ -51,9 +51,6 @@ public class LicenseService {
 		System.out.println("456");
 		System.out.println(vo);
 		System.out.println("789");
-
-		// /smartlock/test/aa.jsp 는 커밋하면서 제거됨
-		// return new ModelAndView("/smartlock/test/aa");
 
 		// TODO: 올바른 파일로 수정이 필요합니다.
 		return new ModelAndView("/smartlock/license");

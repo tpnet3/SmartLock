@@ -22,7 +22,9 @@ public class LicenseWebController {
 	private LicenseService licenseService;
 
 	@RequestMapping("/license")
-	public ModelAndView license(HttpServletRequest request) {
+	public ModelAndView license(HttpServletRequest request) throws Exception {
+		/*
+		TODO: user, manager, guest 에 대한 return view 나누기
 		HttpSession httpSession = request.getSession();
 		Integer authority = (Integer) httpSession.getAttribute("authority");
 
@@ -33,6 +35,9 @@ public class LicenseWebController {
 		} else {
 			return new ModelAndView("/smartlock/license");
 		}
+		*/
+
+		return licenseService.test();
 	}
 
 	@RequestMapping("/reqLicense")
