@@ -27,5 +27,4 @@ public class ProfileWebController {
             return new ModelAndView("redirect:/");
         }
     }
-
-}
+    }
