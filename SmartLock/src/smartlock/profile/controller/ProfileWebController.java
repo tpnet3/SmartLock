@@ -20,7 +20,9 @@ public class ProfileWebController {
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
         if (userVO != null && userVO.getAuthority() == 0) {
-            return new ModelAndView("/smartlock/profile_user");
+        	ModelAndView modelAndView = new ModelAndView("/smartlock/profile_user");
+        	//mdelAndView.add
+            return modelAndView;
         } else if (userVO != null && userVO.getAuthority() == 1) {
             return new ModelAndView("/smartlock/profile_manager");
         } else {
