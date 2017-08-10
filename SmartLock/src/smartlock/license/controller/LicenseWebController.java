@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.license.service.LicenseService;
@@ -20,6 +21,21 @@ public class LicenseWebController {
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
 
+<<<<<<< HEAD
+	@RequestMapping(value = "/licenseUser", method = RequestMethod.GET)
+	public ModelAndView viewUserLicense() throws Exception{
+		return licenseService.viewUserLicense();
+	}
+	
+//	@RequestMapping("/license")
+//	public ModelAndView test() throws Exception{
+//		return licenseService.test();
+//	}
+//	@RequestMapping("/reqLicense")
+//	public ModelAndView viewAllRequest() throws Exception{
+//		return licenseService.viewAllRequest();
+//	}
+=======
 	@RequestMapping("/license")
 	public ModelAndView license(HttpServletRequest request) throws Exception {
 		// javax.servlet.http.HttpSession
@@ -51,4 +67,8 @@ public class LicenseWebController {
 	public ArrayList<ReqLicenseVO> viewAllRequest() throws Exception{
 		return licenseService.viewAllRequest();
 	}
+<<<<<<< Updated upstream
+=======
+>>>>>>> master
+>>>>>>> Stashed changes
 }
