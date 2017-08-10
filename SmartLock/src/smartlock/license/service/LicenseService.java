@@ -54,12 +54,9 @@ public class LicenseService {
 		return (ArrayList) commonDAO.selectList("license.selectReqLicense", id);
 	}
 	
-	
-
-	public ModelAndView test() throws Exception{
-		LicenseVO vo = (LicenseVO)commonDAO.selectOne("license.selectLicense", null);
-		System.out.println(vo);
-
-		return new ModelAndView("/smartlock/license");
+	public ArrayList<ReqLicenseVO> viewUserReqLicenseByName(Map<String, String> map) throws Exception {
+		return (ArrayList) commonDAO.selectList("license.selectReqLicenseByName", map);
 	}
+
+	
 }
