@@ -35,12 +35,12 @@ public class MemberApiController {
 
         try {
             if (userService.checkPassword(loginReqVO)) {
-                // API data
+                // TODO: 로그인시 API data
                 UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
                 dataResVO.setStatus("success");
                 dataResVO.setData(userInfoVO);
 
-                // Session data
+                // TODO: 로그인시 Session data
                 UserVO userVO = userService.getUserVO(loginReqVO.getId());
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("user", userVO);
