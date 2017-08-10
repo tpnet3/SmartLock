@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +22,12 @@ public class LicenseWebController {
 
 	@RequestMapping("/license")
 	public ModelAndView license(HttpServletRequest request) throws Exception {
+		// javax.servlet.http.HttpSession
+		//HttpSession httpSession = request.getSession();
+
+		// 비로그인일경우 null, 로그인상태일 경우 smartlock.member.vo.UserVO
+		//UserVO userVO = (UserVO) httpSession.getAttribute("user");
+
 		/*
 		TODO: user, manager, guest 에 대한 return view 나누기
 		HttpSession httpSession = request.getSession();
