@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% String _nav = request.getParameter("_nav"); %>
-<% String name = (String) request.getSession().getAttribute("name"); %>
-<% String email = (String) request.getSession().getAttribute("name"); %>
+<% String name = (String) session.getAttribute("name"); %>
+<% String email = (String) session.getAttribute("email"); %>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">

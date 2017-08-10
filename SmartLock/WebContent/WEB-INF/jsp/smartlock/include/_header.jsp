@@ -3,7 +3,7 @@
 <% String _title = request.getParameter("_title"); %>
 <% String[] _css = request.getParameterValues("_css"); %>
 
-<% Integer authority = (Integer) request.getSession().getAttribute("authority"); %>
+<% Integer authority = (Integer) session.getAttribute("authority"); %>
 
 <!DOCTYPE html>
 <html lang="ko">

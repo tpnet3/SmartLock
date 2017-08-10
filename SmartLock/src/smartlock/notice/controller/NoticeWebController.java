@@ -1,4 +1,4 @@
-package smartlock.web.controller;
+package smartlock.notice.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,24 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class MainWebController {
+public class NoticeWebController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home(HttpServletRequest request) {
+    @RequestMapping(value = "/notice", method = RequestMethod.GET)
+    public ModelAndView notice(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         Integer authority = (Integer) httpSession.getAttribute("authority");
 
         if (authority != null && authority == 0) {
-            return new ModelAndView("/smartlock/main_user");
+            return new ModelAndView("/smartlock/notice_user");
         } else if (authority != null && authority == 1) {
-            return new ModelAndView("/smartlock/main_manager");
+            // TODO: notice_manager
+            return new ModelAndView("/smartlock/notice_user");
         } else {
-            return new ModelAndView("/smartlock/main");
+            return new ModelAndView("redirect:/");
         }
-    }
-
-    @RequestMapping(value = "/about_us", method = RequestMethod.GET)
-    public ModelAndView aboutUs() {
-        return new ModelAndView("/smartlock/about_us");
     }
 }

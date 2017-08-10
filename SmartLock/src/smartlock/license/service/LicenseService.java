@@ -40,7 +40,8 @@ public class LicenseService {
 		System.out.println(result);
 		return result;
 	}
-	
+
+	// TODO: 사용되지 않는 메소드
 	public ModelAndView test() throws Exception{
 		System.out.println("hello~");
 		String id = "westham";

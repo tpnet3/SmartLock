@@ -48,9 +48,4 @@ public class MemberWebController {
 
 		return new ModelAndView("redirect:/");
 	}
-
-	@RequestMapping(value="/search_pw", method=RequestMethod.GET)
-	public ModelAndView searchPw() {
-		return new ModelAndView("/smartlock/search_pw");
-	}
 }
