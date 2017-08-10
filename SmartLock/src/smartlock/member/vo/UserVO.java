@@ -4,9 +4,9 @@ public class UserVO {
 	private String id;
 	private String password;
 	private int authority;
-	private String phoneNumber;
+	private String phone_number;
 	private String email;
-	private int corpId;
+	private int corp_id;
 	private String name;
 
 	public UserVO() {}
@@ -15,9 +15,9 @@ public class UserVO {
 		this.id = signupReqVO.getId();
 		this.password = signupReqVO.getPwd();
 		this.authority = 0; // TODO: Authority 설정
-		this.phoneNumber = signupReqVO.getPhone();
+		this.phone_number = signupReqVO.getPhone();
 		this.email = signupReqVO.getEmail();
-		this.corpId = 1; // TODO: corpId 설정
+		this.corp_id = 1; // TODO: corpId 설정
 		this.name = signupReqVO.getName();
 	}
 
@@ -46,11 +46,11 @@ public class UserVO {
 	}
 
 	public String getPhoneNumber() {
-		return phoneNumber;
+		return phone_number;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhoneNumber(String phone_number) {
+		this.phone_number = phone_number;
 	}
 
 	public String getEmail() {
@@ -62,11 +62,11 @@ public class UserVO {
 	}
 
 	public int getCorpId() {
-		return corpId;
+		return corp_id;
 	}
 
-	public void setCorpId(int corpId) {
-		this.corpId = corpId;
+	public void setCorpId(int corp_id) {
+		this.corp_id = corp_id;
 	}
 
 	public String getName() {
@@ -76,4 +76,13 @@ public class UserVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "UserVO [id=" + id + ", password=" + password + ", authority=" + authority + ", phone_number="
+				+ phone_number + ", email=" + email + ", corp_id=" + corp_id + ", name=" + name + "]";
+	}
+
+	
+	
 }

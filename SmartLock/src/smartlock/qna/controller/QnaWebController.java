@@ -1,4 +1,4 @@
-package smartlock.web.controller;
+package smartlock.qna.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,25 +9,23 @@ import smartlock.member.vo.UserVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@Controller
-public class MainWebController {
+// TODO: QnaWebController 구현
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home(HttpServletRequest request) {
+@Controller
+public class QnaWebController {
+
+    @RequestMapping(value = "/qna", method = RequestMethod.GET)
+    public ModelAndView profile(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
         if (userVO != null && userVO.getAuthority() == 0) {
-            return new ModelAndView("/smartlock/main_user");
+            return new ModelAndView("/smartlock/qna_user");
         } else if (userVO != null && userVO.getAuthority() == 1) {
-            return new ModelAndView("/smartlock/main_manager");
+            // TODO: qna_manager
+            return new ModelAndView("/smartlock/qna_user");
         } else {
-            return new ModelAndView("/smartlock/main");
+            return new ModelAndView("redirect:/");
         }
-    }
-
-    @RequestMapping(value = "/about_us", method = RequestMethod.GET)
-    public ModelAndView aboutUs() {
-        return new ModelAndView("/smartlock/about_us");
     }
 }

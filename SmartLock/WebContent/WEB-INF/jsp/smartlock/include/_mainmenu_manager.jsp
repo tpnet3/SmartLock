@@ -1,6 +1,8 @@
+<%@ page import="smartlock.member.vo.UserVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% String _nav = request.getParameter("_nav"); %>
+<% UserVO userVO = (UserVO) session.getAttribute("user"); %>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -22,16 +24,16 @@
                     <a href="/">Home</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("statistics")) ? "class=\"active\"" : "" %>>
-                    <a href="/statistics.jsp">Statistics</a>
+                    <a href="/statistics">Statistics</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
-                    <a href="/license.jsp">License</a>
+                    <a href="/license">License</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
-                    <a href="/qna.jsp">Q&A</a>
+                    <a href="/qna">Q&A</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("notice")) ? "class=\"active\"" : "" %>>
-                    <a href="/notice.jsp">Notice</a>
+                    <a href="/notice">Notice</a>
                 </li>
             </ul>
 
@@ -44,14 +46,14 @@
                             <div class="col-md-5">
                                 <img class="img-responsive" style="margin-left: 15px; margin-right: 20px" align="left" width="100px" src="/html/img/profile.png" alt=""></div>
                             <div class="col-md-7">
-                                <h4>홍길동 님</h4>
-                                <h5>example@google.com</h5>
-                                <a class="btn btn-sm btn-default btn-block" href="/profile.jsp">마이페이지</a>
+                                <h4><%= userVO.getName() %> 님</h4>
+                                <h5><%= userVO.getEmail() %></h5>
+                                <a class="btn btn-sm btn-default btn-block" href="/profile">마이페이지</a>
                                 <br>
                             </div>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/log_out.jsp">로그아웃</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
                     </ul></li>
             </ul>
         </div>

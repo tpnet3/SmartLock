@@ -45,9 +45,10 @@
 					<i class="fa fa-search"></i>
 				</button>
 				</div>
+			<!--
 				<div class="col-sm-2" align="right">
 				<a class="btn btn-danger">디바이스 추가하기</a>
-				</div>
+				</div>-->
 			</div>
 
 		</div>

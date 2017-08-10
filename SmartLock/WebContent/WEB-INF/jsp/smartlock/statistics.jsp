@@ -15,7 +15,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">License 사용 통계</li>
-                <li><a href="statistics_monthly.jsp">월별 License 발급 현황</a></li>
+                <li><a href="/statistics/monthly">월별 License 발급 현황</a></li>
             </ol>
         </div>
     </div>
