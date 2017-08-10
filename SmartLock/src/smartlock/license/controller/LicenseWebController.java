@@ -1,17 +1,22 @@
 package smartlock.license.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
+import smartlock.license.vo.LicenseVO;
 import smartlock.license.vo.ReqLicenseVO;
+import smartlock.member.vo.UserVO;
 
 // TODO: LicenseWebController
 
@@ -21,54 +26,36 @@ public class LicenseWebController {
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
 
-<<<<<<< HEAD
-	@RequestMapping(value = "/licenseUser", method = RequestMethod.GET)
-	public ModelAndView viewUserLicense() throws Exception{
-		return licenseService.viewUserLicense();
+
+	@RequestMapping(value = "/license/user", method = RequestMethod.GET)
+	public ModelAndView viewUserLicense(HttpServletRequest request) throws Exception{
+		return new ModelAndView("/smartlock/license_user");
 	}
 	
-//	@RequestMapping("/license")
-//	public ModelAndView test() throws Exception{
-//		return licenseService.test();
+//	@RequestMapping(value = "/licenseUser_byName", method = RequestMethod.GET)
+//	public ModelAndView viewUserLicenseByName(HttpServletRequest request) throws Exception{
+//		HttpSession httpSession = request.getSession();
+//		UserVO userVO = (UserVO) httpSession.getAttribute("user");
+//	
+//		HashMap<String , Object> map = new HashMap<>();
+//		//map = licenseService.viewUserLicense(userVO.getId());
+//		map = licenseService.viewUserLicenseByName("swan");
+//		return new ModelAndView("/smartlock/license_user", map);
 //	}
-//	@RequestMapping("/reqLicense")
-//	public ModelAndView viewAllRequest() throws Exception{
-//		return licenseService.viewAllRequest();
+	
+//	@RequestMapping(value="/login", method=RequestMethod.GET)
+//	public ModelAndView login(HttpServletRequest request) {
+//		
+//		if (userVO != null) {
+//			return new ModelAndView("redirect:/");
+//		} else {
+//			return new ModelAndView("/smartlock/log_in");
+//		}
 //	}
-=======
-	@RequestMapping("/license")
-	public ModelAndView license(HttpServletRequest request) throws Exception {
-		// javax.servlet.http.HttpSession
-		//HttpSession httpSession = request.getSession();
-
-		// 비로그인일경우 null, 로그인상태일 경우 smartlock.member.vo.UserVO
-		//UserVO userVO = (UserVO) httpSession.getAttribute("user");
-
-		/*
-		TODO: user, manager, guest 에 대한 return view 나누기
-		HttpSession httpSession = request.getSession();
-		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-
-		if (userVO != null && userVO.getAuthority() == 0) {
-			return new ModelAndView("/smartlock/license_user");
-		} else if (userVO != null && userVO.getAuthority() == 1) {
-			return new ModelAndView("/smartlock/license_manager");
-		} else {
-			return new ModelAndView("/smartlock/license");
-		}
-		*/
-
-		// TODO: license list 구현
-
-		return licenseService.test();
-	}
+	
 
 	@RequestMapping("/reqLicense")
 	public ArrayList<ReqLicenseVO> viewAllRequest() throws Exception{
 		return licenseService.viewAllRequest();
 	}
-<<<<<<< Updated upstream
-=======
->>>>>>> master
->>>>>>> Stashed changes
 }
