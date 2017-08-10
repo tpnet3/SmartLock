@@ -44,7 +44,21 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
+    <script>
+        window.SmartLock = {};
+
+        <% if (userVO != null) { %>
+        window.SmartLock['user'] = {
+            id: '<%= userVO.getId() %>',
+            authority: '<%= userVO.getAuthority() %>',
+            phoneNumber: '<%= userVO.getPhoneNumber() %>',
+            email: '<%= userVO.getEmail() %>',
+            corpId: '<%= userVO.getCorpId() %>',
+            name: '<%= userVO.getName() %>'
+        };
+        <% } %>
+    </script>
 </head>
 
 <body>

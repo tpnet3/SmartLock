@@ -24,7 +24,7 @@ $("#profile-btn").on("click", function() {
         contentType: "application/json",
 		dataType : "json",
 		data : {
-			"id": smartlock.id,
+			"id": SmartLock.user.id, // smartlock.id -> SmartLock.user.id 로 수정되었습니다.
 			"email" : $("#email").val(),
 			"phone" : $("#phone").val(),
 		},
