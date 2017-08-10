@@ -1,4 +1,4 @@
-package smartlock.license.vo;
+package smartlock.device.vo;
 
 public class DeviceVO {
 

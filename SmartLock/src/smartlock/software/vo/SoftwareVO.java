@@ -1,4 +1,4 @@
-package smartlock.license.vo;
+package smartlock.software.vo;
 
 public class SoftwareVO {
 
