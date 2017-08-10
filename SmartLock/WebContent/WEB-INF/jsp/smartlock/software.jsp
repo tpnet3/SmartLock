@@ -14,7 +14,7 @@
                 <small>Preview</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="Main.html">Home</a>
+                <li><a href="/">Home</a>
                 </li>
                 <li class="active">Softwares</li>
             </ol>
