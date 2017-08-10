@@ -2,6 +2,7 @@
 
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_nav" value="statistics" />
+    <jsp:param name="_css" value="/html/css/vGraph.css" />
     <jsp:param name="_css" value="/html/css/statistics.css" />
 </jsp:include>
 
@@ -14,7 +15,7 @@
                 <small>월별 발급 현황</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="statistics.jsp">License 사용 통계</a></li>
+                <li><a href="/statistics">License 사용 통계</a></li>
                 <li class="active">월별 License 발급 현황</li>
             </ol>
         </div>
