@@ -1,6 +1,8 @@
 package smartlock.device.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -23,6 +25,13 @@ public class DeviceService {
 	 */
 	public ArrayList<DeviceVO> getDeviceList(String id) throws Exception {
 		return (ArrayList)commonDAO.selectList("device.selectDeviceList", id);
+	}
+	
+	public ArrayList<DeviceVO> getDeviceListBySw(String id, String sw) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("sw_id", sw);
+		return (ArrayList)commonDAO.selectList("device.selectDeviceBySw", map);
 	}
 	
 }
