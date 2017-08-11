@@ -22,7 +22,7 @@
                     <a href="/">Home</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("device")) ? "class=\"active\"" : "" %>>
-                    <a href="/device">Device</a>
+                    <a href="/device/all">Device</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
                     <a href="/license">License</a>

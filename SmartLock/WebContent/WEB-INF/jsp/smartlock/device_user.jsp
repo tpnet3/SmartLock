@@ -1,8 +1,12 @@
+<%@ page import="smartlock.device.vo.DeviceVO" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="device" />
 </jsp:include>
+
+<% ArrayList<DeviceVO> deviceList = (ArrayList<DeviceVO>) request.getAttribute("deviceList"); %>
 
 <!-- Page Content -->
 <div class="container">
@@ -53,34 +57,48 @@
 
 		</div>
 		<br> <br>
+		<% for (int i = 0; i < deviceList.size(); i++) { %>
+		<% DeviceVO deviceVO = deviceList.get(i); %>
 		<div class="col-md-3 col-sm-7">
 			<div class="panel panel-default text-center">
 				<div class="panel-heading">
-					<h3>GD's Phone</h3>
+					<h3><%= deviceVO.getNickname() %></h3>
 				</div>
 				<div class="panel-body">
 					<div>
+						<% // TODO: PC 와 스마트폰 구분 %>
+						<% if (false) { %>
 						<img src="/html/img/smartphone.png"
 							style="margin-left: auto; margin-right: auto; display: auto"
 							width="100px">
+						<% } else { %>
+						<img src="/html/img/pc.png"
+							 style="margin-left: auto; margin-right: auto; display: auto"
+							 width="100px">
+						<% } %>
 						<p></p>
 						<p>
-							<a href="#" class="btn btn-warning btn-filter"
-								style="width: 80px">수정</a>&nbsp; &nbsp; &nbsp;
-							<a href="#" class="btn btn-danger btn-filter" style="width: 80px">삭제</a>
+							<a href="#" class="btn btn-warning btn-filter" style="width: 80px"
+							   onclick="return clickEdit(<%= deviceVO.getId() %>);">수정</a>&nbsp; &nbsp; &nbsp;
+							<a href="#" class="btn btn-danger btn-filter" style="width: 80px"
+							   onclick="return clickDelete(<%= deviceVO.getId() %>);">삭제</a>
 						</p>
 					</div>
 					<div>
 						<ul class="list-group text-center">
+							<% // TODO: 장치명, 장치정보, 등록일 정보 표시 %>
 							<li class="list-group-item"><b>장치명 :</b> iPhone7 (mobile)</li>
 							<li class="list-group-item"><b>장치정보 :</b> DC9601-2792-2DD4</li>
 							<li class="list-group-item"><b>등록일 :</b> 2017 - 01 - 01</li>
 						</ul>
-						<a href="#" class="btn btn-default" style="width: 180px">라이센스 조회</a>
+						<a href="#" class="btn btn-default" style="width: 180px"
+						   onclick="return clickShowLicense(<%= deviceVO.getId() %>);">라이센스 조회</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		<% } %>
+		<!--
 		<div class="col-md-3 col-sm-7">
 			<div class="panel panel-default text-center">
 				<div class="panel-heading">
@@ -165,6 +183,7 @@
 				</div>
 			</div>
 		</div>
+		-->
 		<!-- /.container -->
 		<!-- /.row -->
 		<hr>
@@ -178,4 +197,22 @@
 <jsp:include page="include/_footer_content.jsp" />
 
 <jsp:include page="include/_jslib.jsp" />
+
+<script>
+	function clickEdit(deviceId) {
+	    alert("deviceId: " + deviceId + " 에 대한 수정 버튼을 클릭했습니다.");
+		return false;
+	}
+
+	function clickDelete(deviceId) {
+        alert("deviceId: " + deviceId + " 에 대한 삭제 버튼을 클릭했습니다.");
+        return false;
+	}
+
+	function clickShowLicense(deviceId) {
+        alert("deviceId: " + deviceId + " 에 대한 라이센스 조회 버튼을 클릭했습니다.");
+        return false;
+	}
+</script>
+
 <jsp:include page="include/_footer.jsp" />
