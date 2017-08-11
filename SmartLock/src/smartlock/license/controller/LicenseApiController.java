@@ -10,9 +10,12 @@ import smartlock.member.service.UserService;
 import smartlock.member.vo.*;
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
+import smartlock.license.vo.LicenseUserReqVO;
+import smartlock.license.vo.LicenseUserVO;
 import smartlock.license.vo.LicenseVO;
 import smartlock.license.vo.ReqLicenseVO;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,13 +41,13 @@ public class LicenseApiController {
             value = "/license/user",
             method = RequestMethod.GET
     )
-    public @ResponseBody DataResVO viewUserLicense(
+    public @ResponseBody DataResVO test(
             HttpServletRequest request) throws Exception {
         DataResVO dataResVO = new DataResVO();
         
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-		ArrayList<LicenseVO> license = new ArrayList<LicenseVO>();
+		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
 		//dataResVO = licenseService.viewUserLicense(userVO.getId());
 		license = licenseService.viewUserLicense("swan");
 		
@@ -61,11 +64,12 @@ public class LicenseApiController {
 			dataResVO.setStatus("error");
 			dataResVO.setData("error");
 		}
+		
         return dataResVO;
     }
-
+    
     /**
-     * 개인 라이센스 소프트웨어명 별로 조회s
+     * 개인 라이센스 소프트웨어명 별로 조회
      * @param UserVo, name (소프트웨어명)
      * @return DataResVO
      */
@@ -80,7 +84,7 @@ public class LicenseApiController {
         
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-		ArrayList<LicenseVO> license = new ArrayList<LicenseVO>();
+		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("name", name);
@@ -120,8 +124,9 @@ public class LicenseApiController {
         
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-		ArrayList<ReqLicenseVO> license = new ArrayList<ReqLicenseVO>();
-		license = licenseService.viewUserReqLicense("swan");
+		ArrayList<LicenseUserReqVO> license = new ArrayList<LicenseUserReqVO>();
+		//dataResVO = licenseService.viewUserLicense(userVO.getId())
+		license = licenseService.viewUserReqLicense("madrid");
 		
 		try{
 			System.out.println(license);
@@ -178,4 +183,5 @@ public class LicenseApiController {
 		}
         return dataResVO;
     }
+    
 }

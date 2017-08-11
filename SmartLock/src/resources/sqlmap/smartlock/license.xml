@@ -3,45 +3,68 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="license">
 
-	<!-- 개인 라이센스 전체 조회 -->
+	
+
+	
+
+	
+	<!-- 개인 발급완료 라이센스 전체 조회 -->
 	<select id="selectLicense" parameterType="String"
-		resultType="smartlock.license.vo.LicenseVO">
-		SELECT id
-		, user_id
-		, start_date
-		, end_date
-		, sw_id
-		, state
-		FROM license
-		WHERE user_id = #{value}
+		resultType="smartlock.license.vo.LicenseUserVO">
+		SELECT s.sw_name
+			, d.nickname
+			, c.corp_name
+			, l.start_date
+			, l.end_date
+			, l.state
+		FROM software s
+			, device d
+			, corp c
+			, license l
+		WHERE d.user_id = #{value}
+		AND l.user_id = d.user_id
+		AND d.sw_id = s.id
+		AND s.corp_id = c.id
+		AND l.sw_id = d.sw_id;
 	</select>
-
-	<!-- 소프트웨어명으로 라이센스 조회 -->
+	
+	<!-- 소프트웨어명으로 발급 완료 라이센스 조회 -->
 	<select id="selectLicenseByName" parameterType="java.util.Map"
-		resultType="smartlock.license.vo.LicenseVO">
-		SELECT id
-		, user_id
-		, start_date
-		, end_date
-		, sw_id
-		, state
-		FROM license
-		WHERE user_id = #{id}
-		AND sw_id = (SELECT id FROM software WHERE name = #{name})
+		resultType="smartlock.license.vo.LicenseUserVO">
+		SELECT s.sw_name
+			, d.nickname
+			, c.corp_name
+			, l.start_date
+			, l.end_date
+			, l.state
+		FROM software s
+			, device d
+			, corp c
+			, license l
+		WHERE d.user_id = #{id}
+		AND l.user_id = d.user_id
+		AND d.sw_id = s.id
+		AND s.corp_id = c.id
+		AND l.sw_id = d.sw_id
+		AND l.sw_id = (SELECT id FROM software WHERE
+		sw_name = #{name});
 	</select>
-
+	
 	<!-- 개인 요청 라이센스 전체 조회 -->
 	<select id="selectReqLicense" parameterType="String"
-		resultType="smartlock.license.vo.ReqLicenseVO">
-		SELECT id
-		, user_id
-		, request_date
-		, sw_id
-		, state
-		FROM req_license
-		WHERE user_id = #{value}
+		resultType="smartlock.license.vo.LicenseUserReqVO">
+		SELECT s.sw_name
+			, c.corp_name
+			, l.request_date
+			, l.state
+		FROM software s
+			, corp c
+			, req_license l
+		WHERE l.user_id = #{id}
+		AND l.sw_id = s.id
+		AND s.corp_id = c.id;
 	</select>
-
+	
 	<!-- 개인 요청 라이센스 전체 조회 -->
 	<select id="selectReqLicenseByName" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.ReqLicenseVO">
@@ -50,9 +73,11 @@
 		, request_date
 		, sw_id
 		, state
-		FROM req_license
+		FROM
+		req_license
 		WHERE user_id = #{id}
-		AND sw_id = (SELECT id FROM software WHERE name = #{name})
+		AND sw_id = (SELECT id FROM software
+		WHERE name = #{name})
 	</select>
-
+	
 </mapper>

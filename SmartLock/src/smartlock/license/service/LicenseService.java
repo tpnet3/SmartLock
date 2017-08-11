@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import smartlock.license.vo.LicenseUserReqVO;
+import smartlock.license.vo.LicenseUserVO;
 import smartlock.license.vo.LicenseVO;
 import smartlock.license.vo.ReqLicenseVO;
 import smartlock.member.vo.UserVO;
@@ -35,11 +37,11 @@ public class LicenseService {
 	 * @return ArrayList<LicenseVO>
 	 * @throws Exception
 	 */
-	public ArrayList<LicenseVO> viewUserLicense(String id) throws Exception {
+	public ArrayList<LicenseUserVO> viewUserLicense(String id) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectLicense", id);
 	}
 	
-	public ArrayList<LicenseVO> viewUserLicenseByName(Map<String, String> map) throws Exception {
+	public ArrayList<LicenseUserVO> viewUserLicenseByName(Map<String, String> map) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectLicenseByName", map);
 	}
 	
@@ -50,13 +52,14 @@ public class LicenseService {
 	 * @return ArrayList<ReqLicenseVO>
 	 * @throws Exception
 	 */
-	public ArrayList<ReqLicenseVO> viewUserReqLicense(String id) throws Exception {
+	public ArrayList<LicenseUserReqVO> viewUserReqLicense(String id) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectReqLicense", id);
 	}
 	
 	public ArrayList<ReqLicenseVO> viewUserReqLicenseByName(Map<String, String> map) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectReqLicenseByName", map);
 	}
+
 
 	
 }

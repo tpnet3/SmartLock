@@ -140,7 +140,6 @@
                 			<tr>
         						<td width="10px"><h4><b>No.</h4></td>
 								<td width="250px"><h4><b>소프트웨어</h4></td>
-								<td width="180px"><h4><b>장치명</h4></td>
 								<td width="200px"><h4><b>회사명</h4></td>
 								<td width="150px"><h4><b>요청일자</h4></td>
 								<td width="100px"><h4><b>상태</h4></td>
@@ -150,7 +149,6 @@
 							<tr data-repeat="list">
 								<td data-bind="no" class="data-no">1</td>
 								<td data-bind="소프트웨어">Microsoft Excel</td>
-								<td data-bind="장치명">My-Mac</td>
 								<td data-bind="회사명">Microsoft</td>
 								<td data-bind="요청일자">2016-11-31</td>
 								<td data-bind="상태일반요청"><span class="label label-success">일반 요청</span></td>
@@ -250,42 +248,36 @@
             var sample = [{
                 no: "1",
                 소프트웨어: "Microsoft Excel",
-                장치명: "My-Mac",
                 회사명: "Microsoft",
                 요청일자: "2016-11-31",
                 상태: "데모요청"
             }, {
                 no: "2",
                 소프트웨어: "Microsoft Excel",
-                장치명: "Home-PC",
                 회사명: "Microsoft",
                 요청일자: "2016-11-31",
                 상태: "일반요청"
             }, {
                 no: "3",
                 소프트웨어: "Microsoft Excel",
-                장치명: "Office-PC",
                 회사명: "Microsoft",
                 요청일자: "2016-11-31",
                 상태: "발급거절"
             }, {
                 no: "4",
                 소프트웨어: "Parallels Desktop",
-                장치명: "GD's Phone",
                 회사명: "Microsoft",
                 요청일자: "2017-03-21",
                 상태: "데모요청"
             }, {
                 no: "5",
                 소프트웨어: "Parallels Desktop",
-                장치명: "Parallels International",
                 회사명: "Microsoft",
                 요청일자: "2017-03-21",
                 상태: "데모요청"
             }, {
                 no: "6",
                 소프트웨어: "Parallels Desktop",
-                장치명: "Office-PC",
                 회사명: "Microsoft",
                 요청일자: "2017-03-21",
                 상태: "발급거절"
@@ -311,7 +303,6 @@
             $("[data-repeat*='list']").repeat(data, function (dom, i, obj) {
                 $(dom).find("[data-bind*='no']").html(obj['no']);
                 $(dom).find("[data-bind*='소프트웨어']").html(obj['소프트웨어']);
-                $(dom).find("[data-bind*='장치명']").html(obj['장치명']);
                 $(dom).find("[data-bind*='회사명']").html(obj['회사명']);
                 $(dom).find("[data-bind*='요청일자']").html(obj['요청일자']);
 
