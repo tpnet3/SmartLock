@@ -50,7 +50,4 @@ public class LicenseUserVO {
 		return "LicenseUserVO [nickname=" + nickname + ", sw_name=" + sw_name + ", start_date=" + start_date
 				+ ", end_date=" + end_date + ", state=" + state + ", corp_name=" + corp_name + "]";
 	}
-	
-	
-	
 }

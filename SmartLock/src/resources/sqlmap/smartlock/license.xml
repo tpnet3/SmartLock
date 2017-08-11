@@ -2,11 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="license">
-
-	
-
-	
-
 	
 	<!-- 개인 발급완료 라이센스 전체 조회 -->
 	<select id="selectLicense" parameterType="String"
@@ -28,7 +23,7 @@
 		AND l.sw_id = d.sw_id;
 	</select>
 	
-	<!-- 소프트웨어명으로 발급 완료 라이센스 조회 -->
+	<!-- 소프트웨어명으로 발급완료 라이센스 조회 -->
 	<select id="selectLicenseByName" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.LicenseUserVO">
 		SELECT s.sw_name
@@ -65,19 +60,21 @@
 		AND s.corp_id = c.id;
 	</select>
 	
-	<!-- 개인 요청 라이센스 전체 조회 -->
+	<!-- 개인 요청 라이센스 소프트웨어명 별 조회 -->
 	<select id="selectReqLicenseByName" parameterType="java.util.Map"
-		resultType="smartlock.license.vo.ReqLicenseVO">
-		SELECT id
-		, user_id
-		, request_date
-		, sw_id
-		, state
-		FROM
-		req_license
-		WHERE user_id = #{id}
-		AND sw_id = (SELECT id FROM software
-		WHERE name = #{name})
+		resultType="smartlock.license.vo.LicenseUserReqVO">
+		SELECT s.sw_name
+			, c.corp_name
+			, l.request_date
+			, l.state
+		FROM software s
+			, corp c
+			, req_license l
+		WHERE l.user_id = #{id}
+		AND l.sw_id = s.id
+		AND s.corp_id = c.id
+		AND l.sw_id = (SELECT id FROM software WHERE
+		sw_name = #{name});
 	</select>
 	
 </mapper>

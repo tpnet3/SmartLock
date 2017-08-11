@@ -111,8 +111,8 @@ public class LicenseApiController {
     
     /**
      * 개인 요청 라이센스 전체 조회
-     * @param UserVO 정보 
-     * @return 성공시 DataResVO 
+     * @param UserVO
+     * @return DataResVO 
      */
     @RequestMapping(
             value = "/license/user/request",
@@ -145,9 +145,9 @@ public class LicenseApiController {
     }
 
     /**
-     * 개인 요청 라이센스 전체 조회
-     * @param UserVO 정보 
-     * @return 성공시 DataResVO 
+     * 개인 요청 라이센스 소프트웨어명별 조회
+     * @param UserVO, name(소프트웨어명)  
+     * @return DataResVO 
      */
     @RequestMapping(
             value = "/license/user/request/filter",
@@ -160,12 +160,12 @@ public class LicenseApiController {
         
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-		ArrayList<ReqLicenseVO> license = new ArrayList<ReqLicenseVO>();
+		ArrayList<LicenseUserReqVO> license = new ArrayList<LicenseUserReqVO>();
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("name", name);
 		//map.put("id", userVO.getId());
-		map.put("id", "swan");
+		map.put("id", "madrid");
 		license = licenseService.viewUserReqLicenseByName(map);
 		
 		try{
