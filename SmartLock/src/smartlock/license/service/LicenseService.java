@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import smartlock.license.vo.LicenseManagerReqVO;
+import smartlock.license.vo.LicenseManagerVO;
 import smartlock.license.vo.LicenseUserReqVO;
 import smartlock.license.vo.LicenseUserVO;
 import smartlock.license.vo.LicenseVO;
@@ -65,6 +67,16 @@ public class LicenseService {
 		return (ArrayList) commonDAO.selectList("license.selectReqLicenseByName", map);
 	}
 
-
+	public ArrayList<LicenseManagerReqVO> viewManagerReqLicense(String id) throws Exception {
+		return (ArrayList) commonDAO.selectList("license.selectManagerReqLicense", id);
+	}
+	
+	public ArrayList<LicenseManagerReqVO> viewManagerReqLicenseByName(Map<String, String> map) throws Exception {
+		return (ArrayList) commonDAO.selectList("license.selectManagerReqLicenseByName", map);
+	}
+	
+	public ArrayList<LicenseManagerVO> viewManagerLicense(String id) throws Exception{
+		return (ArrayList) commonDAO.selectList("license.selectManagerLicense", id);
+	}
 	
 }

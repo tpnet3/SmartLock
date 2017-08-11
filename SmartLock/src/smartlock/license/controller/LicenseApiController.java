@@ -10,6 +10,8 @@ import smartlock.member.service.UserService;
 import smartlock.member.vo.*;
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
+import smartlock.license.vo.LicenseManagerReqVO;
+import smartlock.license.vo.LicenseManagerVO;
 import smartlock.license.vo.LicenseUserReqVO;
 import smartlock.license.vo.LicenseUserVO;
 import smartlock.license.vo.LicenseVO;
@@ -41,7 +43,7 @@ public class LicenseApiController {
             value = "/license/user",
             method = RequestMethod.GET
     )
-    public @ResponseBody DataResVO test(
+    public @ResponseBody DataResVO viewUserLicense(
             HttpServletRequest request) throws Exception {
         DataResVO dataResVO = new DataResVO();
         
@@ -184,4 +186,157 @@ public class LicenseApiController {
         return dataResVO;
     }
     
+    /**
+     * 관리자 요청 라이센스 전체 조회
+     * @param UserVO
+     * @return DataResVO
+     */
+    @RequestMapping(
+            value = "/license/manager/request",
+            method = RequestMethod.GET
+    )
+    public @ResponseBody DataResVO viewManagerReqLicense(
+            HttpServletRequest request) throws Exception {
+        DataResVO dataResVO = new DataResVO();
+        
+        HttpSession httpSession = request.getSession();
+		UserVO userVO = (UserVO) httpSession.getAttribute("user");
+		ArrayList<LicenseManagerReqVO> license = new ArrayList<LicenseManagerReqVO>();
+		//dataResVO = licenseService.viewUserLicense(userVO.getId());
+		license = licenseService.viewManagerReqLicense("arsenal");
+		
+		try{
+			System.out.println(license);
+			if(license.isEmpty()) {
+				dataResVO.setStatus("success");
+				dataResVO.setData(null);
+			} else {
+				dataResVO.setStatus("success");
+				dataResVO.setData(license);
+			}
+		} catch(Exception e){
+			dataResVO.setStatus("error");
+			dataResVO.setData("error");
+		}
+		
+        return dataResVO;
+    }
+    
+    /**
+     * 관리자 요청 라이센스 소프트웨어명별 조회 
+     * @param UserVo, name (소프트웨어명)
+     * @return DataResVO
+     */
+    @RequestMapping(
+            value = "/license/manager/request/filter",
+            method = RequestMethod.GET
+    )
+    public @ResponseBody DataResVO viewManagerReqLicenseByName(
+    		@RequestParam("name") String name,
+            HttpServletRequest request) throws Exception {
+        DataResVO dataResVO = new DataResVO();
+        
+        HttpSession httpSession = request.getSession();
+		UserVO userVO = (UserVO) httpSession.getAttribute("user");
+		ArrayList<LicenseManagerReqVO> license = new ArrayList<LicenseManagerReqVO>();
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("name", name);
+		//map.put("id", userVO.getId());
+		map.put("id", "swan");
+		
+		license = licenseService.viewManagerReqLicenseByName(map);
+		
+		try{
+			System.out.println(license);
+			if(license.isEmpty()) {
+				dataResVO.setStatus("success");
+				dataResVO.setData(null);
+			} else {
+				dataResVO.setStatus("success");
+				dataResVO.setData(license);
+			}
+		} catch(Exception e){
+			dataResVO.setStatus("error");
+			dataResVO.setData("error");
+		}
+        return dataResVO;
+    }
+    
+    /**
+     * 관리자 요청 라이센스 상태 별 조회 
+     * @param UserVo, name (소프트웨어명)
+     * @return DataResVO
+     */
+    @RequestMapping(
+            value = "/license/manager/request/filter",
+            method = RequestMethod.GET
+    )
+    public @ResponseBody DataResVO viewManagerReqLicenseByName(
+    		@RequestParam("state") String state,
+            HttpServletRequest request) throws Exception {
+        DataResVO dataResVO = new DataResVO();
+        
+        HttpSession httpSession = request.getSession();
+		UserVO userVO = (UserVO) httpSession.getAttribute("user");
+		ArrayList<LicenseManagerReqVO> license = new ArrayList<LicenseManagerReqVO>();
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("state", state);
+		//map.put("id", userVO.getId());
+		map.put("id", "swan");
+		
+		license = licenseService.viewManagerReqLicenseByName(map);
+		
+		try{
+			System.out.println(license);
+			if(license.isEmpty()) {
+				dataResVO.setStatus("success");
+				dataResVO.setData(null);
+			} else {
+				dataResVO.setStatus("success");
+				dataResVO.setData(license);
+			}
+		} catch(Exception e){
+			dataResVO.setStatus("error");
+			dataResVO.setData("error");
+		}
+        return dataResVO;
+    }
+    
+    /**
+     * 관리자 요청 라이센스 전체 조회
+     * @param UserVO
+     * @return DataResVO
+     */
+    @RequestMapping(
+            value = "/license/manager/request",
+            method = RequestMethod.GET
+    )
+    public @ResponseBody DataResVO viewManagerLicense(
+            HttpServletRequest request) throws Exception {
+        DataResVO dataResVO = new DataResVO();
+        
+        HttpSession httpSession = request.getSession();
+		UserVO userVO = (UserVO) httpSession.getAttribute("user");
+		ArrayList<LicenseManagerVO> license = new ArrayList<LicenseManagerVO>();
+		//dataResVO = licenseService.viewUserLicense(userVO.getId());
+		license = licenseService.viewManagerLicense("arsenal");
+		
+		try{
+			System.out.println(license);
+			if(license.isEmpty()) {
+				dataResVO.setStatus("success");
+				dataResVO.setData(null);
+			} else {
+				dataResVO.setStatus("success");
+				dataResVO.setData(license);
+			}
+		} catch(Exception e){
+			dataResVO.setStatus("error");
+			dataResVO.setData("error");
+		}
+		
+        return dataResVO;
+    }
 }
