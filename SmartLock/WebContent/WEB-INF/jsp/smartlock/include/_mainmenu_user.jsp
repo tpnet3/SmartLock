@@ -46,7 +46,7 @@
                             <div class="col-md-5">
                                 <img class="img-responsive" style="margin-left: 15px; margin-right: 20px" align="left" width="100px" src="/html/img/profile.png" alt=""></div>
                             <div class="col-md-7">
-                                <h4><%= userVO.getName() %> 님</h4>
+                                <h4><%= userVO.getUserName() %> 님</h4>
                                 <h5><%= userVO.getEmail() %></h5>
                                 <a class="btn btn-sm btn-default btn-block" href="/profile">마이페이지</a>
                                 <br>
