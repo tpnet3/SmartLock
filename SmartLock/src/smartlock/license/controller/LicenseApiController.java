@@ -39,36 +39,36 @@ public class LicenseApiController {
      * @param UserVO 정보
      * @return DataResVO
      */
-//    @RequestMapping(
-//            value = "/license/user",
-//            method = RequestMethod.GET
-//    )
-//    public @ResponseBody DataResVO viewUserLicense(
-//            HttpServletRequest request) throws Exception {
-//        DataResVO dataResVO = new DataResVO();
-//        
-//        HttpSession httpSession = request.getSession();
-//		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-//		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
-//		//dataResVO = licenseService.viewUserLicense(userVO.getId());
-//		license = licenseService.viewUserLicense("swan");
-//		
-//		try{
-//			System.out.println(license);
-//			if(license.isEmpty()) {
-//				dataResVO.setStatus("success");
-//				dataResVO.setData(null);
-//			} else {
-//				dataResVO.setStatus("success");
-//				dataResVO.setData(license);
-//			}
-//		} catch(Exception e){
-//			dataResVO.setStatus("error");
-//			dataResVO.setData("error");
-//		}
-//		
-//        return dataResVO;
-//    }
+    @RequestMapping(
+            value = "/license/user",
+            method = RequestMethod.GET
+    )
+    public @ResponseBody DataResVO viewUserLicense(
+            HttpServletRequest request) throws Exception {
+        DataResVO dataResVO = new DataResVO();
+        
+        HttpSession httpSession = request.getSession();
+		UserVO userVO = (UserVO) httpSession.getAttribute("user");
+		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
+		//dataResVO = licenseService.viewUserLicense(userVO.getId());
+		license = licenseService.viewUserLicense("swan");
+		
+		try{
+			System.out.println(license);
+			if(license.isEmpty()) {
+				dataResVO.setStatus("success");
+				dataResVO.setData(null);
+			} else {
+				dataResVO.setStatus("success");
+				dataResVO.setData(license);
+			}
+		} catch(Exception e){
+			dataResVO.setStatus("error");
+			dataResVO.setData("error");
+		}
+		
+        return dataResVO;
+    }
     
     /**
      * 개인 라이센스 소프트웨어명 별로 조회
@@ -76,7 +76,7 @@ public class LicenseApiController {
      * @return DataResVO
      */
     @RequestMapping(
-            value = "/license/user",
+            value = "/license/use/filterr",
             method = RequestMethod.GET
     )
     public @ResponseBody DataResVO viewUserLicenseByName(
@@ -89,16 +89,12 @@ public class LicenseApiController {
 		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
 		Map<String, String> map = new HashMap<String, String>();
 		
-		if(name==null){
-			//dataResVO = licenseService.viewUserLicense(userVO.getId());
-			license = licenseService.viewUserLicense("swan");
-		} 
-		else{
+		
 		map.put("name", name);
 		//map.put("id", userVO.getId());
 		map.put("id", "swan");
 		license = licenseService.viewUserLicenseByName(map);
-		}
+		
 		try{
 			System.out.println(license);
 			if(license.isEmpty()) {
@@ -280,7 +276,7 @@ public class LicenseApiController {
      * @return DataResVO
      */
     @RequestMapping(
-            value = "/license/manager/request",
+            value = "/license/manager",
             method = RequestMethod.GET
     )
     public @ResponseBody DataResVO viewManagerLicense(

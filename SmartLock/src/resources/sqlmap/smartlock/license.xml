@@ -113,20 +113,4 @@
 		AND u.id = l.user_id
 		AND s.sw_name = #{name};
 	</select>
-	
-	<!-- 관리자 발급완료 라이센스 전체 조회 -->
-	<select id="selectManagerReqLicense" parameterType="String"
-		resultType="smartlock.license.vo.LicenseManagerVO">
-		SELECT s.sw_name
-			, u.user_name
-			, l.start_date
-			, l.end_date
-			, l.state
-		FROM software s
-			, license l
-			, user u
-		WHERE s.corp_id = (SELECT corp_id FROM user WHERE id = #{id})
-		AND l.sw_id = s.id
-		AND u.id = l.user_id;
-	</select>
 </mapper>
