@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import smartlock.common.Util;
 import smartlock.common.vo.DataResVO;
 import smartlock.device.service.DeviceService;
 import smartlock.device.vo.DeviceVO;
@@ -31,8 +32,7 @@ public class DeviceApiController {
 		ArrayList<DeviceVO> list = new ArrayList<DeviceVO>();
 
 		try {
-			//list = deviceService.getDeviceList(((UserVO)session.getAttribute("user")).getId());
-			list = deviceService.getDeviceList("swan");
+			list = deviceService.getDeviceList(((UserVO)session.getAttribute("user")).getId());
 			if (!list.isEmpty()) {
 				dataResVO.setStatus("success");
 				dataResVO.setData(list);
@@ -56,8 +56,7 @@ public class DeviceApiController {
 		ArrayList<DeviceVO> list = new ArrayList<DeviceVO>();
 		
 		try{
-			//list = deviceService.getDeviceListBySw(((UserVO)session.getAttribute("user")).getId(), sw);
-			list = deviceService.getDeviceListBySw("swan", sw);
+			list = deviceService.getDeviceListBySw(((UserVO)session.getAttribute("user")).getId(), sw);
 			if(!list.isEmpty()) {
 				dataResVO.setStatus("success");
 				dataResVO.setData(list);

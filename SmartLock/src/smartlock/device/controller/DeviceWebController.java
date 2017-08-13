@@ -28,7 +28,7 @@ public class DeviceWebController {
 
 		try {
 			if (userVO != null && userVO.getAuthority() == 0) {
-				ArrayList<DeviceVO> deviceList = deviceService.getDeviceList("swan");
+				ArrayList<DeviceVO> deviceList = deviceService.getDeviceList(((UserVO)session.getAttribute("user")).getId());
 
 				ModelAndView modelAndView = new ModelAndView("smartlock/device_user");
 				modelAndView.addObject("deviceList", deviceList);
@@ -41,18 +41,4 @@ public class DeviceWebController {
 			return new ModelAndView("redirect:/");
 		}
 	}
-
-	/*
-	@RequestMapping(value="/device/all", method=RequestMethod.GET)
-	public ModelAndView getAllDevice(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		UserVO userVO = (UserVO)session.getAttribute("user");
-		System.out.println(userVO);
-		if(userVO != null) {
-			return new ModelAndView("redirect:/");
-		} else {
-			return new ModelAndView("smartlock/device_user");
-		}
-	}
-	*/
 }

@@ -1,23 +1,5 @@
 package smartlock.license.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import smartlock.member.service.UserService;
-import smartlock.member.vo.*;
-import smartlock.common.vo.DataResVO;
-import smartlock.license.service.LicenseService;
-import smartlock.license.vo.LicenseManagerReqVO;
-import smartlock.license.vo.LicenseManagerVO;
-import smartlock.license.vo.LicenseUserReqVO;
-import smartlock.license.vo.LicenseUserVO;
-import smartlock.license.vo.LicenseVO;
-import smartlock.license.vo.ReqLicenseVO;
-
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +7,20 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import smartlock.common.vo.DataResVO;
+import smartlock.license.service.LicenseService;
+import smartlock.license.vo.LicenseManagerReqVO;
+import smartlock.license.vo.LicenseManagerVO;
+import smartlock.license.vo.LicenseUserReqVO;
+import smartlock.license.vo.LicenseUserVO;
+import smartlock.member.vo.UserVO;
 
 @Controller
 public class LicenseApiController {
@@ -76,7 +72,7 @@ public class LicenseApiController {
      * @return DataResVO
      */
     @RequestMapping(
-            value = "/license/use/filterr",
+            value = "/license/user/filter",
             method = RequestMethod.GET
     )
     public @ResponseBody DataResVO viewUserLicenseByName(
@@ -264,14 +260,7 @@ public class LicenseApiController {
     }
     
     /**
-     * 관리자 요청 라이센스 상태 별 조회 
-     * @param UserVo, name (소프트웨어명)
-     * @return DataResVO
-     */
-//    s
-    
-    /**
-     * 관리자 요청 라이센스 전체 조회
+     * 관리자 발급완료 라이센스 전체 조회
      * @param UserVO
      * @return DataResVO
      */
