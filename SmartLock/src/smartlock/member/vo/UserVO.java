@@ -7,7 +7,7 @@ public class UserVO {
 	private String phone_number;
 	private String email;
 	private int corp_id;
-	private String name;
+	private String user_name;
 
 	public UserVO() {}
 
@@ -18,7 +18,7 @@ public class UserVO {
 		this.phone_number = signupReqVO.getPhone();
 		this.email = signupReqVO.getEmail();
 		this.corp_id = 1; // TODO: corpId 설정
-		this.name = signupReqVO.getName();
+		this.user_name = signupReqVO.getName();
 	}
 
 	public String getId() {
@@ -69,20 +69,24 @@ public class UserVO {
 		this.corp_id = corp_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return user_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.user_name = userName;
 	}
 
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", password=" + password + ", authority=" + authority + ", phone_number="
-				+ phone_number + ", email=" + email + ", corp_id=" + corp_id + ", name=" + name + "]";
+		return "UserVO{" +
+				"id='" + id + '\'' +
+				", password='" + password + '\'' +
+				", authority=" + authority +
+				", phone_number='" + phone_number + '\'' +
+				", email='" + email + '\'' +
+				", corp_id=" + corp_id +
+				", user_name='" + user_name + '\'' +
+				'}';
 	}
-
-	
-	
 }

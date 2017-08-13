@@ -3,7 +3,7 @@ package smartlock.member.vo;
 public class UserInfoVO {
 
     private String id;
-    private String name;
+    private String user_name;
     private int authority;
     private String email;
     private String phone;
@@ -17,12 +17,12 @@ public class UserInfoVO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return user_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.user_name = userName;
     }
 
     public int getAuthority() {
@@ -55,5 +55,17 @@ public class UserInfoVO {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfoVO{" +
+                "id='" + id + '\'' +
+                ", user_name='" + user_name + '\'' +
+                ", authority=" + authority +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", company='" + company + '\'' +
+                '}';
     }
 }

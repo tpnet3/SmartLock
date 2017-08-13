@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이름</label>
                             <div class="col-md-7">
-                                <label class="control-label" for="textinput"><%= userVO.getName() %></label>
+                                <label class="control-label" for="textinput"><%= userVO.getUserName() %></label>
                             </div>
                         </div>
 

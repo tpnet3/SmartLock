@@ -91,7 +91,10 @@
 							<b>이름
 						</h4></td>
 						<td width="100px"><h4>
-							<b>신청날짜
+							<b>발급날짜
+						</h4></td>
+						<td width="100px"><h4>
+							<b>만료날짜
 						</h4></td>
 						<td width="150px"><h4>
 							<b>분류
@@ -99,85 +102,77 @@
 						<td width="100px"><h4>
 							<b>상세보기
 						</h4></td>
-						<td width="100px"><h4>
-							<b>처리
-						</h4></td>
+				
 					</tr>
 					</thead>
 					<tbody align="center">
-					<tr>
-						<td data-title="No.">1</td>
-						<td data-title="소프트웨어">Microsoft Excel</td>
-						<td data-title="이름">박지성</td>
-						<td data-title="신청날짜">2017-01-01</td>
-						<td data-title="분류"><span class="label label-success">일반
+							<tr>
+								<td data-title="No.">1</td>
+								<td data-title="소프트웨어">Microsoft Excel</td>
+								<td data-title="이름">박지성</td>
+								<td data-title="발급날짜">2017-01-01</td>
+								<td data-title="만료날짜">9999-01-01</td>
+								<td data-title="분류"><span class="label label-success">일반
 										신청</span></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: darkgray; color: black">상세 보기</span></a></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: indianred; color: white">발급하기</span></a></td>
-					</tr>
-					<tr>
-						<td data-title="No.">2</td>
-						<td data-title="소프트웨어">Microsoft Excel</td>
-						<td data-title="이름">이영표</td>
-						<td data-title="신청날짜">2017-02-02</td>
-						<td data-title="분류"><span class="label label-success">일반
+								<td data-title="상세보기"><a><span class="label"
+										style="background-color: darkgray; color: black">상세 보기</span></a></td>
+							</tr>
+							<tr>
+								<td data-title="No.">2</td>
+								<td data-title="소프트웨어">Microsoft Excel</td>
+								<td data-title="이름">이영표</td>
+								<td data-title="발급날짜">2017-02-02</td>
+								<td data-title="만료날짜">9999-01-01</td>
+								<td data-title="분류"><span class="label label-success">일반
 										신청</span></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: darkgray; color: black">상세 보기</span></a></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: indianred; color: white">발급하기</span></a></td>
-					</tr>
-					<tr>
-						<td data-title="No.">3</td>
-						<td data-title="소프트웨어">Microsoft Excel</td>
-						<td data-title="이름">차두리</td>
-						<td data-title="신청날짜">2017-03-03</td>
-						<td data-title="분류"><span class="label label-warning">데모
+								<td data-title="상세보기"><a><span class="label"
+										style="background-color: darkgray; color: black">상세 보기</span></a></td>
+							</tr>
+							<tr>
+								<td data-title="No.">3</td>
+								<td data-title="소프트웨어">Microsoft Excel</td>
+								<td data-title="이름">차두리</td>
+								<td data-title="발급날짜">2017-03-03</td>
+								<td data-title="만료날짜">2017-04-03</td>
+								<td data-title="분류"><span class="label label-warning">데모
 										신청</span></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: darkgray; color: black">상세 보기</span></a></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: indianred; color: white">발급하기</span></a></td>
-					</tr>
-					<tr>
-						<td data-title="No.">4</td>
-						<td data-title="소프트웨어">Microsoft Excel</td>
-						<td data-title="이름">박주영</td>
-						<td data-title="신청날짜">2017-04-04</td>
-						<td data-title="분류"><span class="label label-warning">데모
+								<td data-title="상세보기"><a><span class="label"
+										style="background-color: darkgray; color: black">상세 보기</span></a></td>
+							</tr>
+							<tr>
+								<td data-title="No.">4</td>
+								<td data-title="소프트웨어">Microsoft Excel</td>
+								<td data-title="이름">박주영</td>
+								<td data-title="발급날짜">2017-04-04</td>
+								<td data-title="만료날짜">2017-05-04</td>
+								<td data-title="분류"><span class="label label-warning">데모
 										신청</span></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: darkgray; color: black">상세 보기</span></a></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: indianred; color: white">발급하기</span></a></td>
-					</tr>
-					<tr>
-						<td data-title="No.">5</td>
-						<td data-title="소프트웨어">Football Manager</td>
-						<td data-title="이름">김남일</td>
-						<td data-title="신청날짜">2017-05-05</td>
-						<td data-title="분류"><span class="label label-success">일반
+								<td data-title="상세보기"><a><span class="label"
+										style="background-color: darkgray; color: black">상세 보기</span></a></td>
+							</tr>
+							<tr>
+								<td data-title="No.">5</td>
+								<td data-title="소프트웨어">Football Manager</td>
+								<td data-title="이름">김남일</td>
+								<td data-title="발급날짜">2017-05-05</td>
+								<td data-title="만료날짜">9999-01-01</td>
+								<td data-title="분류"><span class="label label-success">일반
 										신청</span></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: darkgray; color: black">상세 보기</span></a></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: indianred; color: white">발급하기</span></a></td>
-					</tr>
-					<tr>
-						<td data-title="No.">6</td>
-						<td data-title="소프트웨어">Adobe CC</td>
-						<td data-title="이름">이근호</td>
-						<td data-title="신청날짜">2017-01-01</td>
-						<td data-title="분류"><span class="label label-success">일반
+								<td data-title="상세보기"><a><span class="label"
+										style="background-color: darkgray; color: black">상세 보기</span></a></td>
+							</tr>
+							<tr>
+								<td data-title="No.">6</td>
+								<td data-title="소프트웨어">Adobe CC</td>
+								<td data-title="이름">이근호</td>
+								<td data-title="신청날짜">2017-01-01</td>
+								<td data-title="만료날짜">9999-01-01</td>
+								<td data-title="분류"><span class="label label-success">일반
 										신청</span></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: darkgray; color: black">상세 보기</span></a></td>
-						<td data-title="상세보기"><a><span class="label"
-													   style="background-color: indianred; color: white">발급하기</span></a></td>
-					</tr>
-					</tbody>
+								<td data-title="상세보기"><a><span class="label"
+										style="background-color: darkgray; color: black">상세 보기</span></a></td>
+							</tr>
+						</tbody>
 				</table>
 			</div>
 		</div>

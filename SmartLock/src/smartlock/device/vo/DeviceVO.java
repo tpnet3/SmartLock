@@ -71,6 +71,20 @@ public class DeviceVO {
 	public void setUdid(String udid) {
 		this.udid = udid;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "DeviceVO{" +
+				"id=" + id +
+				", user_id='" + user_id + '\'' +
+				", nickname='" + nickname + '\'' +
+				", sw_id=" + sw_id +
+				", type=" + type +
+				", mac='" + mac + '\'' +
+				", usim='" + usim + '\'' +
+				", pin='" + pin + '\'' +
+				", serial='" + serial + '\'' +
+				", udid='" + udid + '\'' +
+				'}';
+	}
 }
