@@ -26,7 +26,7 @@
                 <li <%= (_nav != null && _nav.equals("statistics")) ? "class=\"active\"" : "" %>>
                     <a href="/statistics">Statistics</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("license/manager/request")) ? "class=\"active\"" : "" %>>
                     <a href="/license">License</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>

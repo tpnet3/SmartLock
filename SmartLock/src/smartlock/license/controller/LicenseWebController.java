@@ -28,43 +28,43 @@ public class LicenseWebController {
 	private LicenseService licenseService;
 
 	//사용자 화면
-	@RequestMapping(value = "/license/user", method = RequestMethod.POST)
+	@RequestMapping(value = "/license/user", method = RequestMethod.GET)
 	public ModelAndView viewUserLicense(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_user");
 	}
 
-	@RequestMapping(value = "/license/user/filter", method = RequestMethod.POST)
+	@RequestMapping(value = "/license/user/filter", method = RequestMethod.GET)
 	public ModelAndView viewUserLicenseByName(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_user");
 	}
 	
-	@RequestMapping(value = "/license/user/request", method = RequestMethod.POST)
+	@RequestMapping(value = "/license/user/request", method = RequestMethod.GET)
 	public ModelAndView viewUserReqLicense(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_user_request");
 	}
 	
-	@RequestMapping(value = "/license/user/request/filter", method = RequestMethod.POST)
+	@RequestMapping(value = "/license/user/request/filter", method = RequestMethod.GET)
 	public ModelAndView viewUserReqLicenseByName(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_user_request");
 	}
 	
 	//관리자 화면 
-	@RequestMapping(value = "/license/manager/request", method = RequestMethod.POST)
+	@RequestMapping(value = "/license/manager/request", method = RequestMethod.GET)
 	public ModelAndView viewManagerReqLicense(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_manager");
 	}
 	
-	@RequestMapping(value = "/license/manager/request/filter", method = RequestMethod.POST)
+	@RequestMapping(value = "/license/manager/request/filter", method = RequestMethod.GET)
 	public ModelAndView viewManagerReqLicenseByName(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_manager");
 	}
 	
-	@RequestMapping(value = "/license/manager", method = RequestMethod.POST)
+	@RequestMapping(value = "/license/manager", method = RequestMethod.GET)
 	public ModelAndView viewManagerLicense(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_finish_manager");
 	}
 	
-	@RequestMapping(value = "/license/manager/filter", method = RequestMethod.POST)
+	@RequestMapping(value = "/license/manager/filter", method = RequestMethod.GET)
 	public ModelAndView viewManagerLicenseByName(HttpServletRequest request) throws Exception{
 		return new ModelAndView("/smartlock/license_finish_manager");
 	}

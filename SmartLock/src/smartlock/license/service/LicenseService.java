@@ -67,16 +67,43 @@ public class LicenseService {
 		return (ArrayList) commonDAO.selectList("license.selectReqLicenseByName", map);
 	}
 
+	/**
+	 * 관리자 요청 라이센스 전체조회 
+	 * @param String id
+	 * @return ArrayList<LicenseManagerReqVO>
+	 * @throws Exception
+	 */
 	public ArrayList<LicenseManagerReqVO> viewManagerReqLicense(String id) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectManagerReqLicense", id);
 	}
 	
+	/**
+	 * 관리자 요청 라이센스 소프트웨어명별 조회 
+	 * @param map(id, name)
+	 * @return ArrayList<LicenseManagerReqVO>
+	 * @throws Exception
+	 */
 	public ArrayList<LicenseManagerReqVO> viewManagerReqLicenseByName(Map<String, String> map) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectManagerReqLicenseByName", map);
 	}
 	
+	/**
+	 * 관리자 발급완료 라이센스 전체조회 
+	 * @param String id
+	 * @return ArrayList<LicensemanagerVO>
+	 * @throws Exception
+	 */
 	public ArrayList<LicenseManagerVO> viewManagerLicense(String id) throws Exception{
 		return (ArrayList) commonDAO.selectList("license.selectManagerLicense", id);
 	}
 	
+	/**
+	 * 관리자 발급완료 라이센스 소프트웨어명 별 조회 
+	 * @param String id
+	 * @return ArrayList<LicensemanagerVO>
+	 * @throws Exception
+	 */
+	public ArrayList<LicenseManagerVO> viewManagerLicenseMyName(Map<String, String> map) throws Exception{
+		return (ArrayList) commonDAO.selectList("license.selectManagerLicenseByName", map);
+	}
 }

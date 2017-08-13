@@ -44,17 +44,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="input-group">
-                        <select name="" id="location1"
-                                style="width: 180px; height: 35px;">
-                            <option value="">분류</option>
-                            <option value="">전체보기</option>
-                            <option value="">일반신청</option>
-                            <option value="">데모신청</option>
-                        </select>
-                    </div>
-                </div>
+                
                 <div class="col-sm-6">
                     <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
                            id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
