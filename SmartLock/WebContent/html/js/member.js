@@ -28,7 +28,7 @@ $("#login-form").submit(function() {
 $("#check-id-btn").on("click",function(){
 	if($("#id").val() == '') {
 		$("#id").focus();
-		return;
+		return false;
 	}
 	
 	$.ajax({
@@ -101,37 +101,37 @@ $("#signup-form").submit(function() {
 	if($("#id").val() == '') {
 		$("#id").focus();
 		alert("아이디를 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#pwd").val() == '') {
 		$("#pwd").focus();
 		alert("비밀번호를 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#check-pwd").val() == '') {
 		$("#pwd").focus();
 		alert("비밀번호 확인을 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#name").val() == '') {
 		$("#name").focus();
 		alert("이름을 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#email").val() == '') {
 		$("#email").focus();
 		alert("이메일을 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#phone").val() == '') {
 		$("#phone").focus();
 		alert("전화번호를 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#corp_id").val() == '') {
 		$("#corp_name").focus();
 		alert("기업명을 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#checked-id").val() != $("#id").val()) {
 		$("#is-check-id").val("false");
@@ -141,12 +141,12 @@ $("#signup-form").submit(function() {
 	if($("#is-check-id").val() == "false") {
 		$("#id").focus();
 		alert("아이디 중복체크를 하세요.");
-		return;
+		return false;
 	}
 	if($("#pwd").val() != $("#check-pwd").val()) {
 		$("#check-pwd").focus();
 		alert("비밀번호가 다릅니다.");
-		return;
+		return false;
 	}
 
 	$.ajax({

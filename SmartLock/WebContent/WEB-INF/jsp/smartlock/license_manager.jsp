@@ -110,10 +110,18 @@
                         <td data-title="신청날짜"><%=sdf.format(licenseManagerReqVO.getRequest_date())%></td>
                         <td data-title="분류"><span class="label label-success">일반
 									신청</span></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: darkgray; color: black">상세 보기</span></a></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: indianred; color: white">발급하기</span></a></td>
+                        <td data-title="상세보기">
+                            <span class="label" style="background-color: darkgray; color: black"
+                                  onclick="return showDetail('<%=licenseManagerReqVO.getSw_name()%>');">
+                                상세 보기
+                            </span>
+                        </td>
+                        <td data-title="상세보기">
+                            <span class="label" style="background-color: indianred; color: white"
+                                  onclick="return licenseOk('<%=licenseManagerReqVO.getSw_name()%>');">
+                                발급하기
+                            </span>
+                        </td>
                     </tr>
                     <% } %>
                     <!--
@@ -196,8 +204,7 @@
         </div>
     </div>
 </div>
-</div>
-<!-- /.row -->
+<!-- /.container -->
 
 <!-- /.row -->
 <hr>
@@ -205,9 +212,18 @@
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 
-</div>
-<!-- /.container -->
-
 <jsp:include page="include/_jslib.jsp" />
+
+<script>
+    function showDetail(swName) {
+        // TODO: 상세보기
+        alert(swName + " 에 대한 상세보기를 클릭했습니다.");
+    }
+
+    function licenseOk(swName) {
+        // TODO: 라이센스 발급
+        alert(swName + " 에 대한 라이센스를 발급했습니다.");
+    }
+</script>
 
 <jsp:include page="include/_footer.jsp" />
