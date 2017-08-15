@@ -53,7 +53,7 @@
     <update id="updateUser" 
     		parameterType="smartlock.member.vo.UserVO">
     	UPDATE user
-		SET email=#{email}, phone_number=#{phoneNumber}
+		SET email=#{email}, phone_number=#{phone_number}
 		WHERE id=#{id};
     </update>
     
