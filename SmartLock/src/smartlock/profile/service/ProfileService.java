@@ -39,7 +39,7 @@ public class ProfileService {
 	 * @throws Exception DAO 예외
 	 */
 	 public void updateUser(UserVO userVO) throws Exception{
-		 int cnt = commonDAO.update("user.userUpdate", userVO);
+		 int cnt = commonDAO.update("user.updateUser", userVO);
 		 System.out.println(cnt+"개의 회원이 업데이트 되었습니다.");
 	 }	
 }
