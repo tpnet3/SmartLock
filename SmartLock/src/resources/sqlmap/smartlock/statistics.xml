@@ -33,7 +33,7 @@
 	</select>
 	
 	<!-- 요청라이센스 소프트웨어명별 count  -->
-	<select id="countReqLicense" parameterType="String"
+	<select id="countReqLicense1" parameterType="String"
 		resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM req_license
@@ -43,7 +43,7 @@
 	</select>
 	
 	<!-- 발급완료 라이센스 소프트웨어명별 count  -->
-	<select id="countLicense" parameterType="String"
+	<select id="countLicense1" parameterType="String"
 		resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM license
@@ -54,7 +54,7 @@
 	</select>
 	
 	<!-- 데모 라이센스 소프트웨어명별 count  -->
-	<select id="countDemo" parameterType="String"
+	<select id="countDemo1" parameterType="String"
 		resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM license
