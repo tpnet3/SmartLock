@@ -115,8 +115,12 @@
 						TODO: 분류
 						<td data-title="분류"><span class="label label-warning">데모 신청</span></td>
 						-->
-						<td data-title="상세보기"><a><span class="label"
-								style="background-color: darkgray; color: black">상세 보기</span></a></td>
+						<td data-title="상세보기">
+							<span class="label" style="background-color: darkgray; color: black"
+							      onclick="return showDetail('<%=licenseManagerVO.getSw_name()%>')">
+								상세 보기
+							</span>
+						</td>
 					</tr>
 					<% } %>
 					<!--
@@ -203,6 +207,13 @@
 <jsp:include page="include/_footer_content.jsp" />
 
 <!-- /.container -->
+
+<script>
+    function showDetail(swName) {
+        // TODO: 상세보기
+        alert(swName + " 에 대한 상세보기를 클릭했습니다.");
+    }
+</script>
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />
