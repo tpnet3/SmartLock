@@ -26,7 +26,7 @@ $("#profile-form").submit(function() {
 		data : JSON.stringify({
 			"id": SmartLock.user.id, // smartlock.id -> SmartLock.user.id 로 수정되었습니다.
 			"email" : $("#email").val(),
-			"phone" : $("#phone_number").val(),
+			"phone" : $("#phone_number").val()
 		}),
 		success : function (data){
 			if(data.status == "success") {
