@@ -1,4 +1,10 @@
+<%@ page import="smartlock.license.vo.LicenseUserVO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<% ArrayList<LicenseUserVO> licenseUserVOArrayList = (ArrayList<LicenseUserVO>) request.getAttribute("licenseUserVOArrayList"); %>
+<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
 
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_nav" value="license" />
@@ -76,15 +82,27 @@
                     </tr>
                     </thead>
                     <tbody align="center">
+                    <% for (int i = 0; i < licenseUserVOArrayList.size(); i++) { %>
+                    <% LicenseUserVO licenseUserVO = licenseUserVOArrayList.get(i); %>
                     <tr>
-                        <td data-title="No.">1</td>
-                        <td data-title="소프트웨어">Microsoft Excel</td>
-                        <td data-title="장치명">My-Mac</td>
-                        <td data-title="회사명">Microsoft</td>
-                        <td data-title="시작일자">2016-11-31</td>
-                        <td data-title="만료기간">9999-99-99</td>
+                        <td data-title="No."><%= i %></td>
+                        <td data-title="소프트웨어"><%=licenseUserVO.getSw_name()%>Microsoft Excel</td>
+                        <td data-title="장치명">My-Mac</td> <!-- TODO: 장치명 -->
+                        <td data-title="회사명">Microsoft</td> <!-- TODO: 회사명 -->
+                        <td data-title="시작일자"><%=sdf.format(licenseUserVO.getStart_date())%></td>
+                        <td data-title="만료기간"><%=sdf.format(licenseUserVO.getEnd_date())%></td>
+
+                        <% if (licenseUserVO.getState() == 1) { %>
                         <td data-title="상태"><span class="label label-success">발급 완료</span></td>
+                        <% } else if (licenseUserVO.getState() == 2) { %>
+                        <td data-title="상태"><span class="label label-success" onmouseout="this.style.background='#5cb85c';
+							this.innerText='데모 버전';" onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';">데모 버전</span></td>
+                        <% } else { %>
+                        <td data-title="상태"><span class="label label-danger" onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';" onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';">발급거절</span></td>
+                        <% } %>
                     </tr>
+                    <% } %>
+                    <!--
                     <tr>
                         <td data-title="No.">2</td>
                         <td data-title="소프트웨어">Microsoft Excel</td>
@@ -169,6 +187,7 @@
                         <td data-title="만료기간">0000-00-00</td>
                         <td data-title="상태"><span class="label label-danger" onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';" onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';">발급거절</span></td>
                     </tr>
+                    -->
                     </tbody>
                 </table>
             </div>
@@ -177,6 +196,7 @@
 </div>
 <!-- /.container -->
 <!-- Pagination -->
+<!--
 <div class="row text-center">
     <div class="col-lg-12">
         <ul class="pagination">
@@ -204,13 +224,12 @@
         </ul>
     </div>
 </div>
+-->
 <!-- /.row -->
 <hr>
 
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
-
-</div>
 
 <jsp:include page="include/_jslib.jsp" />
 

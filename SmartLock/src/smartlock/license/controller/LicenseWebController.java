@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
+import smartlock.license.vo.LicenseUserVO;
 import smartlock.license.vo.LicenseVO;
 import smartlock.license.vo.ReqLicenseVO;
 import smartlock.member.vo.UserVO;
@@ -30,42 +31,93 @@ public class LicenseWebController {
 	//사용자 화면
 	@RequestMapping(value = "/license/user", method = RequestMethod.GET)
 	public ModelAndView viewUserLicense(HttpServletRequest request) throws Exception{
-		return new ModelAndView("/smartlock/license_user");
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		if (userVO != null && userVO.getAuthority() == 0) {
+			ModelAndView modelAndView = new ModelAndView("/smartlock/license_user");
+			ArrayList<LicenseUserVO> licenseUserVOArrayList = licenseService.viewUserLicense(userVO.getId());
+			modelAndView.addObject("licenseUserVOArrayList", licenseUserVOArrayList);
+			return modelAndView;
+		} else {
+			return new ModelAndView("redirect:/");
+		}
 	}
 
 	@RequestMapping(value = "/license/user/filter", method = RequestMethod.GET)
 	public ModelAndView viewUserLicenseByName(HttpServletRequest request) throws Exception{
-		return new ModelAndView("/smartlock/license_user");
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		if (userVO != null && userVO.getAuthority() == 0) {
+			return new ModelAndView("/smartlock/license_user");
+		} else {
+			return new ModelAndView("redirect:/");
+		}
 	}
 	
 	@RequestMapping(value = "/license/user/request", method = RequestMethod.GET)
 	public ModelAndView viewUserReqLicense(HttpServletRequest request) throws Exception{
-		return new ModelAndView("/smartlock/license_user_request");
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		if (userVO != null && userVO.getAuthority() == 0) {
+			return new ModelAndView("/smartlock/license_user_request");
+		} else {
+			return new ModelAndView("redirect:/");
+		}
 	}
 	
 	@RequestMapping(value = "/license/user/request/filter", method = RequestMethod.GET)
 	public ModelAndView viewUserReqLicenseByName(HttpServletRequest request) throws Exception{
-		return new ModelAndView("/smartlock/license_user_request");
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		if (userVO != null && userVO.getAuthority() == 0) {
+			return new ModelAndView("/smartlock/license_user_request");
+		} else {
+			return new ModelAndView("redirect:/");
+		}
 	}
 	
 	//관리자 화면 
 	@RequestMapping(value = "/license/manager/request", method = RequestMethod.GET)
 	public ModelAndView viewManagerReqLicense(HttpServletRequest request) throws Exception{
-		return new ModelAndView("/smartlock/license_manager");
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		if (userVO != null && userVO.getAuthority() == 1) {
+			return new ModelAndView("/smartlock/license_manager");
+		} else {
+			return new ModelAndView("redirect:/");
+		}
 	}
 	
 	@RequestMapping(value = "/license/manager/request/filter", method = RequestMethod.GET)
 	public ModelAndView viewManagerReqLicenseByName(HttpServletRequest request) throws Exception{
-		return new ModelAndView("/smartlock/license_manager");
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		if (userVO != null && userVO.getAuthority() == 1) {
+			return new ModelAndView("/smartlock/license_manager");
+		} else {
+			return new ModelAndView("redirect:/");
+		}
 	}
 	
 	@RequestMapping(value = "/license/manager", method = RequestMethod.GET)
 	public ModelAndView viewManagerLicense(HttpServletRequest request) throws Exception{
-		return new ModelAndView("/smartlock/license_finish_manager");
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		if (userVO != null && userVO.getAuthority() == 1) {
+			return new ModelAndView("/smartlock/license_finish_manager");
+		} else {
+			return new ModelAndView("redirect:/");
+		}
 	}
-	
+
 	@RequestMapping(value = "/license/manager/filter", method = RequestMethod.GET)
 	public ModelAndView viewManagerLicenseByName(HttpServletRequest request) throws Exception{
-		return new ModelAndView("/smartlock/license_finish_manager");
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		if (userVO != null && userVO.getAuthority() == 1) {
+			return new ModelAndView("/smartlock/license_finish_manager");
+		} else {
+			return new ModelAndView("redirect:/");
+		}
 	}
 }

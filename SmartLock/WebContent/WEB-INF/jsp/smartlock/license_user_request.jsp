@@ -14,7 +14,7 @@
 		<div class="col-lg-12">
 			<h2 class="page-header">라이센스 요청현황</h2>
 			<ol class="breadcrumb">
-				<li><a href="/license">라이센스 발급현황</a>
+				<li><a href="/license/user">라이센스 발급현황</a>
 				</li>
 				<li class="active">라이센스 요청현황</li>
 			</ol>
