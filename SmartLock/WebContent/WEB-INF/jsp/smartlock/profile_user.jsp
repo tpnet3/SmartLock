@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">비밀번호</label>
                             <div class="col-md-3">
-                                <input id="textinput" name="textinput" type="password"
+                                <input id="password" name="textinput" type="password"
                                        placeholder="현재 비밀번호" class="form-control input-md">
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">전화번호</label>
                             <div class="col-md-3">
-                                <input id="phone" name="textinput" type="text"
+                                <input id="phone_number" name="textinput" type="text"
                                         class="form-control input-md" value="<%=userVO.getPhoneNumber() %>">
                             </div>
                         </div>
