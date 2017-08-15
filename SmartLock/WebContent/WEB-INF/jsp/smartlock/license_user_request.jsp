@@ -92,12 +92,29 @@
 						<td data-bind="요청일자"><%=sdf.format(licenseUserReqVO.getRequest_date())%></td>
 
 						<% if (licenseUserReqVO.getState() == 1) { %>
-						<td data-bind="상태일반요청"><span class="label label-success">일반 요청</span></td>
+						<td data-bind="상태일반요청">
+							<span class="label label-success">
+								일반 요청
+							</span>
+						</td>
 						<% } else if (licenseUserReqVO.getState() == 2) { %>
-						<td data-bind="상태데모요청"><span class="label label-success" onmouseout="this.style.background='#5cb85c';
-						this.innerText='데모 요청';" onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';">데모 요청</span></td>
+						<td data-bind="상태데모요청">
+							<span class="label label-success"
+								  onmouseout="this.style.background='#5cb85c';this.innerText='데모 요청';"
+								  onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
+								  onclick="return requestDemo('<%=licenseUserReqVO.getSw_name()%>');">
+								데모 요청
+							</span>
+						</td>
 						<% } else { %>
-						<td data-bind="상태발급거절"><span class="label label-danger" onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';" onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';">발급거절</span></td>
+						<td data-bind="상태발급거절">
+							<span class="label label-danger"
+								  onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';"
+								  onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';"
+								  onclick="return requestLicense('<%=licenseUserReqVO.getSw_name()%>');">
+								발급거절
+							</span>
+						</td>
 						<% } %>
 					</tr>
 					<% } %>
@@ -145,5 +162,15 @@
 <jsp:include page="include/_footer_content.jsp" />
 
 <jsp:include page="include/_jslib.jsp" />
+
+<script>
+    function requestDemo(swName) {
+        alert(swName + " 에 대한 데모 기간 연장을 요청합니다.");
+    }
+
+    function requestLicense(swName) {
+        alert(swName + " 에 대한 라이센스를 요청합니다.");
+    }
+</script>
 
 <jsp:include page="include/_footer.jsp" />
