@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.portlet.ModelAndView;
 
 import smartlock.member.service.UserService;
-//import smartlock.profile.service.profileService;
 import smartlock.member.vo.*;
 import smartlock.profile.service.ProfileService;
-import smartlock.profile.vo.ProfileReqVO;
 import smartlock.common.vo.DataResVO;
 import smartlock.common.vo.MsgResVO;
 
@@ -29,12 +27,12 @@ public class ProfileApiController {
 	
 	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO updateProfile(
-			@RequestBody ProfileReqVO profileReqVO){
-		
-		 MsgResVO msgResVO = new MsgResVO();
-		
-		try{			
-			profileService.updateUser(profileReqVO);
+			@RequestBody UserVO userVO){
+				
+		MsgResVO msgResVO = new MsgResVO();
+		 
+		try{
+			profileService.updateUser(userVO);
 			msgResVO.setStatus("success");
 			msgResVO.setMessage("회원정보 수정이 완료되었습니다.");
 			
@@ -43,7 +41,7 @@ public class ProfileApiController {
 			msgResVO.setStatus("error");
 			msgResVO.setMessage("error");
 		}
-		
+				
 		return msgResVO;
 	}
 }

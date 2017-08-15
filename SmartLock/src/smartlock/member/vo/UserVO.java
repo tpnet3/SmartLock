@@ -14,10 +14,10 @@ public class UserVO {
 	public UserVO(SignupReqVO signupReqVO) {
 		this.id = signupReqVO.getId();
 		this.password = signupReqVO.getPwd();
-		this.authority = 0; // TODO: Authority 설정
+		this.authority = signupReqVO.getAuthority();
 		this.phone_number = signupReqVO.getPhone();
 		this.email = signupReqVO.getEmail();
-		this.corp_id = 1; // TODO: corpId 설정
+		this.corp_id = signupReqVO.getCorp_id();
 		this.user_name = signupReqVO.getName();
 	}
 

@@ -67,7 +67,7 @@
 				<div class="panel-body">
 					<div>
 						<% // TODO: PC 와 스마트폰 구분 %>
-						<% if (false) { %>
+						<% if (deviceVO.getType() == 1) { %>
 						<img src="/html/img/smartphone.png"
 							style="margin-left: auto; margin-right: auto; display: auto"
 							width="100px">
@@ -79,16 +79,16 @@
 						<p></p>
 						<p>
 							<a href="#" class="btn btn-warning btn-filter" style="width: 80px"
-							   onclick="return clickEdit(<%= deviceVO.getId() %>);">수정</a>&nbsp; &nbsp; &nbsp;
+							   onclick="return clickEdit(<%= deviceVO.getId() %>, '<%= deviceVO.getNickname() %>');">수정</a>&nbsp; &nbsp; &nbsp;
 							<a href="#" class="btn btn-danger btn-filter" style="width: 80px"
-							   onclick="return clickDelete(<%= deviceVO.getId() %>);">삭제</a>
+							   onclick="return clickDelete('<%= deviceVO.getId() %>', '<%= deviceVO.getNickname() %>');">삭제</a>
 						</p>
 					</div>
 					<div>
 						<ul class="list-group text-center">
 							<% // TODO: 장치명, 장치정보, 등록일 정보 표시 %>
-							<li class="list-group-item"><b>장치명 :</b> iPhone7 (mobile)</li>
-							<li class="list-group-item"><b>장치정보 :</b> DC9601-2792-2DD4</li>
+							<!--<li class="list-group-item"><b>장치명 :</b> iPhone7 (mobile)</li>-->
+							<li class="list-group-item"><b>장치정보 :</b> <%= deviceVO.getMac() %></li>
 							<li class="list-group-item"><b>등록일 :</b> 2017 - 01 - 01</li>
 						</ul>
 						<a href="#" class="btn btn-default" style="width: 180px"
@@ -199,13 +199,47 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
-	function clickEdit(deviceId) {
-	    alert("deviceId: " + deviceId + " 에 대한 수정 버튼을 클릭했습니다.");
+	function clickEdit(deviceId, oldNickname) {
+        var newNickname = prompt("닉네임을 입력해주세요...", oldNickname);
+
+        if (newNickname) {
+            alert("deviceId: " + deviceId + " 의 닉네임을 " + newNickname + " 로 수정합니다.");
+        }
+
 		return false;
 	}
 
-	function clickDelete(deviceId) {
-        alert("deviceId: " + deviceId + " 에 대한 삭제 버튼을 클릭했습니다.");
+    /**
+	 *
+     * @param {number} deviceId 디바이스 아이디
+     * @param {string} nickname 디바이스의 닉네임
+     * @returns {boolean} onclick return 값
+     */
+	function clickDelete(deviceId, nickname) {
+        var checkDelete = confirm(nickname + " 를 삭제하시겠습니까?");
+
+        if (checkDelete) {
+            $.ajax({
+                url : "/device/delete",
+                type : "POST",
+                contentType: "application/json",
+                data : JSON.stringify({
+					id: deviceId
+				}),
+                success : function (data) {
+                    if(data.status == "success") {
+						alert("디바이스가 삭제되었습니다.");
+						location.reload();
+                    } else {
+                        alert("디바이스를 삭제하는데 실패했습니다.");
+                    }
+                },
+                error : function(data, textStatus, errorThrown) {
+                    console.log(data);
+                }
+            });
+		}
+
         return false;
 	}
 

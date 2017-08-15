@@ -1,4 +1,10 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="smartlock.license.vo.LicenseManagerReqVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<% ArrayList<LicenseManagerReqVO> licenseManagerReqVOArrayList = (ArrayList<LicenseManagerReqVO>) request.getAttribute("licenseManagerReqVOArrayList"); %>
+<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
 
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_nav" value="license" />
@@ -14,7 +20,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">발급 대기 현황</li>
-                <li><a href="../license_finish_manager.jsp">발급 완료 현황</a></li>
+                <li><a href="/license/manager">발급 완료 현황</a></li>
             </ol>
         </div>
     </div>
@@ -44,17 +50,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="input-group">
-                        <select name="" id="location1"
-                                style="width: 180px; height: 35px;">
-                            <option value="">분류</option>
-                            <option value="">전체보기</option>
-                            <option value="">일반신청</option>
-                            <option value="">데모신청</option>
-                        </select>
-                    </div>
-                </div>
+                
                 <div class="col-sm-6">
                     <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
                            id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
@@ -105,18 +101,30 @@
                     </tr>
                     </thead>
                     <tbody align="center">
+                    <% for (int i = 0; i < licenseManagerReqVOArrayList.size(); i++) { %>
+                    <% LicenseManagerReqVO licenseManagerReqVO = licenseManagerReqVOArrayList.get(i); %>
                     <tr>
-                        <td data-title="No.">1</td>
-                        <td data-title="소프트웨어">Microsoft Excel</td>
-                        <td data-title="이름">박지성</td>
-                        <td data-title="신청날짜">2017-01-01</td>
+                        <td data-title="No."><%=i+1%></td>
+                        <td data-title="소프트웨어"><%=licenseManagerReqVO.getSw_name()%></td>
+                        <td data-title="이름"><%=licenseManagerReqVO.getUser_name()%></td>
+                        <td data-title="신청날짜"><%=sdf.format(licenseManagerReqVO.getRequest_date())%></td>
                         <td data-title="분류"><span class="label label-success">일반
 									신청</span></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: darkgray; color: black">상세 보기</span></a></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: indianred; color: white">발급하기</span></a></td>
+                        <td data-title="상세보기">
+                            <span class="label" style="background-color: darkgray; color: black"
+                                  onclick="return showDetail('<%=licenseManagerReqVO.getSw_name()%>');">
+                                상세 보기
+                            </span>
+                        </td>
+                        <td data-title="상세보기">
+                            <span class="label" style="background-color: indianred; color: white"
+                                  onclick="return licenseOk('<%=licenseManagerReqVO.getSw_name()%>');">
+                                발급하기
+                            </span>
+                        </td>
                     </tr>
+                    <% } %>
+                    <!--
                     <tr>
                         <td data-title="No.">2</td>
                         <td data-title="소프트웨어">Microsoft Excel</td>
@@ -177,6 +185,7 @@
                         <td data-title="상세보기"><a><span class="label"
                                                        style="background-color: indianred; color: white">발급하기</span></a></td>
                     </tr>
+                    -->
                     </tbody>
                 </table>
             </div>
@@ -195,8 +204,7 @@
         </div>
     </div>
 </div>
-</div>
-<!-- /.row -->
+<!-- /.container -->
 
 <!-- /.row -->
 <hr>
@@ -204,9 +212,18 @@
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 
-</div>
-<!-- /.container -->
-
 <jsp:include page="include/_jslib.jsp" />
+
+<script>
+    function showDetail(swName) {
+        // TODO: 상세보기
+        alert(swName + " 에 대한 상세보기를 클릭했습니다.");
+    }
+
+    function licenseOk(swName) {
+        // TODO: 라이센스 발급
+        alert(swName + " 에 대한 라이센스를 발급했습니다.");
+    }
+</script>
 
 <jsp:include page="include/_footer.jsp" />

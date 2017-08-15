@@ -16,8 +16,10 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<form class="form-horizontal">
+				<form class="form-horizontal" id="signup-form">
 					<fieldset>
+						<input type="hidden" id="authority" value="0" />
+
 						<br>
 
 						<!-- Text input-->
@@ -25,11 +27,11 @@
 							<label class="col-md-5 control-label" for="id">아이디</label>
 							<div class="col-md-3">
 								<div class="input-append">
-									<input id="id" name="textinput" type="text"
+									<input id="id" name="id" type="text"
 										   placeholder="아이디를 입력하세요." class="form-control with-btn input-md">
 									<button id="check-id-btn" type="button" class="btn">중복확인</button>
-									<input id="checked-id" style="display:none"/>
-									<input id="is-check-id" value="false" style="display:none"/>
+									<input type="hidden" id="checked-id" style="display:none"/>
+									<input type="hidden" id="is-check-id" value="false" style="display:none"/>
 								</div>
 							</div>
 						</div>
@@ -83,11 +85,11 @@
 						<!-- Text input-->
 						<div class="form-group">
 
-							<label class="col-md-5 control-label" for="corp_name">기업명</label>
+							<label class="col-md-5 control-label" for="company">기업명</label>
 							<div class="col-md-3">
 								<div class="input-append">
-									<input id="corp_name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요.">
-									<button type="submit" class="btn">기업검색</button>
+									<input id="corp-name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요.">
+									<button id="copr-searh-btn" type="button" class="btn">기업검색</button>
 								</div>
 							</div>
 						</div>
@@ -95,7 +97,7 @@
 						<!-- Button -->
 						<div class="form-group" align="center">
 							<button id="signup-btn" class="btn btn-default btn-md"
-									style="height: 40px; width: 80px" type="button">회원가입</button>
+									style="height: 40px; width: 80px" type="submit">회원가입</button>
 						</div>
 					</fieldset>
 				</form>

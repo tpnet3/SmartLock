@@ -4,7 +4,6 @@
 	<jsp:param name="_title" value="Profile" />
 	<jsp:param name="_nav" value="" />
 	<jsp:param name="_css" value="/html/css/login.css" />
-	<jsp:param name="_css" value="/html/css/profile.css" />
 </jsp:include>
 
 <!-- Page Content -->
@@ -26,7 +25,7 @@
 	<div class="col-md-5">
 	</div>
 	<div class="col-md-2">
-		<a class="btn btn-lg btn-default btn-block" href="#"><strong>메인으로</strong></a>
+		<a class="btn btn-lg btn-default btn-block" href="/"><strong>메인으로</strong></a>
 	</div>
 	<div class="col-md-5">
 	</div>
@@ -42,9 +41,5 @@
 
 </div>
 <!-- /.container -->
-
-<jsp:include page="include/_jslib.jsp">
-	<jsp:param name="_js" value="/html/js/profile.js" />
-</jsp:include>
 
 <jsp:include page="include/_footer.jsp" />

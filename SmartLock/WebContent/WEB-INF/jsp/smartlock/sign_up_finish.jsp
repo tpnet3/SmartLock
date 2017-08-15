@@ -25,7 +25,7 @@
 	<div class="col-md-5">
 	</div>
 	<div class="col-md-2">
-		<a class="btn btn-lg btn-default btn-block" href="#"><strong>메인으로</strong></a>
+		<a class="btn btn-lg btn-default btn-block" href="/"><strong>메인으로</strong></a>
 		<a class="btn btn-lg btn-default btn-block" href="/login"><strong>로그인</strong></a>
 	</div>
 	<div class="col-md-5">

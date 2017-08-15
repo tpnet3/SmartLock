@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="statistics">
+	
+	<!-- 요청라이센스 count  -->
+	<select id="countReqLicense" parameterType="String"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM req_license
+		WHERE sw_id = ANY(SELECT id FROM software WHERE corp_id = 
+		(SELECT corp_id FROM user WHERE id = #{id}));
+	</select>
+	
+	<!-- 발급완료 라이센스 count  -->
+	<select id="countLicense" parameterType="String"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM license
+		WHERE sw_id = ANY(SELECT id FROM software WHERE corp_id = 
+			(SELECT corp_id FROM user WHERE id = #{id}))
+		AND state = '1';
+	</select>
+	
+	<!-- 데모 라이센스 count  -->
+	<select id="countDemo" parameterType="String"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM license
+		WHERE sw_id = ANY(SELECT id FROM software WHERE corp_id = 
+			(SELECT corp_id FROM user WHERE id = #{id}))
+		AND state = '2';
+	</select>
+	
+	<!-- 요청라이센스 소프트웨어명별 count  -->
+	<select id="countReqLicenseByName" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM req_license
+		WHERE sw_id = ANY(SELECT id FROM software WHERE corp_id = 
+			(SELECT corp_id FROM user WHERE id = #{id}))
+		AND sw_id = (SELECT id FROM software WHERE sw_name = #{name});
+	</select>
+	
+	<!-- 발급완료 라이센스 소프트웨어명별 count  -->
+	<select id="countLicenseByName" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM license
+		WHERE sw_id = ANY(SELECT id FROM software WHERE corp_id = 
+			(SELECT corp_id FROM user WHERE id = #{id}))
+		AND state = '1'
+		AND sw_id = (SELECT id FROM software WHERE sw_name = #{name});
+	</select>
+	
+	<!-- 데모 라이센스 소프트웨어명별 count  -->
+	<select id="countDemoByName" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM license
+		WHERE sw_id = ANY(SELECT id FROM software WHERE corp_id = 
+			(SELECT corp_id FROM user WHERE id = #{id}))
+		AND state = '2'
+		AND sw_id = (SELECT id FROM software WHERE sw_name = #{name});
+	</select>
+</mapper>

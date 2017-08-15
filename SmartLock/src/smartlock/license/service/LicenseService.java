@@ -7,17 +7,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.license.vo.LicenseManagerReqVO;
 import smartlock.license.vo.LicenseManagerVO;
 import smartlock.license.vo.LicenseUserReqVO;
 import smartlock.license.vo.LicenseUserVO;
-import smartlock.license.vo.LicenseVO;
-import smartlock.license.vo.ReqLicenseVO;
-import smartlock.member.vo.UserVO;
 import smartlock.common.CommonDAO;
-import smartlock.common.vo.DataResVO;
 
 // TODO: LicenseService
 
@@ -67,16 +62,43 @@ public class LicenseService {
 		return (ArrayList) commonDAO.selectList("license.selectReqLicenseByName", map);
 	}
 
+	/**
+	 * 관리자 요청 라이센스 전체조회 
+	 * @param String id
+	 * @return ArrayList<LicenseManagerReqVO>
+	 * @throws Exception
+	 */
 	public ArrayList<LicenseManagerReqVO> viewManagerReqLicense(String id) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectManagerReqLicense", id);
 	}
 	
+	/**
+	 * 관리자 요청 라이센스 소프트웨어명별 조회 
+	 * @param map(id, name)
+	 * @return ArrayList<LicenseManagerReqVO>
+	 * @throws Exception
+	 */
 	public ArrayList<LicenseManagerReqVO> viewManagerReqLicenseByName(Map<String, String> map) throws Exception {
 		return (ArrayList) commonDAO.selectList("license.selectManagerReqLicenseByName", map);
 	}
 	
+	/**
+	 * 관리자 발급완료 라이센스 전체조회 
+	 * @param String id
+	 * @return ArrayList<LicensemanagerVO>
+	 * @throws Exception
+	 */
 	public ArrayList<LicenseManagerVO> viewManagerLicense(String id) throws Exception{
 		return (ArrayList) commonDAO.selectList("license.selectManagerLicense", id);
 	}
 	
+	/**
+	 * 관리자 발급완료 라이센스 소프트웨어명 별 조회 
+	 * @param String id
+	 * @return ArrayList<LicensemanagerVO>
+	 * @throws Exception
+	 */
+	public ArrayList<LicenseManagerVO> viewManagerLicenseMyName(Map<String, String> map) throws Exception{
+		return (ArrayList) commonDAO.selectList("license.selectManagerLicenseByName", map);
+	}
 }
