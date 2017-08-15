@@ -40,9 +40,9 @@ $("#profile-form").submit(function() {
 		success : function (data){
 			if(data.status == "success") {
 				//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
-				location.href="/profile_finish";
+				location.href="/profile/ok";
 			} else {
-				
+				alert("회원정보수정실패");
 			}
 		},
 		error : function(data, textStatus, errorThrown) {
