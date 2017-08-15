@@ -1,4 +1,10 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="smartlock.license.vo.LicenseManagerReqVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<% ArrayList<LicenseManagerReqVO> licenseManagerReqVOArrayList = (ArrayList<LicenseManagerReqVO>) request.getAttribute("licenseManagerReqVOArrayList"); %>
+<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
 
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_nav" value="license" />
@@ -14,7 +20,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">발급 대기 현황</li>
-                <li><a href="../license_finish_manager.jsp">발급 완료 현황</a></li>
+                <li><a href="/license/manager">발급 완료 현황</a></li>
             </ol>
         </div>
     </div>
@@ -95,11 +101,13 @@
                     </tr>
                     </thead>
                     <tbody align="center">
+                    <% for (int i = 0; i < licenseManagerReqVOArrayList.size(); i++) { %>
+                    <% LicenseManagerReqVO licenseManagerReqVO = licenseManagerReqVOArrayList.get(i); %>
                     <tr>
-                        <td data-title="No.">1</td>
-                        <td data-title="소프트웨어">Microsoft Excel</td>
-                        <td data-title="이름">박지성</td>
-                        <td data-title="신청날짜">2017-01-01</td>
+                        <td data-title="No."><%=i+1%></td>
+                        <td data-title="소프트웨어"><%=licenseManagerReqVO.getSw_name()%></td>
+                        <td data-title="이름"><%=licenseManagerReqVO.getUser_name()%></td>
+                        <td data-title="신청날짜"><%=sdf.format(licenseManagerReqVO.getRequest_date())%></td>
                         <td data-title="분류"><span class="label label-success">일반
 									신청</span></td>
                         <td data-title="상세보기"><a><span class="label"
@@ -107,6 +115,8 @@
                         <td data-title="상세보기"><a><span class="label"
                                                        style="background-color: indianred; color: white">발급하기</span></a></td>
                     </tr>
+                    <% } %>
+                    <!--
                     <tr>
                         <td data-title="No.">2</td>
                         <td data-title="소프트웨어">Microsoft Excel</td>
@@ -167,6 +177,7 @@
                         <td data-title="상세보기"><a><span class="label"
                                                        style="background-color: indianred; color: white">발급하기</span></a></td>
                     </tr>
+                    -->
                     </tbody>
                 </table>
             </div>

@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="profile-form">
                     <fieldset>
                         <div class="col-lg-12">
                             <img class="img-responsive"
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">비밀번호</label>
                             <div class="col-md-3">
-                                <input id="textinput" name="textinput" type="text"
+                                <input id="password" name="textinput" type="password"
                                        placeholder="현재 비밀번호" class="form-control input-md">
                             </div>
                         </div>
@@ -73,14 +73,14 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">전화번호</label>
                             <div class="col-md-3">
-                                <input id="phone" name="textinput" type="text"
+                                <input id="phone_number" name="textinput" type="text"
                                         class="form-control input-md" value="<%=userVO.getPhoneNumber() %>">
                             </div>
                         </div>
                         <br>
                         <!-- Button -->
                         <div class="form-group" align="center">
-                            <button class="profile_btn"
+                            <button type="submit" class="profile_btn"
                                     style="height: 40px; width: 80px">submit</button>
                         </div>
 

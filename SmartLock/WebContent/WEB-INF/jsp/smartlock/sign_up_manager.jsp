@@ -16,7 +16,7 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<form class="form-horizontal">
+				<form class="form-horizontal" id="signup-form">
 					<fieldset>
 						<br>
 

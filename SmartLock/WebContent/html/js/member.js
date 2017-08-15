@@ -59,7 +59,44 @@ $("#check-id-btn").on("click",function(){
 	});
 });
 
-$("#signup-btn").on("click", function() {
+$("#copr-searh-btn").on("click",function(){
+	if($("#corp-name").val() == '') {
+		$("#corp-name").focus();
+		alert("회사명을 입력해주세요.")
+		return;
+	}
+	
+	$.ajax({
+		url : "/check/corpname",
+		type : "POST",
+		dataType : "json",
+		data : {
+			"corpName" : $("#corp-name").val(),
+		},
+		success : function (data){
+			if(data.status == "success") {
+				if(data.data != null) {
+					alert("존재하는 회사입니다.");
+					$("#corp-id").val(data.data.id);
+					$("#is-ckeck-corp").val("true");
+					$("#checked-corp").val($("#corp-name").val());
+				} else {
+					alert("존재하지 않는 회사입니다.");
+					$("#is-ckeck-corp").val("false");
+					$("#checked-corp").val();
+					$("#corp-id").val();
+				}
+			} else {
+				
+			}
+		},
+		error : function(data, textStatus, errorThrown) {
+			
+		}
+	});
+});
+
+$("#signup-form").submit(function() {
 	// check validation
 	if($("#id").val() == '') {
 		$("#id").focus();
@@ -117,14 +154,15 @@ $("#signup-btn").on("click", function() {
 		type : "POST",
         contentType: "application/json",
 		dataType : "json",
-		data : {
+		data : JSON.stringify({
 			"id" : $("#id").val(),
 			"pwd" : $("#pwd").val(),
 			"name" : $("#name").val(),
 			"email" : $("#email").val(),
 			"phone" : $("#phone").val(),
-			"corp_id" : $("#company").val()
-		},
+            "corp_id" : $("#company").val(),
+            "authority" : $("#authority").val()
+		}),
 		success : function (data){
 			if(data.status == "success") {
 				//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
@@ -137,4 +175,6 @@ $("#signup-btn").on("click", function() {
 			
 		}
 	});
+
+	return false;
 });
