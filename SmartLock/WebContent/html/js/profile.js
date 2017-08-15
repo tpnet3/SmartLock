@@ -6,7 +6,7 @@ $("#profile-form").submit(function() {
 		return;
 	}
 	if($("#phone_number").val() == '') {
-		$("#phone").focus();
+		$("#phone_number").focus();
 		alert("전화번호를 입력하세요.");
 		return;
 	}
