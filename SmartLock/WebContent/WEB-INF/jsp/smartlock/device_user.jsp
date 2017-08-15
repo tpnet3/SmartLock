@@ -67,7 +67,7 @@
 				<div class="panel-body">
 					<div>
 						<% // TODO: PC 와 스마트폰 구분 %>
-						<% if (false) { %>
+						<% if (deviceVO.getType() == 1) { %>
 						<img src="/html/img/smartphone.png"
 							style="margin-left: auto; margin-right: auto; display: auto"
 							width="100px">
@@ -79,7 +79,7 @@
 						<p></p>
 						<p>
 							<a href="#" class="btn btn-warning btn-filter" style="width: 80px"
-							   onclick="return clickEdit(<%= deviceVO.getId() %>);">수정</a>&nbsp; &nbsp; &nbsp;
+							   onclick="return clickEdit(<%= deviceVO.getId() %>, '<%= deviceVO.getNickname() %>');">수정</a>&nbsp; &nbsp; &nbsp;
 							<a href="#" class="btn btn-danger btn-filter" style="width: 80px"
 							   onclick="return clickDelete(<%= deviceVO.getId() %>);">삭제</a>
 						</p>
@@ -87,8 +87,8 @@
 					<div>
 						<ul class="list-group text-center">
 							<% // TODO: 장치명, 장치정보, 등록일 정보 표시 %>
-							<li class="list-group-item"><b>장치명 :</b> iPhone7 (mobile)</li>
-							<li class="list-group-item"><b>장치정보 :</b> DC9601-2792-2DD4</li>
+							<!--<li class="list-group-item"><b>장치명 :</b> iPhone7 (mobile)</li>-->
+							<li class="list-group-item"><b>장치정보 :</b> <%= deviceVO.getMac() %></li>
 							<li class="list-group-item"><b>등록일 :</b> 2017 - 01 - 01</li>
 						</ul>
 						<a href="#" class="btn btn-default" style="width: 180px"
@@ -199,13 +199,25 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
-	function clickEdit(deviceId) {
-	    alert("deviceId: " + deviceId + " 에 대한 수정 버튼을 클릭했습니다.");
+	function clickEdit(deviceId, oldNickname) {
+        var newNickname = prompt("닉네임을 입력해주세요...", oldNickname);
+
+        if (newNickname) {
+            alert("deviceId: " + deviceId + " 의 닉네임을 " + newNickname + " 로 수정합니다.");
+        }
+
 		return false;
 	}
 
 	function clickDelete(deviceId) {
-        alert("deviceId: " + deviceId + " 에 대한 삭제 버튼을 클릭했습니다.");
+        var checkDelete = confirm("deviceId: " + deviceId + " 를 삭제하시겠습니까?");
+
+        if (checkDelete) {
+            alert("삭제했습니다.");
+		} else {
+            alert("삭제를 취소했습니다.");
+		}
+
         return false;
 	}
 

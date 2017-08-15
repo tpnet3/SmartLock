@@ -28,7 +28,7 @@ public class DeviceWebController {
 
 		try {
 			if (userVO != null && userVO.getAuthority() == 0) {
-				ArrayList<DeviceVO> deviceList = deviceService.getDeviceList("swan");
+				ArrayList<DeviceVO> deviceList = deviceService.getDeviceList(userVO.getId());
 
 				ModelAndView modelAndView = new ModelAndView("smartlock/device_user");
 				modelAndView.addObject("deviceList", deviceList);
