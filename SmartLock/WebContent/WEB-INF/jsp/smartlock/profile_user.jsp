@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="profile-form">
                     <fieldset>
                         <div class="col-lg-12">
                             <img class="img-responsive"
@@ -80,7 +80,7 @@
                         <br>
                         <!-- Button -->
                         <div class="form-group" align="center">
-                            <button class="profile_btn"
+                            <button type="submit" class="profile_btn"
                                     style="height: 40px; width: 80px">submit</button>
                         </div>
 
