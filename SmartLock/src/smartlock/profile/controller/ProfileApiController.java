@@ -26,13 +26,13 @@ public class ProfileApiController {
     private ProfileService profileService;
 	
 	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
-	public  @ResponseBody UserVO updateProfile(
+	public  @ResponseBody MsgResVO updateProfile(
 			@RequestBody UserVO userVO){
 				
-		//MsgResVO msgResVO = new MsgResVO();
-		 /*
+		MsgResVO msgResVO = new MsgResVO();
+		 
 		try{
-			//profileService.updateUser(userVO);
+			profileService.updateUser(userVO);
 			msgResVO.setStatus("success");
 			msgResVO.setMessage("회원정보 수정이 완료되었습니다.");
 			
@@ -41,7 +41,9 @@ public class ProfileApiController {
 			msgResVO.setStatus("error");
 			msgResVO.setMessage("error");
 		}
-		*/
-		return userVO;
+				
+		return msgResVO;
 	}
+	
+	
 }
