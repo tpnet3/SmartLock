@@ -86,9 +86,9 @@
                     <% LicenseUserVO licenseUserVO = licenseUserVOArrayList.get(i); %>
                     <tr>
                         <td data-title="No."><%= i %></td>
-                        <td data-title="소프트웨어"><%=licenseUserVO.getSw_name()%>Microsoft Excel</td>
-                        <td data-title="장치명">My-Mac</td> <!-- TODO: 장치명 -->
-                        <td data-title="회사명">Microsoft</td> <!-- TODO: 회사명 -->
+                        <td data-title="소프트웨어"><%=licenseUserVO.getSw_name()%></td>
+                        <td data-title="장치명"><%=licenseUserVO.getNickname()%></td>
+                        <td data-title="회사명"><%=licenseUserVO.getCorp_name()%></td>
                         <td data-title="시작일자"><%=sdf.format(licenseUserVO.getStart_date())%></td>
                         <td data-title="만료기간"><%=sdf.format(licenseUserVO.getEnd_date())%></td>
 
