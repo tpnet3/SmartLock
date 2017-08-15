@@ -88,8 +88,8 @@
 							<label class="col-md-5 control-label" for="company">기업명</label>
 							<div class="col-md-3">
 								<div class="input-append">
-									<input id="company" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요.">
-									<button type="button" class="btn">기업검색</button>
+									<input id="corp-name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요.">
+									<button id="copr-searh-btn" type="button" class="btn">기업검색</button>
 								</div>
 							</div>
 						</div>
