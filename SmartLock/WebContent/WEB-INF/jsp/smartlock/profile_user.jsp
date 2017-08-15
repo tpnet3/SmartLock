@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">비밀번호</label>
                             <div class="col-md-3">
-                                <input id="textinput" name="textinput" type="text"
+                                <input id="textinput" name="textinput" type="password"
                                        placeholder="현재 비밀번호" class="form-control input-md">
                             </div>
                         </div>
