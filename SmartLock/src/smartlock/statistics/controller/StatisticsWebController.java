@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class StatisticsWebController {
 
-    @RequestMapping(value = "/statistics", method = RequestMethod.POST)
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
     public ModelAndView statistics(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
@@ -26,7 +26,7 @@ public class StatisticsWebController {
         }
     }
 
-    @RequestMapping(value = "/statistics/filter", method = RequestMethod.POST)
+    @RequestMapping(value = "/statistics/filter", method = RequestMethod.GET)
     public ModelAndView statisticsByName(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");

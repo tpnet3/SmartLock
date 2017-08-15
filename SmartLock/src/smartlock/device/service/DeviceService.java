@@ -33,5 +33,14 @@ public class DeviceService {
 		map.put("sw_id", sw);
 		return (ArrayList)commonDAO.selectList("device.selectDeviceBySw", map);
 	}
-	
+
+	/**
+	 * 디바이스 삭제
+	 * @param id 디바이스 아이디
+	 * @return 삭제된 row 수
+	 * @throws Exception DAO Exception
+	 */
+	public int deleteDevice(int id) throws Exception {
+		return commonDAO.delete("deleteDevice", id);
+	}
 }

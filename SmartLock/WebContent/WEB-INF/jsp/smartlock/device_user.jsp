@@ -81,7 +81,7 @@
 							<a href="#" class="btn btn-warning btn-filter" style="width: 80px"
 							   onclick="return clickEdit(<%= deviceVO.getId() %>, '<%= deviceVO.getNickname() %>');">수정</a>&nbsp; &nbsp; &nbsp;
 							<a href="#" class="btn btn-danger btn-filter" style="width: 80px"
-							   onclick="return clickDelete(<%= deviceVO.getId() %>);">삭제</a>
+							   onclick="return clickDelete('<%= deviceVO.getId() %>', '<%= deviceVO.getNickname() %>');">삭제</a>
 						</p>
 					</div>
 					<div>
@@ -209,13 +209,35 @@
 		return false;
 	}
 
-	function clickDelete(deviceId) {
-        var checkDelete = confirm("deviceId: " + deviceId + " 를 삭제하시겠습니까?");
+    /**
+	 *
+     * @param {number} deviceId 디바이스 아이디
+     * @param {string} nickname 디바이스의 닉네임
+     * @returns {boolean} onclick return 값
+     */
+	function clickDelete(deviceId, nickname) {
+        var checkDelete = confirm(nickname + " 를 삭제하시겠습니까?");
 
         if (checkDelete) {
-            alert("삭제했습니다.");
-		} else {
-            alert("삭제를 취소했습니다.");
+            $.ajax({
+                url : "/device/delete",
+                type : "POST",
+                contentType: "application/json",
+                data : JSON.stringify({
+					id: deviceId
+				}),
+                success : function (data) {
+                    if(data.status == "success") {
+						alert("디바이스가 삭제되었습니다.");
+						location.reload();
+                    } else {
+                        alert("디바이스를 삭제하는데 실패했습니다.");
+                    }
+                },
+                error : function(data, textStatus, errorThrown) {
+                    console.log(data);
+                }
+            });
 		}
 
         return false;
