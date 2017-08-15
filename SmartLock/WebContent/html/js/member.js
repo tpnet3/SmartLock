@@ -59,7 +59,7 @@ $("#check-id-btn").on("click",function(){
 	});
 });
 
-$("#signup-btn").on("click", function() {
+$("#signup-form").submit(function() {
 	// check validation
 	if($("#id").val() == '') {
 		$("#id").focus();
@@ -137,4 +137,6 @@ $("#signup-btn").on("click", function() {
 			
 		}
 	});
+
+	return false;
 });

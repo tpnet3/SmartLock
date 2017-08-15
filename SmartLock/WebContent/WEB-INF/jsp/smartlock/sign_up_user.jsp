@@ -16,7 +16,7 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<form class="form-horizontal">
+				<form class="form-horizontal" id="signup-form">
 					<fieldset>
 						<br>
 
@@ -83,10 +83,10 @@
 						<!-- Text input-->
 						<div class="form-group">
 
-							<label class="col-md-5 control-label" for="corp_name">기업명</label>
+							<label class="col-md-5 control-label" for="company">기업명</label>
 							<div class="col-md-3">
 								<div class="input-append">
-									<input id="corp_name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요.">
+									<input id="company" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요.">
 									<button type="submit" class="btn">기업검색</button>
 								</div>
 							</div>
