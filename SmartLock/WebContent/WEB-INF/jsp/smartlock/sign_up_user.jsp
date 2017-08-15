@@ -87,7 +87,7 @@
 							<div class="col-md-3">
 								<div class="input-append">
 									<input id="company" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요.">
-									<button type="submit" class="btn">기업검색</button>
+									<button type="button" class="btn">기업검색</button>
 								</div>
 							</div>
 						</div>
@@ -95,7 +95,7 @@
 						<!-- Button -->
 						<div class="form-group" align="center">
 							<button id="signup-btn" class="btn btn-default btn-md"
-									style="height: 40px; width: 80px" type="button">회원가입</button>
+									style="height: 40px; width: 80px" type="submit">회원가입</button>
 						</div>
 					</fieldset>
 				</form>
