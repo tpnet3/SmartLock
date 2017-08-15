@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class StatisticsWebController {
 
-    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    @RequestMapping(value = "/statistics", method = RequestMethod.POST)
     public ModelAndView statistics(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
@@ -26,8 +26,32 @@ public class StatisticsWebController {
         }
     }
 
-    @RequestMapping(value = "/statistics/monthly", method = RequestMethod.GET)
+    @RequestMapping(value = "/statistics/filter", method = RequestMethod.POST)
+    public ModelAndView statisticsByName(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        UserVO userVO = (UserVO) httpSession.getAttribute("user");
+
+        if (userVO != null && userVO.getAuthority() == 1) {
+            return new ModelAndView("/smartlock/statistics");
+        } else {
+            return new ModelAndView("redirect:/");
+        }
+    }
+    
+    @RequestMapping(value = "/statistics/monthly", method = RequestMethod.POST)
     public ModelAndView statisticsMonthly(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        UserVO userVO = (UserVO) httpSession.getAttribute("user");
+
+        if (userVO != null && userVO.getAuthority() == 1) {
+            return new ModelAndView("/smartlock/statistics_monthly");
+        } else {
+            return new ModelAndView("redirect:/");
+        }
+    }
+    
+    @RequestMapping(value = "/statistics/monthly/filter", method = RequestMethod.POST)
+    public ModelAndView statisticsMonthlyByName(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 

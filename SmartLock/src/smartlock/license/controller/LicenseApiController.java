@@ -1,12 +1,10 @@
 package smartlock.license.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import smartlock.member.service.UserService;
 import smartlock.member.vo.*;
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
@@ -14,10 +12,7 @@ import smartlock.license.vo.LicenseManagerReqVO;
 import smartlock.license.vo.LicenseManagerVO;
 import smartlock.license.vo.LicenseUserReqVO;
 import smartlock.license.vo.LicenseUserVO;
-import smartlock.license.vo.LicenseVO;
-import smartlock.license.vo.ReqLicenseVO;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

@@ -7,17 +7,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.license.vo.LicenseManagerReqVO;
 import smartlock.license.vo.LicenseManagerVO;
 import smartlock.license.vo.LicenseUserReqVO;
 import smartlock.license.vo.LicenseUserVO;
-import smartlock.license.vo.LicenseVO;
-import smartlock.license.vo.ReqLicenseVO;
-import smartlock.member.vo.UserVO;
 import smartlock.common.CommonDAO;
-import smartlock.common.vo.DataResVO;
 
 // TODO: LicenseService
 
