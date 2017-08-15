@@ -1,4 +1,4 @@
-$(".profile-btn").submit(function() {
+$("#profile-form").submit(function() {
 	// check validation
 	if($("#email").val() == '') {
 		$("#email").focus();
@@ -40,4 +40,6 @@ $(".profile-btn").submit(function() {
 			
 		}
 	});
+	
+	return false;
 });
