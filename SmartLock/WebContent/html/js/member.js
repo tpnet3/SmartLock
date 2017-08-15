@@ -117,14 +117,14 @@ $("#signup-btn").on("click", function() {
 		type : "POST",
         contentType: "application/json",
 		dataType : "json",
-		data : {
+		data : JSON.stringify({
 			"id" : $("#id").val(),
 			"pwd" : $("#pwd").val(),
 			"name" : $("#name").val(),
 			"email" : $("#email").val(),
 			"phone" : $("#phone").val(),
-			"corp_id" : $("#company").val()
-		},
+			"company" : $("#company").val()
+		}),
 		success : function (data){
 			if(data.status == "success") {
 				//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
