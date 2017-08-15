@@ -18,6 +18,8 @@
 			<div class="col-lg-12">
 				<form class="form-horizontal" id="signup-form">
 					<fieldset>
+						<input type="hidden" id="authority" value="0" />
+
 						<br>
 
 						<!-- Text input-->

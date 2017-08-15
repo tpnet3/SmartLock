@@ -123,7 +123,8 @@ $("#signup-form").submit(function() {
 			"name" : $("#name").val(),
 			"email" : $("#email").val(),
 			"phone" : $("#phone").val(),
-			"company" : $("#company").val()
+            "corp_id" : $("#company").val(),
+            "authority" : $("#authority").val()
 		}),
 		success : function (data){
 			if(data.status == "success") {

@@ -6,7 +6,8 @@ public class SignupReqVO extends UserIdReqVO {
     private String name;
     private String email;
     private String phone;
-    private String company;
+    private int corp_id;
+    private int authority;
 
     public String getPwd() {
         return pwd;
@@ -40,11 +41,31 @@ public class SignupReqVO extends UserIdReqVO {
         this.phone = phone;
     }
 
-    public String getCompany() {
-        return company;
+    public int getCorp_id() {
+        return corp_id;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setCorp_id(int corp_id) {
+        this.corp_id = corp_id;
+    }
+
+    public int getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(int authority) {
+        this.authority = authority;
+    }
+
+    @Override
+    public String toString() {
+        return "SignupReqVO{" +
+                "pwd='" + pwd + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", corp_id=" + corp_id +
+                ", authority=" + authority +
+                '}';
     }
 }
