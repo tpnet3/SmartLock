@@ -14,10 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
-import smartlock.license.vo.LicenseUserReqVO;
-import smartlock.license.vo.LicenseUserVO;
-import smartlock.license.vo.LicenseVO;
-import smartlock.license.vo.ReqLicenseVO;
+import smartlock.license.vo.*;
 import smartlock.member.vo.UserVO;
 
 
@@ -86,7 +83,10 @@ public class LicenseWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 
 		if (userVO != null && userVO.getAuthority() == 1) {
-			return new ModelAndView("/smartlock/license_manager");
+			ModelAndView modelAndView = new ModelAndView("/smartlock/license_manager");
+			ArrayList<LicenseManagerReqVO> licenseManagerReqVOArrayList = licenseService.viewManagerReqLicense(userVO.getId());
+			modelAndView.addObject("licenseManagerReqVOArrayList", licenseManagerReqVOArrayList);
+			return modelAndView;
 		} else {
 			return new ModelAndView("redirect:/");
 		}
@@ -108,7 +108,10 @@ public class LicenseWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 
 		if (userVO != null && userVO.getAuthority() == 1) {
-			return new ModelAndView("/smartlock/license_finish_manager");
+			ModelAndView modelAndView = new ModelAndView("/smartlock/license_finish_manager");
+			ArrayList<LicenseManagerVO> licenseManagerVOArrayList = licenseService.viewManagerLicense(userVO.getId());
+			modelAndView.addObject("licenseManagerVOArrayList", licenseManagerVOArrayList);
+			return modelAndView;
 		} else {
 			return new ModelAndView("redirect:/");
 		}

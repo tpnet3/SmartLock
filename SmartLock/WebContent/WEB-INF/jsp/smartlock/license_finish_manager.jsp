@@ -1,4 +1,10 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="smartlock.license.vo.LicenseManagerVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<% ArrayList<LicenseManagerVO> licenseManagerVOArrayList = (ArrayList<LicenseManagerVO>) request.getAttribute("licenseManagerVOArrayList"); %>
+<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
 
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="license" />
@@ -13,7 +19,7 @@
 				<small>발급 완료 현황</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="License_manager.html">발급 대기 현황</a></li>
+				<li><a href="/license/manager/request">발급 대기 현황</a></li>
 				<li class="active">발급 완료 현황</li>
 			</ol>
 		</div>
@@ -96,17 +102,24 @@
 					</tr>
 					</thead>
 					<tbody align="center">
-							<tr>
-								<td data-title="No.">1</td>
-								<td data-title="소프트웨어">Microsoft Excel</td>
-								<td data-title="이름">박지성</td>
-								<td data-title="발급날짜">2017-01-01</td>
-								<td data-title="만료날짜">9999-01-01</td>
-								<td data-title="분류"><span class="label label-success">일반
-										신청</span></td>
-								<td data-title="상세보기"><a><span class="label"
-										style="background-color: darkgray; color: black">상세 보기</span></a></td>
-							</tr>
+					<% for (int i = 0; i < licenseManagerVOArrayList.size(); i++) { %>
+					<% LicenseManagerVO licenseManagerVO = licenseManagerVOArrayList.get(i); %>
+					<tr>
+						<td data-title="No."><%=i+1%></td>
+						<td data-title="소프트웨어"><%=licenseManagerVO.getSw_name()%></td>
+						<td data-title="이름"><%=licenseManagerVO.getUser_name()%></td>
+						<td data-title="발급날짜"><%=sdf.format(licenseManagerVO.getStart_date())%></td>
+						<td data-title="만료날짜"><%=sdf.format(licenseManagerVO.getEnd_date())%></td>
+						<td data-title="분류"><span class="label label-success">일반 신청</span></td>
+						<!--
+						TODO: 분류
+						<td data-title="분류"><span class="label label-warning">데모 신청</span></td>
+						-->
+						<td data-title="상세보기"><a><span class="label"
+								style="background-color: darkgray; color: black">상세 보기</span></a></td>
+					</tr>
+					<% } %>
+					<!--
 							<tr>
 								<td data-title="No.">2</td>
 								<td data-title="소프트웨어">Microsoft Excel</td>
@@ -162,6 +175,7 @@
 								<td data-title="상세보기"><a><span class="label"
 										style="background-color: darkgray; color: black">상세 보기</span></a></td>
 							</tr>
+							-->
 						</tbody>
 				</table>
 			</div>
@@ -180,7 +194,6 @@
 		</div>
 	</div>
 </div>
-</div>
 <!-- /.row -->
 
 <!-- /.row -->
@@ -189,7 +202,6 @@
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 
-</div>
 <!-- /.container -->
 
 <jsp:include page="include/_jslib.jsp" />
