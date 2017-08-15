@@ -30,7 +30,7 @@ public class StatisticsApiController {
 		
 		@RequestMapping(
 				value = "/statistics",
-				method = RequestMethod.GET
+				method = RequestMethod.POST
 				)
 		public @ResponseBody DataResVO viewUserLicense(
 				HttpServletRequest request) throws Exception{
@@ -55,7 +55,7 @@ public class StatisticsApiController {
 		
 		@RequestMapping(
 				value = "/statistics/filter",
-				method = RequestMethod.GET
+				method = RequestMethod.POST
 				)
 		public @ResponseBody DataResVO viewUserLicense(
 	    		@RequestParam("name") String name,
@@ -68,7 +68,7 @@ public class StatisticsApiController {
 			Map<String, String> map = new HashMap<String, String>();
 			//map.put("id", userVO.getId());
 			map.put("id", "chelsea");
-			map.put("name", "ms_word");
+			map.put("name", name);
 			
 			statistics = statisticsService.viewStatisticsMyName(map);
 			
