@@ -10,6 +10,11 @@ $("#profile-form").submit(function() {
 		alert("전화번호를 입력하세요.");
 		return;
 	}
+	if($("#password").val() == '') {
+		$("#password").focus();
+		alert("비밀번호를 입력하세요.");
+		return;
+	}
 	/*
 	if($("#password").val() != $("#check-pwd").val()) {
 		$("#check-pwd").focus();
@@ -24,9 +29,13 @@ $("#profile-form").submit(function() {
         contentType: "application/json",
 		dataType : "json",
 		data : JSON.stringify({
-			"id": SmartLock.user.id, // smartlock.id -> SmartLock.user.id 로 수정되었습니다.
+			"id" : SmartLock.user.id,
+			"password" : $("#password").val(),
+			"userName" : SmartLock.user.name,
 			"email" : $("#email").val(),
-			"phone" : $("#phone_number").val()
+			"phoneNumber" : $("#phone_number").val(),
+            "corpId" : SmartLock.user.corpId,
+            "authority" : SmartLock.user.authority
 		}),
 		success : function (data){
 			if(data.status == "success") {
