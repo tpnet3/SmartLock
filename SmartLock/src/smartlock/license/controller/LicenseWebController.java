@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
+import smartlock.license.vo.LicenseUserReqVO;
 import smartlock.license.vo.LicenseUserVO;
 import smartlock.license.vo.LicenseVO;
 import smartlock.license.vo.ReqLicenseVO;
@@ -59,7 +60,10 @@ public class LicenseWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 
 		if (userVO != null && userVO.getAuthority() == 0) {
-			return new ModelAndView("/smartlock/license_user_request");
+			ModelAndView modelAndView = new ModelAndView("/smartlock/license_user_request");
+			ArrayList<LicenseUserReqVO> licenseUserReqVOArrayList = licenseService.viewUserReqLicense(userVO.getId());
+			modelAndView.addObject("licenseUserReqVOArrayList", licenseUserReqVOArrayList);
+			return modelAndView;
 		} else {
 			return new ModelAndView("redirect:/");
 		}
