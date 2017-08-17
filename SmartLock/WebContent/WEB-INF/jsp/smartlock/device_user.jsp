@@ -209,8 +209,27 @@
 	function clickEdit(deviceId, oldNickname) {
         var newNickname = prompt("닉네임을 입력해주세요...", oldNickname);
 
-        if (newNickname) {
-            alert("deviceId: " + deviceId + " 의 닉네임을 " + newNickname + " 로 수정합니다.");
+        if (newNickname && newNickname != oldNickname) {
+            $.ajax({
+                url : "/device/update/nickname",
+                type : "POST",
+                contentType: "application/json",
+                data : JSON.stringify({
+                    id: deviceId,
+                    nickname: newNickname
+                }),
+                success : function (data) {
+                    if(data.status == "success") {
+                        alert("디바이스가 수정되었습니다.");
+                        location.reload();
+                    } else {
+                        alert("디바이스를 수정하는데 실패했습니다.");
+                    }
+                },
+                error : function(data, textStatus, errorThrown) {
+                    console.log(data);
+                }
+            });
         }
 
 		return false;
