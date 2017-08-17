@@ -4,6 +4,7 @@
 <% UserVO userVO = (UserVO) session.getAttribute("user"); %>
 
 <jsp:include page="include/_header.jsp">
+	<jsp:param name="_title" value="Profile" />
     <jsp:param name="_nav" value="" />
 </jsp:include>
 
@@ -14,10 +15,16 @@
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">마이페이지</h2>
+            <ol class="breadcrumb">
+	       		<li class="active">회원정보 수정</li>
+        		<li><a href="/profile/changePassword">비밀번호 변경</a></li>
+        		<li><a href="/profile/quit">회원탈퇴</a></li>
+        	</ol>
         </div>
         <div class="row">
+        	
             <div class="col-lg-12">
-                <form class="form-horizontal" id="profile-form">
+	            <form class="form-horizontal" id="profile-form">
                     <fieldset>
                         <div class="col-lg-12">
                             <img class="img-responsive"
@@ -43,7 +50,7 @@
                             </div>
                         </div>
 
-                        <!-- File Button -->
+                        <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">아이디</label>
                             <div class="col-md-7">
@@ -81,8 +88,8 @@
                         <!-- Button -->
                         <div class="form-group" align="center">
                             <button type="submit" class="profile_btn"
-                                    style="height: 40px; width: 80px">submit</button>
-                        </div>
+                                    style="height: 40px; width: 80px">수정</button>
+                         </div>
 
                     </fieldset>
                 </form>
