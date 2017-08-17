@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.member.service.UserService;
-import smartlock.member.vo.LoginReqVO;
-import smartlock.member.vo.SignupReqVO;
-import smartlock.member.vo.UserIdReqVO;
-import smartlock.member.vo.UserInfoVO;
-import smartlock.member.vo.UserVO;
+import smartlock.member.vo.*;
 
 @Controller
 public class MemberApiController {
@@ -27,8 +23,9 @@ public class MemberApiController {
 
     /**
      * 로그인
-     * @param loginReqVO 로그인 정보
-     * @return 성공시 UserInfoVO
+     * @param loginReqVO {@link LoginReqVO#id},
+     *                   {@link LoginReqVO#pwd}
+     * @return {@link UserInfoVO}
      */
     @RequestMapping(
             value = "/login",
@@ -91,8 +88,8 @@ public class MemberApiController {
 
     /**
      * 아이디 중복 체크
-     * @param userIdReqVO 아이디
-     * @return DataResVO
+     * @param userIdReqVO {@link UserIdReqVO#id}
+     * @return 중복시 "no", 아닐시 "ok"
      */
     @RequestMapping(
             value="/check/id",
@@ -129,8 +126,14 @@ public class MemberApiController {
 
     /**
      * 회원가입
-     * @param signupReqVO 회원가입 계정 정보
-     * @return UserVO
+     * @param signupReqVO {@link SignupReqVO#id},
+     *                    {@link SignupReqVO#pwd},
+     *                    {@link SignupReqVO#name},
+     *                    {@link SignupReqVO#email},
+     *                    {@link SignupReqVO#phone},
+     *                    {@link SignupReqVO#corp_id},
+     *                    {@link SignupReqVO#authority}
+     * @return {@link UserInfoVO}
      */
     @RequestMapping(
             value = "/signup",
@@ -170,7 +173,7 @@ public class MemberApiController {
     /**
      * 회사명 확인
      * @param corpName 회사명
-     * @return
+     * @return {@link CorpVO}
      */
     @RequestMapping(
     		value = "/check/corpname",

@@ -23,12 +23,16 @@ public class StatisticsApiController {
 	@Resource(name="statisticsService")
 	private StatisticsService statisticsService;
 
+	/**
+	 * 전체 통계 조회
+	 * @return {@link StatisticsVO}
+	 */
 	@RequestMapping(
 			value = "/statistics",
 			method = RequestMethod.POST
 			)
 	public @ResponseBody DataResVO viewUserLicense(
-			HttpServletRequest request) throws Exception{
+			HttpServletRequest request) {
 
 		return new DataResVO(request, userVO -> {
 			if (userVO == null) return null;
@@ -62,13 +66,18 @@ public class StatisticsApiController {
 		*/
 	}
 
+	/**
+	 * 통계 필터링
+	 * @param name 소프트웨어명
+	 * @return {@link StatisticsVO}
+	 */
 	@RequestMapping(
 			value = "/statistics/filter",
 			method = RequestMethod.POST
 			)
 	public @ResponseBody DataResVO viewUserLicense(
 			@RequestParam("name") String name,
-			HttpServletRequest request) throws Exception{
+			HttpServletRequest request) {
 
 		return new DataResVO(request, userVO -> {
 			if (userVO == null) return null;

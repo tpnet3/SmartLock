@@ -20,7 +20,6 @@ public class DeviceApiController {
 
 	/**
 	 * 모든 디바이스 조회
-	 * @param request {@link HttpServletRequest}
 	 * @return {@link ArrayList<DeviceVO>}
 	 */
 	@RequestMapping(value = "/device/all", method = RequestMethod.POST)
@@ -63,7 +62,6 @@ public class DeviceApiController {
 	/**
 	 * 소프트웨어명으로 디바이스 조회
 	 * @param sw 소프트웨어명
-	 * @param request {@link HttpServletRequest}
 	 * @return {@link ArrayList<DeviceVO>}
 	 */
 	@RequestMapping(value = "/device", method = RequestMethod.GET)
@@ -107,7 +105,6 @@ public class DeviceApiController {
 	/**
 	 * 디바이스 제거
 	 * @param deviceVO {@link DeviceVO#id}
-	 * @param request {@link HttpServletRequest}
 	 * @return 제거된 row 수
 	 */
 	@RequestMapping(value = "/device/delete", method = RequestMethod.POST)
@@ -146,7 +143,6 @@ public class DeviceApiController {
 	 * 디바이스 닉네임 업데이트
 	 * @param deviceVO {@link DeviceVO#id},
 	 *                 {@link DeviceVO#nickname}
-	 * @param request {@link HttpServletRequest}
 	 * @return 업데이트된 row 수
 	 */
 	@RequestMapping(value = "/device/update/nickname", method = RequestMethod.POST)

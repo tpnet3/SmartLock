@@ -31,8 +31,7 @@ public class LicenseApiController {
    
     /**
      * 개인 라이센스 전체 조회
-     * @param request {@link HttpServletRequest}
-     * @return DataResVO {@link ArrayList<LicenseUserVO>}
+     * @return {@link ArrayList<LicenseUserVO>}
      */
     @RequestMapping(
             value = "/license/user",
@@ -78,9 +77,8 @@ public class LicenseApiController {
     
     /**
      * 개인 라이센스 소프트웨어명 별로 조회
-     * @param request {@link HttpServletRequest}
 	 * @param name 소프트웨어명
-     * @return DataResVO {@link ArrayList<LicenseUserVO>}
+     * @return {@link ArrayList<LicenseUserVO>}
      */
     @RequestMapping(
             value = "/license/user/filter",
@@ -137,8 +135,7 @@ public class LicenseApiController {
     
     /**
      * 개인 요청 라이센스 전체 조회
-     * @param request {@link HttpServletRequest}
-     * @return DataResVO {@link ArrayList<LicenseUserReqVO>}
+     * @return {@link ArrayList<LicenseUserReqVO>}
      */
     @RequestMapping(
             value = "/license/user/request",
@@ -185,9 +182,8 @@ public class LicenseApiController {
 
     /**
      * 개인 요청 라이센스 소프트웨어명별 조회
-     * @param request {@link HttpServletRequest}
 	 * @param name 소프트웨어명
-     * @return DataResVO {@link ArrayList<LicenseUserReqVO>}
+     * @return {@link ArrayList<LicenseUserReqVO>}
      */
     @RequestMapping(
             value = "/license/user/request/filter",
@@ -243,8 +239,7 @@ public class LicenseApiController {
     
     /**
      * 관리자 요청 라이센스 전체 조회
-     * @param request {@link HttpServletRequest}
-     * @return DataResVO {@link ArrayList<LicenseManagerReqVO>}
+     * @return {@link ArrayList<LicenseManagerReqVO>}
      */
     @RequestMapping(
             value = "/license/manager/request",
@@ -288,9 +283,8 @@ public class LicenseApiController {
     
     /**
      * 관리자 요청 라이센스 소프트웨어명별 조회 
-     * @param request {@link HttpServletRequest}
 	 * @param name 소프트웨어명
-     * @return DataResVO {@link ArrayList<LicenseManagerReqVO>}
+     * @return {@link ArrayList<LicenseManagerReqVO>}
      */
     @RequestMapping(
             value = "/license/manager/request/filter",
@@ -350,8 +344,7 @@ public class LicenseApiController {
     
     /**
      * 관리자 발급완료 라이센스 전체 조회
-     * @param request {@link HttpServletRequest}
-     * @return DataResVO {@link ArrayList<LicenseManagerVO>}
+     * @return {@link ArrayList<LicenseManagerVO>}
      */
     @RequestMapping(
             value = "/license/manager",
@@ -399,9 +392,8 @@ public class LicenseApiController {
     
     /**
      * 관리자 발급완료 라이센스 소프트웨어명별 조회
-     * @param request {@link HttpServletRequest}
 	 * @param name 소프트웨어명
-     * @return DataResVO {@link ArrayList<LicenseManagerVO>}
+     * @return {@link ArrayList<LicenseManagerVO>}
      */
     @RequestMapping(
             value = "/license/manager/filter",

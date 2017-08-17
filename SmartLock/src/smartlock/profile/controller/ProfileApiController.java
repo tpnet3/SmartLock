@@ -24,7 +24,14 @@ public class ProfileApiController {
 	
 	@Resource
     private ProfileService profileService;
-	
+
+	/**
+	 * 프로필 업데이트
+	 * @param userVO {@link UserVO#id},
+	 *               {@link UserVO#email},
+	 *               {@link UserVO#phone_number}
+	 * @return 성공시 "회원정보 수정이 완료되었습니다.", 실패시 "error"
+	 */
 	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO updateProfile(
 			@RequestBody UserVO userVO,
@@ -52,7 +59,13 @@ public class ProfileApiController {
 		return msgResVO;
 		*/
 	}
-	
+
+	/**
+	 * 비밀번호 변경
+	 * @param userVO {@link UserVO#id},
+	 *               {@link UserVO#password}
+	 * @return 성공시 "비밀번호 수정이 완료되었습니다.", 실패시 "error"
+	 */
 	@RequestMapping(value = "/profile/change/success", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO changeNewPassword(
 			@RequestBody UserVO userVO,
@@ -80,7 +93,8 @@ public class ProfileApiController {
 		return msgResVO;
 		*/
 	}
-	
+
+	// TODO: 주석이 필요합니다.
 	@RequestMapping(value = "/profile/checkPassword", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO checkPassword(
 			@RequestBody UserVO userVO,
