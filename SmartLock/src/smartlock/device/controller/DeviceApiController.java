@@ -14,15 +14,24 @@ import smartlock.device.vo.DeviceVO;
 
 @Controller
 public class DeviceApiController {
+
 	@Resource
 	private DeviceService deviceService;
 
+	/**
+	 * 모든 디바이스 조회
+	 * @param request {@link HttpServletRequest}
+	 * @return {@link ArrayList<DeviceVO>}
+	 */
 	@RequestMapping(value = "/device/all", method = RequestMethod.POST)
 	public @ResponseBody DataResVO getAllDevicePost(
 			HttpServletRequest request) {
 
 		return new DataResVO(request, (userVO) -> {
-			ArrayList<DeviceVO> list = deviceService.getDeviceList("swan");
+			if (userVO == null) return null;
+
+			ArrayList<DeviceVO> list = deviceService.getDeviceList(userVO.getId());
+
 			return list.isEmpty() ? null : list;
 		});
 
@@ -51,13 +60,22 @@ public class DeviceApiController {
 		*/
 	}
 
+	/**
+	 * 소프트웨어명으로 디바이스 조회
+	 * @param sw 소프트웨어명
+	 * @param request {@link HttpServletRequest}
+	 * @return {@link ArrayList<DeviceVO>}
+	 */
 	@RequestMapping(value = "/device", method = RequestMethod.GET)
 	public @ResponseBody DataResVO getDeviceBySw(
 			@RequestParam("sw") String sw,
 			HttpServletRequest request) {
 
 		return new DataResVO(request, (userVO) -> {
-			ArrayList<DeviceVO> list = deviceService.getDeviceListBySw("swan", sw);
+			if (userVO == null) return null;
+
+			ArrayList<DeviceVO> list = deviceService.getDeviceListBySw(userVO.getId(), sw);
+
 			return list.isEmpty() ? null : list;
 		});
 
@@ -88,9 +106,9 @@ public class DeviceApiController {
 
 	/**
 	 * 디바이스 제거
-	 * @param deviceVO 제거할 디바이스 아이디
-	 * @param request HttpServletRequest
-	 * @return 성공 여부
+	 * @param deviceVO {@link DeviceVO#id}
+	 * @param request {@link HttpServletRequest}
+	 * @return 제거된 row 수
 	 */
 	@RequestMapping(value = "/device/delete", method = RequestMethod.POST)
 	public @ResponseBody DataResVO deleteDevice(
@@ -124,6 +142,13 @@ public class DeviceApiController {
 		*/
 	}
 
+	/**
+	 * 디바이스 닉네임 업데이트
+	 * @param deviceVO {@link DeviceVO#id},
+	 *                 {@link DeviceVO#nickname}
+	 * @param request {@link HttpServletRequest}
+	 * @return 업데이트된 row 수
+	 */
 	@RequestMapping(value = "/device/update/nickname", method = RequestMethod.POST)
 	public @ResponseBody DataResVO updateDeviceNickname(
 			@RequestBody DeviceVO deviceVO,
