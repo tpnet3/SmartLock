@@ -241,12 +241,17 @@ public class LicenseApiController {
     )
     public @ResponseBody DataResVO viewManagerReqLicense(
             HttpServletRequest request) throws Exception {
-        HttpSession httpSession = request.getSession();
+    	return new DataResVO(request, userVO -> {
+			ArrayList<LicenseManagerReqVO> license = new ArrayList<LicenseManagerReqVO>();
+			license = licenseService.viewManagerReqLicense(userVO.getId());
+			//license = licenseService.viewManagerReqLicense("arsenal");
+			return license.isEmpty() ? null : license;
+		});
+
+    	/*
+    	HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-		ArrayList<LicenseManagerReqVO> license = new ArrayList<LicenseManagerReqVO>();
-		license = licenseService.viewManagerReqLicense(userVO.getId());
-		//license = licenseService.viewManagerReqLicense("arsenal");
-		
+
 		try{
 			System.out.println(license);
 			if(license.isEmpty()) {
@@ -262,6 +267,7 @@ public class LicenseApiController {
 		}
 		
         return dataResVO;
+        */
     }
     
     /**
