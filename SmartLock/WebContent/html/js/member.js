@@ -71,7 +71,7 @@ $("#copr-searh-btn").on("click",function(){
 		type : "POST",
 		dataType : "json",
 		data : {
-			"corpName" : $("#corp-name").val(),
+			"corp_name" : $("#corp-name").val(),
 		},
 		success : function (data){
 			if(data.status == "success") {
@@ -96,7 +96,7 @@ $("#copr-searh-btn").on("click",function(){
 	});
 });
 
-$("#signup-form").submit(function() {
+$("#signup-btn").on("click", function() {
 	// check validation
 	if($("#id").val() == '') {
 		$("#id").focus();
@@ -160,7 +160,7 @@ $("#signup-form").submit(function() {
 			"name" : $("#name").val(),
 			"email" : $("#email").val(),
 			"phone" : $("#phone").val(),
-            "corp_id" : $("#company").val(),
+            "corp_id" : $("#corp-id").val(),
             "authority" : $("#authority").val()
 		}),
 		success : function (data){
