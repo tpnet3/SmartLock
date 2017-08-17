@@ -43,27 +43,49 @@
     <br>
     <div class="container">
         <div class="col-md-3">
-            <div class="progress blue"> <span class="progress-left">
-                        <span class="progress-bar"></span> </span> <span class="progress-right">
-                        <span class="progress-bar"></span> </span>
+            <div class="progress blue">
+            	<span class="progress-left">
+                        <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                        <span class="progress-bar"></span>
+                </span>
                 <div class="progress-value"><%=statistics.getTotal()%></div>
             </div>
             <h4 class="text-center">총 다운로드</h4>
         </div>
         <div class="col-md-3 col-sm-6">
-            <div class="progress yellow"> <span class="progress-left"> <span class="progress-bar"></span> </span> <span class="progress-right"> <span class="progress-bar"></span> </span>
+            <div class="progress yellow">
+            	<span class="progress-left">
+            		<span class="progress-bar"></span>
+            	</span>
+            	<span class="progress-right">
+            		<span class="progress-bar"></span>
+            	</span>
                 <div class="progress-value"><%=statistics.getRequest_license()%></div>
             </div>
-            <h4 class="text-center">라이센스 요청 <a href="/license.jsp"><i class="fa fa-pencil" style="color: black"></i></a></h4>
+            <h4 class="text-center"><a href="/license.jsp">라이센스 요청</a></h4>
         </div>
         <div class="col-md-3">
-            <div class="progress pink"> <span class="progress-left"> <span class="progress-bar"></span> </span> <span class="progress-right"> <span class="progress-bar"></span> </span>
+            <div class="progress pink">
+            	<span class="progress-left">
+            		<span class="progress-bar"></span>
+            	</span>
+            	<span class="progress-right">
+            		<span class="progress-bar"></span>
+            	</span>
                 <div class="progress-value"><%=statistics.getLicense()%></div>
             </div>
             <h4 class="text-center">발급 된라이센스</h4>
         </div>
         <div class="col-md-3">
-            <div class="progress green"> <span class="progress-left"> <span class="progress-bar"></span> </span> <span class="progress-right"> <span class="progress-bar"></span> </span>
+            <div class="progress green">
+            	<span class="progress-left">
+            		<span class="progress-bar"></span>
+            	</span>
+            	<span class="progress-right">
+            		<span class="progress-bar"></span>
+            	</span>
                 <div class="progress-value"><%=statistics.getDemo_license()%></div>
             </div>
             <h4 class="text-center">데모버전</h4>
