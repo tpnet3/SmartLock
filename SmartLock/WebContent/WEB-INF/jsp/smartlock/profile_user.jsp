@@ -23,7 +23,7 @@
         <div class="row">
         	
             <div class="col-lg-12">
-                <form class="form-horizontal" id="profile-form">
+	            <form class="form-horizontal" id="profile-form">
                     <fieldset>
                         <div class="col-lg-12">
                             <img class="img-responsive"
