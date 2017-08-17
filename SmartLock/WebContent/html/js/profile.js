@@ -73,6 +73,35 @@ $("#changePassword_btn").on("click",function() {
 	if($("#new_password1").val()!=$("new_password2").val()){
 		$("#new_password2").focus();
 		alert("비밀번호가 일치하지 않습니다.");
+		return;
+	}
+	else{
+		$.ajax({
+			url : "/profile/change/success",
+			type : "POST",
+	        contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify({
+				"id" : SmartLock.user.id,
+				"password" : $("#new_password1").val(),
+				"userName" : SmartLock.user.name,
+				"email" : SmartLock.user.email,
+				"phoneNumber" : SmartLock.user.name.phoneNumber,
+	            "corpId" : SmartLock.user.corpId,
+	            "authority" : SmartLock.user.authority
+			}),
+			success : function (data){
+				if(data.status == "success") {
+					//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
+					location.href="/profile/changePassword/ok";
+				} else {
+					alert("비밀번호 변경 실패");
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				
+			}
+		});
 	}
 	
 	
