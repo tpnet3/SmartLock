@@ -4,6 +4,7 @@
 <% UserVO userVO = (UserVO) session.getAttribute("user"); %>
 
 <jsp:include page="include/_header.jsp">
+	<jsp:param name="_title" value="Profile" />
     <jsp:param name="_nav" value="" />
 </jsp:include>
 
@@ -88,7 +89,7 @@
                         <div class="form-group" align="center">
                             <button type="submit" class="profile_btn"
                                     style="height: 40px; width: 80px">수정</button>
-                        </div>
+                         </div>
 
                     </fieldset>
                 </form>
