@@ -70,7 +70,7 @@ $("#changePassword_btn").on("click",function() {
 		alert("새 비밀번호를 입력하세요.");
 		return;
 	}
-	if($("#new_password1").val()!=$("new_password2").val()){
+	if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
 		alert("비밀번호가 일치하지 않습니다.");
 		return;
@@ -83,12 +83,7 @@ $("#changePassword_btn").on("click",function() {
 			dataType : "json",
 			data : JSON.stringify({
 				"id" : SmartLock.user.id,
-				"password" : $("#new_password1").val(),
-				"userName" : SmartLock.user.name,
-				"email" : SmartLock.user.email,
-				"phoneNumber" : SmartLock.user.name.phoneNumber,
-	            "corpId" : SmartLock.user.corpId,
-	            "authority" : SmartLock.user.authority
+				"password" : $("#new_password1").val()
 			}),
 			success : function (data){
 				if(data.status == "success") {
