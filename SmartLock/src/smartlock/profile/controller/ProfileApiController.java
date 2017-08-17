@@ -44,4 +44,24 @@ public class ProfileApiController {
 				
 		return msgResVO;
 	}
+	
+	@RequestMapping(value = "/profile/change/success", method = RequestMethod.POST)
+	public  @ResponseBody MsgResVO changeNewPassword(
+			@RequestBody UserVO userVO){
+				
+		MsgResVO msgResVO = new MsgResVO();
+		 
+		try{
+			profileService.changePasswordUser(userVO);
+			msgResVO.setStatus("success");
+			msgResVO.setMessage("비밀번호 수정이 완료되었습니다.");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			msgResVO.setStatus("error");
+			msgResVO.setMessage("error");
+		}
+				
+		return msgResVO;
+	}
 }

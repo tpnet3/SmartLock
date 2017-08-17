@@ -1,4 +1,8 @@
+<%@ page import="smartlock.statistics.vo.StatisticsVO" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<% StatisticsVO statistics = (StatisticsVO) request.getAttribute("statistics"); %>
 
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="device" />
@@ -28,7 +32,7 @@
 					<span class="progress-right">
 						<span class="progress-bar"></span>
 					</span>
-					<div class="progress-value">30</div>
+					<div class="progress-value"><%=statistics.getTotal()%></div>
 				</div>
 				<h4 class="text-center">다운로드 수</h4>
 			</div>
@@ -37,7 +41,7 @@
 					<span class="progress-left"> <span class="progress-bar"></span>
 					</span> <span class="progress-right"> <span class="progress-bar"></span>
 					</span>
-					<div class="progress-value">5</div>
+					<div class="progress-value"><%=statistics.getRequest_license()%></div>
 				</div>
 				<h4 class="text-center">라이센스 요청</h4>
 			</div>
@@ -46,18 +50,18 @@
 					<span class="progress-left"> <span class="progress-bar"></span>
 					</span> <span class="progress-right"> <span class="progress-bar"></span>
 					</span>
-					<div class="progress-value">5</div>
+					<div class="progress-value"><%=statistics.getLicense()%></div>
 				</div>
-				<h4 class="text-center">발급 된라이센스</h4>
+				<h4 class="text-center">발급된 라이센스</h4>
 			</div>
 			<div class="col-md-3 col-sm-6">
 				<div class="progress green">
 					<span class="progress-left"> <span class="progress-bar"></span>
 					</span> <span class="progress-right"> <span class="progress-bar"></span>
 					</span>
-					<div class="progress-value">12</div>
+					<div class="progress-value"><%=statistics.getDemo()%></div>
 				</div>
-				<h4 class="text-center">만료될 라이센스</h4>
+				<h4 class="text-center">데모 라이센스</h4>
 			</div>
 		</div>
 	</div>

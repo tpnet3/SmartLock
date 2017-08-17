@@ -1,17 +1,23 @@
 package smartlock.member.controller;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import smartlock.member.service.UserService;
-import smartlock.member.vo.*;
-import smartlock.common.vo.DataResVO;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import smartlock.common.vo.DataResVO;
+import smartlock.member.service.UserService;
+import smartlock.member.vo.LoginReqVO;
+import smartlock.member.vo.SignupReqVO;
+import smartlock.member.vo.UserIdReqVO;
+import smartlock.member.vo.UserInfoVO;
+import smartlock.member.vo.UserVO;
 
 @Controller
 public class MemberApiController {
@@ -123,5 +129,36 @@ public class MemberApiController {
         }
 
         return dataResVO;
+    }
+    
+    /**
+     * 회사명 확인
+     * @param corpName 회사명
+     * @return
+     */
+    @RequestMapping(
+    		value = "/check/corpname",
+    		method = RequestMethod.POST)
+    public @ResponseBody DataResVO checkCorpName(@RequestParam("corp_name") String corpName) {
+    	 DataResVO dataResVO = new DataResVO();
+    	 
+    	try {
+            if (userService.checkCorpName(corpName)) {
+                dataResVO.setStatus("success");
+                dataResVO.setData(userService.getCorpInfo(corpName));
+                
+                // "status": "", "data":{id,....}
+                
+            } else {
+                dataResVO.setStatus("success");
+                dataResVO.setData(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            dataResVO.setStatus("error");
+            dataResVO.setData("error");
+        }
+    	
+    	return dataResVO;
     }
 }

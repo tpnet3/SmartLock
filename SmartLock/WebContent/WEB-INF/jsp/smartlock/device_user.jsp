@@ -199,6 +199,13 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
+
+	/**
+	 * 디바이스 수정 클릭시
+	 * @param {number} deviceId 디바이스 아이디
+	 * @param {string} oldNickname 기존 디바이스 닉네임
+	 * @return {boolean} False
+	 */
 	function clickEdit(deviceId, oldNickname) {
         var newNickname = prompt("닉네임을 입력해주세요...", oldNickname);
 
@@ -210,10 +217,10 @@
 	}
 
     /**
-	 *
+	 * 디바이스 삭제 클릭시
      * @param {number} deviceId 디바이스 아이디
      * @param {string} nickname 디바이스의 닉네임
-     * @returns {boolean} onclick return 값
+     * @return {boolean} False
      */
 	function clickDelete(deviceId, nickname) {
         var checkDelete = confirm(nickname + " 를 삭제하시겠습니까?");
@@ -243,6 +250,11 @@
         return false;
 	}
 
+    /**
+	 * 라이센스 보기 클릭시
+     * @param deviceId 디바이스 아이디
+     * @return {boolean} False
+     */
 	function clickShowLicense(deviceId) {
         alert("deviceId: " + deviceId + " 에 대한 라이센스 조회 버튼을 클릭했습니다.");
         return false;

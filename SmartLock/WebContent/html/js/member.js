@@ -141,7 +141,7 @@ $("#signup-form").submit(function() {
 	if($("#is-check-id").val() == "false") {
 		$("#id").focus();
 		alert("아이디 중복체크를 하세요.");
-		return false;
+		return;
 	}
 	if($("#pwd").val() != $("#check-pwd").val()) {
 		$("#check-pwd").focus();

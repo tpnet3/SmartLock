@@ -67,4 +67,16 @@ public class ProfileWebController {
             return new ModelAndView("redirect:/");
         }
 	}
+	
+	@RequestMapping(value="/profile/changePassword/ok", method=RequestMethod.GET)
+	public ModelAndView changePasswordOk(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        UserVO userVO = (UserVO) httpSession.getAttribute("user");
+        
+        if (userVO != null) {
+            return new ModelAndView("/smartlock/profile_changePassword_finish");
+        } else {
+            return new ModelAndView("redirect:/");
+        }
+	}
 }
