@@ -82,7 +82,7 @@
                     </tr>
                     </thead>
                     <tbody align="center">
-                    <% for (int i = 0; i < licenseUserVOArrayList.size(); i++) { %>
+                    <% for (int i = 1; i <= licenseUserVOArrayList.size(); i++) { %>
                     <% LicenseUserVO licenseUserVO = licenseUserVOArrayList.get(i); %>
                     <tr>
                         <td data-title="No."><%= i %></td>

@@ -18,7 +18,7 @@
 		FROM device
 	   WHERE user_id = #{id} 
 	</select>
-	
+
 	<select id="selectDeviceBySw"
 			parameterType="java.util.Map"
 			resultType="smartlock.device.vo.DeviceVO">
@@ -38,10 +38,18 @@
 	   	 			   WHERE name=#{sw_id})
 	</select>
 
+	<!-- 디바이스 제거 -->
 	<delete id="deleteDevice"
 			parameterType="Integer">
 		DELETE FROM device
 		WHERE id = #{id}
 	</delete>
-	
+
+	<!-- 디바이스 닉네임 업데이트 -->
+	<update id="updateDeviceNickname"
+			parameterType="smartlock.device.vo.DeviceVO">
+		UPDATE device
+		SET nickname = #{nickname}
+		WHERE id = #{id};
+	</update>
 </mapper>

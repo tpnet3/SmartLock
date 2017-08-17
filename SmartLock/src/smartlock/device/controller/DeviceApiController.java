@@ -3,7 +3,6 @@ package smartlock.device.controller;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.device.service.DeviceService;
-import smartlock.device.vo.DeviceIdVO;
 import smartlock.device.vo.DeviceVO;
 
 @Controller
@@ -72,18 +70,49 @@ public class DeviceApiController {
 		return dataResVO;
 	}
 
+	/**
+	 * 디바이스 제거
+	 * @param deviceVO 제거할 디바이스 아이디
+	 * @param request HttpServletRequest
+	 * @return 성공 여부
+	 */
 	@RequestMapping(value = "/device/delete", method = RequestMethod.POST)
 	public @ResponseBody DataResVO deleteDevice(
-			@RequestBody DeviceIdVO deviceIdVO,
+			@RequestBody DeviceVO deviceVO,
 			HttpServletRequest request) {
 		DataResVO dataResVO = new DataResVO();
 
 		try {
-			int deletedRowCnt = deviceService.deleteDevice(deviceIdVO.getId());
+			int deletedRowCnt = deviceService.deleteDevice(deviceVO.getId());
 
 			if (deletedRowCnt > 0) {
 				dataResVO.setStatus("success");
 				dataResVO.setData(deletedRowCnt);
+			} else {
+				dataResVO.setStatus("success");
+				dataResVO.setData(null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			dataResVO.setStatus("error");
+			dataResVO.setData("error");
+		}
+
+		return dataResVO;
+	}
+
+	@RequestMapping(value = "/device/update/nickname", method = RequestMethod.POST)
+	public @ResponseBody DataResVO updateDeviceNickname(
+			@RequestBody DeviceVO deviceVO,
+			HttpServletRequest request) {
+		DataResVO dataResVO = new DataResVO();
+
+		try {
+			int updatedRowCnt = deviceService.updateDeviceNickname(deviceVO);
+
+			if (updatedRowCnt > 0) {
+				dataResVO.setStatus("success");
+				dataResVO.setData(updatedRowCnt);
 			} else {
 				dataResVO.setStatus("success");
 				dataResVO.setData(null);

@@ -1,11 +1,10 @@
 <%@ page import="smartlock.statistics.vo.StatisticsVO" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% StatisticsVO statistics = (StatisticsVO) request.getAttribute("statistics"); %>
 
 <jsp:include page="include/_header.jsp">
-	<jsp:param name="_nav" value="device" />
+	<jsp:param name="_nav" value="statistics" />
 	<jsp:param name="_css" value="/html/css/statistics.css" />
 </jsp:include>
 
@@ -59,7 +58,7 @@
 					<span class="progress-left"> <span class="progress-bar"></span>
 					</span> <span class="progress-right"> <span class="progress-bar"></span>
 					</span>
-					<div class="progress-value"><%=statistics.getDemo()%></div>
+					<div class="progress-value"><%=statistics.getDemo_license()%></div>
 				</div>
 				<h4 class="text-center">데모 라이센스</h4>
 			</div>

@@ -43,4 +43,14 @@ public class DeviceService {
 	public int deleteDevice(int id) throws Exception {
 		return commonDAO.delete("deleteDevice", id);
 	}
+
+	/**
+	 * 디바이스 닉네임 수정
+	 * @param deviceVO 수정된 DeviceVO
+	 * @return 결과
+	 * @throws Exception DAO
+	 */
+	public int updateDeviceNickname(DeviceVO deviceVO) throws Exception {
+		return commonDAO.update("updateDeviceNickname", deviceVO);
+	}
 }
