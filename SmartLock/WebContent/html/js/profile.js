@@ -70,7 +70,7 @@ $("#changePassword_btn").on("click",function() {
 		alert("새 비밀번호를 입력하세요.");
 		return;
 	}
-	if($("#new_password1").val()!=$("new_password2").val()){
+	if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
 		alert("비밀번호가 일치하지 않습니다.");
 		return;
