@@ -64,4 +64,25 @@ public class ProfileApiController {
 				
 		return msgResVO;
 	}
+	
+	@RequestMapping(value = "/profile/checkPassword", method = RequestMethod.POST)
+	public  @ResponseBody boolean checkPassword(
+			@RequestBody UserVO userVO){
+				
+		MsgResVO msgResVO = new MsgResVO();
+		try{
+			if(profileService.checkPassword(userVO)){
+				return true;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			msgResVO.setStatus("error");
+			msgResVO.setMessage("error");
+		}
+		
+		return false;
+	}
+	
+	// /profile/checkPassword
 }
