@@ -30,13 +30,26 @@ public class ProfileWebController {
         }
     }
     
-    @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile/changePassword", method = RequestMethod.GET)
     public ModelAndView changePassword(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
         if (userVO != null) {        
             return new ModelAndView("/smartlock/profile_changePassword");
+        }
+        else{
+        	return new ModelAndView("redirect:/");
+        }
+    }
+    
+    @RequestMapping(value = "/profile/quit", method = RequestMethod.GET)
+    public ModelAndView quit(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        UserVO userVO = (UserVO) httpSession.getAttribute("user");
+
+        if (userVO != null) {        
+            return new ModelAndView("/smartlock/profile_quit");
         }
         else{
         	return new ModelAndView("redirect:/");
