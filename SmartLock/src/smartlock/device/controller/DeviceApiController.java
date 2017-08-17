@@ -111,6 +111,11 @@ public class DeviceApiController {
 	public @ResponseBody DataResVO updateDeviceNickname(
 			@RequestBody DeviceVO deviceVO,
 			HttpServletRequest request) {
+		return new DataResVO(request, (userVO) -> {
+			return deviceService.updateDeviceNickname(deviceVO);
+		});
+
+		/*
 		DataResVO dataResVO = new DataResVO();
 
 		try {
@@ -130,5 +135,6 @@ public class DeviceApiController {
 		}
 
 		return dataResVO;
+		*/
 	}
 }
