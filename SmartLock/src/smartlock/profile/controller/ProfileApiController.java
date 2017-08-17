@@ -27,8 +27,15 @@ public class ProfileApiController {
 	
 	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO updateProfile(
-			@RequestBody UserVO userVO){
-				
+			@RequestBody UserVO userVO,
+			HttpServletRequest request) {
+
+		return new MsgResVO(request, sessionUserVO -> {
+			profileService.updateUser(userVO);
+			return "회원정보 수정이 완료되었습니다.";
+		});
+
+		/*
 		MsgResVO msgResVO = new MsgResVO();
 		 
 		try{
@@ -43,12 +50,20 @@ public class ProfileApiController {
 		}
 				
 		return msgResVO;
+		*/
 	}
 	
 	@RequestMapping(value = "/profile/change/success", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO changeNewPassword(
-			@RequestBody UserVO userVO){
-				
+			@RequestBody UserVO userVO,
+			HttpServletRequest request){
+
+		return new MsgResVO(request, sessionUserVO -> {
+			profileService.changePasswordUser(userVO);
+			return "비밀번호 수정이 완료되었습니다.";
+		});
+
+		/*
 		MsgResVO msgResVO = new MsgResVO();
 		 
 		try{
@@ -63,12 +78,23 @@ public class ProfileApiController {
 		}
 				
 		return msgResVO;
+		*/
 	}
 	
 	@RequestMapping(value = "/profile/checkPassword", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO checkPassword(
-			@RequestBody UserVO userVO){
-				
+			@RequestBody UserVO userVO,
+			HttpServletRequest request) {
+
+		return new MsgResVO(request, sessionUserVO -> {
+			boolean checkPassword = profileService.checkPassword(userVO);
+
+			// TODO: checkPassword 가 false 일 경우에 대해 확인해주세요.
+
+			return checkPassword ? "비밀번호 확인." : null;
+		});
+
+		/*
 		MsgResVO msgResVO = new MsgResVO();
 		try{
 			if(profileService.checkPassword(userVO)){
@@ -83,6 +109,7 @@ public class ProfileApiController {
 		}
 		
 		return msgResVO;
+		*/
 	}
 	
 	// /profile/checkPassword

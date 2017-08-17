@@ -37,16 +37,36 @@ public class MemberApiController {
     public @ResponseBody DataResVO loginPost(
             HttpServletRequest request,
             @RequestBody LoginReqVO loginReqVO) {
-        DataResVO dataResVO = new DataResVO();
+        return new DataResVO(request, sessionUserVO -> {
+            boolean checkPassword = userService.checkPassword(loginReqVO);
 
+            // 비밀번호가 일치하지 않을 경우 null
+            if ( ! checkPassword) return null;
+
+            // 로그인시 Session data
+            UserVO userVO = userService.getUserVO(loginReqVO.getId());
+
+            // 비밀번호 데이터 null
+            userVO.setPassword(null);
+
+            // 세션에 로그인 정보 추가
+            request.getSession().setAttribute("user", userVO);
+
+            // 로그인시 API 데이터
+            UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
+
+            return userInfoVO;
+        });
+
+        /*
         try {
             if (userService.checkPassword(loginReqVO)) {
-                // TODO: 로그인시 API data
+                // 로그인시 API data
                 UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
                 dataResVO.setStatus("success");
                 dataResVO.setData(userInfoVO);
 
-                // TODO: 로그인시 Session data
+                // 로그인시 Session data
                 UserVO userVO = userService.getUserVO(loginReqVO.getId());
 
                 // 비밀번호 데이터 null
@@ -55,7 +75,7 @@ public class MemberApiController {
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("user", userVO);
             } else {
-                // TODO: 비밀번호가 틀렸을 때
+                // 비밀번호가 틀렸을 때
                 dataResVO.setStatus("success");
                 dataResVO.setData(null);
             }
@@ -66,6 +86,7 @@ public class MemberApiController {
         }
 
         return dataResVO;
+        */
     }
 
     /**
@@ -78,9 +99,16 @@ public class MemberApiController {
             method=RequestMethod.GET
     )
     public @ResponseBody DataResVO checkId(
-            UserIdReqVO userIdReqVO){
-        DataResVO dataResVO = new DataResVO();
+            UserIdReqVO userIdReqVO,
+            HttpServletRequest request) {
 
+        return new DataResVO(request, userVO -> {
+            boolean exist = userService.existId(userIdReqVO.getId());
+
+            return (exist) ? "no" : "ok";
+        });
+
+        /*
         try {
             if(userService.existId(userIdReqVO.getId())) {
                 dataResVO.setStatus("success");
@@ -96,6 +124,7 @@ public class MemberApiController {
         }
 
         return dataResVO;
+        */
     }
 
     /**
@@ -108,9 +137,15 @@ public class MemberApiController {
             method = RequestMethod.POST
     )
     public @ResponseBody DataResVO signupPost(
-            @RequestBody SignupReqVO signupReqVO) {
-        DataResVO dataResVO = new DataResVO();
+            @RequestBody SignupReqVO signupReqVO,
+            HttpServletRequest request) {
+        return new DataResVO(request, userVO -> {
+            boolean successSignup = userService.signup(signupReqVO);
 
+            return successSignup ? userService.getUserInfoVO(signupReqVO.getId()) : null;
+        });
+
+        /*
         try {
             if (userService.signup(signupReqVO)) {
                 dataResVO.setStatus("success");
@@ -129,6 +164,7 @@ public class MemberApiController {
         }
 
         return dataResVO;
+        */
     }
     
     /**
@@ -139,9 +175,16 @@ public class MemberApiController {
     @RequestMapping(
     		value = "/check/corpname",
     		method = RequestMethod.POST)
-    public @ResponseBody DataResVO checkCorpName(@RequestParam("corp_name") String corpName) {
-    	 DataResVO dataResVO = new DataResVO();
-    	 
+    public @ResponseBody DataResVO checkCorpName(
+            @RequestParam("corp_name") String corpName,
+            HttpServletRequest request) {
+    	return new DataResVO(request, userVO -> {
+    	    boolean checkCorpName = userService.checkCorpName(corpName);
+
+    	    return checkCorpName ? userService.getCorpInfo(corpName) : null;
+        });
+
+    	/*
     	try {
             if (userService.checkCorpName(corpName)) {
                 dataResVO.setStatus("success");
@@ -160,5 +203,6 @@ public class MemberApiController {
         }
     	
     	return dataResVO;
+    	*/
     }
 }

@@ -61,6 +61,9 @@ $("#changePassword_btn").on("click",function() {
 		return;
 	}
 	else{
+
+		// TODO: ajax 결과에 대해 로직을 확인해주세요.
+
 		$.ajax({
 			url : "/profile/checkPassword",
 			type : "POST",
