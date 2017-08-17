@@ -40,14 +40,21 @@ public class LicenseApiController {
     )
     public @ResponseBody DataResVO viewUserLicense(
             HttpServletRequest request) throws Exception {
-        DataResVO dataResVO = new DataResVO();
-        
-        HttpSession httpSession = request.getSession();
-		UserVO userVO = (UserVO) httpSession.getAttribute("user");
+
+    	return new DataResVO(request, (userVO) -> {
+    		// 로그인 되지 않은 사용자라면 null
+    		if (userVO == null) return null;
+
+			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
+			//license = licenseService.viewUserLicense("swan");
+			return license.isEmpty() ? null : license;
+		});
+
+    	/*
 		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
 		license = licenseService.viewUserLicense(userVO.getId());
 		//license = licenseService.viewUserLicense("swan");
-		
+
 		try{
 			System.out.println(license);
 			if(license.isEmpty()) {
@@ -63,6 +70,7 @@ public class LicenseApiController {
 		}
 		
         return dataResVO;
+        */
     }
     
     /**
@@ -77,14 +85,28 @@ public class LicenseApiController {
     public @ResponseBody DataResVO viewUserLicenseByName(
     		@RequestParam("name") String name,
             HttpServletRequest request) throws Exception {
-        DataResVO dataResVO = new DataResVO();
-        
+
+    	return new DataResVO(request, (userVO) -> {
+        	// 로그인 되지 않은 사용자라면 null
+        	if (userVO == null) return null;
+
+			ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
+			Map<String, String> map = new HashMap<String, String>();
+
+			map.put("name", name);
+			map.put("id", userVO.getId());
+			//map.put("id", "swan");
+			license = licenseService.viewUserLicenseByName(map);
+
+			return license.isEmpty() ? null : license;
+		});
+
+        /*
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
 		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
 		Map<String, String> map = new HashMap<String, String>();
-		
-		
+
 		map.put("name", name);
 		map.put("id", userVO.getId());
 		//map.put("id", "swan");
@@ -104,6 +126,7 @@ public class LicenseApiController {
 			dataResVO.setData("error");
 		}
         return dataResVO;
+        */
     }
     
     /**
@@ -117,8 +140,18 @@ public class LicenseApiController {
     )
     public @ResponseBody DataResVO viewUserReqLicense(
             HttpServletRequest request) throws Exception {
-        DataResVO dataResVO = new DataResVO();
-        
+
+    	return new DataResVO(request, userVO -> {
+        	if (userVO == null) return null;
+
+			ArrayList<LicenseUserReqVO> license = new ArrayList<LicenseUserReqVO>();
+			license = licenseService.viewUserReqLicense(userVO.getId());
+			//license = licenseService.viewUserReqLicense("madrid");
+
+			return license.isEmpty() ? null : license;
+		});
+
+        /*
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
 		ArrayList<LicenseUserReqVO> license = new ArrayList<LicenseUserReqVO>();
@@ -139,6 +172,7 @@ public class LicenseApiController {
 			dataResVO.setData("error");
 		}
         return dataResVO;
+        */
     }
 
     /**
@@ -153,8 +187,22 @@ public class LicenseApiController {
     public @ResponseBody DataResVO viewUserReqLiceneByName(
     		@RequestParam("name") String name,
             HttpServletRequest request) throws Exception {
-        DataResVO dataResVO = new DataResVO();
-        
+
+    	return new DataResVO(request, userVO -> {
+        	if (userVO == null) return null;
+
+			ArrayList<LicenseUserReqVO> license = new ArrayList<LicenseUserReqVO>();
+			Map<String, String> map = new HashMap<String, String>();
+
+			map.put("name", name);
+			map.put("id", userVO.getId());
+			//map.put("id", "madrid");
+			license = licenseService.viewUserReqLicenseByName(map);
+
+			return license.isEmpty() ? null : license;
+		});
+
+    	/*
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
 		ArrayList<LicenseUserReqVO> license = new ArrayList<LicenseUserReqVO>();
@@ -179,6 +227,7 @@ public class LicenseApiController {
 			dataResVO.setData("error");
 		}
         return dataResVO;
+        */
     }
     
     /**
@@ -192,8 +241,6 @@ public class LicenseApiController {
     )
     public @ResponseBody DataResVO viewManagerReqLicense(
             HttpServletRequest request) throws Exception {
-        DataResVO dataResVO = new DataResVO();
-        
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
 		ArrayList<LicenseManagerReqVO> license = new ArrayList<LicenseManagerReqVO>();
