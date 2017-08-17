@@ -74,7 +74,7 @@ public class ProfileWebController {
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
         
         if (userVO != null) {
-            return new ModelAndView("/smartlock/profile_finish");
+            return new ModelAndView("/smartlock/profile_changePassword_finish");
         } else {
             return new ModelAndView("redirect:/");
         }
