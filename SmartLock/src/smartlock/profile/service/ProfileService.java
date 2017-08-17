@@ -40,6 +40,17 @@ public class ProfileService {
 	 */
 	 public void updateUser(UserVO userVO) throws Exception{
 		 int cnt = commonDAO.update("user.updateUser", userVO);
-		 System.out.println(cnt+"개의 회원이 업데이트 되었습니다.");
-	 }	
+		 System.out.println(cnt+"개의 회원정보가 업데이트 되었습니다.");
+	 }
+	 
+	 /**
+		 * 
+		 * @param UserVO
+		 * @return void
+		 * @throws Exception DAO 예외
+		 */
+	 public void changePasswordUser(UserVO userVO) throws Exception{
+		 int cnt = commonDAO.update("user.changePassword", userVO);
+		 System.out.println(cnt+"개의 회원의 비밀번호가 업데이트 되었습니다.");
+	 }
 }

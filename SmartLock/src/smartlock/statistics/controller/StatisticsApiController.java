@@ -39,8 +39,7 @@ public class StatisticsApiController {
 			
 			HttpSession httpSession = request.getSession();
 			UserVO userVO = (UserVO) httpSession.getAttribute("user");
-			//statisticsVO = statisticsService.viewStatistics(userVO.getId());
-			statistics = statisticsService.viewStatistics("chelsea");
+			statistics = statisticsService.viewStatistics(userVO.getId());
 			
 			try{
 				System.out.println(statistics);
@@ -66,8 +65,8 @@ public class StatisticsApiController {
 			HttpSession httpSession = request.getSession();
 			UserVO userVO = (UserVO) httpSession.getAttribute("user");
 			Map<String, String> map = new HashMap<String, String>();
-			//map.put("id", userVO.getId());
-			map.put("id", "chelsea");
+			map.put("id", userVO.getId());
+			//map.put("id", "chelsea");
 			map.put("name", name);
 			
 			statistics = statisticsService.viewStatisticsMyName(map);

@@ -52,7 +52,7 @@ public class ProfileApiController {
 		MsgResVO msgResVO = new MsgResVO();
 		 
 		try{
-			profileService.updateUser(userVO);
+			profileService.changePasswordUser(userVO);
 			msgResVO.setStatus("success");
 			msgResVO.setMessage("비밀번호 수정이 완료되었습니다.");
 			
