@@ -49,7 +49,7 @@
                             </div>
                         </div>
 
-                        <!-- File Button -->
+                        <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">아이디</label>
                             <div class="col-md-7">
