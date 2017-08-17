@@ -18,7 +18,7 @@
 	       		<li class="active">회원정보 수정</li>
         		<li><a href="/profile/changePassword">비밀번호 변경</a></li>
         		<li><a href="/profile/quit">회원탈퇴</a></li>
-        </ol>
+        	</ol>
         </div>
         <div class="row">
         	
