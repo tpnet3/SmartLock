@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +20,13 @@ public class DeviceApiController {
 	@RequestMapping(value = "/device/all", method = RequestMethod.POST)
 	public @ResponseBody DataResVO getAllDevicePost(
 			HttpServletRequest request) {
+
+		return new DataResVO(request, (userVO) -> {
+			ArrayList<DeviceVO> list = deviceService.getDeviceList("swan");
+			return list.isEmpty() ? null : list;
+		});
+
+		/*
 		DataResVO dataResVO = new DataResVO();
 		HttpSession session = request.getSession();
 
@@ -42,11 +48,20 @@ public class DeviceApiController {
 			dataResVO.setData("error");
 		}
 		return dataResVO;
+		*/
 	}
+
 	@RequestMapping(value = "/device", method = RequestMethod.GET)
 	public @ResponseBody DataResVO getDeviceBySw(
 			@RequestParam("sw") String sw,
 			HttpServletRequest request) {
+
+		return new DataResVO(request, (userVO) -> {
+			ArrayList<DeviceVO> list = deviceService.getDeviceListBySw("swan", sw);
+			return list.isEmpty() ? null : list;
+		});
+
+		/*
 		DataResVO dataResVO = new DataResVO();
 		HttpSession session = request.getSession();
 		ArrayList<DeviceVO> list = new ArrayList<DeviceVO>();
@@ -68,6 +83,7 @@ public class DeviceApiController {
 		}
 		
 		return dataResVO;
+		*/
 	}
 
 	/**
@@ -80,6 +96,12 @@ public class DeviceApiController {
 	public @ResponseBody DataResVO deleteDevice(
 			@RequestBody DeviceVO deviceVO,
 			HttpServletRequest request) {
+
+		return new DataResVO(request, (userVO) -> {
+			return deviceService.deleteDevice(deviceVO.getId());
+		});
+
+		/*
 		DataResVO dataResVO = new DataResVO();
 
 		try {
@@ -99,12 +121,14 @@ public class DeviceApiController {
 		}
 
 		return dataResVO;
+		*/
 	}
 
 	@RequestMapping(value = "/device/update/nickname", method = RequestMethod.POST)
 	public @ResponseBody DataResVO updateDeviceNickname(
 			@RequestBody DeviceVO deviceVO,
 			HttpServletRequest request) {
+
 		return new DataResVO(request, (userVO) -> {
 			return deviceService.updateDeviceNickname(deviceVO);
 		});
