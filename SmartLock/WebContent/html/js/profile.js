@@ -83,12 +83,7 @@ $("#changePassword_btn").on("click",function() {
 			dataType : "json",
 			data : JSON.stringify({
 				"id" : SmartLock.user.id,
-				"password" : $("#new_password1").val(),
-				"userName" : SmartLock.user.name,
-				"email" : SmartLock.user.email,
-				"phoneNumber" : SmartLock.user.name.phoneNumber,
-	            "corpId" : SmartLock.user.corpId,
-	            "authority" : SmartLock.user.authority
+				"password" : $("#new_password1").val()
 			}),
 			success : function (data){
 				if(data.status == "success") {
