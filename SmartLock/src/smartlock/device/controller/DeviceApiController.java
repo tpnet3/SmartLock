@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.device.service.DeviceService;
-import smartlock.device.vo.DeviceIdVO;
-import smartlock.device.vo.DeviceModifyVO;
 import smartlock.device.vo.DeviceVO;
 import smartlock.member.vo.UserVO;
 
@@ -78,14 +76,20 @@ public class DeviceApiController {
 		return dataResVO;
 	}
 
+	/**
+	 * 디바이스 제거
+	 * @param deviceVO 제거할 디바이스 아이디
+	 * @param request HttpServletRequest
+	 * @return 성공 여부
+	 */
 	@RequestMapping(value = "/device/delete", method = RequestMethod.POST)
 	public @ResponseBody DataResVO deleteDevice(
-			@RequestBody DeviceIdVO deviceIdVO,
+			@RequestBody DeviceVO deviceVO,
 			HttpServletRequest request) {
 		DataResVO dataResVO = new DataResVO();
 
 		try {
-			int deletedRowCnt = deviceService.deleteDevice(deviceIdVO.getId());
+			int deletedRowCnt = deviceService.deleteDevice(deviceVO.getId());
 
 			if (deletedRowCnt > 0) {
 				dataResVO.setStatus("success");
@@ -102,31 +106,29 @@ public class DeviceApiController {
 
 		return dataResVO;
 	}
-	
-	@RequestMapping(value = "/device/modify", method = RequestMethod.POST)
-	public @ResponseBody DataResVO modifyDevice(
-			@RequestBody DeviceModifyVO deviceModifyVO,
+
+	@RequestMapping(value = "/device/update/nickname", method = RequestMethod.POST)
+	public @ResponseBody DataResVO updateDeviceNickname(
+			@RequestBody DeviceVO deviceVO,
 			HttpServletRequest request) {
 		DataResVO dataResVO = new DataResVO();
-		
+
 		try {
-			int modifyRowCnt = deviceService.modifyDevice(deviceModifyVO.getId(), deviceModifyVO.getNickname());
-			
-			if(modifyRowCnt > 0) {
+			int updatedRowCnt = deviceService.updateDeviceNickname(deviceVO);
+
+			if (updatedRowCnt > 0) {
 				dataResVO.setStatus("success");
-				dataResVO.setData(modifyRowCnt);
+				dataResVO.setData(updatedRowCnt);
 			} else {
 				dataResVO.setStatus("success");
 				dataResVO.setData(null);
 			}
-			
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			dataResVO.setStatus("error");
 			dataResVO.setData("error");
 		}
-		
+
 		return dataResVO;
-		
 	}
 }
