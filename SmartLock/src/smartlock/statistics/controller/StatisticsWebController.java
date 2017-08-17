@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import smartlock.member.vo.UserVO;
+import smartlock.statistics.service.StatisticsService;
+import smartlock.statistics.vo.StatisticsVO;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,13 +17,20 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class StatisticsWebController {
 
+	@Resource(name="statisticsService")
+	private StatisticsService statisticsService;
+	
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
-    public ModelAndView statistics(HttpServletRequest request) {
+    public ModelAndView statistics(HttpServletRequest request) throws Exception {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
+		StatisticsVO statistics = new StatisticsVO();
 
         if (userVO != null && userVO.getAuthority() == 1) {
-            return new ModelAndView("/smartlock/statistics");
+            ModelAndView modelAndView = new ModelAndView("/smartlock/statistics");
+            statistics = statisticsService.viewStatistics(userVO.getId());
+            modelAndView.addObject("statistics", statistics);
+            return modelAndView;
         } else {
             return new ModelAndView("redirect:/");
         }
