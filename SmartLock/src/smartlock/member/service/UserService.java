@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 
 import smartlock.common.CommonDAO;
 import smartlock.common.Util;
-import smartlock.member.vo.UserInfoVO;
-import smartlock.member.vo.UserVO;
+import smartlock.member.vo.CorpVO;
 import smartlock.member.vo.LoginReqVO;
 import smartlock.member.vo.SignupReqVO;
+import smartlock.member.vo.UserInfoVO;
+import smartlock.member.vo.UserVO;
 
 @Service
 public class UserService {
@@ -80,5 +81,31 @@ public class UserService {
 	 */
 	public boolean signup(SignupReqVO signupReqVO) throws Exception{
 		return signup(new UserVO(signupReqVO));
+	}
+	
+	/**
+	 * 회사존재여부 확인
+	 * @param corpName 회사명
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean checkCorpName(String corpName) throws Exception {
+		CorpVO resultVO = (CorpVO)commonDAO.selectOne("corp.selectCorp", corpName);
+		
+		if(resultVO == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/**
+	 * 회사정보 조회
+	 * @param corpName 회사명
+	 * @return
+	 * @throws Exception
+	 */
+	public CorpVO getCorpInfo(String corpName) throws Exception {
+		return (CorpVO)commonDAO.selectOne("corp.selectCorp", corpName);
 	}
 }
