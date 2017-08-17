@@ -34,6 +34,13 @@ public class DeviceService {
 		return (ArrayList)commonDAO.selectList("device.selectDeviceBySw", map);
 	}
 
+	public int modifyDevice(int id, String nickName) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("nickname", nickName);
+		return commonDAO.update("device.modifyDevice", map);
+	}
+	
 	/**
 	 * 디바이스 삭제
 	 * @param id 디바이스 아이디

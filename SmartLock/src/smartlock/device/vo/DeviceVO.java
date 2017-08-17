@@ -1,10 +1,13 @@
 package smartlock.device.vo;
 
+import java.sql.Date;
+
 public class DeviceVO {
 	private int id;
 	private String user_id;
-	private String nickname;
 	private int sw_id;
+	private String nickname;
+	private Date reg_date;
 	private int type;
 	private String mac;
 	private String usim;
@@ -23,17 +26,23 @@ public class DeviceVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+	public int getSw_id() {
+		return sw_id;
+	}
+	public void setSw_id(int sw_id) {
+		this.sw_id = sw_id;
+	}
 	public String getNickname() {
 		return nickname;
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public int getSw_id() {
-		return sw_id;
+	public Date getReg_date() {
+		return reg_date;
 	}
-	public void setSw_id(int sw_id) {
-		this.sw_id = sw_id;
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 	}
 	public int getType() {
 		return type;
@@ -71,20 +80,10 @@ public class DeviceVO {
 	public void setUdid(String udid) {
 		this.udid = udid;
 	}
-
 	@Override
 	public String toString() {
-		return "DeviceVO{" +
-				"id=" + id +
-				", user_id='" + user_id + '\'' +
-				", nickname='" + nickname + '\'' +
-				", sw_id=" + sw_id +
-				", type=" + type +
-				", mac='" + mac + '\'' +
-				", usim='" + usim + '\'' +
-				", pin='" + pin + '\'' +
-				", serial='" + serial + '\'' +
-				", udid='" + udid + '\'' +
-				'}';
+		return "DeviceVO [id=" + id + ", user_id=" + user_id + ", sw_id=" + sw_id + ", nickname=" + nickname
+				+ ", reg_date=" + reg_date + ", type=" + type + ", mac=" + mac + ", usim=" + usim + ", pin=" + pin
+				+ ", serial=" + serial + ", udid=" + udid + "]";
 	}
 }

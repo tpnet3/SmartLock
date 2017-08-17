@@ -7,8 +7,9 @@
 			parameterType="String"
 			resultType="smartlock.device.vo.DeviceVO">
 		SELECT id
-			,  nickname
 			,  sw_id
+			,  nickname
+			,  reg_date
 			,  type
 			,  mac
 			,  usim
@@ -23,8 +24,9 @@
 			parameterType="java.util.Map"
 			resultType="smartlock.device.vo.DeviceVO">
 		SELECT id
-			,  nickname
 			,  sw_id
+			,  nickname
+			,  reg_date
 			,  type
 			,  mac
 			,  usim
@@ -41,7 +43,14 @@
 	<delete id="deleteDevice"
 			parameterType="Integer">
 		DELETE FROM device
-		WHERE id = #{id}
+		 WHERE id = #{id}
 	</delete>
+	
+	<update id="modifyDevice"
+			parameterType="java.util.Map">
+		UPDATE device
+		   SET nickname = #{nickname}
+		 WHERE id = #{id}
+	</update>
 	
 </mapper>
