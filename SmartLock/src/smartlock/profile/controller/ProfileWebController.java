@@ -59,13 +59,8 @@ public class ProfileWebController {
 	@RequestMapping(value="/profile/ok", method=RequestMethod.GET)
 	public ModelAndView profileOk(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
-        UserVO userVO = (UserVO) httpSession.getAttribute("user");
-        
-        if (userVO != null) {
-            return new ModelAndView("/smartlock/profile_finish");
-        } else {
-            return new ModelAndView("redirect:/");
-        }
+        httpSession.setAttribute("user", null);
+		return new ModelAndView("redirect:/");		       
 	}
 	
 	@RequestMapping(value="/profile/changePassword/ok", method=RequestMethod.GET)
