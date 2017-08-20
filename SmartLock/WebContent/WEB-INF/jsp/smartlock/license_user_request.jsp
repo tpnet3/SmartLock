@@ -86,7 +86,7 @@
 					<% LicenseUserReqVO licenseUserReqVO = licenseUserReqVOArrayList.get(i); %>
 
 					<tr data-repeat="list">
-						<td data-bind="no" class="data-no"><%=i%></td>
+						<td data-bind="no" class="data-no"><%=i+1%></td>
 						<td data-bind="소프트웨어"><%=licenseUserReqVO.getSw_name()%></td>
 						<td data-bind="회사명"><%=licenseUserReqVO.getCorp_name()%></td>
 						<td data-bind="요청일자"><%=sdf.format(licenseUserReqVO.getRequest_date())%></td>
