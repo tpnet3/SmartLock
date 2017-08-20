@@ -13,9 +13,23 @@ public class DataResVO {
 
     public DataResVO(HttpServletRequest request, RunnableDataResVO runnable) {
         try {
+            setStatus("success");
+
             UserVO userVO = (UserVO) request.getSession().getAttribute("user");
             Object data = runnable.run(userVO);
+            setData(data);
+        } catch (Exception e) {
+            setStatus("error");
+            setData("error");
+        }
+    }
+
+    public DataResVO(HttpServletRequest request, RunnableDataResVOWithSelf runnable) {
+        try {
             setStatus("success");
+
+            UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+            Object data = runnable.run(userVO, this);
             setData(data);
         } catch (Exception e) {
             setStatus("error");
@@ -42,5 +56,10 @@ public class DataResVO {
     @FunctionalInterface
     public interface RunnableDataResVO {
         public abstract Object run(UserVO userVO) throws Exception;
+    }
+
+    @FunctionalInterface
+    public interface RunnableDataResVOWithSelf {
+        public abstract Object run(UserVO userVO, DataResVO dataResVO) throws Exception;
     }
 }

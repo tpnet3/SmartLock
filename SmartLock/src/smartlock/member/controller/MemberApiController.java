@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.member.service.UserService;
-import smartlock.member.vo.LoginReqVO;
-import smartlock.member.vo.SignupReqVO;
-import smartlock.member.vo.UserIdReqVO;
-import smartlock.member.vo.UserInfoVO;
-import smartlock.member.vo.UserVO;
+import smartlock.member.vo.*;
 
 @Controller
 public class MemberApiController {
@@ -27,8 +23,9 @@ public class MemberApiController {
 
     /**
      * 로그인
-     * @param loginReqVO 로그인 정보
-     * @return 성공시 UserInfoVO
+     * @param loginReqVO {@link LoginReqVO#id},
+     *                   {@link LoginReqVO#pwd}
+     * @return {@link UserInfoVO}
      */
     @RequestMapping(
             value = "/login",
@@ -37,16 +34,36 @@ public class MemberApiController {
     public @ResponseBody DataResVO loginPost(
             HttpServletRequest request,
             @RequestBody LoginReqVO loginReqVO) {
-        DataResVO dataResVO = new DataResVO();
+        return new DataResVO(request, sessionUserVO -> {
+            boolean checkPassword = userService.checkPassword(loginReqVO);
 
+            // 비밀번호가 일치하지 않을 경우 null
+            if ( ! checkPassword) return null;
+
+            // 로그인시 Session data
+            UserVO userVO = userService.getUserVO(loginReqVO.getId());
+
+            // 비밀번호 데이터 null
+            userVO.setPassword(null);
+
+            // 세션에 로그인 정보 추가
+            request.getSession().setAttribute("user", userVO);
+
+            // 로그인시 API 데이터
+            UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
+
+            return userInfoVO;
+        });
+
+        /*
         try {
             if (userService.checkPassword(loginReqVO)) {
-                // TODO: 로그인시 API data
+                // 로그인시 API data
                 UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
                 dataResVO.setStatus("success");
                 dataResVO.setData(userInfoVO);
 
-                // TODO: 로그인시 Session data
+                // 로그인시 Session data
                 UserVO userVO = userService.getUserVO(loginReqVO.getId());
 
                 // 비밀번호 데이터 null
@@ -55,7 +72,7 @@ public class MemberApiController {
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("user", userVO);
             } else {
-                // TODO: 비밀번호가 틀렸을 때
+                // 비밀번호가 틀렸을 때
                 dataResVO.setStatus("success");
                 dataResVO.setData(null);
             }
@@ -66,21 +83,29 @@ public class MemberApiController {
         }
 
         return dataResVO;
+        */
     }
 
     /**
      * 아이디 중복 체크
-     * @param userIdReqVO 아이디
-     * @return DataResVO
+     * @param userIdReqVO {@link UserIdReqVO#id}
+     * @return 중복시 "no", 아닐시 "ok"
      */
     @RequestMapping(
             value="/check/id",
             method=RequestMethod.GET
     )
     public @ResponseBody DataResVO checkId(
-            UserIdReqVO userIdReqVO){
-        DataResVO dataResVO = new DataResVO();
+            UserIdReqVO userIdReqVO,
+            HttpServletRequest request) {
 
+        return new DataResVO(request, userVO -> {
+            boolean exist = userService.existId(userIdReqVO.getId());
+
+            return (exist) ? "no" : "ok";
+        });
+
+        /*
         try {
             if(userService.existId(userIdReqVO.getId())) {
                 dataResVO.setStatus("success");
@@ -96,21 +121,34 @@ public class MemberApiController {
         }
 
         return dataResVO;
+        */
     }
 
     /**
      * 회원가입
-     * @param signupReqVO 회원가입 계정 정보
-     * @return UserVO
+     * @param signupReqVO {@link SignupReqVO#id},
+     *                    {@link SignupReqVO#pwd},
+     *                    {@link SignupReqVO#name},
+     *                    {@link SignupReqVO#email},
+     *                    {@link SignupReqVO#phone},
+     *                    {@link SignupReqVO#corp_id},
+     *                    {@link SignupReqVO#authority}
+     * @return {@link UserInfoVO}
      */
     @RequestMapping(
             value = "/signup",
             method = RequestMethod.POST
     )
     public @ResponseBody DataResVO signupPost(
-            @RequestBody SignupReqVO signupReqVO) {
-        DataResVO dataResVO = new DataResVO();
+            @RequestBody SignupReqVO signupReqVO,
+            HttpServletRequest request) {
+        return new DataResVO(request, userVO -> {
+            boolean successSignup = userService.signup(signupReqVO);
 
+            return successSignup ? userService.getUserInfoVO(signupReqVO.getId()) : null;
+        });
+
+        /*
         try {
             if (userService.signup(signupReqVO)) {
                 dataResVO.setStatus("success");
@@ -129,19 +167,27 @@ public class MemberApiController {
         }
 
         return dataResVO;
+        */
     }
     
     /**
      * 회사명 확인
      * @param corpName 회사명
-     * @return
+     * @return {@link CorpVO}
      */
     @RequestMapping(
     		value = "/check/corpname",
     		method = RequestMethod.POST)
-    public @ResponseBody DataResVO checkCorpName(@RequestParam("corp_name") String corpName) {
-    	 DataResVO dataResVO = new DataResVO();
-    	 
+    public @ResponseBody DataResVO checkCorpName(
+            @RequestParam("corp_name") String corpName,
+            HttpServletRequest request) {
+    	return new DataResVO(request, userVO -> {
+    	    boolean checkCorpName = userService.checkCorpName(corpName);
+
+    	    return checkCorpName ? userService.getCorpInfo(corpName) : null;
+        });
+
+    	/*
     	try {
             if (userService.checkCorpName(corpName)) {
                 dataResVO.setStatus("success");
@@ -160,5 +206,6 @@ public class MemberApiController {
         }
     	
     	return dataResVO;
+    	*/
     }
 }

@@ -60,6 +60,24 @@ $("#changePassword_btn").on("click",function() {
 		alert("현재 비밀번호를 입력하세요.");
 		return;
 	}
+	else{
+
+		// TODO: ajax 결과에 대해 로직을 확인해주세요.
+
+		$.ajax({
+			url : "/profile/checkPassword",
+			type : "POST",
+	        contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify({
+				"id" : SmartLock.user.id,
+				"password" : $("#password").val(),
+			}),
+			error : function(data, textStatus, errorThrown) {
+				
+			}
+		});
+	}
 	if($("#new_password1").val() == '') {
 		$("#new_password1").focus();
 		alert("새 비밀번호를 입력하세요.");
