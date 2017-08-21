@@ -73,7 +73,7 @@
                     <thead class="cf" align="center">
                     <tr>
                         <td width="10px"><h4><b>No.</h4></td>
-                        <td width="250px"><h4><b>소프트웨어</h4></td>
+                        <td width="230px"><h4><b>소프트웨어</h4></td>
                         <td width="180px"><h4><b>장치명</h4></td>
                         <td width="200px"><h4><b>회사명</h4></td>
                         <td width="150px"><h4><b>시작일자</h4></td>
@@ -82,10 +82,10 @@
                     </tr>
                     </thead>
                     <tbody align="center">
-                    <% for (int i = 1; i <= licenseUserVOArrayList.size(); i++) { %>
+                    <% for (int i = 0; i < licenseUserVOArrayList.size(); i++) { %>
                     <% LicenseUserVO licenseUserVO = licenseUserVOArrayList.get(i); %>
                     <tr>
-                        <td data-title="No."><%= i %></td>
+                        <td data-title="No."><%= i+1 %></td>
                         <td data-title="소프트웨어"><%=licenseUserVO.getSw_name()%></td>
                         <td data-title="장치명"><%=licenseUserVO.getNickname()%></td>
                         <td data-title="회사명"><%=licenseUserVO.getCorp_name()%></td>
@@ -119,92 +119,7 @@
                         <% } %>
                     </tr>
                     <% } %>
-                    <!--
-                    <tr>
-                        <td data-title="No.">2</td>
-                        <td data-title="소프트웨어">Microsoft Excel</td>
-                        <td data-title="장치명">Home-PC</td>
-                        <td data-title="회사명">Microsoft</td>
-                        <td data-title="시작일자">2016-11-31</td>
-                        <td data-title="만료기간">9999-99-99</td>
-                        <td data-title="상태"><span class="label label-success">발급 완료</span></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">3</td>
-                        <td data-title="소프트웨어">Microsoft Excel</td>
-                        <td data-title="장치명">Office-PC</td>
-                        <td data-title="회사명">Microsoft</td>
-                        <td data-title="시작일자">2016-11-31</td>
-                        <td data-title="만료기간">9999-99-99</td>
-                        <td data-title="상태"><span class="label label-success">발급 완료</span></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">4</td>
-                        <td data-title="소프트웨어">Parallels Desktop</td>
-                        <td data-title="장치명">GD's Phone</td>
-                        <td data-title="회사명">Parallels International</td>
-                        <td data-title="시작일자">2017-03-21</td>
-                        <td data-title="만료기간">2017-04-21</td>
-                        <td data-title="상태"><span class="label label-success" onmouseout="this.style.background='#5cb85c';
-							this.innerText='데모 버전';" onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';">데모 버전</span></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">5</td>
-                        <td data-title="소프트웨어">Parallels Desktop</td>
-                        <td data-title="장치명">My-Mac</td>
-                        <td data-title="회사명">Parallels International</td>
-                        <td data-title="시작일자">2017-03-21</td>
-                        <td data-title="만료기간">2017-04-21</td>
-                        <td data-title="상태"><span class="label label-success" onmouseout="this.style.background='#5cb85c';
-							this.innerText='데모 버전';" onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';">데모 버전</span></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">6</td>
-                        <td data-title="소프트웨어">Parallels Desktop</td>
-                        <td data-title="장치명">Office-PC</td>
-                        <td data-title="회사명">Parallels International</td>
-                        <td data-title="시작일자">2017-03-21</td>
-                        <td data-title="만료기간">2017-04-21</td>
-                        <td data-title="상태"><span class="label label-success" onmouseout="this.style.background='#5cb85c';
-							this.innerText='데모 버전';" onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';">데모 버전</span></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">7</td>
-                        <td data-title="소프트웨어">Adobe CC</td>
-                        <td data-title="장치명">Home-PC</td>
-                        <td data-title="회사명">Adobe</td>
-                        <td data-title="시작일자">0000-00-00</td>
-                        <td data-title="만료기간">0000-00-00</td>
-                        <td data-title="상태"><span class="label label-warning">발급 대기</span></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">8</td>
-                        <td data-title="소프트웨어">Adobe CC</td>
-                        <td data-title="장치명">Office-PC</td>
-                        <td data-title="회사명">Adobe</td>
-                        <td data-title="시작일자">0000-00-00</td>
-                        <td data-title="만료기간">0000-00-00</td>
-                        <td data-title="상태"><span class="label label-warning">발급 대기</span></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">9</td>
-                        <td data-title="소프트웨어">Football Manager</td>
-                        <td data-title="장치명">Office-PC</td>
-                        <td data-title="회사명">Sega</td>
-                        <td data-title="시작일자">0000-00-00</td>
-                        <td data-title="만료기간">0000-00-00</td>
-                        <td data-title="상태"><span class="label label-danger" onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';" onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';">발급거절</span></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">10</td>
-                        <td data-title="소프트웨어">Football Manager</td>
-                        <td data-title="장치명">GD's Phone</td>
-                        <td data-title="회사명">Sega</td>
-                        <td data-title="시작일자">0000-00-00</td>
-                        <td data-title="만료기간">0000-00-00</td>
-                        <td data-title="상태"><span class="label label-danger" onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';" onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';">발급거절</span></td>
-                    </tr>
-                    -->
+                    
                     </tbody>
                 </table>
             </div>
