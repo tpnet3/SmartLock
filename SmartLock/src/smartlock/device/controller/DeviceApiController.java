@@ -36,7 +36,10 @@ public class DeviceApiController {
 
 			ArrayList<DeviceVO> list = deviceService.getDeviceList(userVO.getId());
 
-			return list.isEmpty() ? null : list;
+			if(list.isEmpty()) {
+				return null;
+			}
+			return list;
 		});
 
 		/*
@@ -79,7 +82,10 @@ public class DeviceApiController {
 
 			ArrayList<DeviceVO> list = deviceService.getDeviceListBySw(userVO.getId(), sw);
 
-			return list.isEmpty() ? null : list;
+			if(list.isEmpty()) {
+				return null;
+			}
+			return list;
 		});
 
 		/*
