@@ -33,6 +33,7 @@ public class ProfileApiController {
 	 *               {@link UserVO#phone_number}
 	 * @return 성공시 "회원정보 수정이 완료되었습니다.", 실패시 "error"
 	 */
+	
 	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO updateProfile(
 			@RequestBody UserVO userVO,
@@ -40,6 +41,17 @@ public class ProfileApiController {
 
 		return new MsgResVO(request, sessionUserVO -> {
 			profileService.updateUser(userVO);
+			return "회원정보 수정이 완료되었습니다.";
+		});
+	}
+	
+	@RequestMapping(value = "/profile/checkPassword", method = RequestMethod.POST)
+	public  @ResponseBody MsgResVO checkPassword(
+			@RequestBody UserVO userVO,
+			HttpServletRequest request) {
+
+		return new MsgResVO(request, sessionUserVO -> {
+			profileService.checkPassword(userVO);
 			return "회원정보 수정이 완료되었습니다.";
 		});
 	}
@@ -57,7 +69,7 @@ public class ProfileApiController {
 		
 		boolean checkPassword = false;
 		MsgResVO msgResVO = new MsgResVO();
-		
+				
 		//checkPassword : 현재 비밀번호 일치여부
 		try{
 			checkPassword = profileService.checkPassword(passwordVO);

@@ -50,9 +50,9 @@ public class ProfileService {
 		 * @return void
 		 * @throws Exception DAO 예외
 		 */
-	 public void changePasswordUser(PasswordVO passwordVO) throws Exception{
+	 public void changePasswordUser(UserVO userVO) throws Exception{
 		// 비밀번호 암호화
-		passwordVO.setNew_password(Util.encrypt(passwordVO.getNew_password()));
+		passwordVO.setNew_password(Util.encrypt(userVO.getNew_password()));
 		 
 		 int cnt = commonDAO.update("user.changePassword", passwordVO);
 		 System.out.println(cnt+"개의 회원의 비밀번호가 업데이트 되었습니다.");
@@ -64,11 +64,11 @@ public class ProfileService {
 		 * @return boolean
 		 * @throws Exception DAO 예외
 		 */
-	 public boolean checkPassword(PasswordVO passwordVO) throws Exception{
+	 public boolean checkPassword(UserVO userVO) throws Exception{
 		//json으로 받은 패스워드 : encrypt_password
 		//DB에 있는 실제 패스워드 : real_password
-		 String encrypt_password = Util.encrypt(passwordVO.getPassword());
-		 String real_password = (String)commonDAO.selectOne("user.selectPassword", passwordVO);
+		 String encrypt_password = Util.encrypt(userVO.getPassword());
+		 String real_password = (String)commonDAO.selectOne("user.selectPassword", userVO);
 		 System.out.println("회원의 비밀번호가 조회되었습니다.");
 		 
 		 if(encrypt_password.equals(real_password)){
