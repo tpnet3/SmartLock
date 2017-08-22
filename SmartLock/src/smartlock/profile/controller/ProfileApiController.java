@@ -10,6 +10,7 @@ import org.springframework.web.portlet.ModelAndView;
 import smartlock.member.service.UserService;
 import smartlock.member.vo.*;
 import smartlock.profile.service.ProfileService;
+import smartlock.profile.vo.PasswordVO;
 import smartlock.common.vo.DataResVO;
 import smartlock.common.vo.MsgResVO;
 
@@ -68,47 +69,42 @@ public class ProfileApiController {
 	 */
 	@RequestMapping(value = "/profile/change/success", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO changeNewPassword(
-			@RequestBody UserVO userVO,
-			HttpServletRequest request){
-
-		return new MsgResVO(request, sessionUserVO -> {
-			profileService.changePasswordUser(userVO);
-			return "비밀번호 수정이 완료되었습니다.";
-		});
-
-		/*
+			@RequestBody PasswordVO passwordVO,
+			HttpServletRequest request) {
+		
+		boolean checkPassword = false;
 		MsgResVO msgResVO = new MsgResVO();
-		 
+		
+		//checkPassword : 현재 비밀번호 일치여부
 		try{
-			profileService.changePasswordUser(userVO);
-			msgResVO.setStatus("success");
-			msgResVO.setMessage("비밀번호 수정이 완료되었습니다.");
+			checkPassword = profileService.checkPassword(passwordVO);
 			
-		}catch(Exception e){
-			e.printStackTrace();
+		}catch(Exception e){			
 			msgResVO.setStatus("error");
 			msgResVO.setMessage("error");
 		}
+		
+		
+		if(checkPassword == true){
+			return new MsgResVO(request, sessionUserVO -> {
 				
-		return msgResVO;
-		*/
-	}
-
-	/**
-	 * 기존 비밀번호 확인
-	 * @param userVO {@link UserVO#id},
-	 *               {@link UserVO#password}
-	 * @return 성공시 "비밀번호 변경시, 기존 비밀번호 확인.", 실패시 "error"
-	 */
-	@RequestMapping(value = "/profile/checkPassword", method = RequestMethod.POST)
-	public  @ResponseBody MsgResVO checkPassword(
-			@RequestBody UserVO userVO,
-			HttpServletRequest request) {
-
+				profileService.changePasswordUser(passwordVO);
+				return "비밀번호 수정이 완료되었습니다.";
+			});
+		}
+		
+		else{
+			msgResVO.setStatus("error");
+			msgResVO.setMessage("비밀번호 불일치");
+			return msgResVO;
+		}
+		/*
 		return new MsgResVO(request, sessionUserVO -> {
-			boolean checkPassword = profileService.checkPassword(userVO);
+			boolean checkPassword = profileService.checkPassword(passwordVO);
 			return checkPassword ? "비밀번호 일치" : "비밀번호 불일치";
+			
 		});
+		*/
 
 		/*
 		MsgResVO msgResVO = new MsgResVO();
