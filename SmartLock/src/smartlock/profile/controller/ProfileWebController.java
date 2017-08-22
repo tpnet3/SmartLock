@@ -69,11 +69,4 @@ public class ProfileWebController {
         httpSession.setAttribute("user", null);
 		return new ModelAndView("/smartlock/profile_changePassword_finish");	
 	}
-	
-	@RequestMapping(value="/profile/checkPassword/ok", method=RequestMethod.GET)
-	public ModelAndView checkPasswordOk(HttpServletRequest request) {
-		HttpSession httpSession = request.getSession();
-        httpSession.setAttribute("user", null);
-		return new ModelAndView("/smartlock/profile_checkPassword_finish");	
-	}
 }
