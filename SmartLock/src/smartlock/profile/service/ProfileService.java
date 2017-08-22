@@ -70,9 +70,6 @@ public class ProfileService {
 		 String real_password = (String)commonDAO.selectOne("user.selectPassword", userVO);
 		 System.out.println("회원의 비밀번호가 조회되었습니다.");
 		 
-		 System.out.println(encrypt_password);
-		 System.out.println(real_password);
-		 
 		 if(encrypt_password.equals(real_password)){
 			 return true;
 		 }
