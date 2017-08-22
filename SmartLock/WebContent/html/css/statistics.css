@@ -73,33 +73,33 @@
 .progress.blue .progress-bar{
     border-color: #049dff;
 }
-.progress.blue .progress-left .progress-bar{
+/* .progress.blue .progress-left .progress-bar{
     animation: loading-6 0.5s linear forwards 0.5s ;
 }
 .progress.blue .progress-right .progress-bar{
     animation: loading-6 0.5s linear forwards 0s ;
-}
+} */
 .progress.yellow .progress-bar{
     border-color: #fdba04;
 }
-.progress.yellow .progress-left .progress-bar{
+/* .progress.yellow .progress-left .progress-bar{
     animation: loading-6 0.5s linear forwards 0.5s;
 }
 .progress.yellow .progress-right .progress-bar{
-    animation: loading-6 0.5s linear forwards 0s;
+    animation: loading-6 0.5s linear forwards 0s; */
 }
 .progress.pink .progress-bar{
     border-color: #ed687c;
 }
-.progress.pink .progress-left .progress-bar{
+/* .progress.pink .progress-left .progress-bar{
     animation: loading-4 0.5s linear forwards 0s;
-}
+} */
 .progress.green .progress-bar{
     border-color: #1abc9c;
 }
-.progress.green .progress-left .progress-bar{
+/* .progress.green .progress-left .progress-bar{
     animation: loading-5 0.5s linear forwards 0s;
-}
+} */
 @keyframes loading-1{
     0%{
         -webkit-transform: rotate(0deg);

@@ -43,50 +43,50 @@
     <br>
     <div class="container">
         <div class="col-md-3">
-            <div class="progress blue">
+            <div id="total" class="progress blue">
             	<span class="progress-left">
                         <span class="progress-bar"></span>
                 </span>
                 <span class="progress-right">
                         <span class="progress-bar"></span>
                 </span>
-                <div class="progress-value"><%=statistics.getTotal()%></div>
+                <div id="total-value" class="progress-value"><%=statistics.getTotal()%></div>
             </div>
             <h4 class="text-center">총 다운로드</h4>
         </div>
         <div class="col-md-3 col-sm-6">
-            <div class="progress yellow">
+            <div id="license" class="progress yellow">
             	<span class="progress-left">
             		<span class="progress-bar"></span>
             	</span>
             	<span class="progress-right">
             		<span class="progress-bar"></span>
             	</span>
-                <div class="progress-value"><%=statistics.getRequest_license()%></div>
+                <div id="license-value" class="progress-value"><%=statistics.getRequest_license()%></div>
             </div>
             <h4 class="text-center"><a href="/license.jsp">라이센스 요청</a></h4>
         </div>
         <div class="col-md-3">
-            <div class="progress pink">
+            <div id="getLicense" class="progress pink">
             	<span class="progress-left">
             		<span class="progress-bar"></span>
             	</span>
             	<span class="progress-right">
             		<span class="progress-bar"></span>
             	</span>
-                <div class="progress-value"><%=statistics.getLicense()%></div>
+                <div id="getLicense-value" class="progress-value"><%=statistics.getLicense()%></div>
             </div>
             <h4 class="text-center">발급 된라이센스</h4>
         </div>
         <div class="col-md-3">
-            <div class="progress green">
+            <div id="demo" class="progress green">
             	<span class="progress-left">
             		<span class="progress-bar"></span>
             	</span>
             	<span class="progress-right">
             		<span class="progress-bar"></span>
             	</span>
-                <div class="progress-value"><%=statistics.getDemo_license()%></div>
+                <div id="demo-value" class="progress-value"><%=statistics.getDemo_license()%></div>
             </div>
             <h4 class="text-center">데모버전</h4>
         </div>
@@ -101,6 +101,10 @@
 
 </div>
 <!-- /.container -->
+
+<jsp:include page="include/_jslib.jsp" >
+	<jsp:param name="_js" value="/html/js/statistics.js" />
+</jsp:include>
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />
