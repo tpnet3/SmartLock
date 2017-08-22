@@ -59,49 +59,18 @@ $("#changePassword_btn").on("click",function() {
 		$("#password").focus();
 		alert("현재 비밀번호를 입력하세요.");
 		return false;
-	}
-	else{
-
-		// TODO: ajax 결과에 대해 로직을 확인해주세요.
-
-		$.ajax({
-			url : "/profile/checkPassword",
-			type : "POST",
-	        contentType: "application/json",
-			dataType : "json",
-			data : JSON.stringify({
-				"id" : SmartLock.user.id,
-				"password" : $("#password").val(),
-			}),
-			success : function (data){
-				if(data.status == "success") {
-					if(data.message == "비밀번호 일치") {
-						// 다음 if($("#new_password1").val() == '') 조건 검사하기
-											
-					} 
-					//else : data.status == "비밀번호 불일치"
-					else {
-						alert("현재 비밀번호를 다시 확인해주세요.");
-						return false;
-					}
-				}
-			},
-			error : function(data, textStatus, errorThrown) {
-					
-			}
-		});
-	}
-	if($("#new_password1").val() == '') {
+	}	
+	else if($("#new_password1").val() == '') {
 		$("#new_password1").focus();
 		alert("새 비밀번호를 입력하세요.");
 		return false;
 	}
-	if($("#new_password2").val() == '') {
+	else if($("#new_password2").val() == '') {
 		$("#new_password2").focus();
 		alert("새 비밀번호를 입력하세요.");
 		return false;
 	}
-	if($("#new_password1").val()!=$("#new_password2").val()){
+	else if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
@@ -114,20 +83,22 @@ $("#changePassword_btn").on("click",function() {
 			dataType : "json",
 			data : JSON.stringify({
 				"id" : SmartLock.user.id,
-				"password" : $("#new_password1").val()
+				"password" : $("#password").val(),
+				"new_password" : $("#new_password1").val()
 			}),
 			success : function (data){
 				if(data.status == "success") {
 					//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
 					location.href="/profile/changePassword/ok";
 				} else {
-					alert("비밀번호 변경 실패");
+					$("#password").focus();
+					alert("현재 비밀번호가 일치하지 않습니다.");
+					return false;
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-				
+					
 			}
-		});
+		});		
 	}
-	
 });
