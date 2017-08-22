@@ -75,13 +75,15 @@ $("#changePassword_btn").on("click",function() {
 			}),
 			success : function (data){
 				if(data.status == "success") {
-					//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
-					location.href="/profile/ok";
-				} else {
-					alert("회원정보수정실패");
+					if(data.message == "비밀번호 일치") {
+						// 다음 if($("#new_password1").val() == '') 조건 검사하기
+											
+					} 
+					else {
+						alert("현재 비밀번호를 다시 확인해주세요.");
+					}
 				}
 			},
-			
 			error : function(data, textStatus, errorThrown) {
 				
 			}
@@ -125,6 +127,5 @@ $("#changePassword_btn").on("click",function() {
 			}
 		});
 	}
-	
 	
 });
