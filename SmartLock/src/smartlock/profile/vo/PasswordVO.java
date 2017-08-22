@@ -1,6 +1,6 @@
 package smartlock.profile.vo;
 
-public class ProfilePasswordVO {
+public class PasswordVO {
 	private String id;
 	private String password;
 	private String new_password;
@@ -19,7 +19,9 @@ public class ProfilePasswordVO {
 	public String getNew_password() {
 		return new_password;
 	}
-	public void setNew_password(String new_password) {
-		this.new_password = new_password;
+	public void setNew_password(String new_assword) {
+		this.new_password = new_assword;
 	}
+	
+	
 }

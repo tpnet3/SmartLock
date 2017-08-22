@@ -19,9 +19,9 @@ public class DeviceService {
 	
 	/**
 	 * id로 전체 디바이스 목록 조회
-	 * @param id 조회할 사용자 아이
-	 * @return 조회된 디바이스 목
-	 * @throws Exception
+	 * @param id 조회할 사용자 아이디
+	 * @return 조회된 디바이스 목록
+	 * @throws Exception DAO Exception
 	 */
 	public ArrayList<DeviceVO> getDeviceList(String id) throws Exception {
 		return (ArrayList)commonDAO.selectList("device.selectDeviceList", id);
@@ -34,6 +34,13 @@ public class DeviceService {
 		return (ArrayList)commonDAO.selectList("device.selectDeviceBySw", map);
 	}
 
+	public int modifyDevice(int id, String nickName) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("nickname", nickName);
+		return commonDAO.update("device.modifyDevice", map);
+	}
+	
 	/**
 	 * 디바이스 삭제
 	 * @param id 디바이스 아이디
@@ -46,9 +53,10 @@ public class DeviceService {
 
 	/**
 	 * 디바이스 닉네임 수정
-	 * @param deviceVO 수정된 DeviceVO
-	 * @return 결과
-	 * @throws Exception DAO
+	 * @param deviceVO {@link DeviceVO#id},
+	 *                 {@link DeviceVO#nickname}
+	 * @return 업데이트한 row 수
+	 * @throws Exception DAO Exception
 	 */
 	public int updateDeviceNickname(DeviceVO deviceVO) throws Exception {
 		return commonDAO.update("updateDeviceNickname", deviceVO);
