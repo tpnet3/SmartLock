@@ -42,23 +42,6 @@ public class ProfileApiController {
 			profileService.updateUser(userVO);
 			return "회원정보 수정이 완료되었습니다.";
 		});
-
-		/*
-		MsgResVO msgResVO = new MsgResVO();
-		 
-		try{
-			profileService.updateUser(userVO);
-			msgResVO.setStatus("success");
-			msgResVO.setMessage("회원정보 수정이 완료되었습니다.");
-			
-		}catch(Exception e){
-			e.printStackTrace();
-			msgResVO.setStatus("error");
-			msgResVO.setMessage("error");
-		}
-				
-		return msgResVO;
-		*/
 	}
 
 	/**
@@ -86,9 +69,9 @@ public class ProfileApiController {
 		
 		
 		if(checkPassword == true){
-			return new MsgResVO(request, sessionUserVO -> {
-				
+			return new MsgResVO(request, sessionUserVO -> {				
 				profileService.changePasswordUser(passwordVO);
+				System.out.println("비밀번호 수정이 완료되었습니다.");
 				return "비밀번호 수정이 완료되었습니다.";
 			});
 		}
@@ -98,30 +81,6 @@ public class ProfileApiController {
 			msgResVO.setMessage("비밀번호 불일치");
 			return msgResVO;
 		}
-		/*
-		return new MsgResVO(request, sessionUserVO -> {
-			boolean checkPassword = profileService.checkPassword(passwordVO);
-			return checkPassword ? "비밀번호 일치" : "비밀번호 불일치";
-			
-		});
-		*/
-
-		/*
-		MsgResVO msgResVO = new MsgResVO();
-		try{
-			if(profileService.checkPassword(userVO)){
-				msgResVO.setStatus("success");
-				msgResVO.setMessage("비밀번호 확인.");
-			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-			msgResVO.setStatus("error");
-			msgResVO.setMessage("error");
-		}
-		
-		return msgResVO;
-		*/
 	}
 	
 	// /profile/checkPassword
