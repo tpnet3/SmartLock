@@ -58,7 +58,7 @@ $("#changePassword_btn").on("click",function() {
 	if($("#password").val() == '') {
 		$("#password").focus();
 		alert("현재 비밀번호를 입력하세요.");
-		return;
+		return false;
 	}
 	else{
 
@@ -79,30 +79,32 @@ $("#changePassword_btn").on("click",function() {
 						// 다음 if($("#new_password1").val() == '') 조건 검사하기
 											
 					} 
+					//else : data.status == "비밀번호 불일치"
 					else {
 						alert("현재 비밀번호를 다시 확인해주세요.");
+						return false;
 					}
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-				
+					
 			}
 		});
 	}
 	if($("#new_password1").val() == '') {
 		$("#new_password1").focus();
 		alert("새 비밀번호를 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#new_password2").val() == '') {
 		$("#new_password2").focus();
 		alert("새 비밀번호를 입력하세요.");
-		return;
+		return false;
 	}
 	if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
 		alert("비밀번호가 일치하지 않습니다.");
-		return;
+		return false;
 	}
 	else{
 		$.ajax({
