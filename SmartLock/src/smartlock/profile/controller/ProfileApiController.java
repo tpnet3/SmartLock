@@ -94,7 +94,12 @@ public class ProfileApiController {
 		*/
 	}
 
-	// TODO: 주석이 필요합니다.
+	/**
+	 * 기존 비밀번호 확인
+	 * @param userVO {@link UserVO#id},
+	 *               {@link UserVO#password}
+	 * @return 성공시 "비밀번호 변경시, 기존 비밀번호 확인.", 실패시 "error"
+	 */
 	@RequestMapping(value = "/profile/checkPassword", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO checkPassword(
 			@RequestBody UserVO userVO,
