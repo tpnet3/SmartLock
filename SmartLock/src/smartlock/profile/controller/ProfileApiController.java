@@ -107,9 +107,6 @@ public class ProfileApiController {
 
 		return new MsgResVO(request, sessionUserVO -> {
 			boolean checkPassword = profileService.checkPassword(userVO);
-
-			// TODO: checkPassword 가 false 일 경우에 대해 확인해주세요.
-
 			return checkPassword ? "비밀번호 일치" : "비밀번호 불일치";
 		});
 
