@@ -73,34 +73,35 @@
 .progress.blue .progress-bar{
     border-color: #049dff;
 }
+.progress.yellow .progress-bar{
+    border-color: #fdba04;
+}
+.progress.pink .progress-bar{
+    border-color: #ed687c;
+}
+.progress.green .progress-bar{
+    border-color: #1abc9c;
+}
 /* .progress.blue .progress-left .progress-bar{
     animation: loading-6 0.5s linear forwards 0.5s ;
 }
 .progress.blue .progress-right .progress-bar{
     animation: loading-6 0.5s linear forwards 0s ;
 } */
-.progress.yellow .progress-bar{
-    border-color: #fdba04;
-}
 /* .progress.yellow .progress-left .progress-bar{
     animation: loading-6 0.5s linear forwards 0.5s;
 }
 .progress.yellow .progress-right .progress-bar{
-    animation: loading-6 0.5s linear forwards 0s; */
-}
-.progress.pink .progress-bar{
-    border-color: #ed687c;
-}
+    animation: loading-6 0.5s linear forwards 0s;
+}*/
 /* .progress.pink .progress-left .progress-bar{
     animation: loading-4 0.5s linear forwards 0s;
 } */
-.progress.green .progress-bar{
-    border-color: #1abc9c;
-}
+
 /* .progress.green .progress-left .progress-bar{
     animation: loading-5 0.5s linear forwards 0s;
 } */
-@keyframes loading-1{
+@keyframes loading-0{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -110,7 +111,7 @@
         transform: rotate(0deg);
     }
 }
-@keyframes loading-2{
+@keyframes loading-1{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -120,7 +121,7 @@
         transform: rotate(36deg);
     }
 }
-@keyframes loading-3{
+@keyframes loading-2{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -130,7 +131,7 @@
         transform: rotate(72deg);
     }
 }
-@keyframes loading-4{
+@keyframes loading-3{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -140,7 +141,7 @@
         transform: rotate(108deg);
     }
 }
-@keyframes loading-5{
+@keyframes loading-4{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -150,7 +151,7 @@
         transform: rotate(142deg);
     }
 }
-@keyframes loading-6{
+@keyframes loading-5{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
