@@ -53,7 +53,8 @@ $("#profile-form").submit(function() {
 	return false;
 });
 
-$("#changePassword_btn").on("click",function() {
+//$("#profile_btn").on("click",function() {
+$("#changePassword").submit(function() {
 	// check validation
 	if($("#password").val() == '') {
 		$("#password").focus();
@@ -72,10 +73,12 @@ $("#changePassword_btn").on("click",function() {
 	}
 	else if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
-		alert("비밀번호가 일치하지 않습니다.");
+		alert("새 비밀번호가 일치하지 않습니다.");
 		return false;
 	}
+	
 	else{
+		alert("ajax");
 		$.ajax({
 			url : "/profile/change/success",
 			type : "POST",
@@ -97,7 +100,7 @@ $("#changePassword_btn").on("click",function() {
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-					
+				alert("code:"+data.status+"\n"+"message:"+data.message+"\n"+"error:"+errorThrown);
 			}
 		});		
 	}
