@@ -1,4 +1,5 @@
 $("#profile-form").submit(function() {
+	alert("????")
 	// check validation
 	if($("#email").val() == '') {
 		$("#email").focus();
