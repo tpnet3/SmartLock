@@ -58,9 +58,9 @@
     </update>
     
     <update id="changePassword" 
-    		parameterType="smartlock.profile.vo.PasswordVO">
+    		parameterType="smartlock.member.vo.UserVO">
     	UPDATE user
-		SET password=#{new_password}
+		SET password=#{password}
 		WHERE id=#{id};
     </update>
     
