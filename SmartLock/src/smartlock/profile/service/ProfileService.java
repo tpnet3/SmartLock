@@ -13,6 +13,7 @@ import smartlock.common.CommonDAO;
 import smartlock.common.Util;
 import smartlock.member.vo.UserInfoVO;
 import smartlock.member.vo.UserVO;
+import smartlock.profile.vo.PasswordVO;
 import smartlock.member.vo.LoginReqVO;
 import smartlock.member.vo.SignupReqVO;
 
@@ -43,7 +44,7 @@ public class ProfileService {
 		 System.out.println(cnt+"개의 회원정보가 업데이트 되었습니다.");
 	 }
 	 
-	 /**
+	 /**새 비밀번호 변경(UPDATE)
 		 * 
 		 * @param UserVO
 		 * @return void
@@ -70,11 +71,11 @@ public class ProfileService {
 		 String real_password = (String)commonDAO.selectOne("user.selectPassword", userVO);
 		 System.out.println("회원의 비밀번호가 조회되었습니다.");
 		 
-		 if(encrypt_password !=real_password){
-			 return false;
+		 if(encrypt_password.equals(real_password)){
+			 return true;
 		 }
 		 else{
-			 return true;
+			 return false;
 		 }
 	 }
 }

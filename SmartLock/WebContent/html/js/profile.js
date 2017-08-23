@@ -1,4 +1,5 @@
 $("#profile-form").submit(function() {
+	alert("????")
 	// check validation
 	if($("#email").val() == '') {
 		$("#email").focus();
@@ -53,17 +54,32 @@ $("#profile-form").submit(function() {
 	return false;
 });
 
-$("#changePassword_btn").on("click",function() {
+//$("#profile_btn").on("click",function() {
+$("#changePassword").submit(function() {
 	// check validation
 	if($("#password").val() == '') {
 		$("#password").focus();
 		alert("현재 비밀번호를 입력하세요.");
-		return;
+		return false;
+	}	
+	else if($("#new_password1").val() == '') {
+		$("#new_password1").focus();
+		alert("새 비밀번호를 입력하세요.");
+		return false;
 	}
+	else if($("#new_password2").val() == '') {
+		$("#new_password2").focus();
+		alert("새 비밀번호를 입력하세요.");
+		return false;
+	}
+	else if($("#new_password1").val()!=$("#new_password2").val()){
+		$("#new_password2").focus();
+		alert("새 비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	
 	else{
-
-		// TODO: ajax 결과에 대해 로직을 확인해주세요.
-
+		alert("ajax1");
 		$.ajax({
 			url : "/profile/checkPassword",
 			type : "POST",
@@ -73,27 +89,20 @@ $("#changePassword_btn").on("click",function() {
 				"id" : SmartLock.user.id,
 				"password" : $("#password").val(),
 			}),
+			success : function (data){				
+				if(data.message=="비밀번호 일치"){
+					
+				}
+				else{
+					$("#password").focus();
+					alert("현재 비밀번호 불일치")
+				}
+			},
 			error : function(data, textStatus, errorThrown) {
-				
+				alert("비밀번호 체크 실패");
 			}
 		});
-	}
-	if($("#new_password1").val() == '') {
-		$("#new_password1").focus();
-		alert("새 비밀번호를 입력하세요.");
-		return;
-	}
-	if($("#new_password2").val() == '') {
-		$("#new_password2").focus();
-		alert("새 비밀번호를 입력하세요.");
-		return;
-	}
-	if($("#new_password1").val()!=$("#new_password2").val()){
-		$("#new_password2").focus();
-		alert("비밀번호가 일치하지 않습니다.");
-		return;
-	}
-	else{
+		
 		$.ajax({
 			url : "/profile/change/success",
 			type : "POST",
@@ -101,21 +110,19 @@ $("#changePassword_btn").on("click",function() {
 			dataType : "json",
 			data : JSON.stringify({
 				"id" : SmartLock.user.id,
-				"password" : $("#new_password1").val()
+				"password" : $("#new_password1").val(),
 			}),
 			success : function (data){
 				if(data.status == "success") {
 					//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
 					location.href="/profile/changePassword/ok";
-				} else {
-					alert("비밀번호 변경 실패");
+				} else {					
+					alert("비밀번호 변경 실패 else문");
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-				
+				alert("비밀번호 변경 실패ㅋㅋ");
 			}
 		});
 	}
-	
-	
 });

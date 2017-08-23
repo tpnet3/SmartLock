@@ -1,6 +1,7 @@
 package smartlock.common.vo;
 
 import smartlock.member.vo.UserVO;
+import smartlock.profile.vo.PasswordVO;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +17,7 @@ public class MsgResVO {
             setStatus("success");
 
             UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+                        
             String data = runnable.run(userVO);
             setMessage(data);
         } catch (Exception e) {
