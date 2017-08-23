@@ -89,21 +89,20 @@ $("#changePassword").submit(function() {
 				"id" : SmartLock.user.id,
 				"password" : $("#password").val(),
 			}),
-			success : function (data){
-				if(data.message == "비밀번호 일치") {
-										
-				} else {
+			success : function (data){				
+				if(data.message=="비밀번호 일치"){
+					
+				}
+				else{
 					$("#password").focus();
-					alert("현재 비밀번호가 일치하지 않습니다.");
-					return false;
+					alert("현재 비밀번호 불일치")
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
 				alert("비밀번호 체크 실패");
 			}
-		});		
+		});
 		
-		alert("ajax2");
 		$.ajax({
 			url : "/profile/change/success",
 			type : "POST",
@@ -118,12 +117,12 @@ $("#changePassword").submit(function() {
 					//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
 					location.href="/profile/changePassword/ok";
 				} else {					
-					alert("비밀번호 변경 실패.");
+					alert("비밀번호 변경 실패 else문");
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-				alert("비밀번호 변경 실패");
+				alert("비밀번호 변경 실패ㅋㅋ");
 			}
-		});		
+		});
 	}
 });

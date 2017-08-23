@@ -17,8 +17,7 @@ public class MsgResVO {
             setStatus("success");
 
             UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-            //userVO.setPassword(passwordVO.getNew_password());
-            
+                        
             String data = runnable.run(userVO);
             setMessage(data);
         } catch (Exception e) {
