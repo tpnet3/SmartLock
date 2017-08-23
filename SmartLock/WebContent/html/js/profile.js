@@ -80,23 +80,43 @@ $("#changePassword").submit(function() {
 	else{
 		alert("ajax");
 		$.ajax({
-			url : "/profile/change/success",
+			url : "/profile/checkPassword",
 			type : "POST",
 	        contentType: "application/json",
 			dataType : "json",
 			data : JSON.stringify({
 				"id" : SmartLock.user.id,
 				"password" : $("#password").val(),
-				"new_password" : $("#new_password1").val()
+			}),
+			success : function (data){
+				if(data.status == "success") {
+										
+				} else {
+					$("#password").focus();
+					alert("현재 비밀번호가 일치하지 않습니다.");
+					return false;
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				alert("code:"+data.status+"\n"+"message:"+data.message+"\n"+"error:"+errorThrown);
+			}
+		});		
+		
+		$.ajax({
+			url : "/profile/change/success",
+			type : "POST",
+	        contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify({
+				"id" : SmartLock.user.id,
+				"password" : $("#new_password1").val(),
 			}),
 			success : function (data){
 				if(data.status == "success") {
 					//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
 					location.href="/profile/changePassword/ok";
-				} else {
-					$("#password").focus();
-					alert("현재 비밀번호가 일치하지 않습니다.");
-					return false;
+				} else {					
+					alert("비밀번호 변경 실패.");
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
