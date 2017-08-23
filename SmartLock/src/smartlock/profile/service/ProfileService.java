@@ -46,15 +46,15 @@ public class ProfileService {
 	 
 	 /**새 비밀번호 변경(UPDATE)
 		 * 
-		 * @param passwordVO
+		 * @param UserVO
 		 * @return void
 		 * @throws Exception DAO 예외
 		 */
 	 public void changePasswordUser(UserVO userVO) throws Exception{
 		// 비밀번호 암호화
-		passwordVO.setNew_password(Util.encrypt(userVO.getNew_password()));
+		userVO.setPassword(Util.encrypt(userVO.getPassword()));
 		 
-		 int cnt = commonDAO.update("user.changePassword", passwordVO);
+		 int cnt = commonDAO.update("user.changePassword", userVO);
 		 System.out.println(cnt+"개의 회원의 비밀번호가 업데이트 되었습니다.");
 	 }
 	 
