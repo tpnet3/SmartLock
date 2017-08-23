@@ -78,7 +78,7 @@ $("#changePassword").submit(function() {
 	}
 	
 	else{
-		alert("ajax");
+		alert("ajax1");
 		$.ajax({
 			url : "/profile/checkPassword",
 			type : "POST",
@@ -89,7 +89,7 @@ $("#changePassword").submit(function() {
 				"password" : $("#password").val(),
 			}),
 			success : function (data){
-				if(data.status == "success") {
+				if(data.message == "비밀번호 일치") {
 										
 				} else {
 					$("#password").focus();
@@ -98,10 +98,11 @@ $("#changePassword").submit(function() {
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-				alert("code:"+data.status+"\n"+"message:"+data.message+"\n"+"error:"+errorThrown);
+				alert("비밀번호 체크 실패");
 			}
 		});		
 		
+		alert("ajax2");
 		$.ajax({
 			url : "/profile/change/success",
 			type : "POST",
@@ -120,7 +121,7 @@ $("#changePassword").submit(function() {
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-				alert("code:"+data.status+"\n"+"message:"+data.message+"\n"+"error:"+errorThrown);
+				alert("비밀번호 변경 실패");
 			}
 		});		
 	}
