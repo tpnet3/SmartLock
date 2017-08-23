@@ -73,8 +73,8 @@ public class ProfileApiController {
 			HttpServletRequest request) {
 		
 		return new MsgResVO(request, sessionUserVO -> {
-			boolean checkpassword = profileService.checkPassword(userVO);
-			return checkpassword ? "비밀번호 일치" : "비밀번호 불일치";
+			profileService.changePasswordUser(userVO);
+			return "비밀번호 수정이 완료되었습니다."; 
 		});
 	}
 	
