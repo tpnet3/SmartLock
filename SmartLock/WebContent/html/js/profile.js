@@ -15,13 +15,6 @@ $("#profile-form").submit(function() {
 		alert("비밀번호를 입력하세요.");
 		return;
 	}
-	/*
-	if($("#password").val() != $("#check-pwd").val()) {
-		$("#check-pwd").focus();
-		alert("비밀번호가 다릅니다.");
-		return;
-	}
-	*/
 	
 	$.ajax({
 		url : "/profile/update",
@@ -75,8 +68,8 @@ $("#changePassword").submit(function() {
 					location.href="/profile/changePassword/ok";
 				}
 				else{
-					//$("#password").focus();
-					alert("현재 비밀번호 변경 실패")
+					$("#password").focus();
+					alert("비밀번호 변경 실패")
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
