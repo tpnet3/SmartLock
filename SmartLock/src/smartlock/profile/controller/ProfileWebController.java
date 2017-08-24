@@ -49,7 +49,7 @@ public class ProfileWebController {
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
         if (userVO != null) {        
-            return new ModelAndView("/smartlock/test/quit_test");
+            return new ModelAndView("/smartlock/profile_quit");
         }
         else{
         	return new ModelAndView("redirect:/");
@@ -68,5 +68,12 @@ public class ProfileWebController {
 		HttpSession httpSession = request.getSession();
         httpSession.setAttribute("user", null);
 		return new ModelAndView("/smartlock/profile_changePassword_finish");	
+	}
+	
+	@RequestMapping(value="/profile/quit/ok", method=RequestMethod.GET)
+	public ModelAndView removeUserOk(HttpServletRequest request) {
+		HttpSession httpSession = request.getSession();
+        httpSession.setAttribute("user", null);
+		return new ModelAndView("/smartlock/profile_quit_finish");	
 	}
 }

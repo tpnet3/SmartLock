@@ -63,5 +63,12 @@
 		SET password=#{new_password}
 		WHERE id=#{id} AND password=#{password};
     </update>
+    
+    <delete id="removeUser"
+    		parameterType="smartlock.member.vo.UserVO">
+    	DELETE
+    	FROM user
+    	WHERE id=#{id} AND password=#{password};
+    </delete>
 
 </mapper>

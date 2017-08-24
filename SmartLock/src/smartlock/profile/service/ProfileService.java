@@ -26,7 +26,7 @@ public class ProfileService {
 	/**회원정보 수정(UPDATE)
 	 * 
 	 * @param UserVO
-	 * @return void
+	 * @return int
 	 * @throws Exception DAO 예외
 	 */
 	 public int updateUser(UserVO userVO) throws Exception{
@@ -40,8 +40,8 @@ public class ProfileService {
 	 
 	 /**새 비밀번호 변경(UPDATE)
 		 * 
-		 * @param UserVO
-		 * @return void
+		 * @param PasswordVO
+		 * @return int
 		 * @throws Exception DAO 예외
 		 */
 	 public int changePasswordUser(PasswordVO passwordVO) throws Exception{
@@ -53,5 +53,21 @@ public class ProfileService {
 		 System.out.println(result+"개의 회원의 비밀번호가 업데이트 되었습니다.");
 		 
 		 return result;
+	 }
+	 
+	 /**회원 탈퇴(DELETE)
+		 * 
+		 * @param UserVO
+		 * @return void
+		 * @throws Exception DAO 예외
+		 */
+	 public int removeUser(UserVO userVO) throws Exception{
+		// 비밀번호 암호화
+		 userVO.setPassword(Util.encrypt(userVO.getPassword()));
+		 
+		 int cnt = commonDAO.delete("user.removeUser", userVO);
+		 System.out.println(cnt+"개의 회원이 삭제 되었습니다.");
+		 
+		 return cnt;
 	 }
 }
