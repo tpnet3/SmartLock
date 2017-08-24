@@ -21,6 +21,7 @@ public class MsgResVO {
             String data = runnable.run(userVO);
             setMessage(data);
         } catch (Exception e) {
+            e.printStackTrace();
             setStatus("error");
             setMessage("error");
         }
@@ -34,6 +35,7 @@ public class MsgResVO {
             String data = runnable.run(userVO, this);
             setMessage(data);
         } catch (Exception e) {
+            e.printStackTrace();
             setStatus("error");
             setMessage("error");
         }
