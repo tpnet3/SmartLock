@@ -22,18 +22,8 @@ public class ProfileService {
 	
 	@Resource(name="commonDAO")
 	private CommonDAO commonDAO;
-	
-	/**
-	 * id 로 UserVO 를 가져오는 메소드
-	 * @param id 아이디
-	 * @return UserVO
-	 * @throws Exception DAO 예외
-	 */	
-	public UserVO getUserVO(String id) throws Exception{
-		return (UserVO) commonDAO.selectOne("user.userInfo", id);
-	}
-	
-	/**
+		
+	/**회원정보 수정(UPDATE)
 	 * 
 	 * @param UserVO
 	 * @return void
