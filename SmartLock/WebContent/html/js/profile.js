@@ -60,7 +60,6 @@ $("#changePassword").submit(function() {
 		return false;
 	}
 	else{
-		alert("ajax1");
 		$.ajax({
 			url : "/profile/change/success",
 			type : "POST",
@@ -85,4 +84,6 @@ $("#changePassword").submit(function() {
 			}
 		});
 	}
+	
+	return false;
 });
