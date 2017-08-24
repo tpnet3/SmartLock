@@ -54,7 +54,7 @@
     		parameterType="smartlock.member.vo.UserVO">
     	UPDATE user
 		SET email=#{email}, phone_number=#{phoneNumber}
-		WHERE id=#{id};
+		WHERE id=#{id} AND password=#{password};
     </update>
     
     <update id="changePassword" 
