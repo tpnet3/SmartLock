@@ -4,7 +4,9 @@
 <% UserVO userVO = (UserVO) session.getAttribute("user"); %>
 
 <jsp:include page="include/_header.jsp">
+	<jsp:param name="_title" value="Profile" />
     <jsp:param name="_nav" value="" />
+    <jsp:param name="_css" value="/html/css/profile.css" />
 </jsp:include>
 
 <!-- Page Content -->
@@ -14,19 +16,17 @@
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">마이페이지</h2>
+            <ol class="breadcrumb">
+	       		<li class="active">회원정보 수정</li>
+        		<li><a href="/profile/changePassword">비밀번호 변경</a></li>
+        		<li><a href="/profile/quit">회원탈퇴</a></li>
+        	</ol>
         </div>
         <div class="row">
+        	
             <div class="col-lg-12">
-                <form class="form-horizontal">
+	            <form class="form-horizontal" id="updateProfile">
                     <fieldset>
-                        <div class="col-lg-12">
-                            <img class="img-responsive"
-                                 style="margin-left: auto; margin-right: auto; display: block;"
-                                 width="100px" src="/html/img/profile.png" alt=""> <br>
-                            
-                            <br>
-                            <br>
-                        </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이름</label>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
 
-                        <!-- File Button -->
+                        <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">아이디</label>
                             <div class="col-md-7">
@@ -55,8 +55,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">비밀번호</label>
                             <div class="col-md-3">
-                                <input id="textinput" name="textinput" type="text"
-                                       placeholder="현재 비밀번호" class="form-control input-md">
+                            	<input type="password" id="password" class="form-control" placeholder="현재 비밀번호" required autofocus>
                             </div>
                         </div>
 
@@ -64,25 +63,23 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이메일</label>
                             <div class="col-md-3">
-                                <input id="textinput" name="textinput" type="text"
-                                        class="form-control input-md" value="<%=userVO.getEmail() %>">
+                            	<input type="text" id="email" class="form-control" value="<%=userVO.getEmail() %>" required autofocus>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">전화번호</label>
-                            <div class="col-md-3">
-                                <input id="textinput" name="textinput" type="text"
-                                        class="form-control input-md" value="<%=userVO.getPhoneNumber() %>">
+                            <div class="col-md-3">                                
+                                <input type="text" id="phone_number" class="form-control" value="<%=userVO.getPhoneNumber() %>" required autofocus>
                             </div>
                         </div>
                         <br>
                         <!-- Button -->
-                        <div class="form-group" align="center">
-                            <button class="btn btn-default btn-md"
-                                    style="height: 40px; width: 80px">submit</button>
-                        </div>
+                        <div class="form-group" align="center">                            
+                            <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
+                            	style="height: 46px; width: 270px">수정</button>
+                         </div>
 
                     </fieldset>
                 </form>
@@ -98,6 +95,8 @@
 
 </div>
 
-<jsp:include page="include/_jslib.jsp" />
+<jsp:include page="include/_jslib.jsp" >
+	<jsp:param name="_js" value="/html/js/profile.js" />
+</jsp:include>
 
 <jsp:include page="include/_footer.jsp" />
