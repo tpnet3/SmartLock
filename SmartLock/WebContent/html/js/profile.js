@@ -1,21 +1,4 @@
-$("#profile-form").submit(function() {
-	// check validation
-	if($("#email").val() == '') {
-		$("#email").focus();
-		alert("이메일을 입력하세요.");
-		return;
-	}
-	if($("#phone_number").val() == '') {
-		$("#phone_number").focus();
-		alert("전화번호를 입력하세요.");
-		return;
-	}
-	if($("#password").val() == '') {
-		$("#password").focus();
-		alert("비밀번호를 입력하세요.");
-		return;
-	}
-	
+$("#updateProfile").submit(function() {	
 	$.ajax({
 		url : "/profile/update",
 		type : "POST",

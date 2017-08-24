@@ -56,6 +56,10 @@
 	margin-bottom: 10px;
 	background : #0092a8;
 }
+.update-profile button{
+	margin-bottom: 10px;
+	background : #0092a8;
+}
 #profile-btn:hover{
 	background : #00556e;
 }
