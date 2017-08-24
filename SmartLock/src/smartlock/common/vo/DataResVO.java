@@ -19,6 +19,7 @@ public class DataResVO {
             Object data = runnable.run(userVO);
             setData(data);
         } catch (Exception e) {
+            e.printStackTrace();
             setStatus("error");
             setData("error");
         }
@@ -32,6 +33,7 @@ public class DataResVO {
             Object data = runnable.run(userVO, this);
             setData(data);
         } catch (Exception e) {
+            e.printStackTrace();
             setStatus("error");
             setData("error");
         }
