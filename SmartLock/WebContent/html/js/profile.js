@@ -73,7 +73,7 @@ $("#removeUser").submit(function() {
 	}
 	else{
 		$.ajax({
-			url : "/profile/change/success",
+			url : "/profile/quit/success",
 			type : "POST",
 	        contentType: "application/json",
 			dataType : "json",

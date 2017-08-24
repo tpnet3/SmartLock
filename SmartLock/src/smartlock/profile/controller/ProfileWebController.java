@@ -49,7 +49,7 @@ public class ProfileWebController {
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
         if (userVO != null) {        
-            return new ModelAndView("/smartlock/profile_quit");
+            return new ModelAndView("/smartlock/test/quit_test");
         }
         else{
         	return new ModelAndView("redirect:/");
