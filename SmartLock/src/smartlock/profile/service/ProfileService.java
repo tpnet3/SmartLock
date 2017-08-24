@@ -52,28 +52,12 @@ public class ProfileService {
 		 */
 	 public int changePasswordUser(PasswordVO passwordVO) throws Exception{
 		// 비밀번호 암호화
-		passwordVO.setPassword(Util.encrypt(passwordVO.getPassword()));
+		 passwordVO.setPassword(Util.encrypt(passwordVO.getPassword()));
+		 passwordVO.setNew_password(Util.encrypt(passwordVO.getNew_password()));
 		 
 		 int result = commonDAO.update("user.changePassword", passwordVO);
 		 System.out.println(result+"개의 회원의 비밀번호가 업데이트 되었습니다.");
 		 
 		 return result;
 	 }
-	 
-	 /*
-	 public boolean checkPassword(PasswordVO passwordVO) throws Exception{
-		//json으로 받은 패스워드 : encrypt_password
-		//DB에 있는 실제 패스워드 : real_password
-		 String encrypt_password = Util.encrypt(passwordVO.getPassword());
-		 String real_password = (String)commonDAO.selectOne("user.selectPassword", passwordVO);
-		 System.out.println("회원의 비밀번호가 조회되었습니다.");
-		 
-		 if(encrypt_password.equals(real_password)){
-			 return true;
-		 }
-		 else{
-			 return false;
-		 }
-	 }
-	 */
 }
