@@ -20,6 +20,8 @@ public class ReqLicenseService {
      * @throws Exception DAO Exception
      */
     public int addRequestLicense(ReqLicenseVO reqLicenseVO) throws Exception {
+        // TODO: 유저에게 이미 발급된 라이센스가 있는지 확인하여 불필요할경우 무시하도록 처리
+
         return commonDAO.insert("reqlicense.insert", reqLicenseVO);
     }
 }
