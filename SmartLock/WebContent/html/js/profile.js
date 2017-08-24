@@ -55,6 +55,7 @@ $("#profile-form").submit(function() {
 });
 
 $("#changePassword").submit(function() {
+	/*
 	// check validation
 	if($("#password").val() == '') {
 		$("#password").focus();
@@ -71,7 +72,8 @@ $("#changePassword").submit(function() {
 		alert("새 비밀번호를 입력하세요.");
 		return false;
 	}
-	else if($("#new_password1").val()!=$("#new_password2").val()){
+	*/
+	if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
 		alert("새 비밀번호가 일치하지 않습니다.");
 		return false;
