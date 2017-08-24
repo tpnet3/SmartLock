@@ -81,10 +81,10 @@
 							<p>
 								<a href="#" class="btn btn-warning btn-filter"
 									style="width: 80px"
-									onclick="return clickEdit(${device.id},${device.nickname});">수정</a>&nbsp;
+									onclick="return clickEdit(${device.id}, '${device.nickname}');">수정</a>&nbsp;
 								&nbsp; &nbsp; <a href="#" class="btn btn-danger btn-filter"
 									style="width: 80px"
-									onclick="return clickDelete(${device.id},${device.nickname});">삭제</a>
+									onclick="return clickDelete(${device.id}, '${device.nickname}');">삭제</a>
 							</p>
 						</div>
 						<div>
