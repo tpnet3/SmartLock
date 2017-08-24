@@ -71,12 +71,12 @@ public class ProfileApiController {
 	 */
 	@RequestMapping(value = "/profile/change/success", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO changeNewPassword(
-			@RequestBody UserVO userVO,
+			@RequestBody PasswordVO passwordVO,
 			HttpServletRequest request) {
 		
 		return new MsgResVO(request, sessionUserVO -> {
-			profileService.changePasswordUser(userVO);
-			return "비밀번호 수정이 완료되었습니다."; 
+			profileService.changePasswordUser(passwordVO);
+			return "비밀번호 수정이 완료되었습니다.";
 		});
 	}
 	
