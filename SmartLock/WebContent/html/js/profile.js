@@ -82,48 +82,52 @@ $("#changePassword").submit(function() {
 	else{
 		alert("ajax1");
 		$.ajax({
-			url : "/profile/checkPassword",
-			type : "POST",
-	        contentType: "application/json",
-			dataType : "json",
-			data : JSON.stringify({
-				"id" : SmartLock.user.id,
-				"password" : $("#password").val(),
-			}),
-			success : function (data){				
-				if(data.message=="비밀번호 일치"){
-					
-				}
-				else{
-					$("#password").focus();
-					alert("현재 비밀번호 불일치")
-				}
-			},
-			error : function(data, textStatus, errorThrown) {
-				alert("비밀번호 체크 실패");
-			}
-		});
-		
-		$.ajax({
 			url : "/profile/change/success",
 			type : "POST",
 	        contentType: "application/json",
 			dataType : "json",
 			data : JSON.stringify({
 				"id" : SmartLock.user.id,
-				"password" : $("#new_password1").val(),
+				"password" : $("#password").val(),
+				"new_password" : $("#new_password1").val()
 			}),
-			success : function (data){
-				if(data.status == "success") {
-					//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
+			success : function (data){				
+				if(data.status=="success"){
 					location.href="/profile/changePassword/ok";
-				} else {					
-					alert("비밀번호 변경 실패 else문");
+				}
+				else{
+					//$("#password").focus();
+					alert("현재 비밀번호 변경 실패")
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-				alert("비밀번호 변경 실패ㅋㅋ");
+				alert("ajax통신실패");
 			}
 		});
+		/*
+		function test() {
+				$.ajax({
+				url : "/profile/change/success",
+				type : "POST",
+		        contentType: "application/json",
+				dataType : "json",
+				data : JSON.stringify({
+					"id" : SmartLock.user.id,
+					"password" : $("#new_password1").val(),
+				}),
+				success : function (data){
+					if(data.status == "success") {
+						//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
+						location.href="/profile/changePassword/ok";
+					} else {					
+						alert("비밀번호 변경 실패 else문");
+					}
+				},
+				error : function(data, textStatus, errorThrown) {
+					alert("비밀번호 변경 실패ㅋㅋ");
+				}
+			});
+		};
+		*/
 	}
 });

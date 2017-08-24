@@ -50,7 +50,7 @@ public class ProfileApiController {
 	 *               {@link UserVO#password}
 	 * @return 성공시 "비밀번호 일치", 실패시 "비밀번호 불일치"
 	 */
-	
+	/*
 	@RequestMapping(value = "/profile/checkPassword", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO checkPassword(
 			@RequestBody UserVO userVO,
@@ -60,6 +60,7 @@ public class ProfileApiController {
 			return checkpassword ? "비밀번호 일치" : "비밀번호 불일치";
 		});
 	}
+	*/
 	
 
 	/**
