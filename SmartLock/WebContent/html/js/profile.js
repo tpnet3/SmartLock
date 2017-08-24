@@ -87,7 +87,7 @@ $("#removeUser").submit(function() {
 				}
 				else{
 					$("#password1").focus();
-					alert("현재 비밀번호가 일치하지 않습니다.")
+					alert("비밀번호를 다시 확인해주세요.")
 				}
 			},
 			error : function(data, textStatus, errorThrown) {

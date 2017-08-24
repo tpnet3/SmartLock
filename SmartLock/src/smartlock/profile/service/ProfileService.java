@@ -65,7 +65,7 @@ public class ProfileService {
 		// 비밀번호 암호화
 		 userVO.setPassword(Util.encrypt(userVO.getPassword()));
 		 
-		 int cnt = commonDAO.delete("user.remoeveUser", userVO);
+		 int cnt = commonDAO.delete("user.removeUser", userVO);
 		 System.out.println(cnt+"개의 회원이 삭제 되었습니다.");
 		 
 		 return cnt;
