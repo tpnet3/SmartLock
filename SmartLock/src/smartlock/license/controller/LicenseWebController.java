@@ -180,15 +180,23 @@ public class LicenseWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		String id = map.get("id");
 		String swName = map.get("swName");
+		String state = map.get("state");
 		try{
 			if(userVO != null && userVO.getAuthority() == 1){
-				licenseService.permit(map);
-				return true;
+				return licenseService.permit(map);
 			} else{
 				return false;
 			}
 		}catch(Exception e){
 			return false;
 		}
+	}
+	
+	@RequestMapping(value = "/license/user/ascend", method = RequestMethod.POST)
+	public @ResponseBody void licenseUserAscend(
+			@RequestBody ArrayList<LicenseUserVO> list,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		System.out.println(list);
 	}
 }

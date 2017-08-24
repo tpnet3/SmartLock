@@ -120,7 +120,7 @@
 										보기 </span></td>
 								<td data-title="상세보기"><span class="label"
 									style="background-color: indianred; color: white"
-									onclick="return licenseOk('${license.sw_name}', '${license.id }');">
+									onclick="return licenseOk('${license.sw_name}', '${license.id }', '${license.state });">
 										발급하기 </span></td>
 							</tr>
 						</c:forEach>
@@ -148,7 +148,7 @@
 		alert(swName + " 에 대한 상세보기를 클릭했습니다.");
 	}
 
-	function licenseOk(swName, id) {
+	function licenseOk(swName, id, state) {
 		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?" +id);
 		if(check == true){
 			$.ajax({
@@ -157,10 +157,12 @@
 				contentType: "application/json",
 			 	data : JSON.stringify({
 				swName : swName ,
-				id : id
+				id : id,
+				state : state
 			}),
    			success : function (data) {
    				alert(swName + " 에 대한 라이센스를 발급했습니다.");
+   				window.location = "/license/manager/request?name";
  	  			},
  			error : function(data, textStatus, errorThrown) {
        			console.log(data);

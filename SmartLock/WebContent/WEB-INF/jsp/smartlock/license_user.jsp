@@ -34,9 +34,11 @@
 						</select>
 					</div>
 				</div>
+				
+					
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="list" style="width: 180px; height: 35px;" onchange="list(this)">
+						<select name="" id="list" style="width: 180px; height: 35px;" onchange="list(this, ${licenseUserList})">
 							<option value=0>만료 날짜</option>
 							<option value=1>오름차순</option>
 							<option value=2>내림차순</option>
@@ -130,6 +132,31 @@
 
     function requestLicense(swName) {
         alert(swName + " 에 대한 라이센스를 요청합니다.");
+    }
+    
+    function list(orderBy, license){
+    	alert(orderBy.value);
+    	if(orderBy == 1){
+    		$.ajax({
+				url:"/license/user/ascend" ,
+				type:"POST",
+				contentType: "application/json",
+			 	data : { 
+			 		license : license.value 
+			 	},
+         success : function (data) {
+        	 window.location = "/license/user?name";
+         },
+         error : function(data, textStatus, errorThrown) {
+             console.log(data);
+         }
+		});
+    	} else if(orderBy == 2) {
+    		
+    	} else {
+    		
+    	}
+    	
     }
     
     function search(name) {
