@@ -29,9 +29,13 @@ public class ProfileService {
 	 * @return void
 	 * @throws Exception DAO 예외
 	 */
-	 public void updateUser(UserVO userVO) throws Exception{		 
-		 int cnt = commonDAO.update("user.updateUser", userVO);
-		 System.out.println(cnt+"개의 회원정보가 업데이트 되었습니다.");
+	 public int updateUser(UserVO userVO) throws Exception{
+		 userVO.setPassword(Util.encrypt(userVO.getPassword()));
+		 
+		 int result = commonDAO.update("user.updateUser", userVO);
+		 System.out.println(result+"개의 회원정보가 업데이트 되었습니다.");
+		 
+		 return result;
 	 }
 	 
 	 /**새 비밀번호 변경(UPDATE)
