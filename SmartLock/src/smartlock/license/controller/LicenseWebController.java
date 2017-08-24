@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.amazonaws.util.json.JSONArray;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
@@ -109,20 +112,19 @@ public class LicenseWebController {
 			if(userVO != null && userVO.getAuthority() == 1){
 				ArrayList<String> swNameList = new ArrayList<String>();
 				ArrayList<LicenseManagerReqVO> licenseManagerReqList;
-				if(name.equals("")){
-					licenseManagerReqList = licenseService.viewManagerReqLicense(userVO.getId());
-				} else {
-					Map<String, String> map = new HashMap<String, String>();
-					map.put("name", name);
-					map.put("id", userVO.getId());
-					licenseManagerReqList = licenseService.viewManagerReqLicenseByName(map);
-				}
+				licenseManagerReqList = licenseService.viewManagerReqLicense(userVO.getId());
 				for(int i = 0; i < licenseManagerReqList.size(); i++) { 
 					if(!swNameList.contains(licenseManagerReqList.get(i).getSw_name())){
 						swNameList.add(licenseManagerReqList.get(i).getSw_name());
 						} 
 				}
-				ModelAndView modelAndView = new ModelAndView("smartlock/license_manager_request");
+				if(!name.equals("")){
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("name", name);
+					map.put("id", userVO.getId());
+					licenseManagerReqList = licenseService.viewManagerReqLicenseByName(map);
+				} 
+				ModelAndView modelAndView = new ModelAndView("smartlock/license_manager");
 				modelAndView.addObject("licenseManagerReqList", licenseManagerReqList);
 				modelAndView.addObject("swNameList", swNameList);
 				return modelAndView;
@@ -146,20 +148,19 @@ public class LicenseWebController {
 			if(userVO != null && userVO.getAuthority() == 1){
 				ArrayList<String> swNameList = new ArrayList<String>();
 				ArrayList<LicenseManagerVO> licenseManagerList;
-				if(name.equals("")){
-					licenseManagerList = licenseService.viewManagerLicense(userVO.getId());
-				} else {
-					Map<String, String> map = new HashMap<String, String>();
-					map.put("name", name);
-					map.put("id", userVO.getId());
-					licenseManagerList = licenseService.viewManagerLicenseByName(map);
-				}
+				licenseManagerList = licenseService.viewManagerLicense(userVO.getId());
 				for(int i = 0; i < licenseManagerList.size(); i++) { 
 					if(!swNameList.contains(licenseManagerList.get(i).getSw_name())){
 						swNameList.add(licenseManagerList.get(i).getSw_name());
 						} 
 				}
-				ModelAndView modelAndView = new ModelAndView("smartlock/license_manager");
+				if(!name.equals("")){
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("name", name);
+					map.put("id", userVO.getId());
+					licenseManagerList = licenseService.viewManagerLicenseByName(map);
+				} 
+				ModelAndView modelAndView = new ModelAndView("smartlock/license_finish_manager");
 				modelAndView.addObject("licenseManagerList", licenseManagerList);
 				modelAndView.addObject("swNameList", swNameList);
 				return modelAndView;
@@ -169,6 +170,25 @@ public class LicenseWebController {
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");	
+		}
+	}
+	
+	@RequestMapping(value = "/permit", method = RequestMethod.POST)
+	public @ResponseBody boolean permit(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		String id = map.get("id");
+		String swName = map.get("swName");
+		try{
+			if(userVO != null && userVO.getAuthority() == 1){
+				licenseService.permit(map);
+				return true;
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
 		}
 	}
 }

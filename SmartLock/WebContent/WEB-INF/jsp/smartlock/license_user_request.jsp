@@ -29,7 +29,7 @@
 			<div class="col-sm-2">
 				<div class="input-group">
 					<select name="" id="location1"
-					style="width: 180px; height: 35px;" onchange="search(this)";>
+					style="width: 180px; height: 35px;" onchange="search(this)">
 					<option value="">소프트웨어명</option>
 					<c:forEach var="sw" items="${swNameList}">
 					<option value="${sw }">${sw }</option>
@@ -40,7 +40,7 @@
 			<div class="col-sm-2">
 				<div class="input-group">
 					<select name="" id="location1"
-					style="width: 180px; height: 35px;" onchange="list(this)";>
+					style="width: 180px; height: 35px;" onchange="list(this)">
 					<option value="">요청 날짜</option>
 					<option value="">오름차순</option>
 					<option value="">내림차순</option>

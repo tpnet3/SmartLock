@@ -84,6 +84,7 @@
 			, u.user_name
 			, c.corp_name
 			, l.request_date
+			, u.id
 			, l.state
 		FROM software s
 			, corp c
@@ -102,6 +103,7 @@
 			, u.user_name
 			, c.corp_name
 			, l.request_date
+			, u.id
 			, l.state
 		FROM software s
 			, corp c
@@ -136,6 +138,25 @@
 	<!-- 관리자 발급완료 라이센스 소프트웨어명별 조회 -->
 	<select id="selectManagerLicenseByName" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.LicenseManagerVO">
+		SELECT s.sw_name
+			, u.user_name
+			, c.corp_name
+			, l.start_date
+			, l.end_date
+			, l.state
+		FROM software s
+			, corp c
+			, license l
+			, user u
+		WHERE c.id = (SELECT corp_id FROM user WHERE id = #{id})
+		AND s.corp_id = c.id
+		AND l.sw_id = s.id
+		AND u.id = l.user_id
+		AND s.sw_name = #{name};
+	</select>
+	
+	<select id="permit" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
 		SELECT s.sw_name
 			, u.user_name
 			, c.corp_name
