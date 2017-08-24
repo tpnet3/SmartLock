@@ -19,8 +19,8 @@ public class PasswordVO {
 	public String getNew_password() {
 		return new_password;
 	}
-	public void setNew_password(String new_assword) {
-		this.new_password = new_assword;
+	public void setNew_password(String new_password) {
+		this.new_password = new_password;
 	}
 	
 	

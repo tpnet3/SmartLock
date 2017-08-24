@@ -58,18 +58,10 @@
     </update>
     
     <update id="changePassword" 
-    		parameterType="smartlock.member.vo.UserVO">
+    		parameterType="smartlock.profile.vo.PasswordVO">
     	UPDATE user
-		SET password=#{password}
-		WHERE id=#{id};
+		SET password=#{new_password}
+		WHERE id=#{id} AND password=#{password};
     </update>
-    
-    <select id="selectPassword"
-            parameterType="String"
-            resultType="String">
-        SELECT password
-        FROM user
-        WHERE id = #{id}
-    </select>
 
 </mapper>

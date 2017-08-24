@@ -45,39 +45,19 @@ public class ProfileApiController {
 	}
 	
 	/**
-	 * 비밀번호 체크
-	 * @param userVO {@link UserVO#id},
-	 *               {@link UserVO#password}
-	 * @return 성공시 "비밀번호 일치", 실패시 "비밀번호 불일치"
-	 */
-	
-	@RequestMapping(value = "/profile/checkPassword", method = RequestMethod.POST)
-	public  @ResponseBody MsgResVO checkPassword(
-			@RequestBody UserVO userVO,
-			HttpServletRequest request) {
-		return new MsgResVO(request, sessionUserVO -> {
-			boolean checkpassword = profileService.checkPassword(userVO);
-			return checkpassword ? "비밀번호 일치" : "비밀번호 불일치";
-		});
-	}
-	
-
-	/**
 	 * 비밀번호 변경
-	 * @param userVO {@link UserVO#id},
-	 *               {@link UserVO#password}
+	 * @param PasswordVO {@link PasswordVO#id},
+	 *               {@link PassswordVO#password}
 	 * @return 성공시 "비밀번호 수정이 완료되었습니다.", 실패시 "error"
 	 */
 	@RequestMapping(value = "/profile/change/success", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO changeNewPassword(
-			@RequestBody UserVO userVO,
+			@RequestBody PasswordVO passwordVO,
 			HttpServletRequest request) {
 		
 		return new MsgResVO(request, sessionUserVO -> {
-			profileService.changePasswordUser(userVO);
-			return "비밀번호 수정이 완료되었습니다."; 
+			profileService.changePasswordUser(passwordVO);
+			return "비밀번호 수정이 완료되었습니다.";
 		});
 	}
-	
-	// /profile/checkPassword
 }
