@@ -64,3 +64,38 @@ $("#changePassword").submit(function() {
 	
 	return false;
 });
+
+$("#removeUser").submit(function() {
+	if($("#password1").val()!=$("#password2").val()){
+		$("#password2").focus();
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	else{
+		$.ajax({
+			url : "/profile/change/success",
+			type : "POST",
+	        contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify({
+				"id" : SmartLock.user.id,
+				"password" : $("#password").val(),
+				"new_password" : $("#new_password1").val()
+			}),
+			success : function (data){				
+				if(data.status=="success"){
+					location.href="/profile/changePassword/ok";
+				}
+				else{
+					$("#password").focus();
+					alert("현재 비밀번호가 일치하지 않습니다.")
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				alert("ajax통신실패");
+			}
+		});
+	}
+	
+	return false;
+});
