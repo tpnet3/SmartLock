@@ -2,9 +2,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="smartlock.license.vo.LicenseManagerVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<% ArrayList<LicenseManagerVO> licenseManagerVOArrayList = (ArrayList<LicenseManagerVO>) request.getAttribute("licenseManagerVOArrayList"); %>
-<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="license" />
@@ -19,7 +18,7 @@
 				<small>발급 완료 현황</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="/license/manager/request">발급 대기 현황</a></li>
+				<li><a href="/license/manager/request?name">발급 대기 현황</a></li>
 				<li class="active">발급 완료 현황</li>
 			</ol>
 		</div>
@@ -29,20 +28,18 @@
 			<div class="col-sm-12">
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="location1"
-								style="width: 180px; height: 35px;">
+						<select name="" id="swList"
+								style="width: 180px; height: 35px;" onchange="search(this)">
 							<option value="">소프트웨어명</option>
-							<option value="">전체보기</option>
-							<option value="">Microsoft Excel</option>
-							<option value="">Parallels Desktop</option>
-							<option value="">Adobe CC</option>
-							<option value="">Football Manager</option>
+							<c:forEach var="sw" items="${swNameList}">
+								<option value= "${sw}">${sw}</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="location1"
+						<select name="" id="list"
 								style="width: 180px; height: 35px;">
 							<option value="">만료 날짜</option>
 							<option value="">오름차순</option>
@@ -75,127 +72,46 @@
 						class="col-sm-12 table-bordered table-striped table-condensed cf">
 					<thead class="cf" align="center">
 					<tr>
-						<td width="10px">
-							<h4>
-								<b>No.
-							</h4>
-						</td>
-						<td width="250px"><h4>
-							<b>소프트웨어명
-						</h4></td>
-						<td width="100px"><h4>
-							<b>이름
-						</h4></td>
-						<td width="100px"><h4>
-							<b>발급날짜
-						</h4></td>
-						<td width="100px"><h4>
-							<b>만료날짜
-						</h4></td>
-						<td width="150px"><h4>
-							<b>분류
-						</h4></td>
-						<td width="100px"><h4>
-							<b>상세보기
-						</h4></td>
-				
+						<td width="10px"><h4><b>No.</h4></td>
+						<td width="250px"><h4><b>소프트웨어명</h4></td>
+						<td width="100px"><h4><b>이름</h4></td>
+						<td width="100px"><h4><b>발급날짜</h4></td>
+						<td width="100px"><h4><b>만료날짜</h4></td>
+						<td width="150px"><h4><b>분류</h4></td>
+						<td width="100px"><h4><b>상세보기</h4></td>
 					</tr>
 					</thead>
 					<tbody align="center">
-					<% for (int i = 0; i < licenseManagerVOArrayList.size(); i++) { %>
-					<% LicenseManagerVO licenseManagerVO = licenseManagerVOArrayList.get(i); %>
+					<c:forEach var="license" items="${licenseManagerList}" varStatus="count">
 					<tr>
-						<td data-title="No."><%=i+1%></td>
-						<td data-title="소프트웨어"><%=licenseManagerVO.getSw_name()%></td>
-						<td data-title="이름"><%=licenseManagerVO.getUser_name()%></td>
-						<td data-title="발급날짜"><%=sdf.format(licenseManagerVO.getStart_date())%></td>
-						<td data-title="만료날짜"><%=sdf.format(licenseManagerVO.getEnd_date())%></td>
-						<td data-title="분류"><span class="label label-success">일반 신청</span></td>
-						<!--
-						TODO: 분류
-						<td data-title="분류"><span class="label label-warning">데모 신청</span></td>
-						-->
+						<td data-title="No.">${count.count }</td>
+						<td data-title="소프트웨어">${license.sw_name }</td>
+						<td data-title="이름">${license.user_name }</td>
+						<td data-title="발급날짜"><fmt:formatDate value="${license.start_date}" pattern="yyyy-MM-dd"/></td>
+						<td data-title="만료날짜"><fmt:formatDate value="${license.end_date}" pattern="yyyy-MM-dd"/></td>
+						<c:choose>
+							<c:when test="${license.state eq 1 }">
+								<td data-title="상태"><span class="label label-success">일반
+										신청</span></td>
+							</c:when>
+							<c:when test="${license.state eq 2}">
+								<td data-title="상태"><span class="label label-warning">데모
+										신청</span></td>
+							</c:when>
+						</c:choose>
 						<td data-title="상세보기">
 							<span class="label" style="background-color: darkgray; color: black"
-							      onclick="return showDetail('<%=licenseManagerVO.getSw_name()%>')">
+							      onclick="return showDetail('${license.sw_name}')">
 								상세 보기
 							</span>
 						</td>
 					</tr>
-					<% } %>
-					<!--
-							<tr>
-								<td data-title="No.">2</td>
-								<td data-title="소프트웨어">Microsoft Excel</td>
-								<td data-title="이름">이영표</td>
-								<td data-title="발급날짜">2017-02-02</td>
-								<td data-title="만료날짜">9999-01-01</td>
-								<td data-title="분류"><span class="label label-success">일반
-										신청</span></td>
-								<td data-title="상세보기"><a><span class="label"
-										style="background-color: darkgray; color: black">상세 보기</span></a></td>
-							</tr>
-							<tr>
-								<td data-title="No.">3</td>
-								<td data-title="소프트웨어">Microsoft Excel</td>
-								<td data-title="이름">차두리</td>
-								<td data-title="발급날짜">2017-03-03</td>
-								<td data-title="만료날짜">2017-04-03</td>
-								<td data-title="분류"><span class="label label-warning">데모
-										신청</span></td>
-								<td data-title="상세보기"><a><span class="label"
-										style="background-color: darkgray; color: black">상세 보기</span></a></td>
-							</tr>
-							<tr>
-								<td data-title="No.">4</td>
-								<td data-title="소프트웨어">Microsoft Excel</td>
-								<td data-title="이름">박주영</td>
-								<td data-title="발급날짜">2017-04-04</td>
-								<td data-title="만료날짜">2017-05-04</td>
-								<td data-title="분류"><span class="label label-warning">데모
-										신청</span></td>
-								<td data-title="상세보기"><a><span class="label"
-										style="background-color: darkgray; color: black">상세 보기</span></a></td>
-							</tr>
-							<tr>
-								<td data-title="No.">5</td>
-								<td data-title="소프트웨어">Football Manager</td>
-								<td data-title="이름">김남일</td>
-								<td data-title="발급날짜">2017-05-05</td>
-								<td data-title="만료날짜">9999-01-01</td>
-								<td data-title="분류"><span class="label label-success">일반
-										신청</span></td>
-								<td data-title="상세보기"><a><span class="label"
-										style="background-color: darkgray; color: black">상세 보기</span></a></td>
-							</tr>
-							<tr>
-								<td data-title="No.">6</td>
-								<td data-title="소프트웨어">Adobe CC</td>
-								<td data-title="이름">이근호</td>
-								<td data-title="신청날짜">2017-01-01</td>
-								<td data-title="만료날짜">9999-01-01</td>
-								<td data-title="분류"><span class="label label-success">일반
-										신청</span></td>
-								<td data-title="상세보기"><a><span class="label"
-										style="background-color: darkgray; color: black">상세 보기</span></a></td>
-							</tr>
-							-->
+					</c:forEach>
 						</tbody>
 				</table>
 			</div>
 		</div>
 
-		<div class="row text-center">
-			<div class="col-lg-12">
-				<ul class="pagination">
-					<li><a href="#">&laquo;</a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">&raquo;</a></li>
-				</ul>
-			</div>
-		</div>
 	</div>
 </div>
 <!-- /.row -->
@@ -213,6 +129,40 @@
         // TODO: 상세보기
         alert(swName + " 에 대한 상세보기를 클릭했습니다.");
     }
+    
+    function search(name) {
+    	if(name.value!="default"){
+    		$.ajax({
+				url:"/license/manager?name="+name.value,
+				type:"GET",
+				contentType: "application/json",
+			 	data : {
+				name : name.value
+			},
+         success : function (data) {
+        	 window.location = "/license/manager?name="+name.value;
+         },
+         error : function(data, textStatus, errorThrown) {
+             console.log(data);
+         }
+		});
+    	}
+    	else{
+    		$.ajax({
+				url:"/license/manager?name",
+				type:"GET",
+				contentType: "application/json",
+			 	data : {
+				name : name.value
+			},
+         success : function (data) {
+        	 window.location = "/license/manager?name";
+         },
+         error : function(data, textStatus, errorThrown) {
+             console.log(data);
+         }
+		});
+    	}
 </script>
 
 <jsp:include page="include/_jslib.jsp" />

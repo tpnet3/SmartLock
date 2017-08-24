@@ -6,6 +6,7 @@ public class LicenseManagerReqVO {
 	private String sw_name;
 	private String user_name;
 	private Date request_date;
+	private String id;
 	private int state;
 	public String getSw_name() {
 		return sw_name;
@@ -25,6 +26,12 @@ public class LicenseManagerReqVO {
 	public void setRequest_date(Date request_date) {
 		this.request_date = request_date;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getState() {
 		return state;
 	}
@@ -34,6 +41,7 @@ public class LicenseManagerReqVO {
 	@Override
 	public String toString() {
 		return "LicenseManagerReqVO [sw_name=" + sw_name + ", user_name=" + user_name + ", request_date=" + request_date
-				+ ", state=" + state + "]";
+				+ ", id=" + id + ", state=" + state + "]";
 	}
+	
 }

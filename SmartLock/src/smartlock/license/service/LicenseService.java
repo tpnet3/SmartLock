@@ -101,4 +101,12 @@ public class LicenseService {
 	public ArrayList<LicenseManagerVO> viewManagerLicenseByName(Map<String, String> map) throws Exception{
 		return (ArrayList) commonDAO.selectList("license.selectManagerLicenseByName", map);
 	}
+	
+	public boolean permit(Map<String, String> map) throws Exception{
+		if(commonDAO.update("permit", map) != 0){
+			return true;
+		} else{
+			return false;
+		}
+	}
 }
