@@ -94,9 +94,26 @@
 
             <div class="col-lg-12">
                 <div class="jumbotron">
-                    <h1><span class="error-404">화면이 없어요 :)</span>
-                    </h1>
-                    <p>화면을 아직 안만들었어요.</p>
+                    <select id='fruits' name='fruits' size='6' onchange='fruits_selected()'>
+	<option value='' selected>-- 선택 --</option>
+	<option value='apple'>사과</option>
+	<option value='banana'>바나나</option>
+	<option value='lemon'>레몬</option>
+</select>
+
+<script>
+function fruits_selected() {
+	var obj = document.getElementById('fruits');
+	var index = obj.selectedIndex;
+	var value = obj.options[index].value;
+	var text = obj.options[index].text;
+
+	console.log( '------------------' );
+	console.log( 'index = [' + index + ']' );
+	console.log( 'value = [' + value + ']' );
+	console.log( 'text = [' + text + ']' );
+}
+</script>
                 </div>
             </div>
 

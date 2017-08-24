@@ -98,7 +98,7 @@ public class LicenseService {
 	 * @return ArrayList<LicensemanagerVO>
 	 * @throws Exception
 	 */
-	public ArrayList<LicenseManagerVO> viewManagerLicenseMyName(Map<String, String> map) throws Exception{
+	public ArrayList<LicenseManagerVO> viewManagerLicenseByName(Map<String, String> map) throws Exception{
 		return (ArrayList) commonDAO.selectList("license.selectManagerLicenseByName", map);
 	}
 }
