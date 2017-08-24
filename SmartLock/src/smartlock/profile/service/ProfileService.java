@@ -64,11 +64,11 @@ public class ProfileService {
 		 * @return boolean
 		 * @throws Exception DAO 예외
 		 */
-	 public boolean checkPassword(UserVO userVO) throws Exception{
+	 public boolean checkPassword(PasswordVO passwordVO) throws Exception{
 		//json으로 받은 패스워드 : encrypt_password
 		//DB에 있는 실제 패스워드 : real_password
-		 String encrypt_password = Util.encrypt(userVO.getPassword());
-		 String real_password = (String)commonDAO.selectOne("user.selectPassword", userVO);
+		 String encrypt_password = Util.encrypt(passwordVO.getPassword());
+		 String real_password = (String)commonDAO.selectOne("user.selectPassword", passwordVO);
 		 System.out.println("회원의 비밀번호가 조회되었습니다.");
 		 
 		 if(encrypt_password.equals(real_password)){
