@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="software">
+
+    <select id="select"
+            parameterType="smartlock.software.vo.SoftwareVO"
+            resultType="smartlock.software.vo.SoftwareVO">
+        SELECT *
+        FROM software
+
+        <where>
+            <if test="sw_name != null">
+                <bind name="sw_name_bind" value="'%' + sw_name + '%'" />
+                sw_name LIKE #{sw_name_bind}
+            </if>
+        </where>
+    </select>
+</mapper>
