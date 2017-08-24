@@ -79,15 +79,14 @@ $("#removeUser").submit(function() {
 			dataType : "json",
 			data : JSON.stringify({
 				"id" : SmartLock.user.id,
-				"password" : $("#password").val(),
-				"new_password" : $("#new_password1").val()
+				"password" : $("#password1").val(),
 			}),
 			success : function (data){				
 				if(data.status=="success"){
-					location.href="/profile/changePassword/ok";
+					location.href="/profile/quit/ok";
 				}
 				else{
-					$("#password").focus();
+					$("#password1").focus();
 					alert("현재 비밀번호가 일치하지 않습니다.")
 				}
 			},
