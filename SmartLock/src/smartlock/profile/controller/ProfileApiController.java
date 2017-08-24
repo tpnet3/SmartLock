@@ -90,16 +90,15 @@ public class ProfileApiController {
 			HttpServletRequest request) {
 		
 		return new MsgResVO(request, (sessionUserVO, msgResVO) -> {
-			int result = 0;
-					//profileService.changePasswordUser(passwordVO);
+			int cnt = profileService.removeUser(userVO);
 			
-			if(result ==0){
+			if(cnt ==0){
 				// 현재 비밀번호 불일치
 				msgResVO.setStatus("error");
 				return "error";
 			}
 			else{
-				return "비밀번호 수정이 완료되었습니다.";
+				return "회원탈퇴가 완료되었습니다.";
 			}
 		});
 	}
