@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class ReqLicenseController {
+public class ReqLicenseApiController {
 
     @Resource
     private ReqLicenseService reqLicenseService;
