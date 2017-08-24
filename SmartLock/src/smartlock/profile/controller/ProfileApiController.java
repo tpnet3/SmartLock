@@ -55,9 +55,16 @@ public class ProfileApiController {
 			@RequestBody PasswordVO passwordVO,
 			HttpServletRequest request) {
 		
-		return new MsgResVO(request, sessionUserVO -> {
-			profileService.changePasswordUser(passwordVO);
-			return "비밀번호 수정이 완료되었습니다.";
+		return new MsgResVO(request, (sessionUserVO, msgResVO) -> {
+			int result = profileService.changePasswordUser(passwordVO);
+			
+			if(result ==0){
+				msgResVO.setStatus("error");
+				return "error";
+			}
+			else{
+				return "비밀번호 수정이 완료되었습니다.";
+			}
 		});
 	}
 }
