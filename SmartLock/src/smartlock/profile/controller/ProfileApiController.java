@@ -38,9 +38,17 @@ public class ProfileApiController {
 			@RequestBody UserVO userVO,
 			HttpServletRequest request) {
 
-		return new MsgResVO(request, sessionUserVO -> {
-			profileService.updateUser(userVO);
-			return "회원정보 수정이 완료되었습니다.";
+		return new MsgResVO(request, (sessionUserVO, msgResVO) -> {
+			int result = profileService.updateUser(userVO);
+			
+			if(result ==0){
+				// 현재 비밀번호 불일치
+				msgResVO.setStatus("error");
+				return "error";
+			}
+			else{
+				return "회원정보 수정이 완료되었습니다.";
+			}		
 		});
 	}
 	
@@ -59,6 +67,7 @@ public class ProfileApiController {
 			int result = profileService.changePasswordUser(passwordVO);
 			
 			if(result ==0){
+				// 현재 비밀번호 불일치
 				msgResVO.setStatus("error");
 				return "error";
 			}
