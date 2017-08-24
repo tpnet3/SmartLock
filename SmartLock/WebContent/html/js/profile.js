@@ -69,7 +69,7 @@ $("#changePassword").submit(function() {
 				}
 				else{
 					$("#password").focus();
-					alert("비밀번호 변경 실패")
+					alert("현재 비밀번호가 일치하지 않습니다.")
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
