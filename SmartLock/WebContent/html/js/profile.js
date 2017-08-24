@@ -54,7 +54,6 @@ $("#profile-form").submit(function() {
 	return false;
 });
 
-//$("#profile_btn").on("click",function() {
 $("#changePassword").submit(function() {
 	// check validation
 	if($("#password").val() == '') {
