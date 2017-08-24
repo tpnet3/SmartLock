@@ -18,11 +18,12 @@ $("#updateProfile").submit(function() {
 				//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
 				location.href="/profile/ok";
 			} else {
-				alert("회원정보수정실패");
+				$("#password").focus();
+				alert("현재 비밀번호가 일치하지 않습니다.")
 			}
 		},
 		error : function(data, textStatus, errorThrown) {
-			
+			alert("ajax통신실패");
 		}
 	});
 	
