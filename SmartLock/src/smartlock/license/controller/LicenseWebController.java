@@ -197,6 +197,6 @@ public class LicenseWebController {
 			@RequestBody ArrayList<LicenseUserVO> list,
 			HttpServletRequest request) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		System.out.println(list);
+		System.out.println("wow!!!!!!");
 	}
 }
