@@ -20,7 +20,8 @@
 		AND l.user_id = d.user_id
 		AND d.sw_id = s.id
 		AND s.corp_id = c.id
-		AND l.sw_id = d.sw_id;
+		AND l.sw_id = d.sw_id
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 소프트웨어명으로 발급완료 라이센스 조회 -->
@@ -42,7 +43,8 @@
 		AND s.corp_id = c.id
 		AND l.sw_id = d.sw_id
 		AND l.sw_id = (SELECT id FROM software WHERE
-		sw_name = #{name});
+		sw_name = #{name})
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 개인 요청 라이센스 전체 조회 -->
@@ -57,7 +59,8 @@
 			, req_license l
 		WHERE l.user_id = #{id}
 		AND l.sw_id = s.id
-		AND s.corp_id = c.id;
+		AND s.corp_id = c.id
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 개인 요청 라이센스 소프트웨어명 별 조회 -->
@@ -74,7 +77,8 @@
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id = (SELECT id FROM software WHERE
-		sw_name = #{name});
+		sw_name = #{name})
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 관리자 요청 라이센스 전체 조회 -->
@@ -93,7 +97,8 @@
 		WHERE c.id = (SELECT corp_id FROM user WHERE id = #{id})
 		AND s.corp_id = c.id
 		AND l.sw_id = s.id
-		AND u.id = l.user_id;
+		AND u.id = l.user_id
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 관리자 요청 라이센스 소프트웨어명별 조회 -->
@@ -113,7 +118,8 @@
 		AND s.corp_id = c.id
 		AND l.sw_id = s.id
 		AND u.id = l.user_id
-		AND s.sw_name = #{name};
+		AND s.sw_name = #{name}
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 관리자 발급완료 라이센스 전체 조회 -->
@@ -132,7 +138,8 @@
 		WHERE c.id = (SELECT corp_id FROM user WHERE id = #{id})
 		AND s.corp_id = c.id
 		AND l.sw_id = s.id
-		AND u.id = l.user_id;
+		AND u.id = l.user_id
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 관리자 발급완료 라이센스 소프트웨어명별 조회 -->
@@ -152,7 +159,8 @@
 		AND s.corp_id = c.id
 		AND l.sw_id = s.id
 		AND u.id = l.user_id
-		AND s.sw_name = #{name};
+		AND s.sw_name = #{name}
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<select id="permitFull" parameterType="java.util.Map"

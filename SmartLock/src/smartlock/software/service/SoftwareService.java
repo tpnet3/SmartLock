@@ -2,9 +2,12 @@ package smartlock.software.service;
 
 import org.springframework.stereotype.Service;
 import smartlock.common.CommonDAO;
+import smartlock.software.vo.SoftwareReqVO;
 import smartlock.software.vo.SoftwareVO;
 
 import javax.annotation.Resource;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +22,11 @@ public class SoftwareService {
      * @return 결과 List
      * @throws Exception DAO Exception
      */
-    public List<SoftwareVO> select(SoftwareVO softwareVO) throws Exception {
-        return (List) commonDAO.selectList("software.select", softwareVO);
+    public ArrayList<SoftwareVO> softwareList() throws Exception {
+        return (ArrayList) commonDAO.selectList("software.softwareList", null);
+    }
+    
+    public SoftwareReqVO softwareOne(String sw_id) throws Exception {
+        return (SoftwareReqVO) commonDAO.selectOne("software.softwareOne", sw_id);
     }
 }

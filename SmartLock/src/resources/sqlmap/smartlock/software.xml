@@ -4,17 +4,21 @@
 
 <mapper namespace="software">
 
-    <select id="select"
-            parameterType="smartlock.software.vo.SoftwareVO"
+    <select id="softwareList"
             resultType="smartlock.software.vo.SoftwareVO">
         SELECT *
         FROM software
-
-        <where>
-            <if test="sw_name != null">
-                <bind name="sw_name_bind" value="'%' + sw_name + '%'" />
-                sw_name LIKE #{sw_name_bind}
-            </if>
-        </where>
+		ORDER BY sw_name ASC;
+    </select>
+    
+    <select id="softwareOne"  parameterType="String"
+            resultType="smartlock.software.vo.SoftwareReqVO">
+        SELECT s.id
+        	, c.corp_name
+        	, s.sw_name
+        FROM software s,
+        	corp c
+        WHERE s.id = #{sw_id}
+        AND s.corp_id = c.id;
     </select>
 </mapper>

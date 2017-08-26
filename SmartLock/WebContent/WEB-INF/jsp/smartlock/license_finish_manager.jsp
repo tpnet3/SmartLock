@@ -101,7 +101,7 @@
 						</c:choose>
 						<td data-title="상세보기">
 							<span class="label" style="background-color: darkgray; color: black"
-							      onclick="return showDetail('${license.sw_name}')">
+							      onclick="detail('${license.sw_name}');">
 								상세 보기
 							</span>
 						</td>
@@ -125,7 +125,7 @@
 <!-- /.container -->
 
 <script>
-    function showDetail(swName) {
+    function detail(swName) {
         // TODO: 상세보기
         alert(swName + " 에 대한 상세보기를 클릭했습니다.");
     }
@@ -163,6 +163,7 @@
          }
 		});
     	}
+    }
 </script>
 
 <jsp:include page="include/_jslib.jsp" />
