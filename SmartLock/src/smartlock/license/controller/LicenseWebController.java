@@ -173,17 +173,30 @@ public class LicenseWebController {
 		}
 	}
 	
-	@RequestMapping(value = "/permit", method = RequestMethod.POST)
+	@RequestMapping(value = "/permit/full", method = RequestMethod.POST)
 	public @ResponseBody boolean permit(
 			@RequestBody Map<String, String> map,
 			HttpServletRequest request) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		String id = map.get("id");
-		String swName = map.get("swName");
-		String state = map.get("state");
 		try{
 			if(userVO != null && userVO.getAuthority() == 1){
-				return licenseService.permit(map);
+				return licenseService.permitFull(map);
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
+	@RequestMapping(value = "/permit/demo", method = RequestMethod.POST)
+	public @ResponseBody boolean permitDemo(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		try{
+			if(userVO != null && userVO.getAuthority() == 1){
+				return licenseService.permitDemo(map);
 			} else{
 				return false;
 			}

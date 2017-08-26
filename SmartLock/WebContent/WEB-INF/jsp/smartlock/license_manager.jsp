@@ -116,11 +116,11 @@
 								</c:choose>
 								<td data-title="상세보기"><span class="label"
 									style="background-color: darkgray; color: black"
-									onclick="return showDetail('${license.sw_name}');"> 상세
+									onclick="showDetail('${license.sw_name}');"> 상세
 										보기 </span></td>
 								<td data-title="상세보기"><span class="label"
 									style="background-color: indianred; color: white"
-									onclick="return licenseOk('${license.sw_name}', '${license.id }', '${license.state });">
+									onclick="licenseOk('${license.sw_name}', '${license.id }','${license.state }');">
 										발급하기 </span></td>
 							</tr>
 						</c:forEach>
@@ -149,27 +149,49 @@
 	}
 
 	function licenseOk(swName, id, state) {
-		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?" +id);
+		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?" +id +state);
 		if(check == true){
-			$.ajax({
-				url:"/permit",
-				type:"POST",
-				contentType: "application/json",
-			 	data : JSON.stringify({
-				swName : swName ,
-				id : id,
-				state : state
-			}),
-   			success : function (data) {
-   				alert(swName + " 에 대한 라이센스를 발급했습니다.");
-   				window.location = "/license/manager/request?name";
- 	  			},
- 			error : function(data, textStatus, errorThrown) {
-       			console.log(data);
-   				}
-			});
+			if(state == 1){
+				$.ajax({
+					url:"/permit/full",
+					type:"POST",
+					contentType: "application/json",
+				 	data : JSON.stringify({
+					swName : swName ,
+					id : id
+				}),
+	   			success : function (data) {
+	   				alert(swName + " 에 대한 정식버전 라이센스를 발급했습니다.");
+	   				window.location = "/license/manager/request?name";
+	 	  			},
+	 			error : function(data, textStatus, errorThrown) {
+	       			console.log(data);
+	   				}
+				});
+			} else {
+				$.ajax({
+					url:"/permit/demo",
+					type:"POST",
+					contentType: "application/json",
+				 	data : JSON.stringify({
+					swName : swName ,
+					id : id
+				}),
+	   			success : function (data) {
+	   				alert(swName + " 에 대한 데모버젼 라이센스를 발급했습니다.");
+	   				window.location = "/license/manager/request?name";
+	 	  			},
+	 			error : function(data, textStatus, errorThrown) {
+	       			console.log(data);
+	   				}
+				});
+			} 
+			
+		} else{
+			alert("라이센스 발급을 취소합니다.");
 		}
 	}
+	
 	function search(name) {
     	if(name.value!="default"){
     		$.ajax({

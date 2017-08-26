@@ -102,9 +102,18 @@ public class LicenseService {
 		return (ArrayList) commonDAO.selectList("license.selectManagerLicenseByName", map);
 	}
 	
-	public boolean permit(Map<String, String> map) throws Exception{
-		
-		if(commonDAO.update("permit", map) != 0){
+	public boolean permitFull(Map<String, String> map) throws Exception{
+		if(commonDAO.update("permitFull", map) != 0){
+			commonDAO.delete("permitDelete", map);
+			return true;
+		} else{
+			return false;
+		}
+	}
+	
+	public boolean permitDemo(Map<String, String> map) throws Exception{
+		if(commonDAO.update("permitDemo", map) != 0){
+			commonDAO.delete("permitDelete", map);
 			return true;
 		} else{
 			return false;

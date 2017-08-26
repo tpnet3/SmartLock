@@ -155,11 +155,22 @@
 		AND s.sw_name = #{name};
 	</select>
 	
-	<select id="permit" parameterType="java.util.Map"
+	<select id="permitFull" parameterType="java.util.Map"
 		resultType="java.lang.Integer">
-		UPDATE req_license 
-		SET state='1' 
-		WHERE user_id = #{id} 
+		INSERT INTO license (id, user_id, start_date, end_date, sw_id, state)
+		VALUES ('1', #{id}, CURDATE(), '9999-00-00', (SELECT id FROM software WHERE sw_name = #{swName}), '1');
+	</select>
+	
+	<select id="permitDemo" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		INSERT INTO license (id, user_id, start_date, end_date, sw_id, state)
+		VALUES ('1', #{id}, CURDATE(), ADDDATE(CURDATE(), INTERVAL 30 DAY), (SELECT id FROM software WHERE sw_name = #{swName}), '2');
+	</select>
+	
+	<select id="permitDelete" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		DELETE FROM req_license
+		WHERE user_id = #{id}
 		AND sw_id = (SELECT id FROM software WHERE sw_name = #{swName});
 	</select>
 	
@@ -168,4 +179,6 @@
 		INSERT INTO req_license (id, user_id, request_date, sw_id, state)
 		VALUES ('1', #{id}, CURDATE(), (SELECT id FROM software WHERE sw_name = #{name}), '1');
 	</select>
+	
+	
 </mapper>
