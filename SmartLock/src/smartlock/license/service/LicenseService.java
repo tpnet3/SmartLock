@@ -110,4 +110,12 @@ public class LicenseService {
 			return false;
 		}
 	}
+	
+	public boolean licenseUserReqDemo(Map<String, String> map) throws Exception {
+		if(commonDAO.insert("licenseUserReqDemo", map) != 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

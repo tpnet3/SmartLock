@@ -162,4 +162,10 @@
 		WHERE user_id = #{id} 
 		AND sw_id = (SELECT id FROM software WHERE sw_name = #{swName});
 	</select>
+	
+	<select id="licenseUserReqDemo" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		INSERT INTO req_license (id, user_id, request_date, sw_id, state)
+		VALUES ('1', #{id}, CURDATE(), (SELECT id FROM software WHERE sw_name = #{name}), '1');
+	</select>
 </mapper>

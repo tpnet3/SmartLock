@@ -95,11 +95,7 @@
 						</c:when>
 							<c:when test="${license.state eq 2}">
 						<td data-bind="상태데모요청">
-							<span class="label label-success"
-								  onmouseout="this.style.background='#5cb85c';this.innerText='데모 요청';"
-								  onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
-								  onclick="return requestDemo('${license.sw_name}');">
-								데모 요청
+							<span class="label label-success">데모 요청
 							</span>
 						</td>
 						</c:when>

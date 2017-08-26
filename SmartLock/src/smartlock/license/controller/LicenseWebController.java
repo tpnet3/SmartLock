@@ -191,12 +191,52 @@ public class LicenseWebController {
 			return false;
 		}
 	}
-	
+	/*
 	@RequestMapping(value = "/license/user/ascend", method = RequestMethod.POST)
-	public @ResponseBody void licenseUserAscend(
-			@RequestBody ArrayList<LicenseUserVO> list,
+	public @ResponseBody ModelAndView licenseUserAscend(
+			@RequestBody String list,
 			HttpServletRequest request) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		System.out.println("wow!!!!!!");
+		System.out.println(list);
+		try{
+			if(userVO != null && userVO.getAuthority() == 0){
+				ArrayList<LicenseUserVO> licenseUserList = new ArrayList<LicenseUserVO>();
+				ArrayList<String> swNameList = new ArrayList<String>();
+				licenseUserList = licenseService.licenseUserAscend(list);
+				for(int i = 0; i < licenseUserList.size(); i++) { 
+					if(!swNameList.contains(licenseUserList.get(i).getSw_name())){
+						swNameList.add(licenseUserList.get(i).getSw_name());
+						} 
+				}
+				ModelAndView modelAndView = new ModelAndView("smartlock/license_finish_manager");
+				modelAndView.addObject("licenseUserlist", licenseUserList);
+				modelAndView.addObject("swNameList", swNameList);
+				return modelAndView;
+			} else{
+				return new ModelAndView("redirect:/");	
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ModelAndView("redirect:/");	
+		}
+	}*/
+	@RequestMapping(value = "/license/user/requestDemo", method = RequestMethod.POST)
+	public @ResponseBody boolean licenseUserReqDemo(
+			@RequestBody Map<String, String> name,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("id", userVO.getId());
+		map.put("name", name.get("swName"));
+		try{
+			if(userVO != null && userVO.getAuthority() == 0){
+				return licenseService.licenseUserReqDemo(map);
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
 	}
 }

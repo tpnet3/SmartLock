@@ -95,16 +95,9 @@
 							<td data-title="상태"><span class="label label-success"
 								onmouseout="this.style.background='#5cb85c';this.innerText='데모 버전';"
 								onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
-								onclick="return requestDemo('${license.sw_name}');">
+								onclick="requestDemo('${license.sw_name}');">
 									데모 버전 </span></td>
-									</c:when>
-							<c:when test="${license.state eq 3}">
-							<td data-title="상태"><span class="label label-danger"
-								onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';"
-								onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';"
-								onclick="return requestLicense('${license.sw_name}');">
-									발급거절 </span></td>
-									</c:when>
+							</c:when>
 							</c:choose>
 						</tr>
 						
@@ -124,14 +117,29 @@
 
 <script>
     function requestDemo(swName) {
-        alert(swName + " 에 대한 데모 기간 연장을 요청합니다.");
-        
+    	var state;
+        state = confirm(swName + " 에 대한 데모 기간 연장을 요청합시겠습니까?");
+        if(state == true) {
+        		$.ajax({
+					url:"/license/user/requestDemo" ,
+					type:"POST",
+					contentType: "application/json",
+				 	data : JSON.stringify({
+				 		swName : swName
+				 	}),
+  	      		success : function (data) {
+  	      		window.location = "/license/user?name";
+  	     	 	alert("요청을 완료했습니다.");
+   	   		    },
+   		   		error : function(data, textStatus, errorThrown) {
+    	      	console.log(data);
+        		}
+				});
+        } else if(state == false) {
+        	alert("연장 요청을 취소합니다.");
+        }
     }
 
-    function requestLicense(swName) {
-        alert(swName + " 에 대한 라이센스를 요청합니다.");
-    }
-    
     function list(orderBy){
     	var list = '${licenseUserList }';
     	//var list = JSON.stringify(tmp);
@@ -142,9 +150,7 @@
 				url:"/license/user/ascend" ,
 				type:"POST",
 				contentType: "application/json",
-			 	data : JSON.stringify(
-			 		'${licenseUserList }'
-			),
+			 	data : JSON.stringify('${licenseUserList }'),
          success : function (data) {
         	 window.location = "/license/user?name";
          },
@@ -192,6 +198,7 @@
          }
 		});
     	}
+    	
 	}
 </script>
 
