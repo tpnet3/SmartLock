@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<fmt:bundle basename="resources/properties/softwareInfo">
+
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="softwareUser" />
 </jsp:include>
@@ -75,51 +75,13 @@
 
 	</div>
 <hr>
-</fmt:bundle>
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 
 <!-- /.container -->
 
 <script>
-	function detail(swName) {
-		// TODO: 상세보기
-		alert(swName + " 에 대한 상세보기를 클릭했습니다.");
-	}
-
-	function search(name) {
-		if (name.value != "default") {
-			$.ajax({
-				url : "/license/manager?name=" + name.value,
-				type : "GET",
-				contentType : "application/json",
-				data : {
-					name : name.value
-				},
-				success : function(data) {
-					window.location = "/license/manager?name=" + name.value;
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				}
-			});
-		} else {
-			$.ajax({
-				url : "/license/manager?name",
-				type : "GET",
-				contentType : "application/json",
-				data : {
-					name : name.value
-				},
-				success : function(data) {
-					window.location = "/license/manager?name";
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				}
-			});
-		}
-	}
+	
 </script>
 
 <jsp:include page="include/_jslib.jsp" />

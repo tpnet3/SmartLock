@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SoftwareService {
@@ -25,8 +26,8 @@ public class SoftwareService {
     public ArrayList<SoftwareVO> softwareList() throws Exception {
         return (ArrayList) commonDAO.selectList("software.softwareList", null);
     }
-    
-    public SoftwareReqVO softwareOne(String sw_id) throws Exception {
-        return (SoftwareReqVO) commonDAO.selectOne("software.softwareOne", sw_id);
+   
+    public SoftwareReqVO softwareRequest(String id) throws Exception {
+    	return (SoftwareReqVO) commonDAO.selectOne("softwareSelect", id);
     }
 }

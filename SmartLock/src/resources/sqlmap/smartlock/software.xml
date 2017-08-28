@@ -11,7 +11,7 @@
 		ORDER BY sw_name ASC;
     </select>
     
-    <select id="softwareOne"  parameterType="String"
+    <select id="softwareSelect"  parameterType="String"
             resultType="smartlock.software.vo.SoftwareReqVO">
         SELECT s.id
         	, c.corp_name
