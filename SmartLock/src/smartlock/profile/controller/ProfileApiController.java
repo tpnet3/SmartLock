@@ -1,5 +1,6 @@
 package smartlock.profile.controller;
 
+import org.apache.commons.lang.ObjectUtils.Null;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -106,24 +107,23 @@ public class ProfileApiController {
 	/**
 	 * 기업아이디로 기업이름 
 	 * @param userVO {@link CorpVO#id},
-	 * @return 성공시 "기업이름이 성공적으로 조회되었습니다.", 실패시 "error"
+	 * @return 성공시 corp_name, 실패시 "error"
 	 */	
 	@RequestMapping(value = "/profile/getCorpName", method = RequestMethod.POST)
-	public  @ResponseBody MsgResVO getCorpName(
+	public  @ResponseBody String getCorpName(
 			@RequestBody CorpVO corpVO,
 			HttpServletRequest request) {
-
-		return new MsgResVO(request, (sessionUserVO, msgResVO) -> {
-			String corp_name = profileService.selectCorpName(corpVO);
-			
-			if(corp_name.equals(null)){
-				// 조회실패
-				msgResVO.setStatus("error");
-				return "error";
-			}
-			else{
-				return "기업이름이 성공적으로 조회되었습니다.";
-			}		
-		});
+		 
+        try {
+        	String corp_name = profileService.selectCorpName(corpVO);
+        	
+        	return corp_name;
+        }    
+        catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
 	}
 }
+
+
