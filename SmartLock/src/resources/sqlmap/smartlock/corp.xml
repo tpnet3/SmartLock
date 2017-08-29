@@ -11,4 +11,12 @@
         FROM corp
         WHERE corp_name = #{value}
     </select>
+    
+    <select id="corpName"
+    		parameterType="int"
+    		resultType="String">
+    	SELECT corp_name
+    	FROM corp
+    	WHERE id=#{value}
+    </select>
 </mapper>
