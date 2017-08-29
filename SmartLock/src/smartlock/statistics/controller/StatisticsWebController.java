@@ -36,7 +36,7 @@ public class StatisticsWebController {
         	StatisticsVO statistics = new StatisticsVO();
             ModelAndView modelAndView = new ModelAndView("/smartlock/statistics");
             
-            // sw_id => all
+            // sw_id : 0 => all
             if(sw_id.equals("0")) {
             	statistics = statisticsService.viewStatistics(userVO.getId());
             } else {
