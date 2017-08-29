@@ -31,15 +31,9 @@ $(document).ready(function(){
         contentType: "application/json",
 		data : "",
 		success : function (data) {
-			console.log(data)
 			if(data.status == "success" && data.data) {
-
-				console.log(data.data);
-				
 				for (var i=0;i<data.data.length; i++) {
 					$("#select-software").append("<option value='"+data.data[i].id+"'>"+data.data[i].sw_name+"</option>");
-				   // console.log(sw.id);
-				   // console.log(sw.sw_name);
 				}
 			} else {
 				alert("");
