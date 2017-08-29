@@ -21,4 +21,13 @@
         WHERE s.id = #{sw_id}
         AND s.corp_id = c.id;
     </select>
+    
+    <select id="selectByCorp" parameterType="String"
+            resultType="smartlock.software.vo.SoftwareReqVO">
+        SELECT id
+        	,sw_name
+        	,corp_id
+       	 FROM software
+        WHERE corp_id = #{corp_id}
+    </select>
 </mapper>

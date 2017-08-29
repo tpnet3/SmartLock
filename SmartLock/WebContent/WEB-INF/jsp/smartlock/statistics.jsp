@@ -26,12 +26,8 @@
     <div class="row">
         <div class="col-sm-12" align="left">
             <div class="input-group">
-                <select name="" id="location1" style="width: 180px; height: 35px;">
+                <select name="" id="select-software" style="width: 180px; height: 35px;">
                     <option value="">전체보기</option>
-                    <option value="">Microsoft Excel</option>
-                    <option value="">Parallels Desktop</option>
-                    <option value="">Adobe CC</option>
-                    <option value="">Football Manager</option>
                 </select>
             </div>
             <!-- 검색창을 추가할지말지?
