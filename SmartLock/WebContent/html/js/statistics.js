@@ -1,14 +1,25 @@
 $(document).ready(function(){ 
 	var total = $("#total-value").html();
+	var license = $("#license-value").html();
 	var getLicense = total!=0 ? Math.round($("#getLicense-value").html()/total*10) : 0;
 	var demo = total!=0 ? Math.round($("#demo-value").html()/total*10) : 0;
 	
-	$("#total").children(".progress-left").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0.5s");
-	$("#total").children(".progress-right").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0s");
-  
-	$("#license").children(".progress-left").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0.5s");
-	$("#license").children(".progress-right").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0s");
-
+	if(total == 0) {
+		$("#total").children(".progress-left").children(".progress-bar").css("animation", "loading-0 0.5s linear forwards 0.5s");
+		$("#total").children(".progress-right").children(".progress-bar").css("animation", "loading-0 0.5s linear forwards 0s");
+	} else {
+		$("#total").children(".progress-left").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0.5s");
+		$("#total").children(".progress-right").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0s");
+	}
+	
+	if(license == 0) {
+		$("#license").children(".progress-left").children(".progress-bar").css("animation", "loading-0 0.5s linear forwards 0.5s");
+		$("#license").children(".progress-right").children(".progress-bar").css("animation", "loading-0 0.5s linear forwards 0s");
+	} else {
+		$("#license").children(".progress-left").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0.5s");
+		$("#license").children(".progress-right").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0s");
+	}
+	
 	if(getLicense<6) {
 		$("#getLicense").children(".progress-left").children(".progress-bar").css("animation", "loading-0 0.5s linear forwards 0.5s");
 		$("#getLicense").children(".progress-right").children(".progress-bar").css("animation", "loading-"+(getLicense)+" 0.5s linear forwards 0s");
