@@ -14,6 +14,7 @@ import smartlock.common.Util;
 import smartlock.member.vo.UserInfoVO;
 import smartlock.member.vo.UserVO;
 import smartlock.profile.vo.PasswordVO;
+import smartlock.member.vo.CorpVO;
 import smartlock.member.vo.LoginReqVO;
 import smartlock.member.vo.SignupReqVO;
 
@@ -69,5 +70,16 @@ public class ProfileService {
 		 System.out.println(cnt+"개의 회원이 삭제 되었습니다.");
 		 
 		 return cnt;
+	 }
+	 
+	 /**기업이름 요청(SELECT)
+		 * id로 이름요청
+		 * @param CorpVO
+		 * @return String
+		 * @throws Exception DAO 예외
+		 */
+	 public String selectCorpName(CorpVO corpVO) throws Exception{
+		 int corp_id = corpVO.getId();
+		 return (String) commonDAO.selectOne("corp.corpName", corp_id);
 	 }
 }
