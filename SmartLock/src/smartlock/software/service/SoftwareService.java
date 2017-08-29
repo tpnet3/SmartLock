@@ -30,4 +30,8 @@ public class SoftwareService {
     public SoftwareReqVO softwareRequest(String id) throws Exception {
     	return (SoftwareReqVO) commonDAO.selectOne("softwareSelect", id);
     }
+    
+    public int softwareRequestFinal(Map<String, String> map) throws Exception {
+    	return (int) commonDAO.update("softwareFinal", map);
+    }
 }
