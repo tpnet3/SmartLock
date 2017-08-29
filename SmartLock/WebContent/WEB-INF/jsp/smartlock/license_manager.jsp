@@ -1,208 +1,136 @@
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="smartlock.license.vo.LicenseManagerReqVO" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<% ArrayList<LicenseManagerReqVO> licenseManagerReqVOArrayList = (ArrayList<LicenseManagerReqVO>) request.getAttribute("licenseManagerReqVOArrayList"); %>
-<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="smartlock.license.vo.LicenseManagerReqVO"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="include/_header.jsp">
-    <jsp:param name="_nav" value="license" />
+	<jsp:param name="_nav" value="license" />
 </jsp:include>
 
 <!-- Header Carousel -->
 <div class="container">
-    <!-- Page Heading/Breadcrumbs -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">라이센스 관리
-                <small>발급 대기 현황</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li class="active">발급 대기 현황</li>
-                <li><a href="/license/manager">발급 완료 현황</a></li>
-            </ol>
-        </div>
-    </div>
-    <div class="row">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="col-sm-2">
-                    <div class="input-group">
-                        <select name="" id="location1"
-                                style="width: 180px; height: 35px;">
-                            <option value="">소프트웨어명</option>
-                            <option value="">전체보기</option>
-                            <option value="">Microsoft Excel</option>
-                            <option value="">Parallels Desktop</option>
-                            <option value="">Adobe CC</option>
-                            <option value="">Football Manager</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="input-group">
-                        <select name="" id="location1"
-                                style="width: 180px; height: 35px;">
-                            <option value="">만료 날짜</option>
-                            <option value="">오름차순</option>
-                            <option value="">내림차순</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="col-sm-6">
-                    <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
-                           id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
-                    <button class="btn btn-primary" type="button" id="searchButton"
-                            data-loading-text="Searching..">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
+	<!-- Page Heading/Breadcrumbs -->
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">
+				라이센스 관리 <small>발급 대기 현황</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li class="active">발급 대기 현황</li>
+				<li><a href="/license/manager?name">발급 완료 현황</a></li>
+			</ol>
+		</div>
+	</div>
+	<div class="row">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="col-sm-2">
+					<div class="input-group">
+						<select name="" id="swL_ist" style="width: 180px; height: 35px;"
+							onchange="search(this)">
+							<option value="">소프트웨어명</option>
+							<c:forEach var="sw" items="${swNameList}">
+								<option value="${sw}">${sw}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="input-group">
+						<select name="" id="list" style="width: 180px; height: 35px;"
+							onchange="list(this)">
+							<option value="">만료 날짜</option>
+							<option value="">오름차순</option>
+							<option value="">내림차순</option>
+						</select>
+					</div>
+				</div>
 
-        </div>
-        <br>
-        <!-- 검색필터-->
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center"></h2>
-            </div>
-            <div id="no-more-tables">
-                <table
-                        class="col-sm-12 table-bordered table-striped table-condensed cf">
-                    <thead class="cf" align="center">
-                    <tr>
-                        <td width="10px">
-                            <h4>
-                                <b>No.
-                            </h4>
-                        </td>
-                        <td width="250px"><h4>
-                            <b>소프트웨어명
-                        </h4></td>
-                        <td width="100px"><h4>
-                            <b>이름
-                        </h4></td>
-                        <td width="100px"><h4>
-                            <b>신청날짜
-                        </h4></td>
-                        <td width="150px"><h4>
-                            <b>분류
-                        </h4></td>
-                        <td width="100px"><h4>
-                            <b>상세보기
-                        </h4></td>
-                        <td width="100px"><h4>
-                            <b>처리
-                        </h4></td>
-                    </tr>
-                    </thead>
-                    <tbody align="center">
-                    <% for (int i = 0; i < licenseManagerReqVOArrayList.size(); i++) { %>
-                    <% LicenseManagerReqVO licenseManagerReqVO = licenseManagerReqVOArrayList.get(i); %>
-                    <tr>
-                        <td data-title="No."><%=i+1%></td>
-                        <td data-title="소프트웨어"><%=licenseManagerReqVO.getSw_name()%></td>
-                        <td data-title="이름"><%=licenseManagerReqVO.getUser_name()%></td>
-                        <td data-title="신청날짜"><%=sdf.format(licenseManagerReqVO.getRequest_date())%></td>
-                        <td data-title="분류"><span class="label label-success">일반
-									신청</span></td>
-                        <td data-title="상세보기">
-                            <span class="label" style="background-color: darkgray; color: black"
-                                  onclick="return showDetail('<%=licenseManagerReqVO.getSw_name()%>');">
-                                상세 보기
-                            </span>
-                        </td>
-                        <td data-title="상세보기">
-                            <span class="label" style="background-color: indianred; color: white"
-                                  onclick="return licenseOk('<%=licenseManagerReqVO.getSw_name()%>');">
-                                발급하기
-                            </span>
-                        </td>
-                    </tr>
-                    <% } %>
-                    <!--
-                    <tr>
-                        <td data-title="No.">2</td>
-                        <td data-title="소프트웨어">Microsoft Excel</td>
-                        <td data-title="이름">이영표</td>
-                        <td data-title="신청날짜">2017-02-02</td>
-                        <td data-title="분류"><span class="label label-success">일반
-									신청</span></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: darkgray; color: black">상세 보기</span></a></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: indianred; color: white">발급하기</span></a></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">3</td>
-                        <td data-title="소프트웨어">Microsoft Excel</td>
-                        <td data-title="이름">차두리</td>
-                        <td data-title="신청날짜">2017-03-03</td>
-                        <td data-title="분류"><span class="label label-warning">데모
-									신청</span></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: darkgray; color: black">상세 보기</span></a></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: indianred; color: white">발급하기</span></a></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">4</td>
-                        <td data-title="소프트웨어">Microsoft Excel</td>
-                        <td data-title="이름">박주영</td>
-                        <td data-title="신청날짜">2017-04-04</td>
-                        <td data-title="분류"><span class="label label-warning">데모
-									신청</span></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: darkgray; color: black">상세 보기</span></a></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: indianred; color: white">발급하기</span></a></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">5</td>
-                        <td data-title="소프트웨어">Football Manager</td>
-                        <td data-title="이름">김남일</td>
-                        <td data-title="신청날짜">2017-05-05</td>
-                        <td data-title="분류"><span class="label label-success">일반
-									신청</span></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: darkgray; color: black">상세 보기</span></a></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: indianred; color: white">발급하기</span></a></td>
-                    </tr>
-                    <tr>
-                        <td data-title="No.">6</td>
-                        <td data-title="소프트웨어">Adobe CC</td>
-                        <td data-title="이름">이근호</td>
-                        <td data-title="신청날짜">2017-01-01</td>
-                        <td data-title="분류"><span class="label label-success">일반
-									신청</span></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: darkgray; color: black">상세 보기</span></a></td>
-                        <td data-title="상세보기"><a><span class="label"
-                                                       style="background-color: indianred; color: white">발급하기</span></a></td>
-                    </tr>
-                    -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+				<div class="col-sm-6">
+					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
+						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
+					<button class="btn btn-primary" type="button" id="searchButton"
+						data-loading-text="Searching..">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+			</div>
 
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+		</div>
+		<br>
+		<!-- 검색필터-->
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="text-center"></h2>
+			</div>
+			<div id="no-more-tables">
+				<table
+					class="col-sm-12 table-bordered table-striped table-condensed cf">
+					<thead class="cf" align="center">
+						<tr>
+							<td width="10px"><h4>
+									<b>No. 
+								</h4></td>
+							<td width="250px"><h4>
+									<b>소프트웨어명
+								</h4></td>
+							<td width="100px"><h4>
+									<b>이름
+								</h4></td>
+							<td width="100px"><h4>
+									<b>신청날짜
+								</h4></td>
+							<td width="150px"><h4>
+									<b>분류
+								</h4></td>
+							<td width="100px"><h4>
+									<b>상세보기
+								</h4></td>
+							<td width="100px"><h4>
+									<b>처리
+								</h4></td>
+						</tr>
+					</thead>
+					<tbody align="center">
+						<c:forEach var="license" items="${licenseManagerReqList}"
+							varStatus="count">
+							<tr>
+								<td data-title="No.">${count.count }</td>
+								<td data-title="소프트웨어">${license.sw_name }</td>
+								<td data-title="이름">${license.user_name}</td>
+								<td data-title="신청날짜"><fmt:formatDate
+										value="${license.request_date}" pattern="yyyy-MM-dd" /></td>
+								<c:choose>
+									<c:when test="${license.state eq 1 }">
+										<td data-title="분류"><span class="label label-success">
+												일반 신청 </span></td>
+									</c:when>
+									<c:when test="${license.state eq 2}">
+										<td data-title="분류"><span class="label label-warning">
+												데모 신청</span></td>
+									</c:when>
+								</c:choose>
+								<td data-title="상세보기"><span class="label"
+									style="background-color: darkgray; color: black"
+									onclick="showDetail('${license.sw_name}');"> 상세
+										보기 </span></td>
+								<td data-title="상세보기"><span class="label"
+									style="background-color: indianred; color: white"
+									onclick="licenseOk('${license.sw_name}', '${license.id }','${license.state }');">
+										발급하기 </span></td>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
 </div>
 <!-- /.container -->
 
@@ -215,15 +143,89 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
-    function showDetail(swName) {
-        // TODO: 상세보기
-        alert(swName + " 에 대한 상세보기를 클릭했습니다.");
-    }
+	function showDetail(swName) {
+		// TODO: 상세보기
+		alert(swName + " 에 대한 상세보기를 클릭했습니다.");
+	}
 
-    function licenseOk(swName) {
-        // TODO: 라이센스 발급
-        alert(swName + " 에 대한 라이센스를 발급했습니다.");
-    }
+	function licenseOk(swName, id, state) {
+		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?" +id +state);
+		if(check == true){
+			if(state == 1){
+				$.ajax({
+					url:"/permit/full",
+					type:"POST",
+					contentType: "application/json",
+				 	data : JSON.stringify({
+					swName : swName ,
+					id : id
+				}),
+	   			success : function (data) {
+	   				alert(swName + " 에 대한 정식버전 라이센스를 발급했습니다.");
+	   				window.location = "/license/manager/request?name";
+	 	  			},
+	 			error : function(data, textStatus, errorThrown) {
+	       			console.log(data);
+	   				}
+				});
+			} else {
+				$.ajax({
+					url:"/permit/demo",
+					type:"POST",
+					contentType: "application/json",
+				 	data : JSON.stringify({
+					swName : swName ,
+					id : id
+				}),
+	   			success : function (data) {
+	   				alert(swName + " 에 대한 데모버젼 라이센스를 발급했습니다.");
+	   				window.location = "/license/manager/request?name";
+	 	  			},
+	 			error : function(data, textStatus, errorThrown) {
+	       			console.log(data);
+	   				}
+				});
+			} 
+			
+		} else{
+			alert("라이센스 발급을 취소합니다.");
+		}
+	}
+	
+	function search(name) {
+    	if(name.value!="default"){
+    		$.ajax({
+				url:"/license/manager/request?name="+name.value,
+				type:"GET",
+				contentType: "application/json",
+			 	data : {
+				name : name.value
+			},
+         success : function (data) {
+        	 window.location = "/license/manager/request?name="+name.value;
+         },
+         error : function(data, textStatus, errorThrown) {
+             console.log(data);
+         }
+		});
+    	}
+    	else{
+    		$.ajax({
+				url:"/license/manager/request?name",
+				type:"GET",
+				contentType: "application/json",
+			 	data : {
+				name : name.value
+			},
+         success : function (data) {
+        	 window.location = "/license/manager/request?name";
+         },
+         error : function(data, textStatus, errorThrown) {
+             console.log(data);
+         }
+		});
+    	}
+	}
 </script>
 
 <jsp:include page="include/_footer.jsp" />

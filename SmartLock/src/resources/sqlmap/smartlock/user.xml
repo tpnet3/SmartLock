@@ -54,22 +54,21 @@
     		parameterType="smartlock.member.vo.UserVO">
     	UPDATE user
 		SET email=#{email}, phone_number=#{phoneNumber}
-		WHERE id=#{id};
+		WHERE id=#{id} AND password=#{password};
     </update>
     
     <update id="changePassword" 
     		parameterType="smartlock.profile.vo.PasswordVO">
     	UPDATE user
 		SET password=#{new_password}
-		WHERE id=#{id};
+		WHERE id=#{id} AND password=#{password};
     </update>
     
-    <select id="selectPassword"
-            parameterType="String"
-            resultType="String">
-        SELECT password
-        FROM user
-        WHERE id = #{id}
-    </select>
+    <delete id="removeUser"
+    		parameterType="smartlock.member.vo.UserVO">
+    	DELETE
+    	FROM user
+    	WHERE id=#{id} AND password=#{password};
+    </delete>
 
 </mapper>

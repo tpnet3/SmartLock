@@ -1,28 +1,4 @@
-$("#profile-form").submit(function() {
-	// check validation
-	if($("#email").val() == '') {
-		$("#email").focus();
-		alert("이메일을 입력하세요.");
-		return;
-	}
-	if($("#phone_number").val() == '') {
-		$("#phone_number").focus();
-		alert("전화번호를 입력하세요.");
-		return;
-	}
-	if($("#password").val() == '') {
-		$("#password").focus();
-		alert("비밀번호를 입력하세요.");
-		return;
-	}
-	/*
-	if($("#password").val() != $("#check-pwd").val()) {
-		$("#check-pwd").focus();
-		alert("비밀번호가 다릅니다.");
-		return;
-	}
-	*/
-	
+$("#updateProfile").submit(function() {	
 	$.ajax({
 		url : "/profile/update",
 		type : "POST",
@@ -42,43 +18,25 @@ $("#profile-form").submit(function() {
 				//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
 				location.href="/profile/ok";
 			} else {
-				alert("회원정보수정실패");
+				$("#password").focus();
+				alert("현재 비밀번호가 일치하지 않습니다.")
 			}
 		},
 		error : function(data, textStatus, errorThrown) {
-			
+			alert("ajax통신실패");
 		}
 	});
 	
 	return false;
 });
 
-//$("#profile_btn").on("click",function() {
 $("#changePassword").submit(function() {
-	// check validation
-	if($("#password").val() == '') {
-		$("#password").focus();
-		alert("현재 비밀번호를 입력하세요.");
-		return false;
-	}	
-	else if($("#new_password1").val() == '') {
-		$("#new_password1").focus();
-		alert("새 비밀번호를 입력하세요.");
-		return false;
-	}
-	else if($("#new_password2").val() == '') {
-		$("#new_password2").focus();
-		alert("새 비밀번호를 입력하세요.");
-		return false;
-	}
-	else if($("#new_password1").val()!=$("#new_password2").val()){
+	if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
 		alert("새 비밀번호가 일치하지 않습니다.");
 		return false;
 	}
-	
 	else{
-		alert("ajax");
 		$.ajax({
 			url : "/profile/change/success",
 			type : "POST",
@@ -89,19 +47,54 @@ $("#changePassword").submit(function() {
 				"password" : $("#password").val(),
 				"new_password" : $("#new_password1").val()
 			}),
-			success : function (data){
-				if(data.status == "success") {
-					//회원정보 수정 성공 페이지로 이동(메인페이지 이동버튼 제공)
+			success : function (data){				
+				if(data.status=="success"){
 					location.href="/profile/changePassword/ok";
-				} else {
+				}
+				else{
 					$("#password").focus();
-					alert("현재 비밀번호가 일치하지 않습니다.");
-					return false;
+					alert("현재 비밀번호가 일치하지 않습니다.")
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
-				alert("code:"+data.status+"\n"+"message:"+data.message+"\n"+"error:"+errorThrown);
+				alert("ajax통신실패");
 			}
-		});		
+		});
 	}
+	
+	return false;
+});
+
+$("#removeUser").submit(function() {
+	if($("#password1").val()!=$("#password2").val()){
+		$("#password2").focus();
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	else{
+		$.ajax({
+			url : "/profile/quit/success",
+			type : "POST",
+	        contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify({
+				"id" : SmartLock.user.id,
+				"password" : $("#password1").val(),
+			}),
+			success : function (data){				
+				if(data.status=="success"){
+					location.href="/profile/quit/ok";
+				}
+				else{
+					$("#password1").focus();
+					alert("비밀번호를 다시 확인해주세요.")
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				alert("ajax통신실패");
+			}
+		});
+	}
+	
+	return false;
 });

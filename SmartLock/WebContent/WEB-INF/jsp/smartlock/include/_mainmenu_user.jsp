@@ -25,7 +25,10 @@
                     <a href="/device/all">Device</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
-                    <a href="/license/user">License</a>
+                    <a href="/license/user?name">License</a>
+                </li>
+                <li <%= (_nav != null && _nav.equals("softwareUser")) ? "class=\"active\"" : "" %>>
+                    <a href="/software/user">Software</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("download")) ? "class=\"active\"" : "" %>>
                     <a href="/download">Download</a>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="software">
+
+    <select id="softwareList"
+            resultType="smartlock.software.vo.SoftwareVO">
+        SELECT *
+        FROM software
+		ORDER BY sw_name ASC;
+    </select>
+    
+    <select id="softwareSelect"  parameterType="String"
+            resultType="smartlock.software.vo.SoftwareReqVO">
+        SELECT s.id
+        	, c.corp_name
+        	, s.sw_name
+        FROM software s,
+        	corp c
+        WHERE s.id = #{sw_id}
+        AND s.corp_id = c.id;
+    </select>
+</mapper>

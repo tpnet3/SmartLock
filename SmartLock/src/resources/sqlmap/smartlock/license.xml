@@ -20,7 +20,8 @@
 		AND l.user_id = d.user_id
 		AND d.sw_id = s.id
 		AND s.corp_id = c.id
-		AND l.sw_id = d.sw_id;
+		AND l.sw_id = d.sw_id
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 소프트웨어명으로 발급완료 라이센스 조회 -->
@@ -42,7 +43,8 @@
 		AND s.corp_id = c.id
 		AND l.sw_id = d.sw_id
 		AND l.sw_id = (SELECT id FROM software WHERE
-		sw_name = #{name});
+		sw_name = #{name})
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 개인 요청 라이센스 전체 조회 -->
@@ -57,7 +59,8 @@
 			, req_license l
 		WHERE l.user_id = #{id}
 		AND l.sw_id = s.id
-		AND s.corp_id = c.id;
+		AND s.corp_id = c.id
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 개인 요청 라이센스 소프트웨어명 별 조회 -->
@@ -74,7 +77,8 @@
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id = (SELECT id FROM software WHERE
-		sw_name = #{name});
+		sw_name = #{name})
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 관리자 요청 라이센스 전체 조회 -->
@@ -84,24 +88,7 @@
 			, u.user_name
 			, c.corp_name
 			, l.request_date
-			, l.state
-		FROM software s
-			, corp c
-			, req_license l
-			, user u
-		WHERE c.id = (SELECT corp_id FROM user WHERE id = #{id})
-		AND s.corp_id = c.id
-		AND l.sw_id = s.id
-		AND u.id = l.user_id;
-	</select>
-	
-	<!-- 관리자 요청 라이센스 소프트웨어명별 조회 -->
-	<select id="selectManagerReqLicenseByName" parameterType="java.util.Map"
-		resultType="smartlock.license.vo.LicenseManagerReqVO">
-		SELECT s.sw_name
-			, u.user_name
-			, c.corp_name
-			, l.request_date
+			, u.id
 			, l.state
 		FROM software s
 			, corp c
@@ -111,7 +98,28 @@
 		AND s.corp_id = c.id
 		AND l.sw_id = s.id
 		AND u.id = l.user_id
-		AND s.sw_name = #{name};
+		ORDER BY s.sw_name ASC;
+	</select>
+	
+	<!-- 관리자 요청 라이센스 소프트웨어명별 조회 -->
+	<select id="selectManagerReqLicenseByName" parameterType="java.util.Map"
+		resultType="smartlock.license.vo.LicenseManagerReqVO">
+		SELECT s.sw_name
+			, u.user_name
+			, c.corp_name
+			, l.request_date
+			, u.id
+			, l.state
+		FROM software s
+			, corp c
+			, req_license l
+			, user u
+		WHERE c.id = (SELECT corp_id FROM user WHERE id = #{id})
+		AND s.corp_id = c.id
+		AND l.sw_id = s.id
+		AND u.id = l.user_id
+		AND s.sw_name = #{name}
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 관리자 발급완료 라이센스 전체 조회 -->
@@ -130,7 +138,8 @@
 		WHERE c.id = (SELECT corp_id FROM user WHERE id = #{id})
 		AND s.corp_id = c.id
 		AND l.sw_id = s.id
-		AND u.id = l.user_id;
+		AND u.id = l.user_id
+		ORDER BY s.sw_name ASC;
 	</select>
 	
 	<!-- 관리자 발급완료 라이센스 소프트웨어명별 조회 -->
@@ -150,6 +159,34 @@
 		AND s.corp_id = c.id
 		AND l.sw_id = s.id
 		AND u.id = l.user_id
-		AND s.sw_name = #{name};
+		AND s.sw_name = #{name}
+		ORDER BY s.sw_name ASC;
 	</select>
+	
+	<select id="permitFull" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		INSERT INTO license (id, user_id, start_date, end_date, sw_id, state)
+		VALUES ('1', #{id}, CURDATE(), '9999-00-00', (SELECT id FROM software WHERE sw_name = #{swName}), '1');
+	</select>
+	
+	<select id="permitDemo" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		INSERT INTO license (id, user_id, start_date, end_date, sw_id, state)
+		VALUES ('1', #{id}, CURDATE(), ADDDATE(CURDATE(), INTERVAL 30 DAY), (SELECT id FROM software WHERE sw_name = #{swName}), '2');
+	</select>
+	
+	<select id="permitDelete" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		DELETE FROM req_license
+		WHERE user_id = #{id}
+		AND sw_id = (SELECT id FROM software WHERE sw_name = #{swName});
+	</select>
+	
+	<select id="licenseUserReqDemo" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		INSERT INTO req_license (id, user_id, request_date, sw_id, state)
+		VALUES ('1', #{id}, CURDATE(), (SELECT id FROM software WHERE sw_name = #{name}), '1');
+	</select>
+	
+	
 </mapper>

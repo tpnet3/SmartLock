@@ -32,22 +32,31 @@ public class ProfileApiController {
 	 *               {@link UserVO#email},
 	 *               {@link UserVO#phone_number}
 	 * @return 성공시 "회원정보 수정이 완료되었습니다.", 실패시 "error"
-	 */
+	 */	
 	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO updateProfile(
 			@RequestBody UserVO userVO,
 			HttpServletRequest request) {
 
-		return new MsgResVO(request, sessionUserVO -> {
-			profileService.updateUser(userVO);
-			return "회원정보 수정이 완료되었습니다.";
+		return new MsgResVO(request, (sessionUserVO, msgResVO) -> {
+			int result = profileService.updateUser(userVO);
+			
+			if(result ==0){
+				// 현재 비밀번호 불일치
+				msgResVO.setStatus("error");
+				return "error";
+			}
+			else{
+				return "회원정보 수정이 완료되었습니다.";
+			}		
 		});
 	}
-
+	
 	/**
 	 * 비밀번호 변경
-	 * @param userVO {@link UserVO#id},
-	 *               {@link UserVO#password}
+	 * @param PasswordVO {@link PasswordVO#id},
+	 *               {@link PassswordVO#password}
+	 *               {@link PassswordVO#new_password}
 	 * @return 성공시 "비밀번호 수정이 완료되었습니다.", 실패시 "error"
 	 */
 	@RequestMapping(value = "/profile/change/success", method = RequestMethod.POST)
@@ -55,33 +64,42 @@ public class ProfileApiController {
 			@RequestBody PasswordVO passwordVO,
 			HttpServletRequest request) {
 		
-		boolean checkPassword = false;
-		MsgResVO msgResVO = new MsgResVO();
-		
-		//checkPassword : 현재 비밀번호 일치여부
-		try{
-			checkPassword = profileService.checkPassword(passwordVO);
+		return new MsgResVO(request, (sessionUserVO, msgResVO) -> {
+			int result = profileService.changePasswordUser(passwordVO);
 			
-		}catch(Exception e){			
-			msgResVO.setStatus("error");
-			msgResVO.setMessage("error");
-		}
-		
-		
-		if(checkPassword == true){
-			return new MsgResVO(request, sessionUserVO -> {				
-				profileService.changePasswordUser(passwordVO);
-				System.out.println("비밀번호 수정이 완료되었습니다.");
+			if(result ==0){
+				// 현재 비밀번호 불일치
+				msgResVO.setStatus("error");
+				return "error";
+			}
+			else{
 				return "비밀번호 수정이 완료되었습니다.";
-			});
-		}
-		
-		else{
-			msgResVO.setStatus("error");
-			msgResVO.setMessage("비밀번호 불일치");
-			return msgResVO;
-		}
+			}
+		});
 	}
 	
-	// /profile/checkPassword
+	/**
+	 * 회원탈퇴
+	 * @param UserVO {@link UserVO#id},
+	 *               {@link UserVO#password}	 *               
+	 * @return 성공시 "회원탈퇴가 완료되었습니다.", 실패시 "error"
+	 */
+	@RequestMapping(value = "/profile/quit/success", method = RequestMethod.POST)
+	public  @ResponseBody MsgResVO removeUser(
+			@RequestBody UserVO userVO,
+			HttpServletRequest request) {
+		
+		return new MsgResVO(request, (sessionUserVO, msgResVO) -> {
+			int cnt = profileService.removeUser(userVO);
+			
+			if(cnt ==0){
+				// 현재 비밀번호 불일치
+				msgResVO.setStatus("error");
+				return "error";
+			}
+			else{
+				return "회원탈퇴가 완료되었습니다.";
+			}
+		});
+	}
 }

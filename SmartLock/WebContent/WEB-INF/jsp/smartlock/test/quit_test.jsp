@@ -3,7 +3,7 @@
 
 <% UserVO userVO = (UserVO) session.getAttribute("user"); %>
 
-<jsp:include page="include/_header.jsp">
+<jsp:include page="../include/_header.jsp">
 	<jsp:param name="_title" value="Profile" />
     <jsp:param name="_nav" value="" />
     <jsp:param name="_css" value="/html/css/profile.css" />
@@ -46,12 +46,12 @@
     <hr>
 
     <!-- Footer -->
-    <jsp:include page="include/_footer_content.jsp" />
+    <jsp:include page="../include/_footer_content.jsp" />
 
 </div>
 
-<jsp:include page="include/_jslib.jsp" >
+<jsp:include page="../include/_jslib.jsp" >
 	<jsp:param name="_js" value="/html/js/profile.js" />
 </jsp:include>
 
-<jsp:include page="include/_footer.jsp" />
+<jsp:include page="../include/_footer.jsp" />

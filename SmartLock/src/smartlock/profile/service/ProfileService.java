@@ -22,60 +22,52 @@ public class ProfileService {
 	
 	@Resource(name="commonDAO")
 	private CommonDAO commonDAO;
-	
-	/**
-	 * id 로 UserVO 를 가져오는 메소드
-	 * @param id 아이디
-	 * @return UserVO
-	 * @throws Exception DAO 예외
-	 */	
-	public UserVO getUserVO(String id) throws Exception{
-		return (UserVO) commonDAO.selectOne("user.userInfo", id);
-	}
-	
-	/**
+		
+	/**회원정보 수정(UPDATE)
 	 * 
 	 * @param UserVO
-	 * @return void
+	 * @return int
 	 * @throws Exception DAO 예외
 	 */
-	 public void updateUser(UserVO userVO) throws Exception{		 
-		 int cnt = commonDAO.update("user.updateUser", userVO);
-		 System.out.println(cnt+"개의 회원정보가 업데이트 되었습니다.");
+	 public int updateUser(UserVO userVO) throws Exception{
+		 userVO.setPassword(Util.encrypt(userVO.getPassword()));
+		 
+		 int result = commonDAO.update("user.updateUser", userVO);
+		 System.out.println(result+"개의 회원정보가 업데이트 되었습니다.");
+		 
+		 return result;
 	 }
 	 
 	 /**새 비밀번호 변경(UPDATE)
 		 * 
-		 * @param passwordVO
+		 * @param PasswordVO
+		 * @return int
+		 * @throws Exception DAO 예외
+		 */
+	 public int changePasswordUser(PasswordVO passwordVO) throws Exception{
+		// 비밀번호 암호화
+		 passwordVO.setPassword(Util.encrypt(passwordVO.getPassword()));
+		 passwordVO.setNew_password(Util.encrypt(passwordVO.getNew_password()));
+		 
+		 int result = commonDAO.update("user.changePassword", passwordVO);
+		 System.out.println(result+"개의 회원의 비밀번호가 업데이트 되었습니다.");
+		 
+		 return result;
+	 }
+	 
+	 /**회원 탈퇴(DELETE)
+		 * 
+		 * @param UserVO
 		 * @return void
 		 * @throws Exception DAO 예외
 		 */
-	 public void changePasswordUser(PasswordVO passwordVO) throws Exception{
+	 public int removeUser(UserVO userVO) throws Exception{
 		// 비밀번호 암호화
-		passwordVO.setNew_password(Util.encrypt(passwordVO.getNew_password()));
+		 userVO.setPassword(Util.encrypt(userVO.getPassword()));
 		 
-		 int cnt = commonDAO.update("user.changePassword", passwordVO);
-		 System.out.println(cnt+"개의 회원의 비밀번호가 업데이트 되었습니다.");
-	 }
-	 
-	 /**
-		 * 전송받은 패스워드와 DB패스워드 비교
-		 * @param UserVO
-		 * @return boolean
-		 * @throws Exception DAO 예외
-		 */
-	 public boolean checkPassword(PasswordVO passwordVO) throws Exception{
-		//json으로 받은 패스워드 : encrypt_password
-		//DB에 있는 실제 패스워드 : real_password
-		 String encrypt_password = Util.encrypt(passwordVO.getPassword());
-		 String real_password = (String)commonDAO.selectOne("user.selectPassword", passwordVO);
-		 System.out.println("회원의 비밀번호가 조회되었습니다.");
+		 int cnt = commonDAO.delete("user.removeUser", userVO);
+		 System.out.println(cnt+"개의 회원이 삭제 되었습니다.");
 		 
-		 if(encrypt_password.equals(real_password)){
-			 return true;
-		 }
-		 else{
-			 return false;
-		 }
+		 return cnt;
 	 }
 }

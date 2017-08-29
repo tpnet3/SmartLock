@@ -2,9 +2,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="smartlock.license.vo.LicenseUserReqVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<% ArrayList<LicenseUserReqVO> licenseUserReqVOArrayList = (ArrayList<LicenseUserReqVO>) request.getAttribute("licenseUserReqVOArrayList"); %>
-<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
 
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_title" value="License" />
@@ -14,13 +14,11 @@
 
 <!-- Page Content -->
 <div class="container">
-	<!-- Service Panels -->
-	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
 		<div class="col-lg-12">
 			<h2 class="page-header">라이센스 요청현황</h2>
 			<ol class="breadcrumb">
-				<li><a href="/license/user">라이센스 발급현황</a>
+				<li><a href="/license/user?name">라이센스 발급현황</a>
 				</li>
 				<li class="active">라이센스 요청현황</li>
 			</ol>
@@ -31,19 +29,18 @@
 			<div class="col-sm-2">
 				<div class="input-group">
 					<select name="" id="location1"
-					style="width: 180px; height: 35px;">
+					style="width: 180px; height: 35px;" onchange="search(this)">
 					<option value="">소프트웨어명</option>
-					<option value="">Microsoft Excel</option>
-					<option value="">Parallels Desktop</option>
-					<option value="">Adobe CC</option>
-					<option value="">Football Manager</option>
+					<c:forEach var="sw" items="${swNameList}">
+					<option value="${sw }">${sw }</option>
+					</c:forEach>
 				</select>
 				</div>
 			</div>
 			<div class="col-sm-2">
 				<div class="input-group">
 					<select name="" id="location1"
-					style="width: 180px; height: 35px;">
+					style="width: 180px; height: 35px;" onchange="list(this)">
 					<option value="">요청 날짜</option>
 					<option value="">오름차순</option>
 					<option value="">내림차순</option>
@@ -75,87 +72,53 @@
 					<thead class="cf" align="center">
 						<tr>
 							<td width="10px"><h4><b>No.</b></h4></td>
-							<td width="250px"><h4><b>소프트웨어</b></h4></td>
+							<td width="230px"><h4><b>소프트웨어</b></h4></td>
 							<td width="200px"><h4><b>회사명</b></h4></td>
 							<td width="150px"><h4><b>요청일자</b></h4></td>
 							<td width="100px"><h4><b>상태</b></h4></td>
 						</tr>
 					</thead>
 					<tbody align="center">
-					<% for (int i = 0; i < licenseUserReqVOArrayList.size(); i++) { %>
-					<% LicenseUserReqVO licenseUserReqVO = licenseUserReqVOArrayList.get(i); %>
-
-					<tr data-repeat="list">
-						<td data-bind="no" class="data-no"><%=i+1%></td>
-						<td data-bind="소프트웨어"><%=licenseUserReqVO.getSw_name()%></td>
-						<td data-bind="회사명"><%=licenseUserReqVO.getCorp_name()%></td>
-						<td data-bind="요청일자"><%=sdf.format(licenseUserReqVO.getRequest_date())%></td>
-
-						<% if (licenseUserReqVO.getState() == 1) { %>
+					<c:forEach var="license" items="${licenseUserReqList}" varStatus="count">
+					<tr>
+						<td data-bind="no" class="data-no">${count.count }</td>
+						<td data-bind="소프트웨어">${license.sw_name }</td>
+						<td data-bind="회사명">${license.corp_name }</td>
+						<td data-bind="요청일자"><fmt:formatDate value="${license.request_date}" pattern="yyyy-MM-dd"/></td>
+						<c:choose>
+								<c:when test="${license.state eq 1 }">
 						<td data-bind="상태일반요청">
 							<span class="label label-success">
 								일반 요청
 							</span>
 						</td>
-						<% } else if (licenseUserReqVO.getState() == 2) { %>
+						</c:when>
+							<c:when test="${license.state eq 2}">
 						<td data-bind="상태데모요청">
-							<span class="label label-success"
-								  onmouseout="this.style.background='#5cb85c';this.innerText='데모 요청';"
-								  onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
-								  onclick="return requestDemo('<%=licenseUserReqVO.getSw_name()%>');">
-								데모 요청
+							<span class="label label-success">데모 요청
 							</span>
 						</td>
-						<% } else { %>
+						</c:when>
+							<c:when test="${license.state eq 3}">
 						<td data-bind="상태발급거절">
 							<span class="label label-danger"
 								  onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';"
 								  onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';"
-								  onclick="return requestLicense('<%=licenseUserReqVO.getSw_name()%>');">
+								  onclick="return requestLicense('${license.sw_name}');">
 								발급거절
 							</span>
 						</td>
-						<% } %>
+						</c:when>
+							</c:choose>
 					</tr>
-					<% } %>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
 </div>
-<!-- /.container -->
-<!-- Pagination -->
-<!--
-<div class="row text-center">
-	<div class="col-lg-12">
-		<ul class="pagination">
-			<li>
-				<a href="#">&laquo;</a>
-			</li>
-			<li class="active">
-				<a href="#">1</a>
-			</li>
-			<li>
-				<a href="#">2</a>
-			</li>
-			<li>
-				<a href="#">3</a>
-			</li>
-			<li>
-				<a href="#">4</a>
-			</li>
-			<li>
-				<a href="#">5</a>
-			</li>
-			<li>
-				<a href="#">&raquo;</a>
-			</li>
-		</ul>
-	</div>
-</div>
--->
-<!-- /.row -->
+
 <hr>
 
 <!-- Footer -->
@@ -171,6 +134,41 @@
     function requestLicense(swName) {
         alert(swName + " 에 대한 라이센스를 요청합니다.");
     }
+    
+    function search(name) {
+    	if(name.value!="default"){
+    		$.ajax({
+				url:"/license/user/request?name="+name.value,
+				type:"GET",
+				contentType: "application/json",
+			 	data : {
+				name : name.value
+			},
+         success : function (data) {
+        	 window.location = "/license/user/request?name="+name.value;
+         },
+         error : function(data, textStatus, errorThrown) {
+             console.log(data);
+         }
+		});
+    	}
+    	else{
+    		$.ajax({
+				url:"/license/user/request?name",
+				type:"GET",
+				contentType: "application/json",
+			 	data : {
+				name : name.value
+			},
+         success : function (data) {
+        	 window.location = "/license/user/request?name";
+         },
+         error : function(data, textStatus, errorThrown) {
+             console.log(data);
+         }
+		});
+    	}
+	}
 </script>
 
 <jsp:include page="include/_footer.jsp" />
