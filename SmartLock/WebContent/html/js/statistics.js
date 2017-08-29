@@ -1,7 +1,7 @@
 $(document).ready(function(){ 
 	var total = $("#total-value").html();
-	var getLicense = Math.round($("#getLicense-value").html()/total*10);
-	var demo = Math.round($("#demo-value").html()/total*10);
+	var getLicense = total!=0 ? Math.round($("#getLicense-value").html()/total*10) : 0;
+	var demo = total!=0 ? Math.round($("#demo-value").html()/total*10) : 0;
 	
 	$("#total").children(".progress-left").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0.5s");
 	$("#total").children(".progress-right").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0s");
@@ -16,7 +16,7 @@ $(document).ready(function(){
 		$("#getLicense").children(".progress-left").children(".progress-bar").css("animation", "loading-"+(getLicense-5)+" 0.5s linear forwards 0.5s");
 		$("#getLicense").children(".progress-right").children(".progress-bar").css("animation", "loading-5 0.5s linear forwards 0s");
 	}
-	
+
 	if(demo<6) {
 		$("#demo").children(".progress-left").children(".progress-bar").css("animation", "loading-0 0.5s linear forwards 0.5s");
 		$("#demo").children(".progress-right").children(".progress-bar").css("animation", "loading-"+(demo)+" 0.5s linear forwards 0s");
@@ -34,6 +34,8 @@ $(document).ready(function(){
 			if(data.status == "success" && data.data) {
 				for (var i=0;i<data.data.length; i++) {
 					$("#select-software").append("<option value='"+data.data[i].id+"'>"+data.data[i].sw_name+"</option>");
+					if($("#sw_id").val() == data.data[i].id)
+						$("#select-software option:eq("+i+")").attr("selected", "selected");
 				}
 			} else {
 				alert("");
@@ -44,3 +46,15 @@ $(document).ready(function(){
 		}
 	});
 });
+
+$("#select-software").on("change", function() {
+	var corp_id = $(this).find("option:selected").val();
+	
+	if(corp_id == '0') {
+		location.href="/statistics";
+	} else {
+		location.href="/statistics?sw_id="+corp_id;
+	}
+	
+	
+})

@@ -26,9 +26,10 @@
     <div class="row">
         <div class="col-sm-12" align="left">
             <div class="input-group">
-                <select name="" id="select-software" style="width: 180px; height: 35px;">
-                    <option value="">전체보기</option>
+                <select id="select-software" style="width: 180px; height: 35px;">
+                    <option value="0">전체보기</option>
                 </select>
+                <input type="hidden" id="sw_id" value="${sw_id}"/>
             </div>
             <!-- 검색창을 추가할지말지?
             <div class="col-sm-6">
