@@ -9,6 +9,6 @@
             , corp_name
             , phone
         FROM corp
-        WHERE corp_name = #{value}
+        WHERE corp_name LIKE CONCAT('%',#{corp_name},'%')
     </select>
 </mapper>

@@ -1,5 +1,8 @@
 package smartlock.member.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -89,14 +92,8 @@ public class UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean checkCorpName(String corpName) throws Exception {
-		CorpVO resultVO = (CorpVO)commonDAO.selectOne("corp.selectCorp", corpName);
-		
-		if(resultVO == null) {
-			return false;
-		} else {
-			return true;
-		}
+	public List<CorpVO> searchCorpName(String corpName) throws Exception {
+		return (ArrayList)commonDAO.selectList("corp.selectCorp", corpName);
 	}
 	
 	/**

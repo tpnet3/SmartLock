@@ -4,6 +4,7 @@
 	<jsp:param name="_title" value="Signup" />
 	<jsp:param name="_nav" value="" />
 	<jsp:param name="_css" value="/html/css/login.css" />
+	<jsp:param name="_css" value="/html/css/jquery-ui.min.css" />
 </jsp:include>
 
 <!-- Page Content -->
@@ -88,11 +89,11 @@
 							<label class="col-md-5 control-label" for="company">기업명</label>
 							<div class="col-md-3">
 								<div class="input-append">
-									<input id="corp-name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요.">
+									<input id="corp-name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요." readonly>
 									<button id="copr-searh-btn" type="button" class="btn">기업검색</button>
 									<input id="corp-id" style="display:none"/>
-									<input id="checked-corp" style="display:none"/>
-									<input id="is-check-corp" value="false" style="display:none"/>
+									<!-- <input id="checked-corp" style="display:none"/>
+									<input id="is-check-corp" value="false" style="display:none"/> -->
 								</div>
 							</div>
 						</div>
@@ -117,6 +118,7 @@
 
 <jsp:include page="include/_jslib.jsp" >
 	<jsp:param name="_js" value="/html/js/member.js" />
+	<jsp:param name="_js" value="/html/js/jquery-ui.min.js" />
 </jsp:include>
 
 <jsp:include page="include/_footer.jsp" />

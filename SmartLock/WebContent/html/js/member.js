@@ -60,41 +60,88 @@ $("#check-id-btn").on("click",function(){
 });
 
 $("#copr-searh-btn").on("click",function(){
-	if($("#corp-name").val() == '') {
-		$("#corp-name").focus();
-		alert("회사명을 입력해주세요.")
-		return;
-	}
+	var buttonText = "Ok" ;
+    var title = "The page says:";
+
+    var div = $('<div id="dialog">');
+    div.attr('title', "회사명 검색");
+    div.html('<div>'+
+    			'<div style="width:100%" align="center">'+
+    				'<input id="dialog-corp-name" type="text" placeholder="기업명을 입력해주세요." style="width:70%">'+
+    				'<button id="dialog-corp-search-btn" style="width:30%">검색</button>'+
+    			'</div>'+
+    			'<table id="table-corp" style="text-align:center" width="100%">'+
+    				'<thead>'+
+    					'<tr>'+
+    						'<td width="50%">회사명</>'+
+    						'<td width="50%">전화번호</>'+
+    					'</tr>'+
+    				'</thead>'+
+    			'</ul>'+
+    		'</div>');
+    div.dialog({
+        autoOpen: true,
+        modal: true,
+        draggable: false,
+        resizable: false,
+        buttons: [{
+            text: buttonText,
+            click: function () {
+                $(this).dialog("close");
+                div.remove();
+            }
+        }]
+    });
 	
-	$.ajax({
-		url : "/check/corpname",
-		type : "POST",
-		dataType : "json",
-		data : {
-			"corp_name" : $("#corp-name").val(),
-		},
-		success : function (data){
-			if(data.status == "success") {
-				if(data.data != null) {
-					alert("존재하는 회사입니다.");
-					$("#corp-id").val(data.data.id);
-					$("#is-ckeck-corp").val("true");
-					$("#checked-corp").val($("#corp-name").val());
-				} else {
-					alert("존재하지 않는 회사입니다.");
-					$("#is-ckeck-corp").val("false");
-					$("#checked-corp").val();
-					$("#corp-id").val();
-				}
-			} else {
-				
-			}
-		},
-		error : function(data, textStatus, errorThrown) {
-			
-		}
-	});
+    $("#dialog-corp-search-btn").on("click",function(){
+    	if($("#dialog-corp-name").val() == '') {
+    		$("#dialog-corp-name").focus();
+    		alert("회사명을 입력해주세요.")
+    		return;
+    	}
+    	
+    	$.ajax({
+    		url : "/check/corpname",
+    		type : "POST",
+    		dataType : "json",
+    		data : {
+    			"corp_name" : $("#dialog-corp-name").val(),
+    		},
+    		success : function (data){
+    			if(data.status == "success") {
+    				if(data.data != null) {
+    					$('#table-corp > tbody').remove();
+    					$('#no-serch-result').remove();
+    					$('#table-corp').append('<tbody></tbody>');
+    					if(data.data.length != 0) {
+    						for(var i=0;i<data.data.length; i++) {
+        						$('#table-corp > tbody:last').append('<tr>'+
+        																'<td><a onclick="clickCorp(\''+data.data[i].id+'\',\''+data.data[i].corp_name+'\')">'+data.data[i].corp_name+'</a></td>'+
+        																'<td>'+data.data[i].phone+'</td>'+
+        															'</tr>');
+        					}
+    					} else {
+    						$("#dialog").append('<h5 id="no-serch-result" style="text-align:center">검색 결과가 존재하지 않습니다.</h5>')
+    					}
+    				} else {
+    					
+    				}
+    			} else {
+    				
+    			}
+    		},
+    		error : function(data, textStatus, errorThrown) {
+    			
+    		}
+    	});
+    });
 });
+
+function clickCorp(corp_id, corp_name) {
+	$("#corp-id").val(corp_id);
+	$("#corp-name").val(corp_name);
+	$("#dialog").dialog("close");
+}
 
 $("#signup-btn").on("click", function() {
 	// check validation

@@ -3,7 +3,7 @@ package smartlock.member.vo;
 public class CorpVO {
 
 	private int id;
-	private String name;
+	private String corp_name;
 	private String phone;
 
 	public int getId() {
@@ -14,12 +14,12 @@ public class CorpVO {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getCorp_name() {
+		return corp_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCorp_name(String corp_name) {
+		this.corp_name = corp_name;
 	}
 
 	public String getPhone() {

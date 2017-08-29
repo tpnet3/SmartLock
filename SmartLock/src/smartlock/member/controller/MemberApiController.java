@@ -178,34 +178,11 @@ public class MemberApiController {
     @RequestMapping(
     		value = "/check/corpname",
     		method = RequestMethod.POST)
-    public @ResponseBody DataResVO checkCorpName(
+    public @ResponseBody DataResVO searchCorpName(
             @RequestParam("corp_name") String corpName,
             HttpServletRequest request) {
     	return new DataResVO(request, userVO -> {
-    	    boolean checkCorpName = userService.checkCorpName(corpName);
-
-    	    return checkCorpName ? userService.getCorpInfo(corpName) : null;
+    	    return  userService.searchCorpName(corpName);
         });
-
-    	/*
-    	try {
-            if (userService.checkCorpName(corpName)) {
-                dataResVO.setStatus("success");
-                dataResVO.setData(userService.getCorpInfo(corpName));
-                
-                // "status": "", "data":{id,....}
-                
-            } else {
-                dataResVO.setStatus("success");
-                dataResVO.setData(null);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            dataResVO.setStatus("error");
-            dataResVO.setData("error");
-        }
-    	
-    	return dataResVO;
-    	*/
     }
 }
