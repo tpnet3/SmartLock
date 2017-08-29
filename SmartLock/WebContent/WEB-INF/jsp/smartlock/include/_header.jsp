@@ -46,7 +46,28 @@
     <![endif]-->
 
     <script>
-        window.SmartLock = {};
+	    $.ajax({
+			url : "/profile/getCorpName",
+			type : "POST",
+	        contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify({
+	            "corpId" : <%= userVO.getCorpId() %>
+			success : function (data){
+				if(data.status == "success") {
+					//
+				} else {
+					
+					alert("기업이름 불러오기 실패")
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				alert("ajax통신실패");
+			}
+		});
+    
+    	window.SmartLock = {};
+        
 
         <% if (userVO != null) { %>
         window.SmartLock['user'] = {
