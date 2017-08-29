@@ -13,7 +13,7 @@
     </select>
     
     <select id="corpName"
-    		parameterType="int"
+    		parameterType="smartlock.member.vo.CorpVO"
     		resultType="String">
     	SELECT corp_name
     	FROM corp

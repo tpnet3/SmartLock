@@ -1,3 +1,23 @@
+$(function() {
+	$.ajax({
+		url : "/profile/getCorpName",
+		type : "POST",
+        contentType: "application/json",
+		dataType : "json",
+		data : JSON.stringify({
+            "corpId" : SmartLock.user.corpId,
+		}),
+       success : function (data){
+			alert(data);
+       },
+		error : function(data, textStatus, errorThrown) {
+			alert("error");
+		}
+	});
+	
+	return false;
+});
+
 $("#updateProfile").submit(function() {	
 	$.ajax({
 		url : "/profile/update",
@@ -31,6 +51,7 @@ $("#updateProfile").submit(function() {
 });
 
 $("#changePassword").submit(function() {
+	alert(SmartLock.user.corp_name);
 	if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
 		alert("새 비밀번호가 일치하지 않습니다.");

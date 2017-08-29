@@ -115,9 +115,10 @@ public class ProfileApiController {
 			HttpServletRequest request) {
 		 
         try {
+        	System.out.println(corpVO.getId());
         	String corp_name = profileService.selectCorpName(corpVO);
-        	
-        	return corp_name;
+        	System.out.println("기업이름은 "+corp_name);
+        	return "test";
         }    
         catch (Exception e) {
             e.printStackTrace();

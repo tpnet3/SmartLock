@@ -80,6 +80,8 @@ public class ProfileService {
 		 */
 	 public String selectCorpName(CorpVO corpVO) throws Exception{
 		 int corp_id = corpVO.getId();
+		 System.out.println("기업아이디 : "+corp_id);
+		 
 		 return (String) commonDAO.selectOne("corp.corpName", corp_id);
 	 }
 }
