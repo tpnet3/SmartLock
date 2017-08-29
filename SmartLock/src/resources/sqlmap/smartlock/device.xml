@@ -4,40 +4,45 @@
 <mapper namespace="device">
 
 	<select id="selectDeviceList"
-			parameterType="String"
+			parameterType="java.util.Map"
 			resultType="smartlock.device.vo.DeviceVO">
-		SELECT id
-			,  sw_id
-			,  nickname
-			,  reg_date
-			,  type
-			,  mac
-			,  usim
-			,  pin
-			,  serial
-			,  udid
-		FROM device
-	   WHERE user_id = #{id} 
+		SELECT d.id
+			,  s.sw_name
+			,  d.nickname
+			,  d.reg_date
+			,  d.type
+			,  d.mac
+			,  d.usim
+			,  d.pin
+			,  d.serial
+			,  d.udid
+		FROM device d, software s
+	   WHERE d.sw_id = s.id
+		 AND user_id = #{id}
+	   ORDER BY ${order};
+	   
 	</select>
 
 	<select id="selectDeviceBySw"
 			parameterType="java.util.Map"
 			resultType="smartlock.device.vo.DeviceVO">
-		SELECT id
-			,  sw_id
-			,  nickname
-			,  reg_date
-			,  type
-			,  mac
-			,  usim
-			,  pin
-			,  serial
-			,  udid
-		FROM device
-	   WHERE user_id = #{id}
-	   	 AND sw_id = (SELECT id
-	   	 				FROM software
-	   	 			   WHERE name=#{sw_id})
+		SELECT d.id
+			,  s.sw_name
+			,  d.nickname
+			,  d.reg_date
+			,  d.type
+			,  d.mac
+			,  d.usim
+			,  d.pin
+			,  d.serial
+			,  d.udid
+		FROM device d, software s
+	   WHERE d.user_id = #{id}
+         AND s.id = d.sw_id
+	     AND sw_id = (SELECT id
+	   	 				  FROM software
+	   	 			     WHERE sw_name = #{sw})
+	   ORDER BY ${order};
 	</select>
 
 	<!-- 디바이스 제거 -->
