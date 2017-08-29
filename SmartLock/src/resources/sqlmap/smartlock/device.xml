@@ -3,6 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="device">
 
+	<!-- 디바이스 등록 -->
+	<!--
+	TODO: 디바이스 등록 구현
+	<update id="addDevice"
+			parameterType="smartlock.device.vo.DeviceVO">
+		INSERT INTO user (...)
+        VALUES (...)
+	</update>
+	-->
+
 	<select id="selectDeviceList"
 			parameterType="java.util.Map"
 			resultType="smartlock.device.vo.DeviceVO">

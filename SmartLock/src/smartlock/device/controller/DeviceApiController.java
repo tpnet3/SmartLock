@@ -22,7 +22,25 @@ public class DeviceApiController {
 
 	@Resource
 	private DeviceService deviceService;
-	
+
+	/**
+	 * 디바이스 등록
+	 * @param deviceVO TODO: 필요한 변수에 대한 주석
+	 * @return 등록된 row 수
+	 */
+	@RequestMapping(value = "/device/add", method = RequestMethod.POST)
+	public @ResponseBody DataResVO addDevice(
+			//@RequestBody DeviceVO deviceVO,
+			HttpServletRequest request) {
+
+		return new DataResVO(request, (userVO) -> {
+			// TODO: 디바이스 등록 구현
+			//return deviceService.addDevice(deviceVO) != 0 ? true : false;
+
+			return true;
+		});
+	}
+
 	/**
 	 * 디바이스 제거
 	 * @param deviceVO {@link DeviceVO#id}

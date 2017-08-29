@@ -11,4 +11,11 @@ public class LoginReqVO extends UserIdReqVO {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
+
+    @Override
+    public String toString() {
+        return "LoginReqVO{" +
+                "pwd='" + pwd + '\'' +
+                '}';
+    }
 }
