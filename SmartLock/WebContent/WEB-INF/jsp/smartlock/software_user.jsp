@@ -4,7 +4,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <fmt:bundle basename="resources/properties/softwareInfo">
+
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="softwareUser" />
 </jsp:include>
@@ -35,7 +37,7 @@
 		<fmt:message key="${software.sw_name }" />
 		</p>
 		<div align="center">
-        <a class="btn btn-md btn-default btn-block" style="width:100px" onclick="request('${software.id}', '${software.sw_name }');">신청하기</a>
+        <a class="btn btn-md btn-default btn-block" style="width:100px" onclick="request_license('${software.id}', '${software.sw_name }');">신청하기</a>
     	</div>
 	</div>
 	</c:forEach>
@@ -48,28 +50,27 @@
 <!-- /.container -->
 
 <script>
-	function request(sw_id, sw_name) {
-		var state = confirm(sw_name + " 에 대한 라이센스를 요청하시겠습니까?");
+	function request_license(sw_id, sw_name){
+		var state;
+		state = confirm(sw_name+"에 대한 라이센스 요청을 하시겠습니까?");
 		if(state == true){
 			$.ajax({
-				url : "/software/user/request",
-				type : "POST",
-				contentType : "application/json",
-				data : JSON.stringify({
-					sw_id : sw_id
-				}),
-				success : function(data) {
-					window.location = "/software/user/request";
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				}
+				url:"/software/user/request?id="+sw_id ,
+				type:"GET",
+				contentType: "application/json",
+			 	data : {
+			 		id : sw_id
+			 	},
+	      		success : function (data) {
+	      		window.location = "/software/user/request?id="+sw_id;
+	   		    },
+		   		error : function(data, textStatus, errorThrown) {
+	     	 	console.log(data);
+    			}
 			});
 		} else {
-			alert("라이센스 요청을 취소합니다.");
+			alert("요청을 취소합니다.");
 		}
-	}
-
 	}
 </script>
 

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,19 +57,18 @@ public class SoftwareWebController {
 		}
 	}
 	
-	@RequestMapping(value = "/software/user/request", method = RequestMethod.POST)
-	public @ResponseBody ModelAndView softwareRequest(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) throws Exception{
+	@RequestMapping(value = "/software/user/request", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView requestSoftware(
+			HttpServletRequest request,
+			@RequestParam("id") String sw_id) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		String sw_id = map.get("sw_id");
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
 				SoftwareReqVO software;
-				software = softwareService.softwareOne(sw_id);
+				software = softwareService.softwareRequest(sw_id);
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/request_license");
-				modelAndView.addObject("softwareList", software);
+				modelAndView.addObject("software", software);
 				return modelAndView;
 			} else{
 				return new ModelAndView("redirect:/");	
