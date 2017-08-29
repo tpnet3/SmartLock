@@ -45,24 +45,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script>
-    	var get_corpName = "";
-	    $.ajax({
-			url : "/profile/getCorpName",
-			type : "POST",
-	        contentType: "application/json",
-			dataType : "json",
-			data : JSON.stringify({
-	            "corpId" : '<%= userVO.getCorpId() %>'
-			}),
-	       success : function (data){
-				get_corpName = data;
-	       },
-			error : function(data, textStatus, errorThrown) {
-				alert("ajax통신실패");
-			}
-		});
-    
+    <script>    
     	window.SmartLock = {};
 
         <% if (userVO != null) { %>
@@ -72,7 +55,6 @@
             phoneNumber: '<%= userVO.getPhoneNumber() %>',
             email: '<%= userVO.getEmail() %>',
             corpId: '<%= userVO.getCorpId()%>',
-            corp_name: get_corpName,
             name: '<%= userVO.getUserName() %>'
         };
         <% } %>
