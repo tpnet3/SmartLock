@@ -69,7 +69,35 @@ public class SoftwareWebController {
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/request_license");
 				modelAndView.addObject("software", software);
+				modelAndView.addObject("sw_id", sw_id);
 				return modelAndView;
+			} else{
+				return new ModelAndView("redirect:/");	
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ModelAndView("redirect:/");	
+		}
+	}
+	@RequestMapping(value = "/software/user/request/final", method = RequestMethod.POST)
+	public @ResponseBody void requestSoftwareFinal(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		try{
+				map.put("id", userVO.getId());
+		} catch(Exception e){
+			e.printStackTrace();
+				
+		}
+	}
+	@RequestMapping(value = "/software/user/request/final", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView requestSoftwareFinalView(
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		try{
+			if(userVO != null && userVO.getAuthority() == 0){
+				return new ModelAndView("smartlock/request_finish");
 			} else{
 				return new ModelAndView("redirect:/");	
 			}
