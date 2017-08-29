@@ -5,7 +5,7 @@ import java.sql.Date;
 public class DeviceVO {
 	private int id;
 	private String user_id;
-	private int sw_id;
+	private String sw_name;
 	private String nickname;
 	private Date reg_date;
 	private int type;
@@ -26,11 +26,12 @@ public class DeviceVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public int getSw_id() {
-		return sw_id;
+	
+	public String getSw_name() {
+		return sw_name;
 	}
-	public void setSw_id(int sw_id) {
-		this.sw_id = sw_id;
+	public void setSw_name(String sw_name) {
+		this.sw_name = sw_name;
 	}
 	public String getNickname() {
 		return nickname;
@@ -82,8 +83,9 @@ public class DeviceVO {
 	}
 	@Override
 	public String toString() {
-		return "DeviceVO [id=" + id + ", user_id=" + user_id + ", sw_id=" + sw_id + ", nickname=" + nickname
+		return "DeviceVO [id=" + id + ", user_id=" + user_id + ", sw_name=" + sw_name + ", nickname=" + nickname
 				+ ", reg_date=" + reg_date + ", type=" + type + ", mac=" + mac + ", usim=" + usim + ", pin=" + pin
 				+ ", serial=" + serial + ", udid=" + udid + "]";
 	}
+	
 }

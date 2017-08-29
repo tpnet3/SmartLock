@@ -16,21 +16,38 @@ public class DeviceService {
 
 	@Resource(name="commonDAO")
 	private CommonDAO commonDAO;
-	
+
+	/**
+	 * id로 전체 디바이스 목록 조회
+	 * @param deviceVO 등록할 디바이스 정보
+	 * @return 등록된 디바이스 수
+	 * @throws Exception DAO Exception
+	 */
+	/*
+	public int addDevice(DeviceVO deviceVO) throws Exception {
+		// TODO: 디바이스 등록
+		return commonDAO.insert("device.addDevice", deviceVO);
+	}
+	*/
+
 	/**
 	 * id로 전체 디바이스 목록 조회
 	 * @param id 조회할 사용자 아이디
 	 * @return 조회된 디바이스 목록
 	 * @throws Exception DAO Exception
 	 */
-	public ArrayList<DeviceVO> getDeviceList(String id) throws Exception {
-		return (ArrayList)commonDAO.selectList("device.selectDeviceList", id);
-	}
-	
-	public ArrayList<DeviceVO> getDeviceListBySw(String id, String sw) throws Exception {
+	public ArrayList<DeviceVO> getDeviceList(String id, String order) throws Exception {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
-		map.put("sw_id", sw);
+		map.put("order", order);
+		return (ArrayList)commonDAO.selectList("device.selectDeviceList", map);
+	}
+	
+	public ArrayList<DeviceVO> getDeviceList(String id, String sw, String order) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("sw", sw);
+		map.put("order", order);
 		return (ArrayList)commonDAO.selectList("device.selectDeviceBySw", map);
 	}
 
