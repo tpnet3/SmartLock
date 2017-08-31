@@ -26,13 +26,10 @@
     <div class="row">
         <div class="col-sm-12" align="left">
             <div class="input-group">
-                <select name="" id="location1" style="width: 180px; height: 35px;">
-                    <option value="">전체보기</option>
-                    <option value="">Microsoft Excel</option>
-                    <option value="">Parallels Desktop</option>
-                    <option value="">Adobe CC</option>
-                    <option value="">Football Manager</option>
+                <select id="select-software" style="width: 180px; height: 35px;">
+                    <option value="0">전체보기</option>
                 </select>
+                <input type="hidden" id="sw_id" value="${sw_id}"/>
             </div>
             <!-- 검색창을 추가할지말지?
             <div class="col-sm-6">
@@ -43,28 +40,50 @@
     <br>
     <div class="container">
         <div class="col-md-3">
-            <div class="progress blue"> <span class="progress-left">
-                        <span class="progress-bar"></span> </span> <span class="progress-right">
-                        <span class="progress-bar"></span> </span>
-                <div class="progress-value"><%=statistics.getTotal()%></div>
+            <div id="total" class="progress blue">
+            	<span class="progress-left">
+                        <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                        <span class="progress-bar"></span>
+                </span>
+                <div id="total-value" class="progress-value"><%=statistics.getTotal()%></div>
             </div>
             <h4 class="text-center">총 다운로드</h4>
         </div>
         <div class="col-md-3 col-sm-6">
-            <div class="progress yellow"> <span class="progress-left"> <span class="progress-bar"></span> </span> <span class="progress-right"> <span class="progress-bar"></span> </span>
-                <div class="progress-value"><%=statistics.getRequest_license()%></div>
+            <div id="license" class="progress yellow">
+            	<span class="progress-left">
+            		<span class="progress-bar"></span>
+            	</span>
+            	<span class="progress-right">
+            		<span class="progress-bar"></span>
+            	</span>
+                <div id="license-value" class="progress-value"><%=statistics.getRequest_license()%></div>
             </div>
-            <h4 class="text-center">라이센스 요청 <a href="/license.jsp"><i class="fa fa-pencil" style="color: black"></i></a></h4>
+            <h4 class="text-center"><a href="/license.jsp">라이센스 요청</a></h4>
         </div>
         <div class="col-md-3">
-            <div class="progress pink"> <span class="progress-left"> <span class="progress-bar"></span> </span> <span class="progress-right"> <span class="progress-bar"></span> </span>
-                <div class="progress-value"><%=statistics.getLicense()%></div>
+            <div id="getLicense" class="progress pink">
+            	<span class="progress-left">
+            		<span class="progress-bar"></span>
+            	</span>
+            	<span class="progress-right">
+            		<span class="progress-bar"></span>
+            	</span>
+                <div id="getLicense-value" class="progress-value"><%=statistics.getLicense()%></div>
             </div>
             <h4 class="text-center">발급 된라이센스</h4>
         </div>
         <div class="col-md-3">
-            <div class="progress green"> <span class="progress-left"> <span class="progress-bar"></span> </span> <span class="progress-right"> <span class="progress-bar"></span> </span>
-                <div class="progress-value"><%=statistics.getDemo_license()%></div>
+            <div id="demo" class="progress green">
+            	<span class="progress-left">
+            		<span class="progress-bar"></span>
+            	</span>
+            	<span class="progress-right">
+            		<span class="progress-bar"></span>
+            	</span>
+                <div id="demo-value" class="progress-value"><%=statistics.getDemo_license()%></div>
             </div>
             <h4 class="text-center">데모버전</h4>
         </div>
@@ -79,6 +98,10 @@
 
 </div>
 <!-- /.container -->
+
+<jsp:include page="include/_jslib.jsp" >
+	<jsp:param name="_js" value="/html/js/statistics.js" />
+</jsp:include>
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />

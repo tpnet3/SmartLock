@@ -16,7 +16,20 @@ public class DeviceService {
 
 	@Resource(name="commonDAO")
 	private CommonDAO commonDAO;
-	
+
+	/**
+	 * id로 전체 디바이스 목록 조회
+	 * @param deviceVO 등록할 디바이스 정보
+	 * @return 등록된 디바이스 수
+	 * @throws Exception DAO Exception
+	 */
+	/*
+	public int addDevice(DeviceVO deviceVO) throws Exception {
+		// TODO: 디바이스 등록
+		return commonDAO.insert("device.addDevice", deviceVO);
+	}
+	*/
+
 	/**
 	 * id로 전체 디바이스 목록 조회
 	 * @param id 조회할 사용자 아이디

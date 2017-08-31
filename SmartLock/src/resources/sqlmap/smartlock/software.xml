@@ -22,6 +22,15 @@
         AND s.corp_id = c.id;
     </select>
     
+    <select id="selectByCorp" parameterType="String"
+            resultType="smartlock.software.vo.SoftwareReqVO">
+        SELECT id
+        	,sw_name
+        	,corp_id
+       	 FROM software
+        WHERE corp_id = #{corp_id}
+    </select>
+    
     <select id="softwareFinal"  parameterType="java.util.Map"
             resultType="java.lang.Integer">
         INSERT INTO req_license (id, user_id, request_date, sw_id, state) 

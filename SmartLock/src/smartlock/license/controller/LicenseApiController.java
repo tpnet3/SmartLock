@@ -9,10 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import smartlock.member.vo.*;
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
@@ -36,6 +33,29 @@ public class LicenseApiController {
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
 
+	/**
+	 * 아이디로 라이센스 정보
+	 * @param userVO {@link UserVO#id}
+	 * @return {@link ArrayList<LicenseUserVO>}
+	 * @throws Exception DAO Exception
+	 */
+	@RequestMapping(
+			value = "/license/by_id",
+			method = RequestMethod.POST
+	)
+	public @ResponseBody DataResVO getUserLicenseById(
+			HttpServletRequest request,
+			@RequestBody UserVO userVO) throws Exception {
+
+		return new DataResVO(request, (sessionUserVO) -> {
+			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
+			//license = licenseService.viewUserLicense("swan");
+
+			System.out.println(license);
+
+			return license.isEmpty() ? null : license;
+		});
+	}
    
     /**
      * 개인 라이센스 전체 조회
