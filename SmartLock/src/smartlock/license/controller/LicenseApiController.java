@@ -39,7 +39,7 @@ public class LicenseApiController {
 	 * @return {@link ArrayList<LicenseUserVO>}
 	 * @throws Exception DAO Exception
 	 */
-	@RequestMapping(
+	/*@RequestMapping(
 			value = "/license/by_id",
 			method = RequestMethod.POST
 	)
@@ -48,20 +48,20 @@ public class LicenseApiController {
 			@RequestBody UserVO userVO) throws Exception {
 
 		return new DataResVO(request, (sessionUserVO) -> {
-//			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
+			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
 			//license = licenseService.viewUserLicense("swan");
 
 			System.out.println(license);
 
 			return license.isEmpty() ? null : license;
 		});
-	}
+	}*/
    
     /**
      * 개인 라이센스 전체 조회
      * @return {@link ArrayList<LicenseUserVO>}
      */
-    @RequestMapping(
+    /*@RequestMapping(
             value = "/license/user",
             method = RequestMethod.POST
     )
@@ -80,7 +80,7 @@ public class LicenseApiController {
 			return license.isEmpty() ? null : license;
 		});
 
-    	/*
+    	
 		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
 		license = licenseService.viewUserLicense(userVO.getId());
 		//license = licenseService.viewUserLicense("swan");
@@ -100,8 +100,8 @@ public class LicenseApiController {
 		}
 		
         return dataResVO;
-        */
-    }
+        
+    }*/
     
     /**
      * 개인 라이센스 소프트웨어명 별로 조회
