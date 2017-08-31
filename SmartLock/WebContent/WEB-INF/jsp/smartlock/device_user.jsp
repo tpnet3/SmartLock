@@ -219,6 +219,7 @@
 	}
     
     function search() {
+    	var swIndex = $("#sw_list option").index($("#sw_list option:selected"));
     	var sw = $("#sw_list option:selected").val();
     	var orderIndex = $("#order option").index($("#order option:selected"));
     	var order = "";
@@ -227,6 +228,10 @@
     		order = "ASC";
     	} else if(orderIndex == 2) {
     		order = "DESC";
+    	}
+    	
+    	if(swIndex == 0) {
+    		sw = "";
     	}
 
     	
