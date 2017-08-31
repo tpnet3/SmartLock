@@ -36,9 +36,9 @@
     </div>
     <br><br>
     <div class="col-sm-12">
-        <div class="vGraph">
+        <div class="vGraph" id="graph">
             <ul>
-                <li><span class="gTerm">1월</span><span class="gBar" style="height:${monthCnt[0]}"><span>${monthCnt[0]}</span></span>
+                <li><span class="gTerm">1월</span><span class="gBar" id="month1" style="height:${monthCnt[0]}"><span>${monthCnt[0]}</span></span>
                 </li>
                 <li><span class="gTerm">2월</span><span class="gBar" style="height:${monthCnt[1]}"><span>${monthCnt[1]}</span></span>
                 </li>
@@ -80,18 +80,23 @@
 <!-- /.container -->
 
 <!-- SW명별로 통계 -->
-<!-- <script>
+<script>
 $.ajax({
 	url:'/statistics/monthly/filter',
-	type:'',
-	data:,
+	type:'POST',
+	contentType: 'application/json',
+	data:{
+		sw_id : sw_id	
+	},
 	success:function(data){
-		
+		alert(data);
+/* 		$('#month1').style('height:${monthCnt[0]}');
+		$('#month1').text('height:${monthCnt[0]}'); */
 	},
 	error:function(jqXHR, textStatus, errorThrown){
-		
+		alert('에러');
 	}
 });
-</script> -->
+</script> 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />
