@@ -218,7 +218,6 @@
     		order = "DESC";
     	}
 
-    	
     	$.ajax({
     		url: "/device",
     		type: "GET",

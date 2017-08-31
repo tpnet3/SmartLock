@@ -27,9 +27,9 @@
 				<div class="col-sm-2">
 					<div class="input-group">
 						<select name="" id="sw_list" style="width: 180px; height: 35px;">
-							<option>소프트웨어명</option>
-							<c:forEach var="sw" items="${swNameList}">
-								<option value= "${sw}">${sw}</option>
+							<option value = "">소프트웨어명</option>
+							<c:forEach var="sw" items="${swNameList}" varStatus="count">
+								<option value= "${swIdList[count.count]}">${sw}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -142,6 +142,7 @@
 
     function search() {
     	var sw = $("#sw_list option:selected").val();
+    	var check = $("#sw_list option:selected").text();
     	var orderIndex = $("#order option").index($("#order option:selected"));
     	var order = "";
     	
@@ -150,8 +151,12 @@
     		order = "ASC";
     	} else if(orderIndex == 2) {
     		order = "DESC";
+    	} else if (orderIndex == 0) {
+    		order = "DEFAULT";
     	}
-
+		alert(sw); //id
+		alert(check);
+		
     		$.ajax({
 				url:"/license/user",
 				type:"GET",

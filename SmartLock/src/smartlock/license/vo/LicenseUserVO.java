@@ -9,6 +9,7 @@ public class LicenseUserVO {
 	private Date end_date;
 	private int state;
 	private String corp_name;
+	private int sw_id;
 	public String getNickname() {
 		return nickname;
 	}
@@ -45,9 +46,15 @@ public class LicenseUserVO {
 	public void setCorp_name(String corp_name) {
 		this.corp_name = corp_name;
 	}
+	public int getSw_id() {
+		return sw_id;
+	}
+	public void setSw_id(int sw_id) {
+		this.sw_id = sw_id;
+	}
 	@Override
 	public String toString() {
 		return "LicenseUserVO [nickname=" + nickname + ", sw_name=" + sw_name + ", start_date=" + start_date
-				+ ", end_date=" + end_date + ", state=" + state + ", corp_name=" + corp_name + "]";
+				+ ", end_date=" + end_date + ", state=" + state + ", corp_name=" + corp_name + ", sw_id=" + sw_id + "]";
 	}
 }
