@@ -275,7 +275,7 @@ $("#email-2").on("change", function() {
 		$("#email-2").css("width","15%");
 		$("#email-3").css("display", "inline");
 	} else {
-		$("#email-2").css("width","58%");
+		$("#email-2").css("width","45%");
 		$("#email-3").val("");
 		$("#email-3").css("display", "none");
 	}
