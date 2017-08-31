@@ -89,7 +89,7 @@ public class StatisticsApiController {
 			//map.put("id", "chelsea");
 			map.put("name", name);
 
-			statistics = statisticsService.viewStatisticsMyName(map);
+			statistics = statisticsService.viewStatisticsByName(map);
 
 			System.out.println(statistics);
 
