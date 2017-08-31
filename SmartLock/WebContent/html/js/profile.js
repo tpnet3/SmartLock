@@ -5,7 +5,7 @@ $(function() {
         contentType: "application/json",
 		dataType : "json",
 		data : JSON.stringify({
-            "corpId" : SmartLock.user.corpId,
+            "id" : SmartLock.user.corpId,
 		}),
        success : function (data){
 			alert(data);
