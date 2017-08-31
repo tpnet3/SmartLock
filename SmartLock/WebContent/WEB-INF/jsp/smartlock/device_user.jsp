@@ -20,8 +20,7 @@
 			<div class="col-sm-12">
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="sw_list" onchange="checkSelectSw(this);"
-							style="width: 180px; height: 35px;">
+						<select name="" id="sw_list" style="width: 180px; height: 35px;">
 							<option>소프트웨어명</option>
 							<c:forEach var="sw" items="${swNameList}">
 								<option>${sw}</option>
@@ -31,18 +30,18 @@
 				</div>
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="location1" style="width: 180px; height: 35px;">
-							<option value="">등록 날짜</option>
-							<option value="">오름차순</option>
-							<option value="">내림차순</option>
+						<select name="" id="order" style="width: 180px; height: 35px;">
+							<option>등록날짜</option>
+							<option>오름차순</option>
+							<option>내림차순</option>
 						</select>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
 						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
-					<button class="btn btn-primary" type="button" id="searchButton"
-						data-loading-text="Searching..">
+					<button class="btn btn-primary" type="button" id="searchBtn"
+						data-loading-text="Searching.." onclick="search();">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -116,6 +115,18 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
+
+	if('${sw}' == "") {
+		$("#sw_list option:eq(0)").prop("selected", true);
+	} else {
+		$("#sw_list").val('${sw}').prop("selected", true);	
+	}
+	
+	if('${order}' == "") {
+		$("#order option:eq(0)").prop("selected", true);
+	} else {
+		$("#order").val('${order}').prop("selected", true);
+	}
 
 	/**
 	 * 디바이스 수정 클릭시
@@ -195,26 +206,34 @@
         alert("deviceId: " + deviceId + " 에 대한 라이센스 조회 버튼을 클릭했습니다.");
         return false;
 	}
-     
-     
-    function checkSelectSw(selectedItem) {
-    	console.log(selectedItem.value);
-    	if(selectedItem.selectedIndex!=0){
-    		$.ajax({
-    			url:"/device",
-    			type:"GET",
-   				contentType: "application/json",
-   			 	data : {
-					sw: selectedItem.value
-				},
-             success : function (data) {
-            	 
-             },
-             error : function(data, textStatus, errorThrown) {
-                 console.log(data);
-             }
-    		});
+    
+    function search() {
+    	var sw = $("#sw_list option:selected").val();
+    	var orderIndex = $("#order option").index($("#order option:selected"));
+    	var order = "";
+    	
+    	if(orderIndex == 1) {
+    		order = "ASC";
+    	} else if(orderIndex == 2) {
+    		order = "DESC";
     	}
+
+    	
+    	$.ajax({
+    		url: "/device",
+    		type: "GET",
+    		contentType: "application/json",
+    		data: {
+    			sw: sw,
+    			order: order
+    		},
+    		success: function (data) {
+    				$(location).attr("href", "/device?sw="+sw+"&order="+order);
+    		},
+    		error: function (data, textStatus, errorThrown) {
+    			console.log(data);
+    		}
+    	});
     }
 </script>
 

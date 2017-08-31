@@ -35,22 +35,24 @@ public class LicenseWebController {
 	@RequestMapping(value = "/license/user", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView viewUserLicense(
 			HttpServletRequest request,
-			@RequestParam("name") String name) throws Exception{
+			@RequestParam(value="sw", required=false, defaultValue="") String name,
+			@RequestParam(value="order", required=false, defaultValue="") String order) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
 				ArrayList<String> swNameList = new ArrayList<String>();
 				ArrayList<LicenseUserVO> licenseUserList;
-				licenseUserList = licenseService.viewUserLicense(userVO.getId());
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("order",  "order");
+				map.put("id", userVO.getId());
+				licenseUserList = licenseService.viewUserLicense(map);
 				for(int i = 0; i < licenseUserList.size(); i++) { 
 					if(!swNameList.contains(licenseUserList.get(i).getSw_name())){
 						swNameList.add(licenseUserList.get(i).getSw_name());
 						} 
 				}
 				if(!name.equals("")){
-					Map<String, String> map = new HashMap<String, String>();
 					map.put("name", name);
-					map.put("id", userVO.getId());
 					licenseUserList = licenseService.viewUserLicenseByName(map);
 				}
 				ModelAndView modelAndView = new ModelAndView("smartlock/license_user");

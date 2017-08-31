@@ -45,8 +45,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script>
-        window.SmartLock = {};
+    <script>    
+    	window.SmartLock = {};
 
         <% if (userVO != null) { %>
         window.SmartLock['user'] = {
@@ -54,7 +54,7 @@
             authority: '<%= userVO.getAuthority() %>',
             phoneNumber: '<%= userVO.getPhoneNumber() %>',
             email: '<%= userVO.getEmail() %>',
-            corpId: '<%= userVO.getCorpId() %>',
+            corpId: '<%= userVO.getCorpId()%>',
             name: '<%= userVO.getUserName() %>'
         };
         <% } %>

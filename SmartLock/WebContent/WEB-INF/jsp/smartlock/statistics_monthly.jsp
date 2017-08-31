@@ -79,5 +79,19 @@
 </div>
 <!-- /.container -->
 
+<!-- SW명별로 통계 -->
+<!-- <script>
+$.ajax({
+	url:'/statistics/monthly/filter',
+	type:'',
+	data:,
+	success:function(data){
+		
+	},
+	error:function(jqXHR, textStatus, errorThrown){
+		
+	}
+});
+</script> -->
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />
