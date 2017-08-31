@@ -18,7 +18,11 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">License 사용 통계</li>
-                <li><a href="/statistics/monthly">월별 License 발급 현황</a></li>
+                <li>
+	                <form action="/statistics/monthly" method="POST">
+	               	 <input type="submit" value="월별 License 발급 현황"/>
+	            	</form>
+            	</li>
             </ol>
         </div>
     </div>

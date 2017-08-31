@@ -58,4 +58,25 @@
 		 WHERE sw_id = #{sw_id}
 		   AND state = '2';
 	</select>
+	
+	<!-- 하나의 기업의 모든 SW 라이센스 1년치 -->
+	<select id="countAllLic" parameterType="Integer" 
+		resultType="smartlock.statistics.vo.StatisticsMonthlyVO">
+		<![CDATA[
+		SELECT sw_id, sw_name, start_date
+		FROM license, software
+		WHERE license.sw_id = software.id
+        AND sw_id = ANY(SELECT id FROM software WHERE corp_id = #{id})
+        AND start_date >= date_add(now(), interval -12 month)
+        AND start_date <= curdate();
+        ]]>
+	</select>
+	
+	<!-- 하나의 기업의 모든 SW -->
+	<select id="countAllSW" parameterType="Integer"
+		resultType="smartlock.software.vo.SoftwareVO">
+		SELECT *
+		FROM software
+		WHERE corp_id = '#{id}';
+	</select>
 </mapper>

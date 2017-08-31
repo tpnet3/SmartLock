@@ -28,8 +28,12 @@ public class LicenseService {
 	 * @return ArrayList<LicenseUserVO>
 	 * @throws Exception
 	 */
-	public ArrayList<LicenseUserVO> viewUserLicense(String id) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.selectLicense", id);
+	public ArrayList<LicenseUserVO> viewUserLicense(Map<String, String> map) throws Exception {
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectLicense", map.get("id"));
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectLicenseOrder", map);
+		}
 	}
 	
 	/**
@@ -39,7 +43,11 @@ public class LicenseService {
 	 * @throws Exception
 	 */
 	public ArrayList<LicenseUserVO> viewUserLicenseByName(Map<String, String> map) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.selectLicenseByName", map);
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectLicenseByName", map);
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectLicenseByNameOrder", map);
+		}
 	}
 	
 	/**

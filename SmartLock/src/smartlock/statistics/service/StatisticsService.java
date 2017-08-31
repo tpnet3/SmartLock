@@ -25,7 +25,7 @@ public class StatisticsService {
 		return statisticsVO;
 	}
 	
-	public StatisticsVO viewStatisticsMyName(Map<String, String> map) throws Exception{
+	public StatisticsVO viewStatisticsByName(Map<String, String> map) throws Exception{
 		StatisticsVO statisticsVO = new StatisticsVO();
 		statisticsVO.setRequest_license((Integer)commonDAO.selectOne("statistics.countReqLicenseByName", map));
 		statisticsVO.setLicense((Integer)commonDAO.selectOne("statistics.countLicenseByName", map));

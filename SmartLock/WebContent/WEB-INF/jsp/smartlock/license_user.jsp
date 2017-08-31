@@ -26,8 +26,8 @@
 			<div class="col-sm-12">
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="sw_list" style="width: 180px; height: 35px;" onchange="search(this)">
-							<option value="default">소프트웨어명</option>
+						<select name="" id="sw_list" style="width: 180px; height: 35px;">
+							<option>소프트웨어명</option>
 							<c:forEach var="sw" items="${swNameList}">
 								<option value= "${sw}">${sw}</option>
 							</c:forEach>
@@ -36,7 +36,7 @@
 				</div>
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="list" style="width: 180px; height: 35px;" onchange="list(this)">
+						<select name="" id="order" style="width: 180px; height: 35px;">
 							<option value=0>만료 날짜</option>
 							<option value=1>오름차순</option>
 							<option value=2>내림차순</option>
@@ -46,7 +46,7 @@
 				<div class="col-sm-6">
 					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
 						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
-					<button class="btn btn-primary" type="button" id="searchButton" onclick="">
+					<button class="btn btn-primary" type="button" id="searchButton" onclick="search();">
 						<i class="fa fa-search"></i>
 					</button>
 
@@ -140,64 +140,34 @@
         }
     }
 
-    function list(orderBy){
-    	var list = '${licenseUserList }';
-    	//var list = JSON.stringify(tmp);
-    	alert(orderBy.value);
-    	//alert(list);
-    	if(orderBy.value == 1){
-    		$.ajax({
-				url:"/license/user/ascend" ,
-				type:"POST",
-				contentType: "application/json",
-			 	data : JSON.stringify('${licenseUserList }'),
-         success : function (data) {
-        	 window.location = "/license/user?name";
-         },
-         error : function(data, textStatus, errorThrown) {
-             console.log(data);
-         }
-		});
-    	} else if(orderBy == 2){
-    		
-    	} else {
-    		
+    function search() {
+    	var sw = $("#sw_list option:selected").val();
+    	var orderIndex = $("#order option").index($("#order option:selected"));
+    	var order = "";
+    	
+    	
+    	if(orderIndex == 1) {
+    		order = "ASC";
+    	} else if(orderIndex == 2) {
+    		order = "DESC";
     	}
-    }
-    
-    function search(name) {
-    	if(name.value!="default"){
+
     		$.ajax({
-				url:"/license/user?name="+name.value,
+				url:"/license/user",
 				type:"GET",
 				contentType: "application/json",
 			 	data : {
-				name : name.value
+				sw : sw,
+				order : order
 			},
          success : function (data) {
-        	 window.location = "/license/user?name="+name.value;
+        	 window.location = "/license/user?sw="+sw+"&order="+order;
          },
          error : function(data, textStatus, errorThrown) {
              console.log(data);
          }
 		});
-    	}
-    	else{
-    		$.ajax({
-				url:"/license/user?name",
-				type:"GET",
-				contentType: "application/json",
-			 	data : {
-				name : name.value
-			},
-         success : function (data) {
-        	 window.location = "/license/user?name";
-         },
-         error : function(data, textStatus, errorThrown) {
-             console.log(data);
-         }
-		});
-    	}
+    	
     	
 	}
 </script>
