@@ -142,42 +142,10 @@ function clickCorp(corp_id, corp_name) {
 	$("#corp-name").val(corp_name);
 	$("#dialog").dialog("close");
 }
-
-$("#signup-btn").on("click", function() {
-	// check validation
+function checkId() {
 	if($("#id").val() == '') {
 		$("#id").focus();
 		alert("아이디를 입력하세요.");
-		return false;
-	}
-	if($("#pwd").val() == '') {
-		$("#pwd").focus();
-		alert("비밀번호를 입력하세요.");
-		return false;
-	}
-	if($("#check-pwd").val() == '') {
-		$("#pwd").focus();
-		alert("비밀번호 확인을 입력하세요.");
-		return false;
-	}
-	if($("#name").val() == '') {
-		$("#name").focus();
-		alert("이름을 입력하세요.");
-		return false;
-	}
-	if($("#email").val() == '') {
-		$("#email").focus();
-		alert("이메일을 입력하세요.");
-		return false;
-	}
-	if($("#phone").val() == '') {
-		$("#phone").focus();
-		alert("전화번호를 입력하세요.");
-		return false;
-	}
-	if($("#corp_id").val() == '') {
-		$("#corp_name").focus();
-		alert("기업명을 입력하세요.");
 		return false;
 	}
 	if($("#checked-id").val() != $("#id").val()) {
@@ -188,14 +156,84 @@ $("#signup-btn").on("click", function() {
 	if($("#is-check-id").val() == "false") {
 		$("#id").focus();
 		alert("아이디 중복체크를 하세요.");
-		return;
+		return false;
+	}
+	return true
+}
+function checkPwd() {
+	if($("#pwd").val() == '') {
+		$("#pwd").focus();
+		alert("비밀번호를 입력하세요.");
+		return false;
+	}
+	if($("#check-pwd").val() == '') {
+		$("#check-pwd").focus();
+		alert("비밀번호 확인을 입력하세요.");
+		return false;
 	}
 	if($("#pwd").val() != $("#check-pwd").val()) {
 		$("#check-pwd").focus();
 		alert("비밀번호가 다릅니다.");
 		return false;
 	}
+	return true;
+}
+function checkEmail() {
+	if($("#email-1").val() == '') {
+		$("#email-1").focus();
+		alert("이메일을 입력하세요.");
+		return false;
+	}
+	if($("#email-2").val() == '직접입력') {
+		if($("#email-3").val() == '') {
+			$("#email-3").focus();
+			alert("이메일 도메인을 입력하세요.");
+			return false;
+		}
+	}
+	return true;
+}
+function checkPhone() {
+	if($("#phone-2").val() == '') {
+		$("#phone-2").focus();
+		alert("전화번호를 입력하세요.");
+		return false;
+	}
+	if($("#phone-3").val() == '') {
+		$("#phone-3").focus();
+		alert("전화번호를 입력하세요.");
+		return false;
+	}
+	return true;
+}
+$("#signup-btn").on("click", function() {
+	var phone = $("#phone-1").val()+"-"+$("#phone-2").val()+"-"+$("#phone-3").val();
 
+	// check validation
+	if(!checkId()){
+		return false;
+	}
+	if(!checkPwd()){
+		return false;
+	}
+	if($("#name").val() == '') {
+		$("#name").focus();
+		alert("이름을 입력하세요.");
+		return false;
+	}
+	checkEmail
+	if(!checkEmail()){
+		return false;
+	}
+	if(!checkPhone()){
+		return false;
+	}
+	if($("#corp-id").val() == '') {
+		$("#corp_name").focus();
+		alert("기업명을 입력하세요.");
+		return false;
+	}
+	
 	$.ajax({
 		url : "/signup",
 		type : "POST",
@@ -206,7 +244,7 @@ $("#signup-btn").on("click", function() {
 			"pwd" : $("#pwd").val(),
 			"name" : $("#name").val(),
 			"email" : $("#email").val(),
-			"phone" : $("#phone").val(),
+			"phone" : phone,
             "corp_id" : $("#corp-id").val(),
             "authority" : $("#authority").val()
 		}),
@@ -225,3 +263,20 @@ $("#signup-btn").on("click", function() {
 
 	return false;
 });
+
+function maxLengthCheck(object) {
+	if (object.value.length > object.maxLength) {
+		object.value = object.value.slice(0, object.maxLength);
+	}
+}
+
+$("#email-2").on("change", function() {
+	if($(this).val() == '직접입력') {
+		$("#email-2").css("width","15%");
+		$("#email-3").css("display", "inline");
+	} else {
+		$("#email-2").css("width","58%");
+		$("#email-3").val("");
+		$("#email-3").css("display", "none");
+	}
+})
