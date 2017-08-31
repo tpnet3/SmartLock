@@ -27,13 +27,14 @@
 						<div class="form-group">
 							<label class="col-md-5 control-label" for="id">아이디</label>
 							<div class="col-md-3">
-								<div class="input-append">
+								<div class="input-append" >
 									<input id="id" name="id" type="text"
-										   placeholder="아이디를 입력하세요." class="form-control with-btn input-md">
-									<button id="check-id-btn" type="button" class="btn">중복확인</button>
+										   placeholder="아이디를 입력하세요." class="form-control with-btn input-md" style="width:70%; float:left">
+									<button id="check-id-btn" type="button" class="btn" style="width:30%">중복확인</button>
 									<input type="hidden" id="checked-id" style="display:none"/>
 									<input type="hidden" id="is-check-id" value="false" style="display:none"/>
 								</div>
+								
 							</div>
 						</div>
 	
@@ -89,8 +90,8 @@
 							<label class="col-md-5 control-label" for="company">기업명</label>
 							<div class="col-md-3">
 								<div class="input-append">
-									<input id="corp-name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요." readonly>
-									<button id="copr-searh-btn" type="button" class="btn">기업검색</button>
+									<input id="corp-name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요." readonly style="width:70%; float:left">
+									<button id="copr-searh-btn" type="button" class="btn" style="width:30%">기업검색</button>
 									<input id="corp-id" style="display:none"/>
 									<!-- <input id="checked-corp" style="display:none"/>
 									<input id="is-check-corp" value="false" style="display:none"/> -->
