@@ -60,7 +60,7 @@ $("#check-id-btn").on("click",function(){
 });
 
 $("#copr-searh-btn").on("click",function(){
-	var buttonText = "Ok" ;
+	//var buttonText = "Ok" ;
     var title = "The page says:";
 
     var div = $('<div id="dialog">');
@@ -70,7 +70,7 @@ $("#copr-searh-btn").on("click",function(){
     				'<input id="dialog-corp-name" type="text" placeholder="기업명을 입력해주세요." style="width:70%">'+
     				'<button id="dialog-corp-search-btn" style="width:30%">검색</button>'+
     			'</div>'+
-    			'<table id="table-corp" style="text-align:center" width="100%">'+
+    			'<table id="table-corp" style="text-align:center; margin-top:10px; margin-bottom:10px" width="100%">'+
     				'<thead>'+
     					'<tr>'+
     						'<td width="50%">회사명</>'+
@@ -83,14 +83,14 @@ $("#copr-searh-btn").on("click",function(){
         autoOpen: true,
         modal: true,
         draggable: false,
-        resizable: false,
+        resizable: false/*,
         buttons: [{
             text: buttonText,
             click: function () {
                 $(this).dialog("close");
                 div.remove();
             }
-        }]
+        }]*/
     });
 	
     $("#dialog-corp-search-btn").on("click",function(){
