@@ -1,17 +1,16 @@
 package smartlock.software.controller;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import smartlock.common.vo.DataResVO;
-import smartlock.member.vo.UserVO;
 import smartlock.software.service.SoftwareService;
 import smartlock.software.vo.SoftwareVO;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class SoftwareApiController {
@@ -21,8 +20,7 @@ public class SoftwareApiController {
 
 
     @RequestMapping(value = "/software/list", method = RequestMethod.POST)
-    public @ResponseBody DataResVO software(
-            HttpServletRequest request) {
+    public @ResponseBody DataResVO software(HttpServletRequest request) {
 
         return new DataResVO(request, userVO -> {
             return softwareService.softwareList();
@@ -35,8 +33,7 @@ public class SoftwareApiController {
      * @return {@link SoftwareVO}
      */
     @RequestMapping(value = "/software/corp", method = RequestMethod.GET)
-    public @ResponseBody DataResVO software(
-            HttpServletRequest request) {
+    public @ResponseBody DataResVO softwareByCorp(HttpServletRequest request) {
 
     	return new DataResVO(request, userVO -> {
             return softwareService.softwareListByCorp(""+userVO.getCorpId());
