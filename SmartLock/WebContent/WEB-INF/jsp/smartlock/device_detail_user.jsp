@@ -19,26 +19,6 @@
 			<div class="row">
 			<div class="col-sm-12">
 				<div class="col-sm-2">
-					<div class="input-group">
-						<select name="" id="location1"
-						style="width: 180px; height: 35px;">
-						<option value="">소프트웨어명</option>
-						<option value="">Microsoft Excel</option>
-						<option value="">Parallels Desktop</option>
-						<option value="">Adobe CC</option>
-						<option value="">Football Manager</option>
-					</select>
-					</div>
-				</div>
-				<div class="col-sm-2">
-					<div class="input-group">
-						<select name="" id="location1"
-						style="width: 180px; height: 35px;">
-						<option value="">등록 날짜</option>
-						<option value="">오름차순</option>
-						<option value="">내림차순</option>
-					</select>
-					</div>
 				</div>
 				<div class="col-sm-6">
 				<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
@@ -71,7 +51,6 @@
 						</div>
 						<div>
 							<ul class="list-group text-center">
-								<li class="list-group-item"><b>장치명 :</b> <span data-bind="장치명">iPhone7 (mobile)</span></span></li>
 								<li class="list-group-item"><b>장치정보 :</b> <span data-bind="장치정보">DC9601-2792-2DD4</span></li>
 								<li class="list-group-item"><b>등록일 :</b> <span data-bind="등록일">2017 - 01 - 01</span></li>
 							</ul>
@@ -86,7 +65,6 @@
                 			<tr>
         						<td width="10px"><h4><b>No.</h4></td>
 								<td width="250px"><h4><b>소프트웨어</h4></td>
-								<td width="180px"><h4><b>장치명</h4></td>
 								<td width="200px"><h4><b>회사명</h4></td>
 								<td width="150px"><h4><b>시작일자</h4></td>
 								<td width="150px"><h4><b>만료기간</h4></td>
@@ -97,7 +75,6 @@
                 			<tr>
         						<td data-title="No.">1</td>
                 				<td data-title="소프트웨어">Microsoft Excel</td>
-                				<td data-title="장치명">GD's Phone</td>
                 				<td data-title="회사명">Microsoft</td>
                 				<td data-title="시작일자">2016-11-31</td>
                 				<td data-title="만료기간">9999-99-99</td>
@@ -106,7 +83,6 @@
                 			<tr>
         						<td data-title="No.">2</td>
                 				<td data-title="소프트웨어">Microsoft Excel</td>
-                				<td data-title="장치명">GD's Phone</td>
                 				<td data-title="회사명">Microsoft</td>
                 				<td data-title="시작일자">2016-11-31</td>
                 				<td data-title="만료기간">9999-99-99</td>
@@ -115,7 +91,6 @@
                 			<tr>
         						<td data-title="No.">3</td>
                 				<td data-title="소프트웨어">Microsoft Excel</td>
-                				<td data-title="장치명">GD's Phone</td>
                 				<td data-title="회사명">Microsoft</td>
                 				<td data-title="시작일자">2016-11-31</td>
                 				<td data-title="만료기간">9999-99-99</td>
@@ -124,7 +99,6 @@
                 			<tr>
         						<td data-title="No.">4</td>
                 				<td data-title="소프트웨어">Parallels Desktop</td>
-                				<td data-title="장치명">GD's Phone</td>
                 				<td data-title="회사명">Parallels International</td>
                 				<td data-title="시작일자">2017-03-21</td>
                 				<td data-title="만료기간">2017-04-21</td>
@@ -134,7 +108,6 @@
                 			<tr>
         						<td data-title="No.">5</td>
                 				<td data-title="소프트웨어">Parallels Desktop</td>
-                				<td data-title="장치명">GD's Phone</td>
                 				<td data-title="회사명">Parallels International</td>
                 				<td data-title="시작일자">2017-03-21</td>
                 				<td data-title="만료기간">2017-04-21</td>

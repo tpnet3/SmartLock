@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.device.service.DeviceService;
 import smartlock.device.vo.DeviceVO;
+import smartlock.license.vo.LicenseUserVO;
 import smartlock.member.vo.UserVO;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 @Controller
 public class DeviceWebController {
@@ -74,6 +77,25 @@ public class DeviceWebController {
 			} else {
 				return new ModelAndView("redirect:/");
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ModelAndView("redirect:/");
+		}
+	}
+	
+	@RequestMapping(value="/device/license", method=RequestMethod.POST)
+	public ModelAndView getDeviceLicense(
+			@RequestBody Map<String,Object> jsonData,
+			HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		
+		ModelAndView modelAndView = new ModelAndView("smartlock/device_detail_user");
+		ArrayList<LicenseUserVO> licenseList = new ArrayList<LicenseUserVO>();
+		try {
+			licenseList = deviceService.getLicenseList(userVO.getId(), jsonData.get("id").toString());
+			modelAndView.addObject("licenseList", licenseList);
+			return modelAndView;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");
