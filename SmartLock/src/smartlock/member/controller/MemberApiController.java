@@ -34,6 +34,9 @@ public class MemberApiController {
     public @ResponseBody DataResVO loginPost(
             HttpServletRequest request,
             @RequestBody LoginReqVO loginReqVO) {
+
+        System.out.println(loginReqVO);
+
         return new DataResVO(request, sessionUserVO -> {
             boolean checkPassword = userService.checkPassword(loginReqVO);
 
@@ -51,6 +54,8 @@ public class MemberApiController {
 
             // 로그인시 API 데이터
             UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
+
+            System.out.println(userInfoVO);
 
             return userInfoVO;
         });

@@ -19,6 +19,16 @@ public class SoftwareApiController {
     @Resource
     private SoftwareService softwareService;
 
+
+    @RequestMapping(value = "/software/list", method = RequestMethod.POST)
+    public @ResponseBody DataResVO software(
+            HttpServletRequest request) {
+
+        return new DataResVO(request, userVO -> {
+            return softwareService.softwareList();
+        });
+    }
+
     /**
      * 소프트웨어 목록 조회
      * @param softwareVO {@link SoftwareVO#sw_name}

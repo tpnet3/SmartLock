@@ -11,4 +11,12 @@
         FROM corp
         WHERE corp_name LIKE CONCAT('%',#{corp_name},'%')
     </select>
+    
+    <select id="corpName"
+    		parameterType="smartlock.member.vo.CorpVO"
+    		resultType="String">
+    	SELECT corp_name
+    	FROM corp
+    	WHERE id=#{value}
+    </select>
 </mapper>

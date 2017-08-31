@@ -47,4 +47,8 @@ public class SoftwareService {
     public ArrayList<SoftwareVO> softwareListByCorp(String corpId) throws Exception {
     	return (ArrayList)commonDAO.selectList("software.selectByCorp", corpId);
     }
+    
+    public int softwareRequestFinal(Map<String, String> map) throws Exception {
+    	return (int) commonDAO.update("softwareFinal", map);
+    }
 }
