@@ -90,8 +90,6 @@ $.ajax({
 	},
 	success:function(data){
 		alert(data);
-/* 		$('#month1').style('height:${monthCnt[0]}');
-		$('#month1').text('height:${monthCnt[0]}'); */
 	},
 	error:function(jqXHR, textStatus, errorThrown){
 		alert('에러');
