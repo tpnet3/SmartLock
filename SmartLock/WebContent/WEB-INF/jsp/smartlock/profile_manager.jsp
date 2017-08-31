@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% UserVO userVO = (UserVO) session.getAttribute("user"); %>
+<% String corp_name = (String) session.getAttribute("corp_name"); %>
 
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_title" value="Profile" />
@@ -39,7 +40,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">소속</label>
                             <div class="col-md-7">
-                                <label class="control-label" for="textinput"><%= userVO.getCorpId() %></label>
+                                <label class="control-label" for="textinput"><%= corp_name %></label>
                             </div>
                         </div>
 

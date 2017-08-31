@@ -1,7 +1,5 @@
 package smartlock.device.controller;
 
-import java.util.ArrayList;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,13 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import smartlock.common.vo.DataResVO;
 import smartlock.device.service.DeviceService;
 import smartlock.device.vo.DeviceVO;
-import smartlock.member.vo.UserVO;
 
 @Controller
 public class DeviceApiController {
