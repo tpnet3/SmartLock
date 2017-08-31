@@ -96,7 +96,7 @@
 								<li class="list-group-item"><b>등록일 :</b>${device.reg_date}</li>
 							</ul>
 							<a href="#" class="btn btn-default" style="width: 180px"
-								onclick="return clickShowLicense(${device.id});">라이센스 조회</a>
+								onclick="return clickShowLicense('${device.id}');">라이센스 조회</a>
 						</div>
 					</div>
 				</div>
@@ -200,11 +200,22 @@
     /**
 	 * 라이센스 보기 클릭시
      * @param deviceId 디바이스 아이디
-     * @return {boolean} False
      */
 	function clickShowLicense(deviceId) {
-        alert("deviceId: " + deviceId + " 에 대한 라이센스 조회 버튼을 클릭했습니다.");
-        return false;
+    	 $.ajax({
+    		url: "/device/license",
+    		type: "POST",
+    		contentType: "application/json",
+    		data: JSON.stringify({
+    			id: deviceId
+    		}),
+    		success: function(data) {
+    			alert("success");
+    		},
+    		error: function(data, textStatus, errorThrown) {
+    			console.log(data);
+    		}
+    	 });
 	}
     
     function search() {

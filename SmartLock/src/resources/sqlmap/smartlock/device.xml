@@ -55,6 +55,14 @@
 	   ORDER BY ${order};
 	</select>
 
+	<select id="selectLicense"
+			parameterType="java.util.Map"
+			resultType="smartlock.license.vo.LicenseUserVO">
+		SELECT 
+		  FROM
+		 WHERE
+	</select>
+
 	<!-- 디바이스 제거 -->
 	<delete id="deleteDevice"
 			parameterType="Integer">

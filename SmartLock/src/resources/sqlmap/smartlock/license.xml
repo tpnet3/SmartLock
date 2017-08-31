@@ -206,30 +206,26 @@
 		ORDER BY s.sw_name ASC;
 	</select>
 	
-	<select id="permitFull" parameterType="java.util.Map"
-		resultType="java.lang.Integer">
-		INSERT INTO license (id, user_id, start_date, end_date, sw_id, state)
-		VALUES ('1', #{id}, CURDATE(), '9999-00-00', (SELECT id FROM software WHERE sw_name = #{swName}), '1');
-	</select>
+	<insert id="permitFull" parameterType="java.util.Map">
+		INSERT INTO license (user_id, start_date, end_date, sw_id, state)
+		VALUES (#{id}, CURDATE(), '9999-00-00', (SELECT id FROM software WHERE sw_name = #{swName}), '1');
+	</insert>
 	
-	<select id="permitDemo" parameterType="java.util.Map"
-		resultType="java.lang.Integer">
-		INSERT INTO license (id, user_id, start_date, end_date, sw_id, state)
-		VALUES ('1', #{id}, CURDATE(), ADDDATE(CURDATE(), INTERVAL 30 DAY), (SELECT id FROM software WHERE sw_name = #{swName}), '2');
-	</select>
+	<insert id="permitDemo" parameterType="java.util.Map">
+		INSERT INTO license (user_id, start_date, end_date, sw_id, state)
+		VALUES (#{id}, CURDATE(), ADDDATE(CURDATE(), INTERVAL 30 DAY), (SELECT id FROM software WHERE sw_name = #{swName}), '2');
+	</insert>
 	
-	<select id="permitDelete" parameterType="java.util.Map"
-		resultType="java.lang.Integer">
+	<delete id="permitDelete" parameterType="java.util.Map">
 		DELETE FROM req_license
 		WHERE user_id = #{id}
 		AND sw_id = (SELECT id FROM software WHERE sw_name = #{swName});
-	</select>
+	</delete>
 	
-	<select id="licenseUserReqDemo" parameterType="java.util.Map"
-		resultType="java.lang.Integer">
-		INSERT INTO req_license (id, user_id, request_date, sw_id, state)
-		VALUES ('1', #{id}, CURDATE(), (SELECT id FROM software WHERE sw_name = #{name}), '1');
-	</select>
+	<insert id="licenseUserReqDemo" parameterType="java.util.Map">
+		INSERT INTO req_license (user_id, request_date, sw_id, state)
+		VALUES (#{id}, CURDATE(), (SELECT id FROM software WHERE sw_name = #{name}), '1');
+	</insert>
 	
 	
 </mapper>
