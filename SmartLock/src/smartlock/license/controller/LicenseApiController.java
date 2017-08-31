@@ -39,69 +39,69 @@ public class LicenseApiController {
 	 * @return {@link ArrayList<LicenseUserVO>}
 	 * @throws Exception DAO Exception
 	 */
-	@RequestMapping(
-			value = "/license/by_id",
-			method = RequestMethod.POST
-	)
-	public @ResponseBody DataResVO getUserLicenseById(
-			HttpServletRequest request,
-			@RequestBody UserVO userVO) throws Exception {
-
-		return new DataResVO(request, (sessionUserVO) -> {
-			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
-			//license = licenseService.viewUserLicense("swan");
-
-			System.out.println(license);
-
-			return license.isEmpty() ? null : license;
-		});
-	}
+//	@RequestMapping(
+//			value = "/license/by_id",
+//			method = RequestMethod.POST
+//	)
+//	public @ResponseBody DataResVO getUserLicenseById(
+//			HttpServletRequest request,
+//			@RequestBody UserVO userVO) throws Exception {
+//
+//		return new DataResVO(request, (sessionUserVO) -> {
+//			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
+//			//license = licenseService.viewUserLicense("swan");
+//
+//			System.out.println(license);
+//
+//			return license.isEmpty() ? null : license;
+//		});
+//	}
    
     /**
      * 개인 라이센스 전체 조회
      * @return {@link ArrayList<LicenseUserVO>}
      */
-    @RequestMapping(
-            value = "/license/user",
-            method = RequestMethod.POST
-    )
-    public @ResponseBody DataResVO viewUserLicense(
-            HttpServletRequest request) throws Exception {
-
-    	return new DataResVO(request, (userVO) -> {
-    		// 로그인 되지 않은 사용자라면 null
-    		if (userVO == null) return null;
-
-			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
-			//license = licenseService.viewUserLicense("swan");
-
-			System.out.println(license);
-
-			return license.isEmpty() ? null : license;
-		});
-
-    	/*
-		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
-		license = licenseService.viewUserLicense(userVO.getId());
-		//license = licenseService.viewUserLicense("swan");
-
-		try{
-			System.out.println(license);
-			if(license.isEmpty()) {
-				dataResVO.setStatus("success");
-				dataResVO.setData(null);
-			} else {
-				dataResVO.setStatus("success");
-				dataResVO.setData(license);
-			}
-		} catch(Exception e){
-			dataResVO.setStatus("error");
-			dataResVO.setData("error");
-		}
-		
-        return dataResVO;
-        */
-    }
+//    @RequestMapping(
+//            value = "/license/user",
+//            method = RequestMethod.POST
+//    )
+//    public @ResponseBody DataResVO viewUserLicense(
+//            HttpServletRequest request) throws Exception {
+//
+//    	return new DataResVO(request, (userVO) -> {
+//    		// 로그인 되지 않은 사용자라면 null
+//    		if (userVO == null) return null;
+//
+//			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
+//			//license = licenseService.viewUserLicense("swan");
+//
+//			System.out.println(license);
+//
+//			return license.isEmpty() ? null : license;
+//		});
+//
+//    	/*
+//		ArrayList<LicenseUserVO> license = new ArrayList<LicenseUserVO>();
+//		license = licenseService.viewUserLicense(userVO.getId());
+//		//license = licenseService.viewUserLicense("swan");
+//
+//		try{
+//			System.out.println(license);
+//			if(license.isEmpty()) {
+//				dataResVO.setStatus("success");
+//				dataResVO.setData(null);
+//			} else {
+//				dataResVO.setStatus("success");
+//				dataResVO.setData(license);
+//			}
+//		} catch(Exception e){
+//			dataResVO.setStatus("error");
+//			dataResVO.setData("error");
+//		}
+//		
+//        return dataResVO;
+//        */
+//    }
     
     /**
      * 개인 라이센스 소프트웨어명 별로 조회

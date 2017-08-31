@@ -36,8 +36,21 @@ public class LicenseWebController {
 	public @ResponseBody ModelAndView viewUserLicense(
 			HttpServletRequest request,
 			@RequestParam(value="sw", required=false, defaultValue="") String name,
-			@RequestParam(value="order", required=false, defaultValue="") String order) throws Exception{
+			@RequestParam(value="order", required=false, defaultValue="") String order_param) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		
+		String order;
+		switch (order_param) {
+		case "ASC":
+			order = "reg_date";
+			break;
+		case "DESC":
+			order = "reg_date desc";
+			break;
+		case "DEFAULT":
+			order="DEFAULT";
+		}
+		
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
 				ArrayList<String> swNameList = new ArrayList<String>();

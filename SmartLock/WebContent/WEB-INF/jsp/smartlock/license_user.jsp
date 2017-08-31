@@ -150,43 +150,26 @@
     		order = "ASC";
     	} else if(orderIndex == 2) {
     		order = "DESC";
-    	} else if(orderIndex == 0) {
-    		order = "DEFAULT";
     	}
-    	
-    	if(name.value!="default"){
+
     		$.ajax({
 				url:"/license/user",
 				type:"GET",
 				contentType: "application/json",
 			 	data : {
-				name : sw,
+				sw : sw,
 				order : order
 			},
          success : function (data) {
-        	 window.location = "/license/user?name="+sw+"&order="+order;
+        	 window.location = "/license/user?sw="+sw+"&order="+order;
          },
          error : function(data, textStatus, errorThrown) {
              console.log(data);
          }
 		});
-    	}
-    	else{
-    		$.ajax({
-				url:"/license/user?name",
-				type:"GET",
-				contentType: "application/json",
-			 	data : {
-				name : name.value
-			},
-         success : function (data) {
-        	 window.location = "/license/user?name";
-         },
-         error : function(data, textStatus, errorThrown) {
-             console.log(data);
-         }
-		});
-    }
+    	
+    	
+	}
 </script>
 
 

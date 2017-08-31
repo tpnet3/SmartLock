@@ -43,7 +43,11 @@ public class LicenseService {
 	 * @throws Exception
 	 */
 	public ArrayList<LicenseUserVO> viewUserLicenseByName(Map<String, String> map) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.selectLicenseByName", map);
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectLicenseByName", map);
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectLicenseByNameOrder", map);
+		}
 	}
 	
 	/**
