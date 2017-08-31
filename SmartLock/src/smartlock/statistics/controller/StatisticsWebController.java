@@ -128,9 +128,9 @@ public class StatisticsWebController {
     }
     
     @RequestMapping(value = "/statistics/monthly/filter", method = RequestMethod.POST)
-    public @ResponseBody void statisticsMonthlyBySW
-    	(HttpServletRequest request, @RequestParam("sw_id") int id) 
-    {
+    public @ResponseBody int[] statisticsMonthlyBySW
+    	(HttpServletRequest request, @RequestParam("sw_id") int id) throws Exception
+    { 
     	/*
     	 * 세션 얻기
     	 */
@@ -142,10 +142,25 @@ public class StatisticsWebController {
         	/*
         	 * DB에서 해당 소프트웨어의 1년치 라이센스 가져오기
         	 */
+        	Map<String, Integer> map = new HashMap<String, Integer>();
+        	map.put("sw_id", id);
+        	map.put("corp_id", userVO.getCorpId());
+        	
         	ArrayList<StatisticsMonthlyVO> dataList 
-        		= statisticsMonthlyService.viewStatisticsMonthlyBySW(userVO.getCorpId());
+        		= statisticsMonthlyService.viewStatisticsMonthlyBySW(map);
         
-
+        	GregorianCalendar cal = new GregorianCalendar();
+    		int[] monthCnt = new int[12]; 
+        	/*
+        	 * DB에서 뽑은 데이터 월에 따라 배열에 담기
+        	 */
+        	for(StatisticsMonthlyVO vo : dataList)
+        	{        		
+        		cal.setTime(vo.getStart_date());
+        		++monthCnt[cal.get(Calendar.MONTH)];
+        	}    
+        	return monthCnt;
         } 
+        return null;
     }
 }
