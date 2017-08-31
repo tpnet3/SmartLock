@@ -48,7 +48,7 @@ public class LicenseApiController {
 			@RequestBody UserVO userVO) throws Exception {
 
 		return new DataResVO(request, (sessionUserVO) -> {
-			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
+//			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
 			//license = licenseService.viewUserLicense("swan");
 
 			System.out.println(license);
@@ -72,7 +72,7 @@ public class LicenseApiController {
     		// 로그인 되지 않은 사용자라면 null
     		if (userVO == null) return null;
 
-			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
+//			ArrayList<LicenseUserVO> license = licenseService.viewUserLicense(userVO.getId());
 			//license = licenseService.viewUserLicense("swan");
 
 			System.out.println(license);
