@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import smartlock.common.CommonDAO;
 import smartlock.device.vo.DeviceVO;
+import smartlock.license.vo.LicenseUserVO;
 
 @Service
 public class DeviceService {
@@ -50,14 +51,14 @@ public class DeviceService {
 		map.put("order", order);
 		return (ArrayList)commonDAO.selectList("device.selectDeviceBySw", map);
 	}
-
-	public int modifyDevice(int id, String nickName) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", id);
-		map.put("nickname", nickName);
-		return commonDAO.update("device.modifyDevice", map);
-	}
 	
+	public ArrayList<LicenseUserVO> getLicenseList(String userId, String deviceId) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("deviceId", deviceId);
+		return (ArrayList)commonDAO.selectList("device.", map);
+	}
+
 	/**
 	 * 디바이스 삭제
 	 * @param id 디바이스 아이디
