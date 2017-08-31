@@ -208,7 +208,16 @@ function checkPhone() {
 }
 $("#signup-btn").on("click", function() {
 	var phone = $("#phone-1").val()+"-"+$("#phone-2").val()+"-"+$("#phone-3").val();
-
+	var data = {
+		"id" : $("#id").val(),
+		"pwd" : $("#pwd").val(),
+		"name" : $("#name").val(),
+		"email" : $("#email").val(),
+		"phone" : phone,
+        "corp_id" : $("#corp-id").val(),
+        "authority" : $("#authority").val()
+	};
+	
 	// check validation
 	if(!checkId()){
 		return false;
@@ -221,7 +230,6 @@ $("#signup-btn").on("click", function() {
 		alert("이름을 입력하세요.");
 		return false;
 	}
-	checkEmail
 	if(!checkEmail()){
 		return false;
 	}
@@ -239,15 +247,7 @@ $("#signup-btn").on("click", function() {
 		type : "POST",
         contentType: "application/json",
 		dataType : "json",
-		data : JSON.stringify({
-			"id" : $("#id").val(),
-			"pwd" : $("#pwd").val(),
-			"name" : $("#name").val(),
-			"email" : $("#email").val(),
-			"phone" : phone,
-            "corp_id" : $("#corp-id").val(),
-            "authority" : $("#authority").val()
-		}),
+		data : JSON.stringify(data),
 		success : function (data){
 			if(data.status == "success") {
 				//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
