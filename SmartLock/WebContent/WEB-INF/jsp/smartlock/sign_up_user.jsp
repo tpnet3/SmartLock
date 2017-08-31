@@ -71,10 +71,10 @@
 							<label class="col-md-5 control-label" for="email">이메일</label>
 							<div class="col-md-3">
 								<!-- <input id="email" name="textinput" type="text" placeholder="이메일을 입력하세요." class="form-control input-md"> -->
-								<input id="email-1" type="text" style="width:38%; display:inline; text-align:center" class="form-control input-md">
-								<b style="width:2%">@</b>
-								<input id="email-3" type="text" style="width:43%; text-align:center; display: none;" class="form-control input-md">
-								<select id="email-2" style="width:58%; display:inline; text-align-last:center;" class="form-control input-md">
+								<input id="email-1" type="text" style="width:40%; display:inline; text-align:center" class="form-control input-md">
+								<b style="width:5%">@</b>
+								<input id="email-3" type="text" style="width:40%; text-align:center; display: none;" class="form-control input-md">
+								<select id="email-2" style="width:45%; display:inline; text-align-last:center;" class="form-control input-md">
 									<option>naver.com</option>
 									<option>daum.net</option>
 									<option>gmail.com</option>
@@ -89,7 +89,7 @@
 							<label class="col-md-5 control-label" for="phone">전화번호</label>
 							<div class="col-md-3">
 								<!-- <input id="phone" name="textinput" type="text" placeholder="전화번호를 입력해주세요." class="form-control input-md"> -->
-								<select id="phone-1" style="width:30%; display:inline;text-align-last:center;" class="form-control input-md">
+								<select id="phone-1" style="width:28%; display:inline;text-align-last:center;" class="form-control input-md">
 									<option>010</option>
 									<option>011</option>
 									<option>016</option>
@@ -98,9 +98,9 @@
 									<option>019</option>
 								</select>
 								<b style="width:5%">-</b>
-								<input id="phone-2" type="number" style="width:30%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+								<input id="phone-2" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
 								<b style="width:5%">-</b>
-								<input id="phone-3" type="number" style="width:30%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+								<input id="phone-3" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
 							</div>
 						</div>
 	
