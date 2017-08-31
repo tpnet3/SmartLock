@@ -206,38 +206,15 @@
         alert("deviceId: " + deviceId + " 에 대한 라이센스 조회 버튼을 클릭했습니다.");
         return false;
 	}
-     
-     
-    function checkSelectSw(selectedItem) {
-    	/* var sw = selectedItem.value;
-    	var order = $("#order option:selected").val();
-  
-    	if(selectedItem.selectedIndex!=0){
-    		$.ajax({
-    			url:"/device",
-    			type:"GET",
-   				contentType: "application/json",
-   			 	data : {
-					sw: sw
-				},
-             success : function (data) {
-            	 $(location).attr("href","/device?sw="+sw);
-             },
-             error : function(data, textStatus, errorThrown) {
-                 console.log(data);
-             }
-    		});
-    	} */
-    }
     
     function search() {
     	var sw = $("#sw_list option:selected").val();
     	var orderIndex = $("#order option").index($("#order option:selected"));
     	var order = "";
     	
-    	if(order == 1) {
+    	if(orderIndex == 1) {
     		order = "ASC";
-    	} else if(order == 2) {
+    	} else if(orderIndex == 2) {
     		order = "DESC";
     	}
 
