@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.member.vo.UserVO;
@@ -123,13 +124,12 @@ public class StatisticsWebController {
             return modelAndView;    
         }
         else 
-        {
             return new ModelAndView("redirect:/");
-        }
     }
     
     @RequestMapping(value = "/statistics/monthly/filter", method = RequestMethod.POST)
-    public ModelAndView statisticsMonthlyByName(HttpServletRequest request) 
+    public @ResponseBody void statisticsMonthlyBySW
+    	(HttpServletRequest request, @RequestParam("sw_id") int id) 
     {
     	/*
     	 * 세션 얻기
@@ -137,10 +137,15 @@ public class StatisticsWebController {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
-        if (userVO != null && userVO.getAuthority() == 1) {
-            return new ModelAndView("/smartlock/statistics_monthly");
-        } else {
-            return new ModelAndView("redirect:/");
-        }
+        if (userVO != null && userVO.getAuthority() == 1) 
+        {
+        	/*
+        	 * DB에서 해당 소프트웨어의 1년치 라이센스 가져오기
+        	 */
+        	ArrayList<StatisticsMonthlyVO> dataList 
+        		= statisticsMonthlyService.viewStatisticsMonthlyBySW(userVO.getCorpId());
+        
+
+        } 
     }
 }
