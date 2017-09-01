@@ -54,9 +54,9 @@ public class DeviceService {
 	
 	public ArrayList<LicenseUserVO> getLicenseList(String userId, String deviceId) throws Exception {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("userId", userId);
-		map.put("deviceId", deviceId);
-		return (ArrayList)commonDAO.selectList("device.", map);
+		map.put("user_id", userId);
+		map.put("device_id", deviceId);
+		return (ArrayList)commonDAO.selectList("device.selectLicense", map);
 	}
 
 	/**

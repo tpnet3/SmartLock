@@ -210,6 +210,7 @@
     			id: deviceId
     		}),
     		success: function(data) {
+    			$(location).attr("href", "device_detail_user.jsp");
     			alert("success");
     		},
     		error: function(data, textStatus, errorThrown) {
