@@ -204,14 +204,13 @@
 	function clickShowLicense(deviceId) {
     	 $.ajax({
     		url: "/device/license",
-    		type: "POST",
+    		type: "GET",
     		contentType: "application/json",
-    		data: JSON.stringify({
+    		data: ({
     			id: deviceId
     		}),
     		success: function(data) {
-    			$(location).attr("href", "device_detail_user.jsp");
-    			alert("success");
+    			$(location).attr("href", "/device/license?id="+deviceId);
     		},
     		error: function(data, textStatus, errorThrown) {
     			console.log(data);
