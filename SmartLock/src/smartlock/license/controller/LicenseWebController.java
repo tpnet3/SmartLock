@@ -35,7 +35,7 @@ public class LicenseWebController {
 	@RequestMapping(value = "/license/user", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView viewUserLicense(
 			HttpServletRequest request,
-			@RequestParam(value="sw", required=false, defaultValue="") String name,
+			@RequestParam(value="sw_id", required=false, defaultValue="") String sw_id,
 			@RequestParam(value="order", required=false, defaultValue="") String order) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		
@@ -45,7 +45,6 @@ public class LicenseWebController {
 				ArrayList<String> swNameList = new ArrayList<String>();
 				ArrayList<LicenseUserVO> licenseUserList;
 				Map<String, String> map = new HashMap<String, String>();
-				System.out.println(order + "!!!!" + name);
 				map.put("order",  order);
 				map.put("id", userVO.getId());
 				licenseUserList = licenseService.viewUserLicense(map);
@@ -55,8 +54,8 @@ public class LicenseWebController {
 						swNameList.add(licenseUserList.get(i).getSw_name());
 						} 
 				}
-				if(!name.equals("")){
-					map.put("name", name);
+				if(!sw_id.equals("")){
+					map.put("sw_id", sw_id);
 					licenseUserList = licenseService.viewUserLicenseByName(map);
 				}
 				ModelAndView modelAndView = new ModelAndView("smartlock/license_user");
@@ -75,29 +74,35 @@ public class LicenseWebController {
 	
 	@RequestMapping(value = "/license/user/request", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView viewUserReqLicense(
-			@RequestParam("name") String name,
-			HttpServletRequest request) throws Exception{
+			HttpServletRequest request,
+			@RequestParam(value="sw_id", required=false, defaultValue="") String sw_id,
+			@RequestParam(value="order", required=false, defaultValue="") String order)
+			 throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-			
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
+				ArrayList<Integer> swIdList = new ArrayList<Integer>();
 				ArrayList<String> swNameList = new ArrayList<String>();
 				ArrayList<LicenseUserReqVO> licenseUserReqList;
-				licenseUserReqList = licenseService.viewUserReqLicense(userVO.getId());
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("order",  order);
+				map.put("id", userVO.getId());
+				licenseUserReqList = licenseService.viewUserReqLicense(map);
 				for(int i = 0; i < licenseUserReqList.size(); i++) { 
-					if(!swNameList.contains(licenseUserReqList.get(i).getSw_name())){
+					if(!swIdList.contains(licenseUserReqList.get(i).getSw_id())){
+						swIdList.add(licenseUserReqList.get(i).getSw_id());
 						swNameList.add(licenseUserReqList.get(i).getSw_name());
 						} 
 				}
-				if(!name.equals("")){Map<String, String> map = new HashMap<String, String>();
-				map.put("name", name);
-				map.put("id", userVO.getId());
-				licenseUserReqList = licenseService.viewUserReqLicenseByName(map);
+				if(!sw_id.equals("")){
+					map.put("sw_id", sw_id);
+					licenseUserReqList = licenseService.viewUserReqLicenseByName(map);
 				} 
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/license_user_request");
 				modelAndView.addObject("licenseUserReqList", licenseUserReqList);
 				modelAndView.addObject("swNameList", swNameList);
+				modelAndView.addObject("swIdList", swIdList);
 				return modelAndView;
 			} else {
 				return new ModelAndView("redirect:/");

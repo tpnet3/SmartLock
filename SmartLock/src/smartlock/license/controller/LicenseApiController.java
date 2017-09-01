@@ -29,10 +29,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LicenseApiController {
 	
-	
+	/*
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
-
+*/
 	/**
 	 * 아이디로 라이센스 정보
 	 * @param userVO {@link UserVO#id}
@@ -108,7 +108,7 @@ public class LicenseApiController {
 	 * @param name 소프트웨어명
      * @return {@link ArrayList<LicenseUserVO>}
      */
-    @RequestMapping(
+/*    @RequestMapping(
             value = "/license/user/filter",
             method = RequestMethod.POST
     )
@@ -131,7 +131,7 @@ public class LicenseApiController {
 			System.out.println(license);
 
 			return license.isEmpty() ? null : license;
-		});
+		});*/
 
         /*
         HttpSession httpSession = request.getSession();
@@ -159,13 +159,13 @@ public class LicenseApiController {
 		}
         return dataResVO;
         */
-    }
+    //}
     
     /**
      * 개인 요청 라이센스 전체 조회
      * @return {@link ArrayList<LicenseUserReqVO>}
      */
-    @RequestMapping(
+   /* @RequestMapping(
             value = "/license/user/request",
             method = RequestMethod.POST
     )
@@ -183,7 +183,7 @@ public class LicenseApiController {
 
 			return license.isEmpty() ? null : license;
 		});
-
+*/
         /*
         HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
@@ -206,14 +206,14 @@ public class LicenseApiController {
 		}
         return dataResVO;
         */
-    }
+    //}
 
     /**
      * 개인 요청 라이센스 소프트웨어명별 조회
 	 * @param name 소프트웨어명
      * @return {@link ArrayList<LicenseUserReqVO>}
      */
-    @RequestMapping(
+    /*@RequestMapping(
             value = "/license/user/request/filter",
             method = RequestMethod.POST
     )
@@ -235,7 +235,7 @@ public class LicenseApiController {
 			System.out.println(license);
 
 			return license.isEmpty() ? null : license;
-		});
+		});*/
 
     	/*
         HttpSession httpSession = request.getSession();
@@ -263,13 +263,13 @@ public class LicenseApiController {
 		}
         return dataResVO;
         */
-    }
+   // }
     
     /**
      * 관리자 요청 라이센스 전체 조회
      * @return {@link ArrayList<LicenseManagerReqVO>}
      */
-    @RequestMapping(
+    /*@RequestMapping(
             value = "/license/manager/request",
             method = RequestMethod.POST
     )
@@ -285,7 +285,7 @@ public class LicenseApiController {
 			System.out.println(license);
 
 			return license.isEmpty() ? null : license;
-		});
+		});*/
 
     	/*
     	HttpSession httpSession = request.getSession();
@@ -307,14 +307,14 @@ public class LicenseApiController {
 		
         return dataResVO;
         */
-    }
+  //  }
     
     /**
      * 관리자 요청 라이센스 소프트웨어명별 조회 
 	 * @param name 소프트웨어명
      * @return {@link ArrayList<LicenseManagerReqVO>}
      */
-    @RequestMapping(
+   /* @RequestMapping(
             value = "/license/manager/request/filter",
             method = RequestMethod.POST
     )
@@ -338,7 +338,7 @@ public class LicenseApiController {
 
 			return license.isEmpty() ? null : license;
 		});
-
+*/
     	/*
     	DataResVO dataResVO = new DataResVO();
         
@@ -368,13 +368,13 @@ public class LicenseApiController {
 		}
         return dataResVO;
         */
-    }
+   // }
     
     /**
      * 관리자 발급완료 라이센스 전체 조회
      * @return {@link ArrayList<LicenseManagerVO>}
      */
-    @RequestMapping(
+    /*@RequestMapping(
             value = "/license/manager",
             method = RequestMethod.POST
     )
@@ -391,7 +391,7 @@ public class LicenseApiController {
 			System.out.println(license);
 
 			return license.isEmpty() ? null : license;
-		});
+		});*/
 
         /*
         HttpSession httpSession = request.getSession();
@@ -416,14 +416,14 @@ public class LicenseApiController {
 		
         return dataResVO;
         */
-    }
+    //}
     
     /**
      * 관리자 발급완료 라이센스 소프트웨어명별 조회
 	 * @param name 소프트웨어명
      * @return {@link ArrayList<LicenseManagerVO>}
      */
-    @RequestMapping(
+    /*@RequestMapping(
             value = "/license/manager/filter",
             method = RequestMethod.POST
     )
@@ -442,7 +442,7 @@ public class LicenseApiController {
 			System.out.println(license);
 
 			return license.isEmpty() ? null : license;
-		});
+		});*/
 
     	/*
     	DataResVO dataResVO = new DataResVO();
@@ -472,5 +472,5 @@ public class LicenseApiController {
 		
         return dataResVO;
         */
-    }
+//    }
 }
