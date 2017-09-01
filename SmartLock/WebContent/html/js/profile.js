@@ -3,15 +3,14 @@ $(function() {
 		url : "/profile/getCorpName",
 		type : "POST",
         contentType: "application/json",
-		dataType : "json",
 		data : JSON.stringify({
             "id" : SmartLock.user.corpId,
 		}),
        success : function (data){
-			alert(data);
+    		   
        },
 		error : function(data, textStatus, errorThrown) {
-			alert("error");
+			alert("ajax error");
 		}
 	});
 	

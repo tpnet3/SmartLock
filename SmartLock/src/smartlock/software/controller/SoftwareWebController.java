@@ -86,6 +86,7 @@ public class SoftwareWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		try{
 				map.put("id", userVO.getId());
+				softwareService.softwareRequestFinal(map);
 		} catch(Exception e){
 			e.printStackTrace();
 				

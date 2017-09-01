@@ -12,6 +12,7 @@
 			, l.start_date
 			, l.end_date
 			, l.state
+			, l.sw_id
 		FROM software s
 			, device d
 			, corp c
@@ -33,6 +34,7 @@
 			, l.start_date
 			, l.end_date
 			, l.state
+			, l.sw_id
 		FROM software s
 			, device d
 			, corp c
@@ -42,6 +44,7 @@
 		AND d.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id = d.sw_id
+		ORDER BY l.end_date ${order};
 	</select>
 	
 	<!-- 소프트웨어명으로 발급완료 라이센스 조회 -->
@@ -53,6 +56,7 @@
 			, l.start_date
 			, l.end_date
 			, l.state
+			, l.sw_id
 		FROM software s
 			, device d
 			, corp c
@@ -77,6 +81,7 @@
 			, l.start_date
 			, l.end_date
 			, l.state
+			, l.sw_id
 		FROM software s
 			, device d
 			, corp c
@@ -88,6 +93,7 @@
 		AND l.sw_id = d.sw_id
 		AND l.sw_id = (SELECT id FROM software WHERE
 		sw_name = #{name})
+		ORDER BY l.end_date ${order};
 	</select>
 	
 	<!-- 개인 요청 라이센스 전체 조회 -->

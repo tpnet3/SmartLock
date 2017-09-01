@@ -235,7 +235,6 @@
     		sw = "";
     	}
 
-    	
     	$.ajax({
     		url: "/device",
     		type: "GET",
