@@ -25,7 +25,7 @@
                     <a href="/device">Device</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
-                    <a href="/license/user">License</a>
+                    <a href="/license/user?order=DEFAULT">License</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("softwareUser")) ? "class=\"active\"" : "" %>>
                     <a href="/software/user">Software</a>
@@ -51,7 +51,7 @@
                             <div class="col-md-7">
                                 <h4><%= userVO.getUserName() %> 님</h4>
                                 <h5><%= userVO.getEmail() %></h5>
-                                <a class="btn btn-sm btn-default btn-block" href="/profile">마이페이지</a>
+                                <a class="btn btn-sm btn-default btn-block" href="/profile/select">마이페이지</a>
                                 <br>
                             </div>
                         </li>

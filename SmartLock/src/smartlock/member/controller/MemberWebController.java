@@ -76,7 +76,6 @@ public class MemberWebController {
 	public ModelAndView logout(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("user", null);
-		httpSession.setAttribute("corp_name", null);
 		return new ModelAndView("redirect:/");
 	}
 }

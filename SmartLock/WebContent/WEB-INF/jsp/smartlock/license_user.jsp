@@ -10,7 +10,7 @@
 </jsp:include>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container" id="pageContainer">
 	<!-- Service Panels -->
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
@@ -163,7 +163,7 @@
 			order : order
 		},
          success : function (data) {
-        	 window.location = "/license/user?sw_id="+sw_id+"&order="+order;
+        	 $("#pageContainer").html(data);
          },
          error : function(data, textStatus, errorThrown) {
              console.log(data);

@@ -74,12 +74,12 @@ public class ProfileService {
 	 
 	 /**기업이름 요청(SELECT)
 		 * id로 이름요청
-		 * @param CorpVO
+		 * @param userVO
 		 * @return String
 		 * @throws Exception DAO 예외
 		 */
-	 public String selectCorpName(CorpVO corpVO) throws Exception{
-		 int corp_id = corpVO.getId();
+	 public String selectCorpName(UserVO userVO) throws Exception{
+		 int corp_id = userVO.getCorpId();
 		 System.out.println("기업아이디 : "+corp_id);
 		 
 		 return (String) commonDAO.selectOne("corp.corpName", corp_id);

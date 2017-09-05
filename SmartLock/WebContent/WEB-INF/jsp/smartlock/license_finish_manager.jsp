@@ -10,7 +10,7 @@
 </jsp:include>
 
 <!-- Header Carousel -->
-<div class="container">
+<div class="container" id="pageContainer">
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
 		<div class="col-lg-12">
@@ -18,7 +18,7 @@
 				<small>발급 완료 현황</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="/license/manager/request?name">발급 대기 현황</a></li>
+				<li><a href="/license/manager/request?order=DEFAULT">발급 대기 현황</a></li>
 				<li class="active">발급 완료 현황</li>
 			</ol>
 		</div>
@@ -28,22 +28,22 @@
 			<div class="col-sm-12">
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="swList"
-								style="width: 180px; height: 35px;" onchange="search(this)">
+						<select name="" id="sw_list"
+								style="width: 180px; height: 35px;">
 							<option value="">소프트웨어명</option>
-							<c:forEach var="sw" items="${swNameList}">
-								<option value= "${sw}">${sw}</option>
+							<c:forEach var="sw" items="${swNameList}" varStatus="count">
+								<option value= "${swIdList[count.count-1]}">${sw}</option>
 							</c:forEach>
 						</select>
 					</div>
 				</div>
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="list"
+						<select name="" id="order"
 								style="width: 180px; height: 35px;">
-							<option value="">만료 날짜</option>
-							<option value="">오름차순</option>
-							<option value="">내림차순</option>
+							<option value=0>만료 날짜</option>
+							<option value=1>오름차순</option>
+							<option value=2>내림차순</option>
 						</select>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 				<div class="col-sm-6">
 					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
 						   id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
-					<button class="btn btn-primary" type="button" id="searchButton"
+					<button class="btn btn-primary" type="button" id="searchButton" onclick="search();"
 							data-loading-text="Searching..">
 						<i class="fa fa-search"></i>
 					</button>
@@ -130,39 +130,35 @@
         alert(swName + " 에 대한 상세보기를 클릭했습니다.");
     }
     
-    function search(name) {
-    	if(name.value!="default"){
-    		$.ajax({
-				url:"/license/manager?name="+name.value,
-				type:"GET",
-				contentType: "application/json",
-			 	data : {
-				name : name.value
-			},
+    function search() {
+    	var sw_id = $("#sw_list option:selected").val();
+    	var sw_name = $("#sw_list option:selected").text();
+    	var orderIndex = $("#order option").index($("#order option:selected"));
+    	var order = "";
+
+    	if(orderIndex == 1) {
+    		order = "ASC";
+    	} else if(orderIndex == 2) {
+    		order = "DESC";
+    	} else if (orderIndex == 0) {
+    		order = "DEFAULT";
+    	}
+    	
+    	$.ajax({
+			url:"/license/manager",
+			type:"GET",
+			contentType: "application/json",
+		 	data : {
+			sw_id : sw_id,
+			order : order
+		},
          success : function (data) {
-        	 window.location = "/license/manager?name="+name.value;
+        	 $("#pageContainer").html(data);
          },
          error : function(data, textStatus, errorThrown) {
              console.log(data);
          }
 		});
-    	}
-    	else{
-    		$.ajax({
-				url:"/license/manager?name",
-				type:"GET",
-				contentType: "application/json",
-			 	data : {
-				name : name.value
-			},
-         success : function (data) {
-        	 window.location = "/license/manager?name";
-         },
-         error : function(data, textStatus, errorThrown) {
-             console.log(data);
-         }
-		});
-    	}
     }
 </script>
 

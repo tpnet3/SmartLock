@@ -35,7 +35,7 @@ public class DeviceWebController {
 		UserVO userVO = (UserVO) session.getAttribute("user");
 
 		ArrayList<String> swNameList = new ArrayList<String>();
-		ArrayList<DeviceVO> deviceList;
+		ArrayList<DeviceVO> oldList, newList = new ArrayList<DeviceVO>();
 	
 		String order;
 		switch (order_param) {
@@ -55,22 +55,27 @@ public class DeviceWebController {
 		
 		try {
 			if (userVO != null && userVO.getAuthority() == 0) {
-				deviceList = deviceService.getDeviceList(userVO.getId(), order);
+				oldList = deviceService.getDeviceList(userVO.getId(), order);
+				for(int i = 0; i < oldList.size(); i++) {
+					if(!newList.contains(oldList.get(i).getMac())) {
+						newList.add(oldList.get(i));
+					}
+				}
 
-				for(int i = 0; i < deviceList.size(); i++) { 
-					if(!swNameList.contains(deviceList.get(i).getSw_name())){
-						swNameList.add(deviceList.get(i).getSw_name());
+				for(int i = 0; i < newList.size(); i++) { 
+					if(!swNameList.contains(newList.get(i).getSw_name())){
+						swNameList.add(newList.get(i).getSw_name());
 					} 
 				}
 				
 				if(!sw.equals("")) {
-					deviceList = deviceService.getDeviceList(userVO.getId(), sw, order);
+					newList = deviceService.getDeviceList(userVO.getId(), sw, order);
 				} 
 				
 				// Device 중복제거필요 흑흑..
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/device_user");
-				modelAndView.addObject("deviceList", deviceList);
+				modelAndView.addObject("deviceList", newList);
 				modelAndView.addObject("swNameList", swNameList);
 				modelAndView.addObject("sw",sw);
 				modelAndView.addObject("order",order_param);
