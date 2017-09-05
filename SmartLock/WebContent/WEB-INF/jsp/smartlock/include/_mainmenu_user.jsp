@@ -51,7 +51,7 @@
                             <div class="col-md-7">
                                 <h4><%= userVO.getUserName() %> 님</h4>
                                 <h5><%= userVO.getEmail() %></h5>
-                                <a class="btn btn-sm btn-default btn-block" href="/profile">마이페이지</a>
+                                <a class="btn btn-sm btn-default btn-block" href="/profile/select">마이페이지</a>
                                 <br>
                             </div>
                         </li>

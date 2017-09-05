@@ -138,6 +138,7 @@ public class ProfileApiController {
 	 * @param corpVO {@link CorpVO#id},
 	 * @return 성공시 "success" 실패시 "error"
 	 */	
+	/*
 	@RequestMapping(value = "/profile/getCorpName", method = RequestMethod.POST)
 	public  @ResponseBody MsgResVO getCorpName(
 			@RequestBody CorpVO corpVO,
@@ -160,6 +161,7 @@ public class ProfileApiController {
 			}
 		});
 	}
+	*/
 }
 
 

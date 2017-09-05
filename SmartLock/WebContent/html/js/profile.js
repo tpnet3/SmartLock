@@ -1,21 +1,3 @@
-$(function() {
-	$.ajax({
-		url : "/profile/getCorpName",
-		type : "POST",
-        contentType: "application/json",
-		data : JSON.stringify({
-            "id" : SmartLock.user.corpId,
-		}),
-       success : function (data){
-    		   
-       },
-		error : function(data, textStatus, errorThrown) {
-			alert("ajax error");
-		}
-	});
-	
-	return false;
-});
 
 $("#updateProfile").submit(function() {	
 	$.ajax({
