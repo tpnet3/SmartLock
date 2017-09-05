@@ -79,7 +79,7 @@ public class StatisticsWebController {
     /*
      * 라이센스 SW별로 통계 - 전체보기
      */
-    @RequestMapping(value = "/statistics/monthly", method = RequestMethod.POST)
+    @RequestMapping(value = "/statistics/monthly", method = RequestMethod.GET)
     public ModelAndView statisticsMonthly(HttpServletRequest request) throws Exception {
     	/*
     	 * 세션 얻기
@@ -131,7 +131,6 @@ public class StatisticsWebController {
     public @ResponseBody int[] statisticsMonthlyBySW
     	(HttpServletRequest request, @RequestBody Map<String, String> reqMap) throws Exception
     { 
-    	System.out.println("zzzzzzzzzzzzzz");
     	/*
     	 * 세션 얻기
     	 */

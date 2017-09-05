@@ -18,11 +18,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">License 사용 통계</li>
-                <li>
-	                 <form id="monthly" action="/statistics/monthly" method="POST" style="display: inline;">
-	                    <a href="#" onclick="document.getElementById('monthly').submit();">월별 License 발급 현황</a>
-	            	</form>
-            	</li>
+                <li><a href="/statistics/monthly">License 사용 통계</a></li>
             </ol>
         </div>
     </div>

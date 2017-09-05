@@ -138,7 +138,7 @@
 		{
 			$.ajax({
 				url: '/statistics/monthly',
-				type: 'POST',
+				type: 'GET',
 				contentType: 'application/json',
 				success:function(data){
 					$("#con").html(data);
