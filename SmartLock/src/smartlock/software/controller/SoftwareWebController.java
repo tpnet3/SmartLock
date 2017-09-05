@@ -29,10 +29,18 @@ public class SoftwareWebController {
 	private SoftwareService softwareService;
 
 	@RequestMapping(value = "/software", method = RequestMethod.GET)
-    public ModelAndView software(HttpServletRequest request) {
-
-
-        return new ModelAndView("/smartlock/software");
+    public ModelAndView software(HttpServletRequest request) throws Exception{
+		try{
+				ArrayList<SoftwareVO> softwareList = new ArrayList<SoftwareVO>();
+				softwareList = softwareService.softwareList();
+				
+				ModelAndView modelAndView = new ModelAndView("smartlock/software");
+				modelAndView.addObject("softwareList", softwareList);
+				return modelAndView;
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ModelAndView("redirect:/");	
+		}
     }
 
 	
@@ -43,7 +51,7 @@ public class SoftwareWebController {
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
 				ArrayList<SoftwareVO> softwareList = new ArrayList<SoftwareVO>();
-				softwareList = softwareService.softwareList();
+				softwareList = softwareService.softwareListByCorp(userVO.getCorpId());
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/software_user");
 				modelAndView.addObject("softwareList", softwareList);

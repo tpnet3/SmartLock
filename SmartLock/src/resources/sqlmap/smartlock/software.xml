@@ -11,6 +11,14 @@
 		ORDER BY sw_name ASC;
     </select>
     
+    <select id="softwareListByCorp" parameterType="Integer"
+            resultType="smartlock.software.vo.SoftwareVO">
+        SELECT *
+        FROM software
+        WHERE corp_id = #{value}
+		ORDER BY sw_name ASC;
+    </select>
+    
     <select id="softwareSelect"  parameterType="String"
             resultType="smartlock.software.vo.SoftwareReqVO">
         SELECT s.id

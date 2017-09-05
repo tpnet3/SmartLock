@@ -27,6 +27,9 @@ public class SoftwareService {
         return (ArrayList) commonDAO.selectList("software.softwareList", null);
     }
    
+    public ArrayList<SoftwareVO> softwareListByCorp(int corp_id) throws Exception {
+        return (ArrayList) commonDAO.selectList("software.softwareListByCorp", corp_id);
+    }
     
     /**
      * 소프트웨어 목록 조회
