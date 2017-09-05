@@ -8,6 +8,7 @@ public class LicenseManagerVO {
 	private Date start_date;
 	private Date end_date;
 	private int state;
+	private int sw_id;
 	public String getSw_name() {
 		return sw_name;
 	}
@@ -38,9 +39,15 @@ public class LicenseManagerVO {
 	public void setState(int state) {
 		this.state = state;
 	}
+	public int getSw_id() {
+		return sw_id;
+	}
+	public void setSw_id(int sw_id) {
+		this.sw_id = sw_id;
+	}
 	@Override
 	public String toString() {
 		return "LicenseManagerVO [sw_name=" + sw_name + ", user_name=" + user_name + ", start_date=" + start_date
-				+ ", end_date=" + end_date + ", state=" + state + "]";
+				+ ", end_date=" + end_date + ", state=" + state + ", sw_id=" + sw_id + "]";
 	}
 }

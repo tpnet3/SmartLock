@@ -8,7 +8,7 @@
 </jsp:include>
 
 <!-- Page Content -->
-<div class="container">
+<div id="pageContainer" class="container">
 	<!-- Service Panels -->
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
@@ -243,13 +243,14 @@
     			order: order
     		},
     		success: function (data) {
-    				$(location).attr("href", "/device?sw="+sw+"&order="+order);
+    				$("#pageContainer").html(data);
     		},
     		error: function (data, textStatus, errorThrown) {
     			console.log(data);
     		}
     	});
     }
+
 </script>
 
 <jsp:include page="include/_footer.jsp" />
