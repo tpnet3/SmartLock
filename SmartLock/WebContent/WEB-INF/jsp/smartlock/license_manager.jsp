@@ -10,7 +10,7 @@
 </jsp:include>
 
 <!-- Header Carousel -->
-<div class="container">
+<div class="container" id="pageContainer">
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
 		<div class="col-lg-12">
@@ -213,7 +213,7 @@
 			order : order
 		},
          success : function (data) {
-        	 window.location = "/license/manager/request?sw_id="+sw_id+"&order="+order;
+        	 $("#pageContainer").html(data);
          },
          error : function(data, textStatus, errorThrown) {
              console.log(data);

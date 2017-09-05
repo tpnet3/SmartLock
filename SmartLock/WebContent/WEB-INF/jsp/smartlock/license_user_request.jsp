@@ -13,7 +13,7 @@
 </jsp:include>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container" id="pageContainer">
 	<div class="row">
 		<div class="col-lg-12">
 			<h2 class="page-header">라이센스 요청현황</h2>
@@ -159,7 +159,7 @@
 			order : order
 		},
          success : function (data) {
-        	 window.location = "/license/user/request?sw_id="+sw_id+"&order="+order;
+        	 $("#pageContainer").html(data);
          },
          error : function(data, textStatus, errorThrown) {
              console.log(data);
