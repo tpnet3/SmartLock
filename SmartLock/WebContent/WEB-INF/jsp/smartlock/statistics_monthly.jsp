@@ -26,19 +26,19 @@
 	
     function drawChart(arr) {
         var data = google.visualization.arrayToDataTable([
-          ["Element", "Density", { role: "style" } ],
+          ["Element", "발급 수", { role: "style" } ],
           ["1월", arr[0], "#b87333"],
           ["2월", arr[1], "#b87333"],
-          ["3월", arr[2], "silver"],
-          ["4월", arr[3], "gold"],
-          ["5월", arr[4], "color: #e5e4e2"],
-          ["6월", arr[5], "color: #e5e4e2"],
-          ["7월", arr[6], "color: #e5e4e2"],
+          ["3월", arr[2], "#b87333"],
+          ["4월", arr[3], "#b87333"],
+          ["5월", arr[4], "#b87333"],
+          ["6월", arr[5], "#b87333"],
+          ["7월", arr[6], "#b87333"],
           ["8월", arr[7], "#b87333"],
-          ["9월", arr[8], "silver"],
-          ["10월", arr[9], "gold"],
-          ["11월", arr[10], "color: #e5e4e2"],
-          ["12월", arr[11], "color: #e5e4e2"]
+          ["9월", arr[8], "#b87333"],
+          ["10월", arr[9], "#b87333"],
+          ["11월", arr[10], "#b87333"],
+          ["12월", arr[11], "#b87333"]
         ]);
 
         var view = new google.visualization.DataView(data);
@@ -93,34 +93,6 @@
     <br><br>
     <div class="col-md-12">
 		<div id="columnchart_values" style="width: 100%; height: 100%;"></div>
-       <%--  <div class="vGraph" id="graph">
-             <ul>
-                <li><span class="gTerm">1월</span><span class="gBar" id="month1" style="height:${monthCnt[0]}"><span>${monthCnt[0]}</span></span>
-                </li>
-                <li><span class="gTerm">2월</span><span class="gBar" style="height:${monthCnt[1]}"><span>${monthCnt[1]}</span></span>
-                </li>
-                <li><span class="gTerm">3월</span><span class="gBar" style="height:${monthCnt[2]}"><span>${monthCnt[2]}</span></span>
-                </li>
-                <li><span class="gTerm">4월</span><span class="gBar" style="height:${monthCnt[3]}"><span>${monthCnt[3]}</span></span>
-                </li>
-                <li><span class="gTerm">5월</span><span class="gBar" style="height:${monthCnt[4]}"><span>${monthCnt[4]}</span></span>
-                </li>
-                <li><span class="gTerm">6월</span><span class="gBar" style="height:${monthCnt[5]}"><span>${monthCnt[5]}</span></span>
-                </li>
-                <li><span class="gTerm">7월</span><span class="gBar" style="height:${monthCnt[6]}"><span>${monthCnt[6]}</span></span>
-                </li>
-                <li><span class="gTerm">8월</span><span class="gBar" style="height:${monthCnt[7]}"><span>${monthCnt[7]}</span></span>
-                </li>
-                <li><span class="gTerm">9월</span><span class="gBar" style="height:${monthCnt[8]}"><span>${monthCnt[8]}</span></span>
-                </li>
-                <li><span class="gTerm">10월</span><span class="gBar" style="height:${monthCnt[9]}"><span>${monthCnt[9]}</span></span>
-                </li>
-                <li><span class="gTerm">11월</span><span class="gBar" style="height:${monthCnt[10]}"><span>${monthCnt[10]}</span></span>
-                </li>
-                <li><span class="gTerm">12월</span><span class="gBar" style="height:${monthCnt[11]}"><span>${monthCnt[11]}</span></span>
-                </li>
-            </ul> 
-        </div> --%>
     </div>
 
     <!-- /.row -->
