@@ -2,6 +2,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="device" />
@@ -15,33 +16,26 @@
 			<div class="col-lg-12">
 				<h2 class="page-header">내 디바이스 관리</h2>
 			</div>
-			<!-- 검색필터-->
-			<div class="row">
-			<div class="col-sm-12">
-				<div class="col-sm-2">
-				</div>
-				<div class="col-sm-6">
-				<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
-						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
-				<button class="btn btn-primary" type="button" id="searchButton"
-						data-loading-text="Searching..">
-						<i class="fa fa-search"></i>
-					</button>
-					</div>
-				</div>
-				
-			</div>
 			<br> <br>
 			<div class="col-md-3 col-sm-7">
 				<div class="panel panel-default text-center">
 					<div class="panel-heading">
-						<h3 data-bind="title">GD's Phone</h3>
+						<h3 data-bind="title">${device.nickname}</h3>
 					</div>
 					<div class="panel-body">
 						<div>
-							<img data-bind="image" src=".\img\smartphone.png"
-								style="margin-left: auto; margin-right: auto; display: auto"
-								width="100px">
+							<c:choose>
+								<c:when test="${device.type eq 1}">
+									<img src="/html/img/smartphone.png"
+										style="margin-left: auto; margin-right: auto; display: auto"
+										width="100px">
+								</c:when>
+								<c:when test="${device.type ne 1}">
+									<img src="/html/img/pc.png"
+										style="margin-left: auto; margin-right: auto; display: auto"
+										width="100px">
+								</c:when>
+							</c:choose>
                             <p></p>
 							<p>
 								<a href="#" class="btn btn-warning btn-filter"
@@ -51,10 +45,9 @@
 						</div>
 						<div>
 							<ul class="list-group text-center">
-								<li class="list-group-item"><b>장치정보 :</b> <span data-bind="장치정보">DC9601-2792-2DD4</span></li>
-								<li class="list-group-item"><b>등록일 :</b> <span data-bind="등록일">2017 - 01 - 01</span></li>
+								<li class="list-group-item"><b>장치정보 :</b>${device.mac}</li>
+								<li class="list-group-item"><b>등록일 :</b>${device.reg_date}</li>
 							</ul>
-							<a href="#" class="btn btn-default" style="width: 180px">라이센스 조회</a>
 						</div>
 					</div>
 				</div>
@@ -72,51 +65,29 @@
                 			</tr>
                 		</thead>
                 		<tbody align="center">
-                			<tr>
-        						<td data-title="No.">1</td>
-                				<td data-title="소프트웨어">Microsoft Excel</td>
-                				<td data-title="회사명">Microsoft</td>
-                				<td data-title="시작일자">2016-11-31</td>
-                				<td data-title="만료기간">9999-99-99</td>
-                				<td data-title="상태"><span class="label label-success">발급 완료</span></td>
-                			</tr>
-                			<tr>
-        						<td data-title="No.">2</td>
-                				<td data-title="소프트웨어">Microsoft Excel</td>
-                				<td data-title="회사명">Microsoft</td>
-                				<td data-title="시작일자">2016-11-31</td>
-                				<td data-title="만료기간">9999-99-99</td>
-                				<td data-title="상태"><span class="label label-success">발급 완료</span></td>
-                			</tr>
-                			<tr>
-        						<td data-title="No.">3</td>
-                				<td data-title="소프트웨어">Microsoft Excel</td>
-                				<td data-title="회사명">Microsoft</td>
-                				<td data-title="시작일자">2016-11-31</td>
-                				<td data-title="만료기간">9999-99-99</td>
-                				<td data-title="상태"><span class="label label-success">발급 완료</span></td>
-                			</tr>
-                			<tr>
-        						<td data-title="No.">4</td>
-                				<td data-title="소프트웨어">Parallels Desktop</td>
-                				<td data-title="회사명">Parallels International</td>
-                				<td data-title="시작일자">2017-03-21</td>
-                				<td data-title="만료기간">2017-04-21</td>
-                				<td data-title="상태"><span class="label label-success" onmouseout="this.style.background='#5cb85c';
-                				this.innerText='데모 버전';" onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';">데모 버전</span></td>
-                			</tr>
-                			<tr>
-        						<td data-title="No.">5</td>
-                				<td data-title="소프트웨어">Parallels Desktop</td>
-                				<td data-title="회사명">Parallels International</td>
-                				<td data-title="시작일자">2017-03-21</td>
-                				<td data-title="만료기간">2017-04-21</td>
-                				<td data-title="상태"><span class="label label-success" onmouseout="this.style.background='#5cb85c';
-                				this.innerText='데모 버전';" onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';">데모 버전</span></td>
-                			</tr>
-                			
-
-            		</tbody>
+                			<c:forEach var="license" items="${licenseList}" varStatus="index">
+                				<tr>
+	                				<td data-title="No.">${index.count}</td>
+	                				<td data-title="소프트웨어">${license.sw_name}</td>
+	                				<td data-title="회사명">${license.corp_name}</td>
+	                				<td data-title="시작일자"><fmt:formatDate value="${license.start_date}" pattern="yyyy-MM-dd"/></td>
+	                				<td data-title="만료기간"><fmt:formatDate value="${license.end_date}" pattern="yyyy-MM-dd"/></td>
+	                				<c:choose>
+										<c:when test="${license.state eq 1 }">
+											<td data-title="상태"><span class="label label-success">
+											발급 완료 </span></td>
+										</c:when>
+										<c:when test="${license.state eq 2}">
+										<td data-title="상태"><span class="label label-success"
+										onmouseout="this.style.background='#5cb85c';this.innerText='데모 버전';"
+										onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
+										onclick="requestDemo('${license.sw_name}');">
+											데모 버전 </span></td>
+										</c:when>
+									</c:choose>
+	                				</tr>
+                			</c:forEach>
+            			</tbody>
             	</table>
 			</div>
 			<hr>

@@ -66,8 +66,7 @@
 		AND d.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id = d.sw_id
-		AND l.sw_id = (SELECT id FROM software WHERE
-		sw_name = #{name})
+		AND l.sw_id = #{sw_id}
 		ORDER BY s.sw_name ASC;
 	</select>
 	
@@ -91,8 +90,7 @@
 		AND d.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id = d.sw_id
-		AND l.sw_id = (SELECT id FROM software WHERE
-		sw_name = #{name})
+		AND l.sw_id = #{sw_id}
 		ORDER BY l.end_date ${order};
 	</select>
 	
@@ -103,13 +101,31 @@
 			, c.corp_name
 			, l.request_date
 			, l.state
+			, l.sw_id
+		FROM software s
+			, corp c
+			, req_license l
+		WHERE l.user_id = #{value}
+		AND l.sw_id = s.id
+		AND s.corp_id = c.id
+		ORDER BY s.sw_name ASC;
+	</select>
+	
+	<!-- 개인 요청 라이센스 전체 조회 정렬-->
+	<select id="selectReqLicenseOrder" parameterType="java.util.Map"
+		resultType="smartlock.license.vo.LicenseUserReqVO">
+		SELECT s.sw_name
+			, c.corp_name
+			, l.request_date
+			, l.state
+			, l.sw_id
 		FROM software s
 			, corp c
 			, req_license l
 		WHERE l.user_id = #{id}
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-		ORDER BY s.sw_name ASC;
+		ORDER BY l.request_date ${order};
 	</select>
 	
 	<!-- 개인 요청 라이센스 소프트웨어명 별 조회 -->
@@ -119,15 +135,33 @@
 			, c.corp_name
 			, l.request_date
 			, l.state
+			, l.sw_id
 		FROM software s
 			, corp c
 			, req_license l
 		WHERE l.user_id = #{id}
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-		AND l.sw_id = (SELECT id FROM software WHERE
-		sw_name = #{name})
+		AND l.sw_id =  #{sw_id}
 		ORDER BY s.sw_name ASC;
+	</select>
+	
+	<!-- 개인 요청 라이센스 소프트웨어명 별 조회 정렬 -->
+	<select id="selectReqLicenseByNameOrder" parameterType="java.util.Map"
+		resultType="smartlock.license.vo.LicenseUserReqVO">
+		SELECT s.sw_name
+			, c.corp_name
+			, l.request_date
+			, l.state
+			, l.sw_id
+		FROM software s
+			, corp c
+			, req_license l
+		WHERE l.user_id = #{id}
+		AND l.sw_id = s.id
+		AND s.corp_id = c.id
+		AND l.sw_id =  #{sw_id}
+		ORDER BY l.request_date ${order};
 	</select>
 	
 	<!-- 관리자 요청 라이센스 전체 조회 -->

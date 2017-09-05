@@ -26,6 +26,9 @@ public class ProfileApiController {
 	
 	@Resource
     private ProfileService profileService;
+	
+	@Resource
+	private UserService userService;
 
 	/**
 	 * 프로필 업데이트
@@ -48,6 +51,18 @@ public class ProfileApiController {
 				return "error";
 			}
 			else{
+				// 로그인시 Session data
+	            UserVO loginUserVO = userService.getUserVO(userVO.getId());
+	            
+	            // 비밀번호 데이터 null
+	            loginUserVO.setPassword(null);
+
+	            // 세션에 로그인 정보 추가
+	            request.getSession().setAttribute("user", loginUserVO);
+
+	            // 로그인시 API 데이터
+	            UserInfoVO userInfoVO = userService.getUserInfoVO(loginUserVO.getId());
+	            
 				return "회원정보 수정이 완료되었습니다.";
 			}		
 		});
@@ -74,6 +89,20 @@ public class ProfileApiController {
 				return "error";
 			}
 			else{
+				// 로그인시 Session data
+	            UserVO loginUserVO = userService.getUserVO(passwordVO.getId());
+	            
+	            // 비밀번호 데이터 null
+	            loginUserVO.setPassword(null);
+
+	            // 세션에 로그인 정보 추가
+	            request.getSession().setAttribute("user", loginUserVO);
+
+	            // 로그인시 API 데이터
+	            UserInfoVO userInfoVO = userService.getUserInfoVO(loginUserVO.getId());
+	            
+	            System.out.println(userInfoVO);
+	            				
 				return "비밀번호 수정이 완료되었습니다.";
 			}
 		});

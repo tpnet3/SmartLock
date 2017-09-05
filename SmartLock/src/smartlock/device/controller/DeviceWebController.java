@@ -67,8 +67,9 @@ public class DeviceWebController {
 					deviceList = deviceService.getDeviceList(userVO.getId(), sw, order);
 				} 
 				
-				ModelAndView modelAndView = new ModelAndView("smartlock/device_user");
+				// Device 중복제거필요 흑흑..
 				
+				ModelAndView modelAndView = new ModelAndView("smartlock/device_user");
 				modelAndView.addObject("deviceList", deviceList);
 				modelAndView.addObject("swNameList", swNameList);
 				modelAndView.addObject("sw",sw);
@@ -83,9 +84,9 @@ public class DeviceWebController {
 		}
 	}
 	
-	@RequestMapping(value="/device/license", method=RequestMethod.POST)
+	@RequestMapping(value="/device/license", method=RequestMethod.GET)
 	public ModelAndView getDeviceLicense(
-			@RequestBody Map<String,Object> jsonData,
+			@RequestParam(value="id") String deviceId,
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("user");
@@ -93,7 +94,9 @@ public class DeviceWebController {
 		ModelAndView modelAndView = new ModelAndView("smartlock/device_detail_user");
 		ArrayList<LicenseUserVO> licenseList = new ArrayList<LicenseUserVO>();
 		try {
-			licenseList = deviceService.getLicenseList(userVO.getId(), jsonData.get("id").toString());
+			DeviceVO device = deviceService.getDevice(userVO.getId(), deviceId);
+			licenseList = deviceService.getLicenseList(userVO.getId(), deviceId);
+			modelAndView.addObject("device", device);
 			modelAndView.addObject("licenseList", licenseList);
 			return modelAndView;
 		} catch (Exception e) {

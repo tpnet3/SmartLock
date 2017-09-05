@@ -18,12 +18,6 @@ public class DeviceService {
 	@Resource(name="commonDAO")
 	private CommonDAO commonDAO;
 
-	/**
-	 * id로 전체 디바이스 목록 조회
-	 * @param deviceVO 등록할 디바이스 정보
-	 * @return 등록된 디바이스 수
-	 * @throws Exception DAO Exception
-	 */
 	/*
 	public int addDevice(DeviceVO deviceVO) throws Exception {
 		// TODO: 디바이스 등록
@@ -31,6 +25,12 @@ public class DeviceService {
 	}
 	*/
 
+	public DeviceVO getDevice(String userId, String deviceId) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("deviceId", deviceId);
+		return (DeviceVO)commonDAO.selectOne("device.selectDevice", map);
+	}
 	/**
 	 * id로 전체 디바이스 목록 조회
 	 * @param id 조회할 사용자 아이디
@@ -56,7 +56,7 @@ public class DeviceService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("userId", userId);
 		map.put("deviceId", deviceId);
-		return (ArrayList)commonDAO.selectList("device.", map);
+		return (ArrayList)commonDAO.selectList("device.selectLicense", map);
 	}
 
 	/**

@@ -50,7 +50,6 @@ $("#updateProfile").submit(function() {
 });
 
 $("#changePassword").submit(function() {
-	alert(SmartLock.user.corp_name);
 	if($("#new_password1").val()!=$("#new_password2").val()){
 		$("#new_password2").focus();
 		alert("새 비밀번호가 일치하지 않습니다.");

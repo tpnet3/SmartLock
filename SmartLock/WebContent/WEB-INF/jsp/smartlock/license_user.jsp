@@ -18,7 +18,7 @@
 			<h2 class="page-header">라이센스 발급현황</h2>
 			<ol class="breadcrumb">
 				<li class="active">라이센스 발급현황</li>
-				<li><a href="/license/user/request?name">라이센스 요청현황</a></li>
+				<li><a href="/license/user/request?order=DEFAULT">라이센스 요청현황</a></li>
 			</ol>
 		</div>
 		<!-- 검색필터-->
@@ -29,7 +29,7 @@
 						<select name="" id="sw_list" style="width: 180px; height: 35px;">
 							<option value = "">소프트웨어명</option>
 							<c:forEach var="sw" items="${swNameList}" varStatus="count">
-								<option value= "${swIdList[count.count]}">${sw}</option>
+								<option value= "${swIdList[count.count-1]}">${sw}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -141,8 +141,8 @@
     }
 
     function search() {
-    	var sw = $("#sw_list option:selected").val();
-    	var check = $("#sw_list option:selected").text();
+    	var sw_id = $("#sw_list option:selected").val();
+    	var sw_name = $("#sw_list option:selected").text();
     	var orderIndex = $("#order option").index($("#order option:selected"));
     	var order = "";
     	
@@ -154,26 +154,21 @@
     	} else if (orderIndex == 0) {
     		order = "DEFAULT";
     	}
-		alert(sw); //id
-		alert(check);
-		
-    		$.ajax({
-				url:"/license/user",
-				type:"GET",
-				contentType: "application/json",
-			 	data : {
-				sw : sw,
-				order : order
-			},
+    	$.ajax({
+			url:"/license/user",
+			type:"GET",
+			contentType: "application/json",
+		 	data : {
+			sw_id : sw_id,
+			order : order
+		},
          success : function (data) {
-        	 window.location = "/license/user?sw="+sw+"&order="+order;
+        	 window.location = "/license/user?sw_id="+sw_id+"&order="+order;
          },
          error : function(data, textStatus, errorThrown) {
              console.log(data);
          }
 		});
-    	
-    	
 	}
 </script>
 
