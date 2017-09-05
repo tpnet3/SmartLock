@@ -6,24 +6,65 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import smartlock.common.vo.MsgResVO;
+import smartlock.member.service.UserService;
 import smartlock.member.vo.UserVO;
+import smartlock.profile.service.ProfileService;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
 @Controller
 public class ProfileWebController {
+	@Resource
+    private ProfileService profileService;
+	
+	@Resource
+	private UserService userService;	
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView profile(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
-        UserVO userVO = (UserVO) httpSession.getAttribute("user");
-
+        UserVO userVO = (UserVO) httpSession.getAttribute("user");              
+                
         if (userVO != null && userVO.getAuthority() == 0) {
-            return new ModelAndView("/smartlock/profile_user");
+        	ModelAndView profile_user = new ModelAndView("/smartlock/profile_user");
+        	
+        	profile_user.addObject("id", userVO.getId());
+            profile_user.addObject("user_name", userVO.getUserName());
+            profile_user.addObject("phone_number", userVO.getPhoneNumber());
+            profile_user.addObject("email", userVO.getEmail());
+        	
+            try {
+				String corp_name = profileService.selectCorpName(userVO);
+				profile_user.addObject("corp_name", corp_name);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+            return profile_user;
+            
         } else if (userVO != null && userVO.getAuthority() == 1) {
-            return new ModelAndView("/smartlock/profile_manager");
+        	ModelAndView profile_manager = new ModelAndView("/smartlock/profile_manager");
+        	
+        	profile_manager.addObject("id", userVO.getId());
+        	profile_manager.addObject("user_name", userVO.getUserName());
+        	profile_manager.addObject("phone_number", userVO.getPhoneNumber());
+        	profile_manager.addObject("email", userVO.getEmail());
+        	
+            try {
+				String corp_name = profileService.selectCorpName(userVO);
+				profile_manager.addObject("corp_name", corp_name);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+            return profile_manager;
         } else {
             return new ModelAndView("redirect:/");
         }
@@ -74,5 +115,19 @@ public class ProfileWebController {
 		HttpSession httpSession = request.getSession();
         httpSession.setAttribute("user", null);
 		return new ModelAndView("/smartlock/profile_quit_finish");	
+	}
+	
+	@RequestMapping(value="/profile/select", method=RequestMethod.GET)
+	public ModelAndView selectProfile(HttpServletRequest request) {
+		HttpSession httpSession = request.getSession();
+		UserVO userVO = (UserVO) httpSession.getAttribute("user");
+		
+		if (userVO != null && userVO.getAuthority() == 0) {
+            return new ModelAndView("/smartlock/profile_select_user");
+        } else if (userVO != null && userVO.getAuthority() == 1) {
+            return new ModelAndView("/smartlock/profile_select_manager");
+        } else {
+            return new ModelAndView("redirect:/");
+        }
 	}
 }
