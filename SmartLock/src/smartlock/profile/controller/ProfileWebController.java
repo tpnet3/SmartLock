@@ -60,7 +60,7 @@ public class ProfileWebController {
 				profile_manager.addObject("corp_name", corp_name);
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				System.out.println("DB ERROR : SELECT corpName");
 				e.printStackTrace();
 			}
             
