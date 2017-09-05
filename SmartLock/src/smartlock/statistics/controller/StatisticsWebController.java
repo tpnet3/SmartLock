@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -116,7 +117,6 @@ public class StatisticsWebController {
         		
         	}        	
         	
-        	System.out.println("*****swList:" + swList);
         	ModelAndView modelAndView = new ModelAndView("/smartlock/statistics_monthly");
         	modelAndView.addObject("monthCnt", monthCnt);
         	modelAndView.addObject("swList",swList);
@@ -129,8 +129,9 @@ public class StatisticsWebController {
     
     @RequestMapping(value = "/statistics/monthly/filter", method = RequestMethod.POST)
     public @ResponseBody int[] statisticsMonthlyBySW
-    	(HttpServletRequest request, @RequestParam("sw_id") int id) throws Exception
+    	(HttpServletRequest request, @RequestBody Map<String, String> reqMap) throws Exception
     { 
+    	System.out.println("zzzzzzzzzzzzzz");
     	/*
     	 * 세션 얻기
     	 */
@@ -143,7 +144,7 @@ public class StatisticsWebController {
         	 * DB에서 해당 소프트웨어의 1년치 라이센스 가져오기
         	 */
         	Map<String, Integer> map = new HashMap<String, Integer>();
-        	map.put("sw_id", id);
+        	map.put("sw_id", Integer.parseInt(reqMap.get("sw_id")));
         	map.put("corp_id", userVO.getCorpId());
         	
         	ArrayList<StatisticsMonthlyVO> dataList 
