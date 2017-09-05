@@ -38,7 +38,7 @@
 
 		<button id="login-btn"
 			class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
-			onclick="location.href='search_pw_final.jsp'">다음</button>
+			onclick="location.href='/search_pw/setNewPassword'">다음</button>
 	</div>
 </div>
 <div class="col-md-12">

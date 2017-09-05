@@ -26,7 +26,7 @@
 			required autofocus> <br>
 		<button id="login-btn"
 			class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
-			onclick="location.href='search_pw_select.jsp'">다음</button>
+			onclick="location.href='/search_pw/authenticate'">다음</button>
 			</div>
 	</div>
 
