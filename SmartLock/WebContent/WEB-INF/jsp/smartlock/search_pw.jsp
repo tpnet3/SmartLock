@@ -19,19 +19,21 @@
 		</div>
 	</div>
 	<br><br>
+	
 	<div class="col-lg-12" align="center">
-	<div class="col-lg-4"></div>
-	<div class="col-lg-4" align="center">
-	<input type="id" id="inputID" class="form-control" placeholder="아이디" style="height:50px"
-			required autofocus> <br>
-	<input type="email" id="inputEmail" class="form-control" placeholder="이메일" style="height:50px"
-			required> <br>
-		<button id="login-btn"
-			class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
-			onclick="location.href='/search_pw/authenticate'">다음</button>
-			</div>
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4" align="center">
+			<form action="/search_pw/email/authenticate" id="findForm" method="post">
+					<input type="id" id="id" class="form-control" placeholder="아이디" style="height:50px"
+							required autofocus> <br>
+					<input type="email" id="email" class="form-control" placeholder="이메일" style="height:50px"
+							required> <br>
+					<button id="login-btn"
+						class="btn btn-lg btn-primary btn-block btn-signin" type="submit">비밀번호 찾기</button>
+			</form>
+		</div>
 	</div>
-
+	
 	<div class="col-md-12">
 		<br> <br>
 		<hr>

@@ -64,6 +64,13 @@
 		WHERE id=#{id} AND password=#{password};
     </update>
     
+    <update id="changeRanPassword"
+    		parameterType="smartlock.searchpw.vo.SearchpwVO">
+    	UPDATE user
+    	SET password=#{password}
+    	WHERE id=#{id};
+    </update>
+    
     <delete id="removeUser"
     		parameterType="smartlock.member.vo.UserVO">
     	DELETE
