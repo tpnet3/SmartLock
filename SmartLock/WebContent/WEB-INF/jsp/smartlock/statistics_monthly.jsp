@@ -24,21 +24,42 @@
     	drawChart(result);
     });
 	
-    function drawChart(arr) {
+    function drawChart(array) {
+    	var date = new Date();
+    	
+    	var thisMonth = date.getMonth() + 1;
+    	
+    	var month = new Array();
+    	var arr = new Array();
+    	
+    	for(var i = 0; i < 12 ; ++i)
+    	{
+    		if(thisMonth - i <= 0)
+    		{
+    			month[11 - i] = thisMonth - i + 12;
+    			arr[11 - i] = array[thisMonth - i + 11];
+    		}
+    		else
+    		{
+    			month[11 - i] = thisMonth - i;
+    			arr[11 - i] = array[thisMonth - i - 1];
+    		}
+    	}
+    	
         var data = google.visualization.arrayToDataTable([
           ["Element", "발급 수", { role: "style" } ],
-          ["1월", arr[0], "#b87333"],
-          ["2월", arr[1], "#b87333"],
-          ["3월", arr[2], "#b87333"],
-          ["4월", arr[3], "#b87333"],
-          ["5월", arr[4], "#b87333"],
-          ["6월", arr[5], "#b87333"],
-          ["7월", arr[6], "#b87333"],
-          ["8월", arr[7], "#b87333"],
-          ["9월", arr[8], "#b87333"],
-          ["10월", arr[9], "#b87333"],
-          ["11월", arr[10], "#b87333"],
-          ["12월", arr[11], "#b87333"]
+          [month[0] + "월", arr[0], "#b87333"],
+          [month[1] + "월", arr[1], "#b87333"],
+          [month[2] + "월", arr[2], "#b87333"],
+          [month[3] + "월", arr[3], "#b87333"],
+          [month[4] + "월", arr[4], "#b87333"],
+          [month[5] + "월", arr[5], "#b87333"],
+          [month[6] + "월", arr[6], "#b87333"],
+          [month[7] + "월", arr[7], "#b87333"],
+          [month[8] + "월", arr[8], "#b87333"],
+          [month[9] + "월", arr[9], "#b87333"],
+          [month[10] + "월", arr[10], "#b87333"],
+          [month[11] + "월", arr[11], "#b87333"]
         ]);
 
         var view = new google.visualization.DataView(data);
@@ -50,6 +71,7 @@
                          2]);
 
         var options = {
+          title : date.getYear() + 1900 + "년 발급 현황",
           animation : {
         	  duration : 1000,
         	  startup: true

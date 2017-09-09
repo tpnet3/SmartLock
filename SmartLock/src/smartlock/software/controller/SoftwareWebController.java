@@ -107,4 +107,26 @@ public class SoftwareWebController {
 			return new ModelAndView("redirect:/");	
 		}
 	}
+	
+	/**
+	 * 관리자 - 소프트웨어 등록
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/software/manager/insert", method = RequestMethod.GET)
+	public ModelAndView softwareInsert(HttpServletRequest request) 
+	{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+
+		try{
+			if(userVO != null && userVO.getAuthority() == 0){
+				return new ModelAndView("smartlock/software_manager");
+			} else{
+				return new ModelAndView("redirect:/");	
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ModelAndView("redirect:/");	
+		}	
+	}
 }
