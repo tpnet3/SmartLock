@@ -35,7 +35,9 @@ public class DeviceWebController {
 		UserVO userVO = (UserVO) session.getAttribute("user");
 
 		ArrayList<String> swNameList = new ArrayList<String>();
-		ArrayList<DeviceVO> oldList, newList = new ArrayList<DeviceVO>();
+		ArrayList<String> macList = new ArrayList<String>();
+		ArrayList<DeviceVO> oldList = new ArrayList<DeviceVO>();
+		ArrayList<DeviceVO> newList = new ArrayList<DeviceVO>();
 	
 		String order;
 		switch (order_param) {
@@ -56,8 +58,15 @@ public class DeviceWebController {
 		try {
 			if (userVO != null && userVO.getAuthority() == 0) {
 				oldList = deviceService.getDeviceList(userVO.getId(), order);
+			
+				if(!sw.equals("")) {
+					oldList = deviceService.getDeviceList(userVO.getId(), sw, order);
+				}
+				
+				//Device mac주소로 중복제거
 				for(int i = 0; i < oldList.size(); i++) {
-					if(!newList.contains(oldList.get(i).getMac())) {
+					if(!macList.contains(oldList.get(i).getMac())) {
+						macList.add(oldList.get(i).getMac());
 						newList.add(oldList.get(i));
 					}
 				}
@@ -67,12 +76,6 @@ public class DeviceWebController {
 						swNameList.add(newList.get(i).getSw_name());
 					} 
 				}
-				
-				if(!sw.equals("")) {
-					newList = deviceService.getDeviceList(userVO.getId(), sw, order);
-				} 
-				
-				// Device 중복제거필요 흑흑..
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/device_user");
 				modelAndView.addObject("deviceList", newList);

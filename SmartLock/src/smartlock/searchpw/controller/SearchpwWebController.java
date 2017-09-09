@@ -25,4 +25,28 @@ public class SearchpwWebController {
             return new ModelAndView("/smartlock/search_pw");
         }
     }
+    
+    @RequestMapping(value="/search_pw/authenticate", method=RequestMethod.GET)
+    public ModelAndView athenticate(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        UserVO userVO = (UserVO) httpSession.getAttribute("user");
+
+        if (userVO != null) {
+            return new ModelAndView("redirect:/");
+        } else {
+            return new ModelAndView("/smartlock/search_pw_select");
+        }
+    }
+    
+    @RequestMapping(value="/search_pw/setNewPassword", method=RequestMethod.GET)
+    public ModelAndView setNewPassword(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        UserVO userVO = (UserVO) httpSession.getAttribute("user");
+
+        if (userVO != null) {
+            return new ModelAndView("redirect:/");
+        } else {
+            return new ModelAndView("/smartlock/search_pw_final");
+        }
+    }
 }

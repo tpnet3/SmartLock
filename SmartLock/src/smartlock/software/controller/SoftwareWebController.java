@@ -29,10 +29,18 @@ public class SoftwareWebController {
 	private SoftwareService softwareService;
 
 	@RequestMapping(value = "/software", method = RequestMethod.GET)
-    public ModelAndView software(HttpServletRequest request) {
-
-
-        return new ModelAndView("/smartlock/software");
+    public ModelAndView software(HttpServletRequest request) throws Exception{
+		try{
+				ArrayList<SoftwareVO> softwareList = new ArrayList<SoftwareVO>();
+				softwareList = softwareService.softwareList();
+				
+				ModelAndView modelAndView = new ModelAndView("smartlock/software");
+				modelAndView.addObject("softwareList", softwareList);
+				return modelAndView;
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ModelAndView("redirect:/");	
+		}
     }
 
 	
@@ -43,7 +51,7 @@ public class SoftwareWebController {
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
 				ArrayList<SoftwareVO> softwareList = new ArrayList<SoftwareVO>();
-				softwareList = softwareService.softwareList();
+				softwareList = softwareService.softwareListByCorp(userVO.getCorpId());
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/software_user");
 				modelAndView.addObject("softwareList", softwareList);
@@ -113,20 +121,23 @@ public class SoftwareWebController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/software/manager/insert", method = RequestMethod.GET)
-	public ModelAndView softwareInsert(HttpServletRequest request) 
-	{
+	@RequestMapping(value = "/software/upload", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView softwareUpload(
+			HttpServletRequest request) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-
 		try{
-			if(userVO != null && userVO.getAuthority() == 0){
-				return new ModelAndView("smartlock/software_manager");
+		
+			if(userVO != null && userVO.getAuthority() == 1){
+				ModelAndView modelAndView = new ModelAndView("smartlock/software_upload");
+				String corp_name = softwareService.getCorp_name(userVO.getCorpId());
+				modelAndView.addObject("corp_name", corp_name);
+				return modelAndView;
 			} else{
 				return new ModelAndView("redirect:/");	
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");	
-		}	
+		}
 	}
 }

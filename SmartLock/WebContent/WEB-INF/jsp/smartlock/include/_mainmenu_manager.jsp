@@ -30,6 +30,9 @@
                 <li <%= (_nav != null && _nav.equals("software_manager")) ? "class=\"active\"" : "" %>>
                     <a href="/software/manager/insert">Software</a>
                 </li>
+                <li <%= (_nav != null && _nav.equals("software_upload")) ? "class=\"active\"" : "" %>>
+                    <a href="/software/upload">Software</a>
+                </li>
                 <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
                     <a href="/qna">Q&A</a>
                 </li>
