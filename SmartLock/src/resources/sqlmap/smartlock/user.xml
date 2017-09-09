@@ -70,5 +70,13 @@
     	FROM user
     	WHERE id=#{id} AND password=#{password};
     </delete>
+    
+    <select id="checkEmail"
+    		parameterType="smartlock.searchpw.vo.EmailVO"
+    		resultType="String">
+    	SELECT MAX(email)
+    	FROM user
+    	WHERE id=#{id} AND email=#{email};
+    </select>
 
 </mapper>
