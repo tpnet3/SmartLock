@@ -14,7 +14,7 @@
 				<h1 class="page-header">
 					비밀번호 찾기
 				</h1>
-				<h4>비밀번호를 찾고자 하는 아이디를 입력해 주세요.</h4>
+				<h4>비밀번호를 찾고자 하는 아이디와 회원가입시 입력한 이메일을 입력해 주세요.</h4>
 			</div>
 		</div>
 	</div>
@@ -24,6 +24,8 @@
 	<div class="col-lg-4" align="center">
 	<input type="id" id="inputID" class="form-control" placeholder="아이디" style="height:50px"
 			required autofocus> <br>
+	<input type="email" id="inputEmail" class="form-control" placeholder="이메일" style="height:50px"
+			required> <br>
 		<button id="login-btn"
 			class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
 			onclick="location.href='/search_pw/authenticate'">다음</button>
