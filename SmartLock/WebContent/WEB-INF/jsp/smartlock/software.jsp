@@ -37,8 +37,6 @@
                         </span></div>
             <h3 class="text-center">${software.sw_name }</h3>
             <p><fmt:message key="${software.sw_name }" /></p>
-            
-            <p><fmt:message key="${software.sw_name }" /></p>
         </div>
     </c:forEach>
     <hr>

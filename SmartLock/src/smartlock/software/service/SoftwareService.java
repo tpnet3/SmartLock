@@ -54,4 +54,8 @@ public class SoftwareService {
     public int softwareRequestFinal(Map<String, String> map) throws Exception {
     	return (int) commonDAO.update("softwareFinal", map);
     }
+    
+    public String getCorp_name(int corp_id) throws Exception{
+    	return (String) commonDAO.selectOne("getCorp_name", corp_id);
+    }
 }

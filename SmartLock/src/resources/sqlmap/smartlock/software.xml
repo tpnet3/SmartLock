@@ -44,4 +44,11 @@
         INSERT INTO req_license (id, user_id, request_date, sw_id, state) 
         VALUES("1", #{id}, CURDATE(), #{sw_id}, #{state});
     </select>
+    
+     <select id="getCorp_name"  parameterType="Integer"
+            resultType="String">
+      	SELECT corp_name
+      	FROM corp
+      	WHERE id = #{corp_id};
+    </select>
 </mapper>

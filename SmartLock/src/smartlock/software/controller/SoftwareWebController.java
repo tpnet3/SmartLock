@@ -115,4 +115,23 @@ public class SoftwareWebController {
 			return new ModelAndView("redirect:/");	
 		}
 	}
+	@RequestMapping(value = "/software/upload", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView softwareUpload(
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		try{
+		
+			if(userVO != null && userVO.getAuthority() == 1){
+				ModelAndView modelAndView = new ModelAndView("smartlock/software_upload");
+				String corp_name = softwareService.getCorp_name(userVO.getCorpId());
+				modelAndView.addObject("corp_name", corp_name);
+				return modelAndView;
+			} else{
+				return new ModelAndView("redirect:/");	
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ModelAndView("redirect:/");	
+		}
+	}
 }
