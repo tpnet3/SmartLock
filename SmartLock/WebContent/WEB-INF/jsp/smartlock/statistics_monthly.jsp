@@ -9,7 +9,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-	
+
+	/*
+	 * 구글 차트 라이브러리 로드 및 처음 시작시 데이터 타입 설정
+	 */
     google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(function(){
     	
@@ -24,9 +27,15 @@
     	drawChart(result);
     });
 	
+    /*
+     * 차트 데이터 설정 및 그리기 함수
+     */
     function drawChart(array) {
     	var date = new Date();
     	
+    	/*
+    	 * 현재 월부터 일년 치로 보여주기 위한 데이터 정렬
+    	 */
     	var thisMonth = date.getMonth() + 1;
     	
     	var month = new Array();
@@ -46,6 +55,9 @@
     		}
     	}
     	
+    	/*
+    	 * 차트 데이터 및 옵션 설정
+    	 */
         var data = google.visualization.arrayToDataTable([
           ["Element", "발급 수", { role: "style" } ],
           [month[0] + "월", arr[0], "#b87333"],

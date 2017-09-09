@@ -27,9 +27,6 @@
                 <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
                     <a href="/license/manager/request?order=DEFAULT">License</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("software_manager")) ? "class=\"active\"" : "" %>>
-                    <a href="/software/manager/insert">Software</a>
-                </li>
                 <li <%= (_nav != null && _nav.equals("software_upload")) ? "class=\"active\"" : "" %>>
                     <a href="/software/upload">Software</a>
                 </li>
