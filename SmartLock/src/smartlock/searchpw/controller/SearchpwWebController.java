@@ -1,3 +1,4 @@
+/*
 package smartlock.searchpw.controller;
 
 import org.springframework.stereotype.Controller;
@@ -84,7 +85,7 @@ public class SearchpwWebController {
             ra.addFlashAttribute("resultMsg", "자동 방지 코드가 일치하지 않습니다.");
             return "redirect:/find/password";
         }
- 		*/
+ 		
     	System.out.println(emailVO.getId());
     	System.out.println(emailVO.getEmail());
     	
@@ -121,6 +122,7 @@ public class SearchpwWebController {
 		}
 		return "redirect:/search_pw";
 		
-		*/
+		
     }
 }
+*/
