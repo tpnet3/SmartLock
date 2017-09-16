@@ -32,4 +32,15 @@ public class CommunicationService {
 		return (ArrayList) commonDAO.selectList("communication.getNicknameList", id);
 	}
 	
+	public ArrayList<String> getAllSoftwareList(String id) throws Exception{
+		return (ArrayList) commonDAO.selectList("communication.getAllSoftwareList", id);
+	}
+	
+	public ArrayList<String> addDevice(String mac, String id) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("mac", mac);
+		return (ArrayList) commonDAO.selectList("communication.addDevice", map);
+	}
+	
 }
