@@ -18,14 +18,18 @@ public class CommunicationService {
 	private CommonDAO commonDAO;
 	
 	public ArrayList<String> getMac(String id) throws Exception{
-		return (ArrayList) commonDAO.selectList("getMac", id);
+		return (ArrayList) commonDAO.selectList("communication.getMac", id);
 	}
 	
 	public ArrayList<String> getSoftwareList(String id, String mac) throws Exception{
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("mac", mac);
-		return (ArrayList) commonDAO.selectList("getSoftwareList", map);
+		return (ArrayList) commonDAO.selectList("communication.getSoftwareList", map);
+	}
+	
+	public ArrayList<String> getNicknameList(String id) throws Exception{
+		return (ArrayList) commonDAO.selectList("communication.getNicknameList", id);
 	}
 	
 }

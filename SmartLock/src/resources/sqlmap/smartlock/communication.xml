@@ -10,4 +10,19 @@
 		WHERE user_id = #{id};
 	</select>
 	
+	<select id="getSoftwareList" parameterType="java.util.Map"
+		resultType="String">
+		SELECT sw_id
+		FROM device 
+		WHERE user_id = #{id}
+		AND mac = #{mac};
+	</select>
+	
+	<select id="getNicknameList" parameterType="String"
+		resultType="String">
+		SELECT nickname
+		FROM device 
+		WHERE user_id = #{id};
+	</select>
+	
 </mapper>
