@@ -32,7 +32,7 @@
 		WHERE corp_id = (SELECT corp_id FROM user WHERE id = #{id});
 	</select>
 	
-	<insert id="addDevice" parameterType="java.util.mMap">
+	<insert id="addDevice" parameterType="java.util.Map">
 		SELECT proc_name
 		FROM software 
 		WHERE corp_id = (SELECT corp_id FROM user WHERE id = #{id});

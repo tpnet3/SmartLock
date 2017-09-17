@@ -78,7 +78,6 @@
 						<td width="100px"><h4><b>발급날짜</h4></td>
 						<td width="100px"><h4><b>만료날짜</h4></td>
 						<td width="150px"><h4><b>분류</h4></td>
-						<td width="100px"><h4><b>상세보기</h4></td>
 					</tr>
 					</thead>
 					<tbody align="center">
@@ -99,12 +98,6 @@
 										신청</span></td>
 							</c:when>
 						</c:choose>
-						<td data-title="상세보기">
-							<span class="label" style="background-color: darkgray; color: black"
-							      onclick="detail('${license.sw_name}');">
-								상세 보기
-							</span>
-						</td>
 					</tr>
 					</c:forEach>
 						</tbody>

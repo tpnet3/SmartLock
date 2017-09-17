@@ -112,11 +112,10 @@
 												데모 신청</span></td>
 									</c:when>
 								</c:choose>
-								<td data-title="상세보기"><span class="label"
+								<td data-title="요청거절"><span class="label"
 									style="background-color: darkgray; color: black"
-									onclick="showDetail('${license.sw_name}');"> 상세
-										보기 </span></td>
-								<td data-title="상세보기"><span class="label"
+									onclick="licenseReject'${license.sw_name}', '${license.id }');"> 거절하기 </span></td>
+								<td data-title="요청승인"><span class="label"
 									style="background-color: indianred; color: white"
 									onclick="licenseOk('${license.sw_name}', '${license.id }','${license.state }');">
 										발급하기 </span></td>
@@ -141,13 +140,13 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
-	function showDetail(swName) {
+	function licenseReject(swName, swId) {
 		// TODO: 상세보기
-		alert(swName + " 에 대한 상세보기를 클릭했습니다.");
+		alert(swName + " 에 대한 라이센스를 거절하시겠습니까?");
 	}
 
 	function licenseOk(swName, id, state) {
-		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?" +id +state);
+		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?");
 		if(check == true){
 			if(state == 1){
 				$.ajax({

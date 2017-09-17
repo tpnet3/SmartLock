@@ -30,7 +30,7 @@
     <!-- /.row -->
 
     <!-- Projects Row -->
-    <c:forEach var="software" items="${softwareList}" varStatus="count">
+    <c:forEach var="software" items="${softwareList}" >
         <div class="col-md-3 img-portfolio">
             <div align="center"><span class="fa-stack fa-5x">
                               <i class="fa fa-circle fa-stack-2x"></i>
