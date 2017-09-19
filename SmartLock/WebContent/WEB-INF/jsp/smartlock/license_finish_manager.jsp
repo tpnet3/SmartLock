@@ -128,7 +128,6 @@
     	var sw_name = $("#sw_list option:selected").text();
     	var orderIndex = $("#order option").index($("#order option:selected"));
     	var order = "";
-
     	if(orderIndex == 1) {
     		order = "ASC";
     	} else if(orderIndex == 2) {

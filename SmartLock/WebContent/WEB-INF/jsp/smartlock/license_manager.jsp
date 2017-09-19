@@ -144,7 +144,6 @@
 		// TODO: 상세보기
 		alert(swName + " 에 대한 라이선스를 거절하시겠습니까?");
 	}
-
 	function licenseOk(swName, id, state) {
 		var check = confirm(swName + " 에 대한 라이선스를 발급하시겠습니까?");
 		if(check == true){

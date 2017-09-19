@@ -1,13 +1,14 @@
 package smartlock.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import smartlock.member.vo.UserVO;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import smartlock.member.vo.UserVO;
 
 @Controller
 public class MainWebController {
@@ -18,11 +19,14 @@ public class MainWebController {
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
         if (userVO != null && userVO.getAuthority() == 0) {
-            return new ModelAndView("/smartlock/main_user");
+            //return new ModelAndView("/smartlock/main_user");
+            return new ModelAndView("redirect:/device");
         } else if (userVO != null && userVO.getAuthority() == 1) {
-            return new ModelAndView("/smartlock/main_manager");
+            //return new ModelAndView("/smartlock/main_manager");
+            return new ModelAndView("redirect:/statistics");
         } else {
-            return new ModelAndView("/smartlock/main");
+            //return new ModelAndView("/smartlock/main");
+            return new ModelAndView("redirect:/about_us");
         }
     }
 

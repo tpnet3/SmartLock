@@ -6,9 +6,9 @@
 </jsp:include>
 
 <!-- Navigation -->
+<!--
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#bs-example-navbar-collapse-1">
@@ -18,7 +18,6 @@
 			</button>
 			<a class="navbar-brand" href="main.html">Smart Lock</a>
 		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-left">
@@ -27,17 +26,15 @@
 				<li><a href="software.jsp">Software</a></li>
 				<li><a href="download.jsp">Download</a></li>
 			</ul>
-
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/login">로그인</a></li>
 				<li class="divider-vertical"></li>
 				<li><a href="sign_up_select.jsp">회원가입</a></li>
 			</ul>
 		</div>
-		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container -->
 </nav>
+-->
 
 <!-- Page Content -->
 <div class="container">
@@ -59,7 +56,7 @@
 	<div class="col-md-5">
 	</div>
 	<div class="col-md-2">
-		<a class="btn btn-lg btn-default btn-block" href="main.html"><strong>메인으로</strong></a>
+		<a class="btn btn-lg btn-default btn-block" href="/"><strong>메인으로</strong></a>
 	</div>
 	<div class="col-md-5">
 	</div>
