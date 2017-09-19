@@ -18,11 +18,14 @@ public class MainWebController {
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
         if (userVO != null && userVO.getAuthority() == 0) {
-            return new ModelAndView("/smartlock/main_user");
+            //return new ModelAndView("/smartlock/main_user");
+            return new ModelAndView("redirect:/device");
         } else if (userVO != null && userVO.getAuthority() == 1) {
-            return new ModelAndView("/smartlock/main_manager");
+            //return new ModelAndView("/smartlock/main_manager");
+            return new ModelAndView("redirect:/statistics");
         } else {
-            return new ModelAndView("/smartlock/main");
+            //return new ModelAndView("/smartlock/main");
+            return new ModelAndView("redirect:/about_us");
         }
     }
 
