@@ -39,9 +39,6 @@ public class CommunicationController {
 					break;
 				}
 			}
-			if(check == false){
-				communicationService.addDevice(mac, id);
-			}
 			return check;
 		} catch(Exception e) {
 			return false;
@@ -91,6 +88,7 @@ public class CommunicationController {
 			HttpServletRequest request) throws Exception{
 		String nickname = map.get("nickname");
 		String id = map.get("user_id");
+		String mac = map.get("map");
 		System.out.println(nickname +"!!!!"+ id);
 		ArrayList<String> list = new ArrayList<String>();
 		boolean check = false;
@@ -101,6 +99,9 @@ public class CommunicationController {
 					check = true;
 					break;
 				}
+			}
+			if(check == false){
+				communicationService.addDevice(map);
 			}
 			return check;
 		} catch(Exception e){

@@ -42,7 +42,7 @@
 					</span>
 					<div class="progress-value"><%=statistics.getRequest_license()%></div>
 				</div>
-				<h4 class="text-center">라이센스 요청</h4>
+				<h4 class="text-center">라이선스 요청</h4>
 			</div>
 			<div class="col-md-3 col-sm-6">
 				<div class="progress pink">
@@ -51,7 +51,7 @@
 					</span>
 					<div class="progress-value"><%=statistics.getLicense()%></div>
 				</div>
-				<h4 class="text-center">발급된 라이센스</h4>
+				<h4 class="text-center">발급된 라이선스</h4>
 			</div>
 			<div class="col-md-3 col-sm-6">
 				<div class="progress green">
@@ -60,7 +60,7 @@
 					</span>
 					<div class="progress-value"><%=statistics.getDemo_license()%></div>
 				</div>
-				<h4 class="text-center">데모 라이센스</h4>
+				<h4 class="text-center">데모 라이선스</h4>
 			</div>
 		</div>
 	</div>

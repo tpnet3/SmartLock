@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_title" value="About us" />
@@ -11,26 +12,24 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">About Us
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a>
-                </li>
-                <li class="active">About us</li>
-            </ol>
+            <h1 class="page-header">서비스 소개</h1>
         </div>
     </div>
     <!-- /.row -->
 
     <!-- Image Header -->
-    <div class="row">
-        <div class="col-lg-12">
-            <img class="img-responsive" src="/html/img/img.jpg" alt="">
-        </div>
-    </div>
+    
+    <c:forEach var="i" begin="1" end="17" step="1">
+	    <div class="row" align="center">
+	        <div class="col-lg-12">
+	            <img class="img-responsive" src="/html/img/about-us/aboutUs${i}.png" alt="">
+	        </div>
+	    </div>
+    </c:forEach>
+    
     <!-- /.row -->
 
-    <!-- Service Panels -->
+<!--     Service Panels
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">Services</h2>
@@ -95,7 +94,7 @@
         </div>
     </div>
 
-    <!-- Service Tabs -->
+    Service Tabs
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">More Information</h2>
@@ -147,12 +146,12 @@
     <div class="col-lg-12">
             <h2 class="page-header">Contact Us</h2>
         </div>
-        <!-- Map Column -->
+        Map Column
         <div class="col-md-8">
-            <!-- Embedded Google Map -->
+            Embedded Google Map
             <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.1210711880253!2d127.01707631497453!3d37.45786323810262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDI3JzI4LjMiTiAxMjfCsDAxJzA5LjMiRQ!5e0!3m2!1sen!2skr!4v1498477845178"></iframe>
         </div>
-        <!-- Contact Details Column -->
+        Contact Details Column
         <div class="col-md-4">
             <h3>Contact Details</h3>
             <p>
@@ -166,7 +165,7 @@
             <p><i class="fa fa-fax"></i>
                 <abbr title="Fax">Fax</abbr>: (02) 527-0321</p>
         </div>
-    </div>
+    </div> -->
 
     <hr>
 

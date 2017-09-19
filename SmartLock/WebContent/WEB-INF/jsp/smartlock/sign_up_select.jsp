@@ -25,7 +25,7 @@
 					style="margin-left: auto; margin-right: auto; display: block;"
 					width="100px" src="/html/img/user.png" alt="">
 				<h2>개인회원</h2>
-				<h4>일반 소비자 회원가입</h4>
+				<h4>일반 사용자 회원가입</h4>
 			</button>
 	</div>
 
@@ -36,7 +36,7 @@
 					style="margin-left: auto; margin-right: auto; display: block;"
 					width="100px" src="/html/img/building.png" alt="">
 				<h2>기업회원</h2>
-				<h4>사업자 회원가입</h4>
+				<h4>관리자 회원가입</h4>
 			</button>
 	</div>
 	<div class="col-lg-2"></div>

@@ -26,7 +26,6 @@
 				<li><a href="software.jsp">Software</a></li>
 				<li><a href="download.jsp">Download</a></li>
 			</ul>
-
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/login">로그인</a></li>
 				<li class="divider-vertical"></li>

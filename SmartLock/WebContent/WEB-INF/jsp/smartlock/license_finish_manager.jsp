@@ -14,7 +14,7 @@
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">라이센스 관리
+			<h1 class="page-header">라이선스 관리
 				<small>발급 완료 현황</small>
 			</h1>
 			<ol class="breadcrumb">
@@ -128,7 +128,6 @@
     	var sw_name = $("#sw_list option:selected").text();
     	var orderIndex = $("#order option").index($("#order option:selected"));
     	var order = "";
-
     	if(orderIndex == 1) {
     		order = "ASC";
     	} else if(orderIndex == 2) {

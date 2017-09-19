@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				라이센스 관리 <small>발급 대기 현황</small>
+				라이선스 관리 <small>발급 대기 현황</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li class="active">발급 대기 현황</li>
@@ -142,11 +142,10 @@
 <script>
 	function licenseReject(swName, swId) {
 		// TODO: 상세보기
-		alert(swName + " 에 대한 라이센스를 거절하시겠습니까?");
+		alert(swName + " 에 대한 라이선스를 거절하시겠습니까?");
 	}
-
 	function licenseOk(swName, id, state) {
-		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?");
+		var check = confirm(swName + " 에 대한 라이선스를 발급하시겠습니까?");
 		if(check == true){
 			if(state == 1){
 				$.ajax({
@@ -158,7 +157,7 @@
 					id : id
 				}),
 	   			success : function (data) {
-	   				alert(swName + " 에 대한 정식버전 라이센스를 발급했습니다.");
+	   				alert(swName + " 에 대한 정식버전 라이선스를 발급했습니다.");
 	   				window.location = "/license/manager/request?name";
 	 	  			},
 	 			error : function(data, textStatus, errorThrown) {
@@ -175,7 +174,7 @@
 					id : id
 				}),
 	   			success : function (data) {
-	   				alert(swName + " 에 대한 데모버젼 라이센스를 발급했습니다.");
+	   				alert(swName + " 에 대한 데모버젼 라이선스를 발급했습니다.");
 	   				window.location = "/license/manager/request?name";
 	 	  			},
 	 			error : function(data, textStatus, errorThrown) {
@@ -185,7 +184,7 @@
 			} 
 			
 		} else{
-			alert("라이센스 발급을 취소합니다.");
+			alert("라이선스 발급을 취소합니다.");
 		}
 	}
 	

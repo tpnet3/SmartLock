@@ -21,10 +21,6 @@
 			,  reg_date
 			,  type
 			,  mac
-			,  usim
-			,  pin
-			,  serial
-			,  udid 
 		FROM device
 	   WHERE user_id = #{userId}
 	     AND id = #{deviceId}
@@ -39,10 +35,6 @@
 			,  d.reg_date
 			,  d.type
 			,  d.mac
-			,  d.usim
-			,  d.pin
-			,  d.serial
-			,  d.udid
 		FROM device d, software s
 	   WHERE d.sw_id = s.id
 		 AND user_id = #{id}
@@ -59,10 +51,6 @@
 			,  d.reg_date
 			,  d.type
 			,  d.mac
-			,  d.usim
-			,  d.pin
-			,  d.serial
-			,  d.udid
 		FROM device d, software s
 	   WHERE d.user_id = #{id}
          AND s.id = d.sw_id

@@ -15,10 +15,10 @@
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">라이센스 발급현황</h2>
+			<h2 class="page-header">라이선스 발급현황</h2>
 			<ol class="breadcrumb">
-				<li class="active">라이센스 발급현황</li>
-				<li><a href="/license/user/request?order=DEFAULT">라이센스 요청현황</a></li>
+				<li class="active">라이선스 발급현황</li>
+				<li><a href="/license/user/request?order=DEFAULT">라이선스 요청현황</a></li>
 			</ol>
 		</div>
 		<!-- 검색필터-->
@@ -70,7 +70,7 @@
 						<tr>
 							<td width="10px"><h4><b>No.</h4></td>
 							<td width="200px"><h4><b>소프트웨어</h4></td>
-							<td width="180px"><h4><b>장치명</h4></td>
+							<td width="180px"><h4><b>단말기명</h4></td>
 							<td width="150px"><h4><b>회사명</h4></td>
 							<td width="150px"><h4><b>시작일자</h4></td>
 							<td width="150px"><h4><b>만료기간</h4></td>
@@ -82,7 +82,7 @@
 						<tr>
 							<td data-title="No.">${count.count }</td>
 							<td data-title="소프트웨어">${license.sw_name}</td>
-							<td data-title="장치명">${license.nickname}</td>
+							<td data-title="단말기명">${license.nickname}</td>
 							<td data-title="회사명">${license.corp_name}</td>
 							<td data-title="시작일자"><fmt:formatDate value="${license.start_date}" pattern="yyyy-MM-dd"/></td>
 							<td data-title="만료기간"><fmt:formatDate value="${license.end_date}" pattern="yyyy-MM-dd"/></td>

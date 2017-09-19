@@ -14,7 +14,7 @@
 		<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">내 디바이스 관리</h2>
+				<h2 class="page-header">내 단말기 관리</h2>
 			</div>
 			<br> <br>
 			<div class="col-md-3 col-sm-7">
@@ -45,8 +45,8 @@
 						</div>
 						<div>
 							<ul class="list-group text-center">
-								<li class="list-group-item"><b>장치정보 :</b>${device.mac}</li>
-								<li class="list-group-item"><b>등록일 :</b>${device.reg_date}</li>
+								<li class="list-group-item"><b>단말기정보 : </b>${device.mac}</li>
+								<li class="list-group-item"><b>등록일 : </b>${device.reg_date}</li>
 							</ul>
 						</div>
 					</div>
