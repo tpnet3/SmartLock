@@ -17,8 +17,8 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Softwares
-                <small>Preview</small>
+            <h1 class="page-header">소프트웨어
+                <small>미리보기</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/">Home</a>

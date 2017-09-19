@@ -18,8 +18,8 @@
 			<br> <img class="img-responsive"
 				style="margin-left: auto; margin-right: auto; display: block;"
 				width="100px" src="/html/img/success.png" alt="">
-			<h1 align="center">라이선스를 정상적으로 발급했습니다.</h1>
-			<h3 align="center">정상적으로 소프트웨어 사용이 가능합니다.</h3>
+			<h1 align="center">라이선스를 요청했습니다.</h1>
+			<h3 align="center">관리자 승인 후 소프트웨어 사용이 가능합니다.</h3>
 		</div>
 	</div>
 
