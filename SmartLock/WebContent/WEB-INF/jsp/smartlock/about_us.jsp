@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_title" value="About us" />
@@ -11,23 +12,21 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">About Us
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a>
-                </li>
-                <li class="active">About us</li>
-            </ol>
+            <h1 class="page-header">서비스 소개</h1>
         </div>
     </div>
     <!-- /.row -->
 
     <!-- Image Header -->
-    <div class="row">
-        <div class="col-lg-12">
-            <img class="img-responsive" src="/html/img/about-us/aboutUs01.png" alt="">
-        </div>
-    </div>
+    
+    <c:forEach var="i" begin="0" end="17" step="1">
+	    <div class="row" align="center">
+	        <div class="col-lg-12">
+	            <img class="img-responsive" src="/html/img/about-us/aboutUs${i}.png" alt="">
+	        </div>
+	    </div>
+    </c:forEach>
+    
     <!-- /.row -->
 
 <!--     Service Panels
