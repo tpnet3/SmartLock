@@ -40,7 +40,7 @@
     </select>
     
     <select id="softwareFinal"  parameterType="java.util.Map"
-            resultType="java.lang.Integer">
+            resultType="java.lang.Integer" >
         INSERT INTO req_license (id, user_id, request_date, sw_id, state) 
         VALUES("1", #{id}, CURDATE(), #{sw_id}, #{state});
     </select>
@@ -50,5 +50,11 @@
       	SELECT corp_name
       	FROM corp
       	WHERE id = #{corp_id};
+    </select>
+    
+    <select id="insertSoftware" parameterType="java.util.Map" 
+    	resultType="java.lang.Integer">
+    	INSERT INTO software(id, sw_name, corp_id, version, img, proc_name)
+    	VALUES(#{id}, #{sw_name}, #{corp_id}, #{version}, #{img}, #{proc_name})
     </select>
 </mapper>

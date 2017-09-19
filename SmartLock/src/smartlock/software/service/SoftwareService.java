@@ -58,4 +58,9 @@ public class SoftwareService {
     public String getCorp_name(int corp_id) throws Exception{
     	return (String) commonDAO.selectOne("getCorp_name", corp_id);
     }
+    
+    public Integer softwareInsert(Map<String, Object> map) throws Exception
+    {
+    	return (Integer) commonDAO.insert("insertSoftware", map);
+    }
 }
