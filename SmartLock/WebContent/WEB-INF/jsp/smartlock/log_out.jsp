@@ -59,7 +59,7 @@
 	<div class="col-md-5">
 	</div>
 	<div class="col-md-2">
-		<a class="btn btn-lg btn-default btn-block" href="main.html"><strong>메인으로</strong></a>
+		<a class="btn btn-lg btn-default btn-block" href="/"><strong>메인으로</strong></a>
 	</div>
 	<div class="col-md-5">
 	</div>
