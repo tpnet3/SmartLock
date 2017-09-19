@@ -133,7 +133,7 @@
 	                     2]);
 	
 	    var options = {
-	      title : date.getYear() + 1900 + "년 발급 현황",
+	      title : "최근 1년간 발급 현황",
 	      animation : {
 	    	  duration : 1000,
 	    	  startup: true
