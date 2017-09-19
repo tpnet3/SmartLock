@@ -206,18 +206,7 @@ function checkPhone() {
 	}
 	return true;
 }
-$("#signup-btn").on("click", function() {
-	var phone = $("#phone-1").val()+"-"+$("#phone-2").val()+"-"+$("#phone-3").val();
-	var data = {
-		"id" : $("#id").val(),
-		"pwd" : $("#pwd").val(),
-		"name" : $("#name").val(),
-		"email" : $("#email").val(),
-		"phone" : phone,
-        "corp_id" : $("#corp-id").val(),
-        "authority" : $("#authority").val()
-	};
-	
+function signup(div) {
 	// check validation
 	if(!checkId()){
 		return false;
@@ -236,12 +225,72 @@ $("#signup-btn").on("click", function() {
 	if(!checkPhone()){
 		return false;
 	}
-	if($("#corp-id").val() == '') {
-		$("#corp_name").focus();
-		alert("기업명을 입력하세요.");
-		return false;
+	
+	var phone = $("#phone-1").val()+"-"+$("#phone-2").val()+"-"+$("#phone-3").val();
+	var email;
+	
+	if($("#email-2").val() == '직접입력') {
+		email = $("#email-1").val()+"@"+ $("#email-3").val();
+	} else {
+		email = $("#email-1").val()+"@"+ $("#email-2").val();
 	}
 	
+	if(div == 'user') {
+		if($("#corp-id").val() == '') {
+			$("#corp_name").focus();
+			alert("기업명을 입력하세요.");
+			return false;
+		}
+		var data = {
+			"id" : $("#id").val(),
+			"pwd" : $("#pwd").val(),
+			"name" : $("#name").val(),
+			"email" : email,
+			"phone" : phone,
+		    "corp_id" : $("#corp-id").val(),
+		    "authority" : $("#authority").val()
+		};
+				
+		sigupPost(data);
+	} else {
+		var corpPhone = $("#corp-phone-1").val()+"-"+$("#corp-phone-2").val()+"-"+$("#corp-phone-3").val();
+		
+		var corpDate = {
+			"corp_name" : $("#corp-name").val(),
+			"phone" : corpPhone
+		};
+		
+		$.ajax({
+			url : "/insert/corp",
+			type : "POST",
+	        contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify(corpDate),
+			success : function (data){
+				if(data.status == "success") {
+					var formData = {
+						"id" : $("#id").val(),
+						"pwd" : $("#pwd").val(),
+						"name" : $("#name").val(),
+						"email" : email,
+						"phone" : phone,
+						"corp_id" : data.data[0].id,
+						"authority" : $("#authority").val()
+					};
+					
+					sigupPost(formData)
+				} else {
+					
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				
+			}
+		});
+	}
+}
+
+function sigupPost(data) {
 	$.ajax({
 		url : "/signup",
 		type : "POST",
@@ -257,12 +306,9 @@ $("#signup-btn").on("click", function() {
 			}
 		},
 		error : function(data, textStatus, errorThrown) {
-			
 		}
 	});
-
-	return false;
-});
+}
 
 function maxLengthCheck(object) {
 	if (object.value.length > object.maxLength) {

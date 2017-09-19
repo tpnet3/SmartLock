@@ -121,8 +121,8 @@
 						<br>
 						<!-- Button -->
 						<div class="form-group" align="center">
-							<button id="signup-btn" class="btn btn-default btn-md"
-									style="height: 40px; width: 80px" type="button">회원가입</button>
+							<button class="btn btn-default btn-md"
+									style="height: 40px; width: 80px" type="button" onclick="signup('user')">회원가입</button>
 						</div>
 					</fieldset>
 				</form>

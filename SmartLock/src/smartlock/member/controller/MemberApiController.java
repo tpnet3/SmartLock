@@ -190,4 +190,26 @@ public class MemberApiController {
     	    return  userService.searchCorpName(corpName);
         });
     }
+    
+    /**
+     * 회사 추가
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/insert/corp", method=RequestMethod.POST)
+    public @ResponseBody DataResVO insertCorp(HttpServletRequest request,
+    		@RequestBody CorpVO corpVO) {
+//    	CorpVO corpVO = new CorpVO();
+//    	corpVO.setCorp_name(request.getParameter("corp_name"));
+//    	corpVO.setPhone(request.getParameter("phone"));
+    	System.out.println(corpVO);
+    	
+    	return new DataResVO(request, userVO -> {
+    		if(userService.insertCorp(corpVO)){
+    			return userService.searchCorpName(corpVO.getCorp_name());
+    		} else {
+    			return null;
+    		}
+        });
+    }
 }

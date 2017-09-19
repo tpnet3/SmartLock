@@ -92,19 +92,38 @@
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-5 control-label" for="company">기업명</label>
+							<label class="col-md-5 control-label" for="phone">전화번호</label>
 							<div class="col-md-3">
-								<input id="company" name="company" type="text"
-									placeholder="기업명을 입력해주세요." class="form-control input-md">
+								<!-- <input id="phone" name="textinput" type="text" placeholder="전화번호를 입력해주세요." class="form-control input-md"> -->
+								<select id="phone-1" style="width:28%; display:inline;text-align-last:center;" class="form-control input-md">
+									<option>010</option>
+									<option>011</option>
+									<option>016</option>
+									<option>017</option>
+									<option>018</option>
+									<option>019</option>
+								</select>
+								<b style="width:5%">-</b>
+								<input id="phone-2" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+								<b style="width:5%">-</b>
+								<input id="phone-3" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
 							</div>
 						</div>
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-5 control-label" for="phone">전화번호</label>
+							<label class="col-md-5 control-label" for="company">기업명</label>
+							<div class="col-md-3">
+								<input id="corp-name" type="text" placeholder="기업명을 입력해주세요." class="form-control input-md">
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-5 control-label" for="phone">기업 전화번호</label>
 							<div class="col-md-3">
 								<!-- <input id="phone" name="textinput" type="text" placeholder="전화번호를 입력해주세요." class="form-control input-md"> -->
-								<select id="phone-1" style="width:28%; display:inline;text-align-last:center;" class="form-control input-md">
+								<select id="corp-phone-1" style="width:28%; display:inline;text-align-last:center;" class="form-control input-md">
 									<option>02</option>
 									<option>031</option>
 									<option>032</option>
@@ -129,17 +148,17 @@
 									<option>019</option>
 								</select>
 								<b style="width:5%">-</b>
-								<input id="phone-2" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+								<input id="corp-phone-2" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
 								<b style="width:5%">-</b>
-								<input id="phone-3" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+								<input id="corp-phone-3" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
 							</div>
 						</div>
 						
 						<br>
 						<!-- Button -->
 						<div class="form-group" align="center">
-							<button type="submit" class="btn btn-default btn-md"
-								style="height: 40px; width: 80px">회원가입</button>
+							<button type="button" class="btn btn-default btn-md"
+								style="height: 40px; width: 80px" onclick="signup('manager')">회원가입</button>
 						</div>
 
 					</fieldset>
