@@ -72,7 +72,6 @@
     	WHERE id=#{id} AND password=#{password};
     </delete>
     
-    <!-- 
     <update id="changeRanPassword"
     		parameterType="smartlock.searchpw.vo.SearchpwVO">
     	UPDATE user
@@ -87,5 +86,4 @@
     	FROM user
     	WHERE id=#{id} AND email=#{email};
     </select>
-	-->
 </mapper>
