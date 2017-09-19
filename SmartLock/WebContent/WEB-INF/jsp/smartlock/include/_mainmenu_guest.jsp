@@ -18,22 +18,17 @@
         <div class="collapse navbar-collapse"
              id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <!--
                 <li <%= (_nav != null && _nav.equals("main")) ? "class=\"active\"" : "" %>>
                     <a href="/">Home</a>
                 </li>
-                -->
                 <li <%= (_nav != null && _nav.equals("about_us")) ? "class=\"active\"" : "" %>>
-                    <a href="/about_us">서비스 소개</a>
+                    <a href="/about_us">About Us</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("software")) ? "class=\"active\"" : "" %>>
-                    <a href="/software">소프트웨어</a>
+                    <a href="/software">Software</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("download")) ? "class=\"active\"" : "" %>>
-                    <a href="/download">다운로드</a>
-                </li>
-                <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
-                    <a href="/qna">도움말</a>
+                    <a href="/download">Download</a>
                 </li>
             </ul>
 
