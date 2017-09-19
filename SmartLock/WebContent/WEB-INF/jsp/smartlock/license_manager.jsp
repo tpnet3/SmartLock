@@ -10,7 +10,7 @@
 </jsp:include>
 
 <!-- Header Carousel -->
-<div class="container">
+<div class="container" id="pageContainer">
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
 		<div class="col-lg-12">
@@ -19,7 +19,7 @@
 			</h1>
 			<ol class="breadcrumb">
 				<li class="active">발급 대기 현황</li>
-				<li><a href="/license/manager?name">발급 완료 현황</a></li>
+				<li><a href="/license/manager?order=DEFAULT">발급 완료 현황</a></li>
 			</ol>
 		</div>
 	</div>
@@ -28,22 +28,20 @@
 			<div class="col-sm-12">
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="swL_ist" style="width: 180px; height: 35px;"
-							onchange="search(this)">
+						<select id="sw_list" style="width: 180px; height: 35px;">
 							<option value="">소프트웨어명</option>
-							<c:forEach var="sw" items="${swNameList}">
-								<option value="${sw}">${sw}</option>
+							<c:forEach var="sw" items="${swNameList}" varStatus="count">
+								<option value="${swIdList[count.count-1]}">${sw}</option>
 							</c:forEach>
 						</select>
 					</div>
 				</div>
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="list" style="width: 180px; height: 35px;"
-							onchange="list(this)">
-							<option value="">만료 날짜</option>
-							<option value="">오름차순</option>
-							<option value="">내림차순</option>
+						<select id="order" style="width: 180px; height: 35px;">
+							<option value=0>만료 날짜</option>
+							<option value=1>오름차순</option>
+							<option value=2>내림차순</option>
 						</select>
 					</div>
 				</div>
@@ -51,7 +49,7 @@
 				<div class="col-sm-6">
 					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
 						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
-					<button class="btn btn-primary" type="button" id="searchButton"
+					<button class="btn btn-primary" type="button" id="searchButton" onclick="search();"
 						data-loading-text="Searching..">
 						<i class="fa fa-search"></i>
 					</button>
@@ -107,18 +105,17 @@
 								<c:choose>
 									<c:when test="${license.state eq 1 }">
 										<td data-title="분류"><span class="label label-success">
-												일반 신청 </span></td>
+												정식 라이선스 요청 </span></td>
 									</c:when>
 									<c:when test="${license.state eq 2}">
 										<td data-title="분류"><span class="label label-warning">
-												데모 신청</span></td>
+												데모 라이선스 요청</span></td>
 									</c:when>
 								</c:choose>
-								<td data-title="상세보기"><span class="label"
+								<td data-title="요청거절"><span class="label"
 									style="background-color: darkgray; color: black"
-									onclick="showDetail('${license.sw_name}');"> 상세
-										보기 </span></td>
-								<td data-title="상세보기"><span class="label"
+									onclick="licenseReject'${license.sw_name}', '${license.id }');"> 거절하기 </span></td>
+								<td data-title="요청승인"><span class="label"
 									style="background-color: indianred; color: white"
 									onclick="licenseOk('${license.sw_name}', '${license.id }','${license.state }');">
 										발급하기 </span></td>
@@ -143,13 +140,13 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
-	function showDetail(swName) {
+	function licenseReject(swName, swId) {
 		// TODO: 상세보기
-		alert(swName + " 에 대한 상세보기를 클릭했습니다.");
+		alert(swName + " 에 대한 라이센스를 거절하시겠습니까?");
 	}
 
 	function licenseOk(swName, id, state) {
-		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?" +id +state);
+		var check = confirm(swName + " 에 대한 라이센스를 발급하시겠습니까?");
 		if(check == true){
 			if(state == 1){
 				$.ajax({
@@ -192,39 +189,35 @@
 		}
 	}
 	
-	function search(name) {
-    	if(name.value!="default"){
-    		$.ajax({
-				url:"/license/manager/request?name="+name.value,
-				type:"GET",
-				contentType: "application/json",
-			 	data : {
-				name : name.value
-			},
+	function search() {
+		var sw_id = $("#sw_list option:selected").val();
+    	var sw_name = $("#sw_list option:selected").text();
+    	var orderIndex = $("#order option").index($("#order option:selected"));
+    	var order = "";
+		
+    	if(orderIndex == 1) {
+    		order = "ASC";
+    	} else if(orderIndex == 2) {
+    		order = "DESC";
+    	} else if (orderIndex == 0) {
+    		order = "DEFAULT";
+    	}
+    	
+    	$.ajax({
+			url:"/license/manager/request",
+			type:"GET",
+			contentType: "application/json",
+		 	data : {
+			sw_id : sw_id,
+			order : order
+		},
          success : function (data) {
-        	 window.location = "/license/manager/request?name="+name.value;
+        	 $("#pageContainer").html(data);
          },
          error : function(data, textStatus, errorThrown) {
              console.log(data);
          }
 		});
-    	}
-    	else{
-    		$.ajax({
-				url:"/license/manager/request?name",
-				type:"GET",
-				contentType: "application/json",
-			 	data : {
-				name : name.value
-			},
-         success : function (data) {
-        	 window.location = "/license/manager/request?name";
-         },
-         error : function(data, textStatus, errorThrown) {
-             console.log(data);
-         }
-		});
-    	}
 	}
 </script>
 

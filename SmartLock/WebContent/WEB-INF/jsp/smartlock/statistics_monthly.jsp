@@ -1,13 +1,92 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_nav" value="statistics" />
     <jsp:param name="_css" value="/html/css/vGraph.css" />
     <jsp:param name="_css" value="/html/css/statistics.css" />
 </jsp:include>
 
-<!-- Header Carousel -->
-<div class="container">
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(function(){
+    	
+	var result = new Array();
+		
+		<c:forEach var="item" items='${monthCnt}'>
+			var json = new Object();
+			json = ${item};
+			result.push(json);
+		</c:forEach>
+		
+    	drawChart(result);
+    });
+	
+    function drawChart(array) {
+    	var date = new Date();
+    	
+    	var thisMonth = date.getMonth() + 1;
+    	
+    	var month = new Array();
+    	var arr = new Array();
+    	
+    	for(var i = 0; i < 12 ; ++i)
+    	{
+    		if(thisMonth - i <= 0)
+    		{
+    			month[11 - i] = thisMonth - i + 12;
+    			arr[11 - i] = array[thisMonth - i + 11];
+    		}
+    		else
+    		{
+    			month[11 - i] = thisMonth - i;
+    			arr[11 - i] = array[thisMonth - i - 1];
+    		}
+    	}
+    	
+        var data = google.visualization.arrayToDataTable([
+          ["Element", "발급 수", { role: "style" } ],
+          [month[0] + "월", arr[0], "#b87333"],
+          [month[1] + "월", arr[1], "#b87333"],
+          [month[2] + "월", arr[2], "#b87333"],
+          [month[3] + "월", arr[3], "#b87333"],
+          [month[4] + "월", arr[4], "#b87333"],
+          [month[5] + "월", arr[5], "#b87333"],
+          [month[6] + "월", arr[6], "#b87333"],
+          [month[7] + "월", arr[7], "#b87333"],
+          [month[8] + "월", arr[8], "#b87333"],
+          [month[9] + "월", arr[9], "#b87333"],
+          [month[10] + "월", arr[10], "#b87333"],
+          [month[11] + "월", arr[11], "#b87333"]
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                         { calc: "stringify",
+                           sourceColumn: 1,
+                           type: "string",
+                           role: "annotation" },
+                         2]);
+
+        var options = {
+          title : date.getYear() + 1900 + "년 발급 현황",
+          animation : {
+        	  duration : 1000,
+        	  startup: true
+          },
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        chart.draw(view, options);
+    }
+    
+</script>
+
+ <!-- Header Carousel -->
+<div id="con" class="container">
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
@@ -24,46 +103,18 @@
     <div class="row">
         <div class="col-sm-12" align="left">
             <div class="input-group">
-                <select name="" id="location1" style="width: 180px; height: 35px;">
-                    <option value="">전체보기</option>
-                    <option value="">Microsoft Excel</option>
-                    <option value="">Parallels Desktop</option>
-                    <option value="">Adobe CC</option>
-                    <option value="">Football Manager</option>
+                <select id="swList" style="width: 180px; height: 35px;" onchange="selectSwList(this.value);">
+                    <option value="전체보기" selected="selected">전체보기</option>
+                    <c:forEach var="item" items="${swList}">
+                    	<option value="${item.key}">${item.value}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
     </div>
     <br><br>
-    <div class="col-sm-12">
-        <div class="vGraph">
-            <ul>
-                <li><span class="gTerm">1월</span><span class="gBar" style="height:0%"><span>0%</span></span>
-                </li>
-                <li><span class="gTerm">2월</span><span class="gBar" style="height:20%"><span>20%</span></span>
-                </li>
-                <li><span class="gTerm">3월</span><span class="gBar" style="height:30%"><span>30%</span></span>
-                </li>
-                <li><span class="gTerm">4월</span><span class="gBar" style="height:40%"><span>40%</span></span>
-                </li>
-                <li><span class="gTerm">5월</span><span class="gBar" style="height:50%"><span>50%</span></span>
-                </li>
-                <li><span class="gTerm">6월</span><span class="gBar" style="height:60%"><span>60%</span></span>
-                </li>
-                <li><span class="gTerm">7월</span><span class="gBar" style="height:100%"><span>100%</span></span>
-                </li>
-                <li><span class="gTerm">8월</span><span class="gBar" style="height:80%"><span>80%</span></span>
-                </li>
-                <li><span class="gTerm">9월</span><span class="gBar" style="height:60%"><span>60%</span></span>
-                </li>
-                <li><span class="gTerm">10월</span><span class="gBar" style="height:40%"><span>40%</span></span>
-                </li>
-                <li><span class="gTerm">11월</span><span class="gBar" style="height:20%"><span>20%</span></span>
-                </li>
-                <li><span class="gTerm">12월</span><span class="gBar" style="height:10%"><span>10%</span></span>
-                </li>
-            </ul>
-        </div>
+    <div class="col-md-12">
+		<div id="columnchart_values" style="width: 100%; height: 100%;"></div>
     </div>
 
     <!-- /.row -->
@@ -72,12 +123,53 @@
     <div class="row">
         <hr>
     </div>
+    
+    
 
     <!-- Footer -->
     <jsp:include page="include/_footer_content.jsp" />
 
 </div>
 <!-- /.container -->
-
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />
+
+<script>
+	/*
+	 * SW명별로 통계
+	 */
+	function selectSwList(swId){
+		if(swId != '전체보기')
+		{
+			$.ajax({
+				url: '/statistics/monthly/filter',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					sw_id : swId	
+				}),
+				success: function(data){
+					drawChart(data);
+				},
+				error: function(data, textStatus, errorThrown){
+					console.log(data);
+				}
+			}); 
+		}
+		else
+		{
+			$.ajax({
+				url: '/statistics/monthly',
+				type: 'GET',
+				contentType: 'application/json',
+				success:function(data){
+					$("#con").html(data);
+				},
+				error:function(data, textStatus, errorThrown){
+					console.log(data);
+				}
+			}); 
+		}
+	};
+	
+</script> 

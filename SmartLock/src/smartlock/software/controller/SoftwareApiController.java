@@ -20,7 +20,8 @@ public class SoftwareApiController {
 
 
     @RequestMapping(value = "/software/list", method = RequestMethod.POST)
-    public @ResponseBody DataResVO software(HttpServletRequest request) {
+    public @ResponseBody DataResVO software1(
+            HttpServletRequest request) {
 
         return new DataResVO(request, userVO -> {
             return softwareService.softwareList();

@@ -15,7 +15,7 @@
     <select id="corpName"
     		parameterType="smartlock.member.vo.CorpVO"
     		resultType="String">
-    	SELECT corp_name
+    	SELECT MAX(corp_name)
     	FROM corp
     	WHERE id=#{value}
     </select>

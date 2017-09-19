@@ -43,7 +43,11 @@ public class LicenseService {
 	 * @throws Exception
 	 */
 	public ArrayList<LicenseUserVO> viewUserLicenseByName(Map<String, String> map) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.selectLicenseByName", map);
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectLicenseByName", map);
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectLicenseByNameOrder", map);
+		}
 	}
 	
 	/**
@@ -52,8 +56,12 @@ public class LicenseService {
 	 * @return ArrayList<LicenseUserReqVO>
 	 * @throws Exception
 	 */
-	public ArrayList<LicenseUserReqVO> viewUserReqLicense(String id) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.selectReqLicense", id);
+	public ArrayList<LicenseUserReqVO> viewUserReqLicense(Map<String, String> map) throws Exception {
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectReqLicense", map.get("id"));
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectReqLicenseOrder", map);
+		}
 	}
 	
 	/**
@@ -63,7 +71,11 @@ public class LicenseService {
 	 * @throws Exception
 	 */
 	public ArrayList<LicenseUserReqVO> viewUserReqLicenseByName(Map<String, String> map) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.selectReqLicenseByName", map);
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectReqLicenseByName", map);
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectReqLicenseByNameOrder", map);
+		}
 	}
 
 	/**
@@ -72,8 +84,12 @@ public class LicenseService {
 	 * @return ArrayList<LicenseManagerReqVO>
 	 * @throws Exception
 	 */
-	public ArrayList<LicenseManagerReqVO> viewManagerReqLicense(String id) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.selectManagerReqLicense", id);
+	public ArrayList<LicenseManagerReqVO> viewManagerReqLicense(Map<String, String> map) throws Exception {
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectManagerReqLicense", map);
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectManagerReqLicenseOrder", map);
+		}
 	}
 	
 	/**
@@ -83,7 +99,11 @@ public class LicenseService {
 	 * @throws Exception
 	 */
 	public ArrayList<LicenseManagerReqVO> viewManagerReqLicenseByName(Map<String, String> map) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.selectManagerReqLicenseByName", map);
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectManagerReqLicenseByName", map);
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectManagerReqLicenseByNameOrder", map);
+		}
 	}
 	
 	/**
@@ -92,8 +112,12 @@ public class LicenseService {
 	 * @return ArrayList<LicensemanagerVO>
 	 * @throws Exception
 	 */
-	public ArrayList<LicenseManagerVO> viewManagerLicense(String id) throws Exception{
-		return (ArrayList) commonDAO.selectList("license.selectManagerLicense", id);
+	public ArrayList<LicenseManagerVO> viewManagerLicense(Map<String, String> map) throws Exception{
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectManagerLicense", map);
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectManagerLicenseOrder", map);
+		}
 	}
 	
 	/**
@@ -103,7 +127,11 @@ public class LicenseService {
 	 * @throws Exception
 	 */
 	public ArrayList<LicenseManagerVO> viewManagerLicenseByName(Map<String, String> map) throws Exception{
-		return (ArrayList) commonDAO.selectList("license.selectManagerLicenseByName", map);
+		if(map.get("order").equals("DEFAULT")){
+			return (ArrayList) commonDAO.selectList("license.selectManagerLicenseByName", map);
+		} else {
+			return (ArrayList) commonDAO.selectList("license.selectManagerLicenseByNameOrder", map);
+		}
 	}
 	
 	public boolean permitFull(Map<String, String> map) throws Exception{

@@ -26,6 +26,9 @@ public class ProfileApiController {
 	
 	@Resource
     private ProfileService profileService;
+	
+	@Resource
+	private UserService userService;
 
 	/**
 	 * 프로필 업데이트
@@ -48,6 +51,18 @@ public class ProfileApiController {
 				return "error";
 			}
 			else{
+				// 로그인시 Session data
+	            UserVO loginUserVO = userService.getUserVO(userVO.getId());
+	            
+	            // 비밀번호 데이터 null
+	            loginUserVO.setPassword(null);
+
+	            // 세션에 로그인 정보 추가
+	            request.getSession().setAttribute("user", loginUserVO);
+
+	            // 로그인시 API 데이터
+	            UserInfoVO userInfoVO = userService.getUserInfoVO(loginUserVO.getId());
+	            
 				return "회원정보 수정이 완료되었습니다.";
 			}		
 		});
@@ -74,6 +89,20 @@ public class ProfileApiController {
 				return "error";
 			}
 			else{
+				// 로그인시 Session data
+	            UserVO loginUserVO = userService.getUserVO(passwordVO.getId());
+	            
+	            // 비밀번호 데이터 null
+	            loginUserVO.setPassword(null);
+
+	            // 세션에 로그인 정보 추가
+	            request.getSession().setAttribute("user", loginUserVO);
+
+	            // 로그인시 API 데이터
+	            UserInfoVO userInfoVO = userService.getUserInfoVO(loginUserVO.getId());
+	            
+	            System.out.println(userInfoVO);
+	            				
 				return "비밀번호 수정이 완료되었습니다.";
 			}
 		});
@@ -106,25 +135,33 @@ public class ProfileApiController {
 	
 	/**
 	 * 기업아이디로 기업이름 
-	 * @param userVO {@link CorpVO#id},
-	 * @return 성공시 corp_name, 실패시 "error"
+	 * @param corpVO {@link CorpVO#id},
+	 * @return 성공시 "success" 실패시 "error"
 	 */	
+	/*
 	@RequestMapping(value = "/profile/getCorpName", method = RequestMethod.POST)
-	public  @ResponseBody String getCorpName(
+	public  @ResponseBody MsgResVO getCorpName(
 			@RequestBody CorpVO corpVO,
 			HttpServletRequest request) {
-		 
-        try {
-        	System.out.println(corpVO.getId());
-        	String corp_name = profileService.selectCorpName(corpVO);
-        	System.out.println("기업이름은 "+corp_name);
-        	return "test";
-        }    
-        catch (Exception e) {
-            e.printStackTrace();
-            return "error";
-        }
+		
+		return new MsgResVO(request, (sessionUserVO, msgResVO) -> {
+			String corp_name = profileService.selectCorpName(corpVO);
+			request.getSession().setAttribute("corp_name", corp_name);
+			
+			System.out.println("select문으로 받은 기업명" +corp_name);
+			System.out.println("세션에 저장중인 기업명" + request.getSession().getAttribute("corp_name"));
+			
+			if(corp_name == null){
+				// id에 해당하는 기업명을 찾지 못했을때,
+				msgResVO.setStatus("error");
+				return "error";
+			}
+			else{
+				return "success";
+			}
+		});
 	}
+	*/
 }
 
 

@@ -64,11 +64,26 @@
 		WHERE id=#{id} AND password=#{password};
     </update>
     
+    
     <delete id="removeUser"
     		parameterType="smartlock.member.vo.UserVO">
     	DELETE
     	FROM user
     	WHERE id=#{id} AND password=#{password};
     </delete>
-
+    
+    <update id="changeRanPassword"
+    		parameterType="smartlock.searchpw.vo.SearchpwVO">
+    	UPDATE user
+    	SET password=#{password}
+    	WHERE id=#{id};
+    </update>
+    
+    <select id="checkEmail"
+    		parameterType="smartlock.searchpw.vo.EmailVO"
+    		resultType="String">
+    	SELECT MAX(email)
+    	FROM user
+    	WHERE id=#{id} AND email=#{email};
+    </select>
 </mapper>

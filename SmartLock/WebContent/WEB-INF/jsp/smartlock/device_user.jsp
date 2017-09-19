@@ -8,7 +8,7 @@
 </jsp:include>
 
 <!-- Page Content -->
-<div class="container">
+<div id="pageContainer" class="container">
 	<!-- Service Panels -->
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
@@ -96,7 +96,7 @@
 								<li class="list-group-item"><b>등록일 :</b>${device.reg_date}</li>
 							</ul>
 							<a href="#" class="btn btn-default" style="width: 180px"
-								onclick="return clickShowLicense(${device.id});">라이센스 조회</a>
+								onclick="return clickShowLicense('${device.id}');">라이센스 조회</a>
 						</div>
 					</div>
 				</div>
@@ -200,14 +200,26 @@
     /**
 	 * 라이센스 보기 클릭시
      * @param deviceId 디바이스 아이디
-     * @return {boolean} False
      */
 	function clickShowLicense(deviceId) {
-        alert("deviceId: " + deviceId + " 에 대한 라이센스 조회 버튼을 클릭했습니다.");
-        return false;
+    	 $.ajax({
+    		url: "/device/license",
+    		type: "GET",
+    		contentType: "application/json",
+    		data: ({
+    			id: deviceId
+    		}),
+    		success: function(data) {
+    			$(location).attr("href", "/device/license?id="+deviceId);
+    		},
+    		error: function(data, textStatus, errorThrown) {
+    			console.log(data);
+    		}
+    	 });
 	}
     
     function search() {
+    	var swIndex = $("#sw_list option").index($("#sw_list option:selected"));
     	var sw = $("#sw_list option:selected").val();
     	var orderIndex = $("#order option").index($("#order option:selected"));
     	var order = "";
@@ -217,8 +229,11 @@
     	} else if(orderIndex == 2) {
     		order = "DESC";
     	}
-
     	
+    	if(swIndex == 0) {
+    		sw = "";
+    	}
+
     	$.ajax({
     		url: "/device",
     		type: "GET",
@@ -228,13 +243,14 @@
     			order: order
     		},
     		success: function (data) {
-    				$(location).attr("href", "/device?sw="+sw+"&order="+order);
+    				$("#pageContainer").html(data);
     		},
     		error: function (data, textStatus, errorThrown) {
     			console.log(data);
     		}
     	});
     }
+
 </script>
 
 <jsp:include page="include/_footer.jsp" />

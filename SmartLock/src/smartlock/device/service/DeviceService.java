@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import smartlock.common.CommonDAO;
 import smartlock.device.vo.DeviceVO;
+import smartlock.license.vo.LicenseUserVO;
 
 @Service
 public class DeviceService {
@@ -17,12 +18,6 @@ public class DeviceService {
 	@Resource(name="commonDAO")
 	private CommonDAO commonDAO;
 
-	/**
-	 * id로 전체 디바이스 목록 조회
-	 * @param deviceVO 등록할 디바이스 정보
-	 * @return 등록된 디바이스 수
-	 * @throws Exception DAO Exception
-	 */
 	/*
 	public int addDevice(DeviceVO deviceVO) throws Exception {
 		// TODO: 디바이스 등록
@@ -30,6 +25,12 @@ public class DeviceService {
 	}
 	*/
 
+	public DeviceVO getDevice(String userId, String deviceId) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("deviceId", deviceId);
+		return (DeviceVO)commonDAO.selectOne("device.selectDevice", map);
+	}
 	/**
 	 * id로 전체 디바이스 목록 조회
 	 * @param id 조회할 사용자 아이디
@@ -50,14 +51,14 @@ public class DeviceService {
 		map.put("order", order);
 		return (ArrayList)commonDAO.selectList("device.selectDeviceBySw", map);
 	}
-
-	public int modifyDevice(int id, String nickName) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", id);
-		map.put("nickname", nickName);
-		return commonDAO.update("device.modifyDevice", map);
-	}
 	
+	public ArrayList<LicenseUserVO> getLicenseList(String userId, String deviceId) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("deviceId", deviceId);
+		return (ArrayList)commonDAO.selectList("device.selectLicense", map);
+	}
+
 	/**
 	 * 디바이스 삭제
 	 * @param id 디바이스 아이디

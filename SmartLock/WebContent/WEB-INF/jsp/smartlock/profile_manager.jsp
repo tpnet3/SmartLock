@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이름</label>
                             <div class="col-md-7">
-                                <label class="control-label" for="textinput"><%= userVO.getUserName() %></label>
+                                <label class="control-label" for="textinput">${user_name }</label>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">소속</label>
                             <div class="col-md-7">
-                                <label class="control-label" for="textinput"><%= userVO.getCorpId() %></label>
+                                <label class="control-label" for="textinput">${corp_name }</label>
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">아이디</label>
                             <div class="col-md-7">
-                                <label class="control-label" for="textinput"><%= userVO.getId() %></label>
+                                <label class="control-label" for="textinput">${id }</label>
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이메일</label>
                             <div class="col-md-3">
-                            	<input type="text" id="email" class="form-control" value="<%=userVO.getEmail() %>" required autofocus>
+                            	<input type="text" id="email" class="form-control" value="${email }" required autofocus>
                             </div>
                         </div>
 
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">전화번호</label>
                             <div class="col-md-3">                                
-                                <input type="text" id="phone_number" class="form-control" value="<%=userVO.getPhoneNumber() %>" required autofocus>
+                                <input type="text" id="phone_number" class="form-control" value="${phone_number }" required autofocus>
                             </div>
                         </div>
                         <br>
