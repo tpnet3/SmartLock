@@ -4,6 +4,11 @@
 	<jsp:param name="_nav" value="" />
 </jsp:include>
 
+<script type="text/javascript">
+	if('${resultMsg}')
+		alert('${resultMsg}');
+</script>
+
 <!-- Page Content -->
 <div class="container">
 	<div class="container">
@@ -29,7 +34,7 @@
 					<input type="email" id="email" name="email" class="form-control" placeholder="이메일" style="height:50px"
 							required> <br>
 					<button id="login-btn"
-						class="btn btn-lg btn-primary btn-block btn-signin" type="submit">비밀번호 찾기</button>
+						class="btn btn-lg btn-primary btn-block btn-signin" type="submit" onclick="find_button();">비밀번호 찾기</button>
 			</form>
 		</div>
 	</div>
