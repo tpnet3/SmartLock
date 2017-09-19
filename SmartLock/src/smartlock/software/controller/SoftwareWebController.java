@@ -166,8 +166,6 @@ public class SoftwareWebController {
 	public ModelAndView softwareUpload
 		(SoftwareVO softwareVO, MultipartHttpServletRequest multipartRequest) throws Exception
 	{
-		System.out.println(softwareVO);
-		System.out.println(multipartRequest.getParameter("sw_name"));
 		/*
 		 * 세션 얻기
 		 */
@@ -191,9 +189,7 @@ public class SoftwareWebController {
 				if(softwareService.softwareInsert(map) > 0)
 				{
 					return new ModelAndView("redirect:/software/manager");	
-				} else {
-					
-				}
+				} 
 			}
 			return new ModelAndView("redirect:/software/manager");	
 		}
