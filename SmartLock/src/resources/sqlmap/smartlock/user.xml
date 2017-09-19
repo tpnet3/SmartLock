@@ -40,16 +40,14 @@
             , authority
             , phone_number
             , email
-            , corp_id
-            ,device_count)
+            , corp_id)
         VALUES (#{id}
             , #{password}
             , #{userName}
             , #{authority}
             , #{phoneNumber}
             , #{email}
-            , #{corpId}
-            ,0)
+            , #{corpId})
     </insert>
     
     <update id="updateUser" 
