@@ -12,7 +12,7 @@
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">사업자 회원가입</h2>
+			<h2 class="page-header">관리자 회원가입</h2>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
