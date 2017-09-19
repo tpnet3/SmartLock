@@ -20,7 +20,7 @@
     <div class="col-md-4">
         <div class="panel text-center" style="border: 1px solid; box-shadow: 2px 2px">
             <div class="panel-heading">
-                <h3>Download Agent</h3>
+                <h3>에이전트 다운로드</h3>
             </div>
             <div class="panel-body">
                 <span class="fa-stack fa-5x">
@@ -30,7 +30,7 @@
                 <hr>
                 <h4>Agent v1.0.1</h4>
                 <p><br>프로그램을 정상적으로 실행시키기 위해 다운받으세요.</p>
-                <a class="btn btn-lg btn-default btn-block" href="/html/img/Microsoft_Excel.png" download>Download Now</a>
+                <a class="btn btn-lg btn-default btn-block" href="/html/img/Microsoft_Excel.png" download>지금 다운로드</a>
             </div>
         </div>
 
