@@ -17,8 +17,8 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Softwares
-                <small>Preview</small>
+            <h1 class="page-header">소프트웨어
+                <small>미리보기</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/">Home</a>
@@ -30,7 +30,7 @@
     <!-- /.row -->
 
     <!-- Projects Row -->
-    <c:forEach var="software" items="${softwareList}" varStatus="count">
+    <c:forEach var="software" items="${softwareList}" >
         <div class="col-md-3 img-portfolio">
             <div align="center"><span class="fa-stack fa-5x">
                               <i class="fa fa-circle fa-stack-2x"></i>

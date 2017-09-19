@@ -78,7 +78,6 @@
 						<td width="100px"><h4><b>발급날짜</h4></td>
 						<td width="100px"><h4><b>만료날짜</h4></td>
 						<td width="150px"><h4><b>분류</h4></td>
-						<td width="100px"><h4><b>상세보기</h4></td>
 					</tr>
 					</thead>
 					<tbody align="center">
@@ -91,20 +90,14 @@
 						<td data-title="만료날짜"><fmt:formatDate value="${license.end_date}" pattern="yyyy-MM-dd"/></td>
 						<c:choose>
 							<c:when test="${license.state eq 1 }">
-								<td data-title="상태"><span class="label label-success">일반
-										신청</span></td>
+								<td data-title="상태"><span class="label label-success">정식
+										라이선스 요청</span></td>
 							</c:when>
 							<c:when test="${license.state eq 2}">
 								<td data-title="상태"><span class="label label-warning">데모
-										신청</span></td>
+										라이선스 요청</span></td>
 							</c:when>
 						</c:choose>
-						<td data-title="상세보기">
-							<span class="label" style="background-color: darkgray; color: black"
-							      onclick="detail('${license.sw_name}');">
-								상세 보기
-							</span>
-						</td>
 					</tr>
 					</c:forEach>
 						</tbody>

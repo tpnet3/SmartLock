@@ -105,4 +105,9 @@ public class UserService {
 	public CorpVO getCorpInfo(String corpName) throws Exception {
 		return (CorpVO)commonDAO.selectOne("corp.selectCorp", corpName);
 	}
+	
+	public boolean insertCorp(CorpVO corpVO) throws Exception {
+		int result = commonDAO.insert("corp.insertCorp", corpVO);
+		return result > 0;
+	}
 }

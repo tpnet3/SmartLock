@@ -4,6 +4,11 @@
 	<jsp:param name="_nav" value="" />
 </jsp:include>
 
+<script type="text/javascript">
+	if('${resultMsg}')
+		alert('${resultMsg}');
+</script>
+
 <!-- Page Content -->
 <div class="container">
 	<div class="container">
@@ -14,22 +19,26 @@
 				<h1 class="page-header">
 					비밀번호 찾기
 				</h1>
-				<h4>비밀번호를 찾고자 하는 아이디를 입력해 주세요.</h4>
+				<h4>비밀번호를 찾고자 하는 아이디와 회원가입시 입력한 이메일을 입력해 주세요.</h4>
 			</div>
 		</div>
 	</div>
 	<br><br>
+	
 	<div class="col-lg-12" align="center">
-	<div class="col-lg-4"></div>
-	<div class="col-lg-4" align="center">
-	<input type="id" id="inputID" class="form-control" placeholder="아이디" style="height:50px"
-			required autofocus> <br>
-		<button id="login-btn"
-			class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
-			onclick="location.href='/search_pw/authenticate'">다음</button>
-			</div>
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4" align="center">
+			<form action="/search_pw/email/authenticate" id="findForm" method="post">
+					<input type="id" id="id" name="id" class="form-control" placeholder="아이디" style="height:50px"
+							required autofocus> <br>
+					<input type="email" id="email" name="email" class="form-control" placeholder="이메일" style="height:50px"
+							required> <br>
+					<button id="login-btn"
+						class="btn btn-lg btn-primary btn-block btn-signin" type="submit" onclick="find_button();">비밀번호 찾기</button>
+			</form>
+		</div>
 	</div>
-
+	
 	<div class="col-md-12">
 		<br> <br>
 		<hr>

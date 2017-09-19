@@ -18,27 +18,31 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
+                <!--
                 <li <%= (_nav != null && _nav.equals("main")) ? "class=\"active\"" : "" %>>
                     <a href="/">Home</a>
                 </li>
+                -->
                 <li <%= (_nav != null && _nav.equals("device")) ? "class=\"active\"" : "" %>>
-                    <a href="/device">Device</a>
+                    <a href="/device">단말기</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
-                    <a href="/license/user?order=DEFAULT">License</a>
+                    <a href="/license/user?order=DEFAULT">라이선스</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("softwareUser")) ? "class=\"active\"" : "" %>>
-                    <a href="/software/user">Software</a>
+                    <a href="/software/user">소프트웨어</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("download")) ? "class=\"active\"" : "" %>>
-                    <a href="/download">Download</a>
+                    <a href="/download">다운로드</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
-                    <a href="/qna">Q&A</a>
+                    <a href="/qna">도움말</a>
                 </li>
+                <!--
                 <li <%= (_nav != null && _nav.equals("notice")) ? "class=\"active\"" : "" %>>
                     <a href="/notice">Notice</a>
                 </li>
+                -->
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -51,7 +55,7 @@
                             <div class="col-md-7">
                                 <h4><%= userVO.getUserName() %> 님</h4>
                                 <h5><%= userVO.getEmail() %></h5>
-                                <a class="btn btn-sm btn-default btn-block" href="/profile/select">마이페이지</a>
+                                <a class="btn btn-sm btn-default btn-block" href="/profile">마이페이지</a>
                                 <br>
                             </div>
                         </li>

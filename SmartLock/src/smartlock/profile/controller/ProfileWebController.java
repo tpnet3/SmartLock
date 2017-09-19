@@ -116,7 +116,7 @@ public class ProfileWebController {
         httpSession.setAttribute("user", null);
 		return new ModelAndView("/smartlock/profile_quit_finish");	
 	}
-	
+	/*
 	@RequestMapping(value="/profile/select", method=RequestMethod.GET)
 	public ModelAndView selectProfile(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
@@ -130,4 +130,5 @@ public class ProfileWebController {
             return new ModelAndView("redirect:/");
         }
 	}
+	*/
 }
