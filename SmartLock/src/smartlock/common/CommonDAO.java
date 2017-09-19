@@ -40,7 +40,7 @@ public class CommonDAO extends SqlSessionDaoSupport{
 	 * 항목을 등록하는 기능을 한다
 	 * @param sql
 	 * @param paramVO
-	 * @return 성공시 갯수 리턴 / 실패시 에러
+	 * @return 성공시 null / 실패시 에러
 	 */
 	public int insert(String sql, Object paramVO) throws Exception {
 		return getSqlSession().insert(sql, paramVO);

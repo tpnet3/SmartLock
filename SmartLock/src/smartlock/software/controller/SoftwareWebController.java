@@ -1,8 +1,11 @@
 package smartlock.software.controller;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +28,6 @@ import smartlock.software.vo.SoftwareVO;
 
 @Controller
 public class SoftwareWebController {
-	public static int i = 100;
 
 	@Resource(name="softwareService")
 	private SoftwareService softwareService;
@@ -119,39 +121,25 @@ public class SoftwareWebController {
 	}
 	
 	/**
-	 * 관리자 - 소프트웨어 업로드 페이지 이동
+	 * 관리자 - 소프트웨어 등록
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/software/manager", method = RequestMethod.GET)
-	public @ResponseBody ModelAndView softwareManager(HttpServletRequest request) throws Exception
-	{
-		/*
-		 * 세션 얻기
-		 */
+	@RequestMapping(value = "/software/upload", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView softwareUpload(
+			HttpServletRequest request) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		try
-		{
-			/*
-			 * 세션 유지 & 관리자 계정일 경우
-			 */
-			if(userVO != null && userVO.getAuthority() == 1)
-			{
-				/*
-				 * 소프트웨어 업로드 페이지에 필요한 회사 정보 select 해옴
-				 */
-				String corp_name = softwareService.getCorp_name(userVO.getCorpId());
-
+		try{
+		
+			if(userVO != null && userVO.getAuthority() == 1){
 				ModelAndView modelAndView = new ModelAndView("smartlock/software_upload");
+				String corp_name = softwareService.getCorp_name(userVO.getCorpId());
 				modelAndView.addObject("corp_name", corp_name);
-
 				return modelAndView;
-			} 
-			else
+			} else{
 				return new ModelAndView("redirect:/");	
-		}
-		catch(Exception e)
-		{
+			}
+		}catch(Exception e){
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");	
 		}
@@ -179,13 +167,17 @@ public class SoftwareWebController {
 			{				
 
 				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("id", i++);
+				
 				map.put("sw_name", softwareVO.getSw_name());
 				map.put("corp_id", userVO.getCorpId());
 				map.put("version", softwareVO.getVersion());
 				map.put("proc_name", softwareVO.getProc_name());
 				map.put("img", softwareVO.getSw_img().getBytes());	
 
+				//프로퍼티에 설명추가
+				Properties prop = new Properties();
+				OutputStream out = new FileOutputStream("");
+				
 				if(softwareService.softwareInsert(map) > 0)
 				{
 					return new ModelAndView("redirect:/software/manager");	

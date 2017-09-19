@@ -1,6 +1,5 @@
 package smartlock.software.vo;
 
-
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
