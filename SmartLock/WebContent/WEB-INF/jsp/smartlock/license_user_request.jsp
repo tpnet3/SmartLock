@@ -16,11 +16,11 @@
 <div class="container" id="pageContainer">
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">라이센스 요청현황</h2>
+			<h2 class="page-header">라이선스 요청현황</h2>
 			<ol class="breadcrumb">
-				<li><a href="/license/user?name">라이센스 발급현황</a>
+				<li><a href="/license/user?name">라이선스 발급현황</a>
 				</li>
-				<li class="active">라이센스 요청현황</li>
+				<li class="active">라이선스 요청현황</li>
 			</ol>
 		</div>
 		<!-- 검색필터-->
@@ -132,7 +132,7 @@
     }
 
     function requestLicense(swName) {
-        alert(swName + " 에 대한 라이센스를 요청합니다.");
+        alert(swName + " 에 대한 라이선스를 요청합니다.");
     }
     
     function search() {

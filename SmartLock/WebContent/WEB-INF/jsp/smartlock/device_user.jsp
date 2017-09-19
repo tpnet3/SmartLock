@@ -13,7 +13,7 @@
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">내 디바이스 관리</h2>
+			<h2 class="page-header">내 단말기 관리</h2>
 		</div>
 		<!-- 검색필터-->
 		<div class="row">
@@ -92,11 +92,11 @@
 									// TODO: 장치명, 장치정보, 등록일 정보 표시
 								%>
 								<!--<li class="list-group-item"><b>장치명 :</b> iPhone7 (mobile)</li>-->
-								<li class="list-group-item"><b>장치정보 :</b>${device.mac}</li>
-								<li class="list-group-item"><b>등록일 :</b>${device.reg_date}</li>
+								<li class="list-group-item"><b>단말기정보 : </b>${device.mac}</li>
+								<li class="list-group-item"><b>등록일 : </b>${device.reg_date}</li>
 							</ul>
 							<a href="#" class="btn btn-default" style="width: 180px"
-								onclick="return clickShowLicense('${device.id}');">라이센스 조회</a>
+								onclick="return clickShowLicense('${device.id}');">라이선스 조회</a>
 						</div>
 					</div>
 				</div>
@@ -148,10 +148,10 @@
                 }),
                 success : function (data) {
                     if(data.status == "success") {
-                        alert("디바이스가 수정되었습니다.");
+                        alert("단말기 닉네임이 수정되었습니다.");
                         location.reload();
                     } else {
-                        alert("디바이스를 수정하는데 실패했습니다.");
+                        alert("단말기 닉네임을 수정하는데 실패했습니다.");
                     }
                 },
                 error : function(data, textStatus, errorThrown) {
@@ -182,10 +182,10 @@
 				}),
                 success : function (data) {
                     if(data.status == "success") {
-						alert("디바이스가 삭제되었습니다.");
+						alert("단말기가 삭제되었습니다.");
 						location.reload();
                     } else {
-                        alert("디바이스를 삭제하는데 실패했습니다.");
+                        alert("단말기를 삭제하는데 실패했습니다.");
                     }
                 },
                 error : function(data, textStatus, errorThrown) {

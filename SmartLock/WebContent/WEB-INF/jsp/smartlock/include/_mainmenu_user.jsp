@@ -33,11 +33,11 @@
                 <li <%= (_nav != null && _nav.equals("download")) ? "class=\"active\"" : "" %>>
                     <a href="/download">Download</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
+                <%-- <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
                     <a href="/qna">Q&A</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("notice")) ? "class=\"active\"" : "" %>>
-                    <a href="/notice">Notice</a>
+                    <a href="/notice">Notice</a> --%>
                 </li>
             </ul>
 

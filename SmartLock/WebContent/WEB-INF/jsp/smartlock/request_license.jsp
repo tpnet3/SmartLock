@@ -14,10 +14,10 @@
 		<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">라이센스 요청</h2>
+				<h2 class="page-header">라이선스 요청</h2>
 				<ol class="breadcrumb">
-					<li><a href="License_user.html">라이센스 발급현황</a></li>
-					<li><a href="License_user_request.html">라이센스 요청현황</a></li>
+					<li><a href="License_user.html">라이선스 발급현황</a></li>
+					<li><a href="License_user_request.html">라이선스 요청현황</a></li>
 				</ol>
 			</div>
 			<!-- 검색필터-->
@@ -28,7 +28,7 @@
 
 					<div class="panel text-center">
 						<div class="panel-body" align="left">
-						<h4>프로그램 사용을 위한 라이센스를 요청합니다.</h4>
+						<h4>프로그램 사용을 위한 라이선스를 요청합니다.</h4>
 							<hr>
 							<form>
 								<label>회사명</label><br>
@@ -60,7 +60,7 @@
 							<br>
 							</form>
 							<div align="center">
-							<a class="btn btn-lg btn-default btn-block" onclick="request();" style="width:180px">라이센스
+							<a class="btn btn-lg btn-default btn-block" onclick="request();" style="width:180px">라이선스
 								요청하기</a>
 								</div>
 						</div>
@@ -84,7 +84,7 @@
 		var tmp = document.getElementById("state");
 		var state = tmp.options[tmp.selectedIndex].value;
 		if(state == 0){
-			alert("라이센스 형태를 선택해주세요.");
+			alert("라이선스 형태를 선택해주세요.");
 		} else {
 			var result = confirm(
 					/* "[회사명] : ${software.corp_name} \n"+
