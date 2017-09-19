@@ -32,6 +32,15 @@
                 <li <%= (_nav != null && _nav.equals("download")) ? "class=\"active\"" : "" %>>
                     <a href="/download">다운로드</a>
                 </li>
+                <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
+                    <a href="/qna">묻고답하기</a>
+                </li>
+                <li <%= (_nav != null && _nav.equals("faq")) ? "class=\"active\"" : "" %>>
+                    <a href="/faq">자주묻는질문</a>
+                </li>
+                <li <%= (_nav != null && _nav.equals("help")) ? "class=\"active\"" : "" %>>
+                    <a href="/help">도움말</a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -35,10 +35,16 @@
                 <li <%= (_nav != null && _nav.equals("software_upload")) ? "class=\"active\"" : "" %>>
                     <a href="/software/upload">소프트웨어</a>
                 </li>
-                <!--
                 <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
-                    <a href="/qna">Q&A</a>
+                    <a href="/qna">묻고답하기</a>
                 </li>
+                <li <%= (_nav != null && _nav.equals("faq")) ? "class=\"active\"" : "" %>>
+                    <a href="/faq">자주묻는질문</a>
+                </li>
+                <li <%= (_nav != null && _nav.equals("help")) ? "class=\"active\"" : "" %>>
+                    <a href="/help">도움말</a>
+                </li>
+                <!--
                 <li <%= (_nav != null && _nav.equals("notice")) ? "class=\"active\"" : "" %>>
                     <a href="/notice">Notice</a>
                 </li>
