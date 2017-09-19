@@ -24,9 +24,9 @@
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4" align="center">
 			<form action="/search_pw/email/authenticate" id="findForm" method="post">
-					<input type="id" id="id" class="form-control" placeholder="아이디" style="height:50px"
+					<input type="id" id="id" name="id" class="form-control" placeholder="아이디" style="height:50px"
 							required autofocus> <br>
-					<input type="email" id="email" class="form-control" placeholder="이메일" style="height:50px"
+					<input type="email" id="email" name="email" class="form-control" placeholder="이메일" style="height:50px"
 							required> <br>
 					<button id="login-btn"
 						class="btn btn-lg btn-primary btn-block btn-signin" type="submit">비밀번호 찾기</button>

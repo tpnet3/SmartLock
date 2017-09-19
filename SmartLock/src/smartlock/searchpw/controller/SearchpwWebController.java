@@ -1,4 +1,4 @@
-/*
+
 package smartlock.searchpw.controller;
 
 import org.springframework.stereotype.Controller;
@@ -17,15 +17,19 @@ import smartlock.searchpw.vo.EmailVO;
 
 import java.util.Random;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class SearchpwWebController {
 	
+	@Resource
 	private UserService userService;
+	@Resource
     private MailService mailService;
-    private ProfileService profileService;
+	@Resource
+	private ProfileService profileService;
      
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -77,7 +81,7 @@ public class SearchpwWebController {
     
     // 비밀번호 찾기 : 임시 비밀번호 생성 후 이메일로 전송
     @RequestMapping(value = "/search_pw/email/authenticate", method = RequestMethod.POST)
-    public void sendMailPassword(HttpSession session, @RequestParam EmailVO emailVO, RedirectAttributes ra) {
+    public ModelAndView sendMailPassword(HttpServletRequest request, @RequestParam String id, @RequestParam String email, RedirectAttributes ra) {
         
     	/* CAPTCHA
     	String captchaValue = (String) session.getAttribute("captcha");
@@ -89,26 +93,31 @@ public class SearchpwWebController {
     	System.out.println(emailVO.getId());
     	System.out.println(emailVO.getEmail());
     	
-    	/*
-    	 
-        UserVO userVO = null;
+    	*/
+    	System.out.println("id : "+id);
+    	System.out.println("email : "+email);
+    	
+    	EmailVO emailVO = new EmailVO(id, email);
+    	System.out.println("emailVO : "+emailVO.getId()+", "+emailVO.getEmail());
+    	
+    	
 		try {
-			userVO = userService.getUserVO(emailVO.getId());
+			UserVO userVO = userService.getUserVO(id);
 			
 			if(userVO!=null){
-				if (!mailService.checkEmail(emailVO)) {
+				if (mailService.checkEmail(emailVO) == false) {
 	                ra.addFlashAttribute("resultMsg", "입력하신 이메일의 회원정보와 가입된 아이디가 일치하지 않습니다.");
-	                return "redirect:/search_pw";
+	                return new ModelAndView("/smartlock/search_pw");
 				}
 				
 				int ran = new Random().nextInt(100000) + 10000; // 10000 ~ 99999    	 
 		       	String ran_password = Util.encrypt(String.valueOf(ran));//암호화
 		       	
-		       	mailService.updateRanPassword(emailVO.getId(), ran_password);
+		       	mailService.updateRanPassword(id, ran_password);
 		       	
 		       	String subject = "임시 비밀번호 발급 안내 입니다.";
 	            StringBuilder sb = new StringBuilder();
-	            sb.append("귀하의 임시 비밀번호는 " + ran_password + " 입니다.");
+	            sb.append("귀하의 임시 비밀번호는 [" + ran + "] 입니다. 로그인 후, 새 비밀번호로 변경해주세요.");
 	            mailService.send(subject, sb.toString(), "smartlockad@gmail.com", emailVO.getEmail(), null);
 	            ra.addFlashAttribute("resultMsg", "귀하의 이메일 주소로 새로운 임시 비밀번호를 발송 하였습니다.");
 			}
@@ -120,9 +129,8 @@ public class SearchpwWebController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/search_pw";
-		
+		return new ModelAndView("/smartlock/search_pw");
 		
     }
+   
 }
-*/

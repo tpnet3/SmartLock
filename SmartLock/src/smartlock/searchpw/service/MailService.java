@@ -23,6 +23,7 @@ public class MailService{
 	private CommonDAO commonDAO;
 	
     // org.springframework.mail.javamail.JavaMailSender
+	@Resource(name="javaMailSender")
     private JavaMailSender javaMailSender;
  
     public void setJavaMailSender(JavaMailSender javaMailSender) {
@@ -41,7 +42,7 @@ public class MailService{
     	}
     }
     
-    //해당 id의 비밀번호로 update
+    //임시 비밀번호로 update
     public void updateRanPassword(String id, String password) throws Exception{    	 
     	 SearchpwVO searchpwVO = new SearchpwVO(id, password);
     	 
