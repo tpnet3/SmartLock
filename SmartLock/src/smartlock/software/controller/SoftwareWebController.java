@@ -121,7 +121,7 @@ public class SoftwareWebController {
 	}
 	
 	/**
-	 * 관리자 - 소프트웨어 등록
+	 * 관리자 - 소프트웨어 업로드 페이지 
 	 * @param request
 	 * @return
 	 */

@@ -29,9 +29,6 @@
                 <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
                     <a href="/license/manager/request?order=DEFAULT">라이선스</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("software_manager")) ? "class=\"active\"" : "" %>>
-                    <a href="/software/manager/insert">소프트웨어</a>
-                </li>
                 <li <%= (_nav != null && _nav.equals("software_upload")) ? "class=\"active\"" : "" %>>
                     <a href="/software/upload">소프트웨어</a>
                 </li>
