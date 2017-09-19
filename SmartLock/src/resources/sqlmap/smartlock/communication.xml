@@ -33,9 +33,9 @@
 	</select>
 	
 	<insert id="addDevice" parameterType="java.util.Map">
-		SELECT proc_name
-		FROM software 
-		WHERE corp_id = (SELECT corp_id FROM user WHERE id = #{id});
+		INSERT INTO device (user_id, nickname, reg_date, type, mac)
+		VALUES (#{user_id}, #{nickname}, CURDATE(), #{type}, #{mac});
+		
 	</insert>
 	
 </mapper>
