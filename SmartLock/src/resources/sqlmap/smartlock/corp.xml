@@ -8,7 +8,6 @@
     		,phone
     	)
     	VALUES (
-    		100,
     		#{corp_name}
     		,#{phone}
     	)
