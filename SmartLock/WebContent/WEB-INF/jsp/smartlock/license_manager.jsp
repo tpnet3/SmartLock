@@ -105,11 +105,11 @@
 								<c:choose>
 									<c:when test="${license.state eq 1 }">
 										<td data-title="분류"><span class="label label-success">
-												일반 신청 </span></td>
+												정식 라이선스 요청 </span></td>
 									</c:when>
 									<c:when test="${license.state eq 2}">
 										<td data-title="분류"><span class="label label-warning">
-												데모 신청</span></td>
+												데모 라이선스 요청</span></td>
 									</c:when>
 								</c:choose>
 								<td data-title="요청거절"><span class="label"

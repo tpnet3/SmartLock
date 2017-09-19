@@ -90,12 +90,12 @@
 						<td data-title="만료날짜"><fmt:formatDate value="${license.end_date}" pattern="yyyy-MM-dd"/></td>
 						<c:choose>
 							<c:when test="${license.state eq 1 }">
-								<td data-title="상태"><span class="label label-success">일반
-										신청</span></td>
+								<td data-title="상태"><span class="label label-success">정식
+										라이선스 요청</span></td>
 							</c:when>
 							<c:when test="${license.state eq 2}">
 								<td data-title="상태"><span class="label label-warning">데모
-										신청</span></td>
+										라이선스 요청</span></td>
 							</c:when>
 						</c:choose>
 					</tr>
