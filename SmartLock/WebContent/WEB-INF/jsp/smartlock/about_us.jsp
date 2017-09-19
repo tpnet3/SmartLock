@@ -19,7 +19,7 @@
 
     <!-- Image Header -->
     
-    <c:forEach var="i" begin="0" end="17" step="1">
+    <c:forEach var="i" begin="1" end="17" step="1">
 	    <div class="row" align="center">
 	        <div class="col-lg-12">
 	            <img class="img-responsive" src="/html/img/about-us/aboutUs${i}.png" alt="">
