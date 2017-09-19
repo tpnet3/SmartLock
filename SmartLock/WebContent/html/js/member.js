@@ -60,7 +60,7 @@ $("#check-id-btn").on("click",function(){
 });
 
 $("#copr-searh-btn").on("click",function(){
-	var buttonText = "Ok" ;
+	//var buttonText = "Ok" ;
     var title = "The page says:";
 
     var div = $('<div id="dialog">');
@@ -70,7 +70,7 @@ $("#copr-searh-btn").on("click",function(){
     				'<input id="dialog-corp-name" type="text" placeholder="기업명을 입력해주세요." style="width:70%">'+
     				'<button id="dialog-corp-search-btn" style="width:30%">검색</button>'+
     			'</div>'+
-    			'<table id="table-corp" style="text-align:center" width="100%">'+
+    			'<table id="table-corp" style="text-align:center; margin-top:10px; margin-bottom:10px" width="100%">'+
     				'<thead>'+
     					'<tr>'+
     						'<td width="50%">회사명</>'+
@@ -83,14 +83,14 @@ $("#copr-searh-btn").on("click",function(){
         autoOpen: true,
         modal: true,
         draggable: false,
-        resizable: false,
+        resizable: false/*,
         buttons: [{
             text: buttonText,
             click: function () {
                 $(this).dialog("close");
                 div.remove();
             }
-        }]
+        }]*/
     });
 	
     $("#dialog-corp-search-btn").on("click",function(){
@@ -142,42 +142,10 @@ function clickCorp(corp_id, corp_name) {
 	$("#corp-name").val(corp_name);
 	$("#dialog").dialog("close");
 }
-
-$("#signup-btn").on("click", function() {
-	// check validation
+function checkId() {
 	if($("#id").val() == '') {
 		$("#id").focus();
 		alert("아이디를 입력하세요.");
-		return false;
-	}
-	if($("#pwd").val() == '') {
-		$("#pwd").focus();
-		alert("비밀번호를 입력하세요.");
-		return false;
-	}
-	if($("#check-pwd").val() == '') {
-		$("#pwd").focus();
-		alert("비밀번호 확인을 입력하세요.");
-		return false;
-	}
-	if($("#name").val() == '') {
-		$("#name").focus();
-		alert("이름을 입력하세요.");
-		return false;
-	}
-	if($("#email").val() == '') {
-		$("#email").focus();
-		alert("이메일을 입력하세요.");
-		return false;
-	}
-	if($("#phone").val() == '') {
-		$("#phone").focus();
-		alert("전화번호를 입력하세요.");
-		return false;
-	}
-	if($("#corp_id").val() == '') {
-		$("#corp_name").focus();
-		alert("기업명을 입력하세요.");
 		return false;
 	}
 	if($("#checked-id").val() != $("#id").val()) {
@@ -188,28 +156,147 @@ $("#signup-btn").on("click", function() {
 	if($("#is-check-id").val() == "false") {
 		$("#id").focus();
 		alert("아이디 중복체크를 하세요.");
-		return;
+		return false;
+	}
+	return true
+}
+function checkPwd() {
+	if($("#pwd").val() == '') {
+		$("#pwd").focus();
+		alert("비밀번호를 입력하세요.");
+		return false;
+	}
+	if($("#check-pwd").val() == '') {
+		$("#check-pwd").focus();
+		alert("비밀번호 확인을 입력하세요.");
+		return false;
 	}
 	if($("#pwd").val() != $("#check-pwd").val()) {
 		$("#check-pwd").focus();
 		alert("비밀번호가 다릅니다.");
 		return false;
 	}
+	return true;
+}
+function checkEmail() {
+	if($("#email-1").val() == '') {
+		$("#email-1").focus();
+		alert("이메일을 입력하세요.");
+		return false;
+	}
+	if($("#email-2").val() == '직접입력') {
+		if($("#email-3").val() == '') {
+			$("#email-3").focus();
+			alert("이메일 도메인을 입력하세요.");
+			return false;
+		}
+	}
+	return true;
+}
+function checkPhone() {
+	if($("#phone-2").val() == '') {
+		$("#phone-2").focus();
+		alert("전화번호를 입력하세요.");
+		return false;
+	}
+	if($("#phone-3").val() == '') {
+		$("#phone-3").focus();
+		alert("전화번호를 입력하세요.");
+		return false;
+	}
+	return true;
+}
+function signup(div) {
+	// check validation
+	if(!checkId()){
+		return false;
+	}
+	if(!checkPwd()){
+		return false;
+	}
+	if($("#name").val() == '') {
+		$("#name").focus();
+		alert("이름을 입력하세요.");
+		return false;
+	}
+	if(!checkEmail()){
+		return false;
+	}
+	if(!checkPhone()){
+		return false;
+	}
+	
+	var phone = $("#phone-1").val()+"-"+$("#phone-2").val()+"-"+$("#phone-3").val();
+	var email;
+	
+	if($("#email-2").val() == '직접입력') {
+		email = $("#email-1").val()+"@"+ $("#email-3").val();
+	} else {
+		email = $("#email-1").val()+"@"+ $("#email-2").val();
+	}
+	
+	if(div == 'user') {
+		if($("#corp-id").val() == '') {
+			$("#corp_name").focus();
+			alert("기업명을 입력하세요.");
+			return false;
+		}
+		var data = {
+			"id" : $("#id").val(),
+			"pwd" : $("#pwd").val(),
+			"name" : $("#name").val(),
+			"email" : email,
+			"phone" : phone,
+		    "corp_id" : $("#corp-id").val(),
+		    "authority" : $("#authority").val()
+		};
+				
+		sigupPost(data);
+	} else {
+		var corpPhone = $("#corp-phone-1").val()+"-"+$("#corp-phone-2").val()+"-"+$("#corp-phone-3").val();
+		
+		var corpDate = {
+			"corp_name" : $("#corp-name").val(),
+			"phone" : corpPhone
+		};
+		
+		$.ajax({
+			url : "/insert/corp",
+			type : "POST",
+	        contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify(corpDate),
+			success : function (data){
+				if(data.status == "success") {
+					var formData = {
+						"id" : $("#id").val(),
+						"pwd" : $("#pwd").val(),
+						"name" : $("#name").val(),
+						"email" : email,
+						"phone" : phone,
+						"corp_id" : data.data[0].id,
+						"authority" : $("#authority").val()
+					};
+					
+					sigupPost(formData)
+				} else {
+					
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				
+			}
+		});
+	}
+}
 
+function sigupPost(data) {
 	$.ajax({
 		url : "/signup",
 		type : "POST",
         contentType: "application/json",
 		dataType : "json",
-		data : JSON.stringify({
-			"id" : $("#id").val(),
-			"pwd" : $("#pwd").val(),
-			"name" : $("#name").val(),
-			"email" : $("#email").val(),
-			"phone" : $("#phone").val(),
-            "corp_id" : $("#corp-id").val(),
-            "authority" : $("#authority").val()
-		}),
+		data : JSON.stringify(data),
 		success : function (data){
 			if(data.status == "success") {
 				//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
@@ -219,9 +306,23 @@ $("#signup-btn").on("click", function() {
 			}
 		},
 		error : function(data, textStatus, errorThrown) {
-			
 		}
 	});
+}
 
-	return false;
-});
+function maxLengthCheck(object) {
+	if (object.value.length > object.maxLength) {
+		object.value = object.value.slice(0, object.maxLength);
+	}
+}
+
+$("#email-2").on("change", function() {
+	if($(this).val() == '직접입력') {
+		$("#email-2").css("width","15%");
+		$("#email-3").css("display", "inline");
+	} else {
+		$("#email-2").css("width","45%");
+		$("#email-3").val("");
+		$("#email-3").css("display", "none");
+	}
+})
