@@ -5,8 +5,6 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<fmt:bundle basename="resources/properties/softwareInfo">
-
 <jsp:include page="include/_header.jsp">
     <jsp:param name="_nav" value="software" />
 </jsp:include>
@@ -32,16 +30,18 @@
     <!-- Projects Row -->
     <c:forEach var="software" items="${softwareList}" >
         <div class="col-md-3 img-portfolio">
-            <div align="center"><span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                        </span></div>
-            <h3 class="text-center">${software.sw_name }</h3>
-            <p><fmt:message key="${software.sw_name }" /></p>
+            <div align="center">
+            	<span class="fa-stack fa-5x">
+            		 <i class="fa fa-circle fa-stack-2x"></i>
+            	</span>
+           	</div>
+            <h3 class="text-center">${software.sw_name}</h3>
+            <p class="text-center">${software.version}</p>
+            <p class="text-center">${software.info}</p>
         </div>
     </c:forEach>
     <hr>
 </div>
-</fmt:bundle>
     <!-- Footer -->
     <jsp:include page="include/_footer_content.jsp" />
 

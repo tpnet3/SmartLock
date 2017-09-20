@@ -55,6 +55,6 @@
      <select id="insertSoftware" parameterType="java.util.Map"  
       		resultType="java.lang.Integer"> 
       INSERT INTO software(id, sw_name, corp_id, version, img, proc_name, info) 
-      VALUES(#{id}, #{sw_name}, #{corp_id}, #{version}, #{img}, #{proc_name}, #{sw_info}) 
+      VALUES(#{id}, #{sw_name}, #{corp_id}, #{version}, #{img}, #{proc_name}, #{info}) 
     </select> 
 </mapper>

@@ -1,11 +1,8 @@
 package smartlock.software.controller;
 
-import java.io.FileOutputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -32,15 +29,24 @@ public class SoftwareWebController {
 	@Resource(name="softwareService")
 	private SoftwareService softwareService;
 
+	/**
+	 * 사용자 화면 - 소프트웨어 목록 조회
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/software", method = RequestMethod.GET)
-    public ModelAndView software(HttpServletRequest request) throws Exception{
+    public ModelAndView software(HttpServletRequest request) throws Exception
+	{
 		try{
 				ArrayList<SoftwareVO> softwareList = new ArrayList<SoftwareVO>();
 				softwareList = softwareService.softwareList();
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/software");
 				modelAndView.addObject("softwareList", softwareList);
+				
 				return modelAndView;
+				
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");	
@@ -125,7 +131,7 @@ public class SoftwareWebController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/software/upload", method = RequestMethod.GET)
+	@RequestMapping(value = "/software/manager", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView softwareUpload(
 			HttpServletRequest request) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
@@ -171,20 +177,20 @@ public class SoftwareWebController {
 				map.put("corp_id", userVO.getCorpId());
 				map.put("version", softwareVO.getVersion());
 				map.put("proc_name", softwareVO.getProc_name());
-				map.put("sw_info", softwareVO.getSw_info());
+				map.put("info", softwareVO.getInfo());
 				map.put("img", softwareVO.getSw_img().getBytes());	
 				
 				if(softwareService.softwareInsert(map) > 0)
 				{
-					return new ModelAndView("redirect:/software/upload");	
+					return new ModelAndView("redirect:/software/manager");	
 				} 
 			}
-			return new ModelAndView("redirect:/software/upload");	
+			return new ModelAndView("redirect:/software/manager");	
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			return new ModelAndView("redirect:/software/upload");	
+			return new ModelAndView("redirect:/software/manager");	
 		}
 	}
 }

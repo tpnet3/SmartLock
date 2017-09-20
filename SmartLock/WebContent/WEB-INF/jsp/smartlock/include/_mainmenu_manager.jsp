@@ -30,7 +30,7 @@
                     <a href="/license/manager/request?order=DEFAULT">라이선스</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("software_upload")) ? "class=\"active\"" : "" %>>
-                    <a href="/software/upload">소프트웨어</a>
+                    <a href="/software/manager">소프트웨어</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
                     <a href="/qna">도움말</a>

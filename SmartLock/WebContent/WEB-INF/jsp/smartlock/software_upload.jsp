@@ -49,7 +49,7 @@
 							</div>
 							<label>설명</label>
 							<div class="form-group">
-								<textarea class="form-control" id="sw_info" name="sw_info" rows="5" cols="30"
+								<textarea class="form-control" id="info" name="info" rows="5" cols="30"
 								 style="width:335px" placeholder="소프트웨어에 대한 간단한 설명을 입력해주세요."></textarea>
 							</div>
 							 <div class="form-group">
