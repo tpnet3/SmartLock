@@ -165,7 +165,6 @@ public class SoftwareWebController {
 			 */
 			if(userVO != null && userVO.getAuthority() == 1)
 			{				
-
 				Map<String, Object> map = new HashMap<String, Object>();
 				
 				map.put("sw_name", softwareVO.getSw_name());
@@ -174,9 +173,13 @@ public class SoftwareWebController {
 				map.put("proc_name", softwareVO.getProc_name());
 				map.put("img", softwareVO.getSw_img().getBytes());	
 
-				//프로퍼티에 설명추가
-				Properties prop = new Properties();
-				OutputStream out = new FileOutputStream("");
+//				//프로퍼티에 설명추가
+//				Properties prop = new Properties();
+//				OutputStream out = new FileOutputStream("resources/properties/softwareInfo");
+//				
+//				prop.setProperty("sw_name", softwareVO.getSw_info());
+//				prop.store(out, "comments");
+//				out.close();
 				
 				if(softwareService.softwareInsert(map) > 0)
 				{
