@@ -88,7 +88,6 @@
 		 */
 		if(b == true)
 		{
-			alert('1');
 			$("#softwareForm").submit();
 			alert("업로드되었습니다.");
 			

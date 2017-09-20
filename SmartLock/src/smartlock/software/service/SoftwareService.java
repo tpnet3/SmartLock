@@ -55,12 +55,23 @@ public class SoftwareService {
     	return (int) commonDAO.update("softwareFinal", map);
     }
     
+    /**
+     * 소프트웨어 기업 아이디로 기업명 조회
+     * @param corp_id 기업 아이디
+     * @return
+     * @throws Exception
+     */
     public String getCorp_name(int corp_id) throws Exception{
     	return (String) commonDAO.selectOne("getCorp_name", corp_id);
     }
-    
-    public Integer softwareInsert(Map<String, Object> map) throws Exception
+    /**
+     * 소프트웨어 등록
+     * @param map
+     * @return
+     * @throws Exception
+     */
+    public int softwareInsert(Map<String, Object> map) throws Exception
     {
-    	return (Integer) commonDAO.insert("insertSoftware", map);
+    	return commonDAO.insert("insertSoftware", map);
     }
 }

@@ -1,7 +1,7 @@
 package smartlock.software.controller;
 
 import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -171,27 +171,20 @@ public class SoftwareWebController {
 				map.put("corp_id", userVO.getCorpId());
 				map.put("version", softwareVO.getVersion());
 				map.put("proc_name", softwareVO.getProc_name());
+				map.put("sw_info", softwareVO.getSw_info());
 				map.put("img", softwareVO.getSw_img().getBytes());	
-
-//				//프로퍼티에 설명추가
-//				Properties prop = new Properties();
-//				OutputStream out = new FileOutputStream("resources/properties/softwareInfo");
-//				
-//				prop.setProperty("sw_name", softwareVO.getSw_info());
-//				prop.store(out, "comments");
-//				out.close();
 				
 				if(softwareService.softwareInsert(map) > 0)
 				{
-					return new ModelAndView("redirect:/software/manager");	
+					return new ModelAndView("redirect:/software/upload");	
 				} 
 			}
-			return new ModelAndView("redirect:/software/manager");	
+			return new ModelAndView("redirect:/software/upload");	
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			return new ModelAndView("redirect:/software/manager");	
+			return new ModelAndView("redirect:/software/upload");	
 		}
 	}
 }
