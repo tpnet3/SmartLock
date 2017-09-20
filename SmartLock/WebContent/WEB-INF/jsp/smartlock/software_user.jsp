@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				Softwares <small>소프트웨어 라이센스 요청</small>
+				소프트웨어 <small>소프트웨어 라이센스 요청</small>
 			</h1>
 		</div>
 	</div>
