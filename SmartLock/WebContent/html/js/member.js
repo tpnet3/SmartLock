@@ -143,47 +143,107 @@ function clickCorp(corp_id, corp_name) {
 	$("#dialog").dialog("close");
 }
 function checkId() {
-	if($("#id").val() == '') {
+    var idVal = $("#id").val();
+    var pattern = /^[0-9a-z]+$/;
+
+	if ( ! idVal) {
 		$("#id").focus();
 		alert("아이디를 입력하세요.");
 		return false;
 	}
+
+    if (idVal.length < 6) {
+        $("#id").focus();
+        alert("아이디는 6자 이상이어야 합니다..");
+        return false;
+    }
+
+    if (idVal.length > 20) {
+        $("#id").focus();
+        alert("아이디는 20자 이하여야 합니다.");
+        return false;
+    }
+
+    if ( ! idVal.match(pattern)) {
+        $("#id").focus();
+        alert("아이디는 영문 소문자와 숫자로 이루어져야합니다.");
+        return false;
+    }
+
 	if($("#checked-id").val() != $("#id").val()) {
 		$("#is-check-id").val("false");
 	} else {
 		$("#is-check-id").val("true");
 	}
+
 	if($("#is-check-id").val() == "false") {
 		$("#id").focus();
 		alert("아이디 중복체크를 하세요.");
 		return false;
 	}
+
 	return true
 }
 function checkPwd() {
-	if($("#pwd").val() == '') {
+	var pwdVal = $("#pwd").val();
+
+	if ( ! pwdVal) {
 		$("#pwd").focus();
 		alert("비밀번호를 입력하세요.");
 		return false;
 	}
+
+    if (pwdVal.length < 8) {
+        $("#pwd").focus();
+        alert("비밀번호는 8자 이상이어야 합니다.");
+        return false;
+    }
+
+    if (pwdVal.length > 100) {
+        $("#pwd").focus();
+        alert("비밀번호는 100자 이하여야 합니다.");
+        return false;
+    }
+
+	if (pwdVal.match())
+
 	if($("#check-pwd").val() == '') {
 		$("#check-pwd").focus();
 		alert("비밀번호 확인을 입력하세요.");
 		return false;
 	}
+
 	if($("#pwd").val() != $("#check-pwd").val()) {
 		$("#check-pwd").focus();
 		alert("비밀번호가 다릅니다.");
 		return false;
 	}
+
 	return true;
 }
+
 function checkEmail() {
-	if($("#email-1").val() == '') {
+	var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	var emailVal = $("#email-1").val();
+
+	if ( ! emailVal) {
 		$("#email-1").focus();
 		alert("이메일을 입력하세요.");
 		return false;
 	}
+
+    if (emailVal.length > 50) {
+        $("#email-1").focus();
+        alert("이메일은 50자 이하여야 합니다.");
+        return false;
+    }
+
+    if ( ! emailVal.match(pattern)) {
+        $("#email-1").focus();
+        alert("이메일이 올바르지 않습니다.");
+        return false;
+	}
+
 	if($("#email-2").val() == '직접입력') {
 		if($("#email-3").val() == '') {
 			$("#email-3").focus();
@@ -191,21 +251,43 @@ function checkEmail() {
 			return false;
 		}
 	}
+
 	return true;
 }
+
 function checkPhone() {
-	if($("#phone-2").val() == '') {
+
+    var phone2Val = $("#phone-2").val();
+    var phone3Val = $("#phone-3").val();
+	var pattern = /^[0-9]+$/;
+
+	if( ! phone2Val) {
 		$("#phone-2").focus();
 		alert("전화번호를 입력하세요.");
 		return false;
 	}
-	if($("#phone-3").val() == '') {
+
+    if(phone2Val.match(pattern)) {
+        $("#phone-2").focus();
+        alert("전화번호가 올바르지 않습니다.");
+        return false;
+    }
+
+    if( ! phone3Val) {
+        $("#phone-3").focus();
+        alert("전화번호를 입력하세요.");
+        return false;
+    }
+
+	if(phone3Val.match(pattern)) {
 		$("#phone-3").focus();
-		alert("전화번호를 입력하세요.");
+        alert("전화번호가 올바르지 않습니다.");
 		return false;
 	}
+
 	return true;
 }
+
 function signup(div) {
 	// check validation
 	if(!checkId()){
