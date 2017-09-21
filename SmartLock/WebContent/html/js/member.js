@@ -192,6 +192,7 @@ function checkId(checkOnlyPattern) {
 
 	return true
 }
+
 function checkPwd() {
 	var pwdVal = $("#pwd").val();
 
@@ -212,8 +213,6 @@ function checkPwd() {
         alert("비밀번호는 100자 이하여야 합니다.");
         return false;
     }
-
-	if (pwdVal.match())
 
 	if($("#check-pwd").val() == '') {
 		$("#check-pwd").focus();
@@ -286,7 +285,7 @@ function checkPhone(phone2ElemKey, phone3ElemKey) {
 		return false;
 	}
 
-    if(phone2Val.match(pattern)) {
+    if( ! phone2Val.match(pattern)) {
         $(phone2ElemKey).focus();
         alert("전화번호가 올바르지 않습니다.");
         return false;
@@ -298,7 +297,7 @@ function checkPhone(phone2ElemKey, phone3ElemKey) {
         return false;
     }
 
-	if(phone3Val.match(pattern)) {
+	if( ! phone3Val.match(pattern)) {
 		$(phone3ElemKey).focus();
         alert("전화번호가 올바르지 않습니다.");
 		return false;
@@ -355,7 +354,7 @@ function signup(div) {
 		sigupPost(data);
 	} else {
 		if ( ! checkPhone("#corp-phone-2", "#corp-phone-3")) {
-			return;
+			return false;
 		}
 
 		var corpPhone = $("#corp-phone-1").val()+"-"+$("#corp-phone-2").val()+"-"+$("#corp-phone-3").val();
