@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				소프트웨어 <small>소프트웨어 라이센스 요청</small>
+				소프트웨어 <small>소프트웨어 라이선스 요청</small>
 			</h1>
 		</div>
 	</div>
@@ -52,7 +52,7 @@
 <script>
 	function request_license(sw_id, sw_name){
 		var state;
-		state = confirm(sw_name+"에 대한 라이센스 요청을 하시겠습니까?");
+		state = confirm(sw_name+"에 대한 라이선스 요청을 하시겠습니까?");
 		if(state == true){
 			$.ajax({
 				url:"/software/user/request?id="+sw_id ,
