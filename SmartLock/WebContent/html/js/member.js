@@ -30,6 +30,11 @@ $("#check-id-btn").on("click",function(){
 		$("#id").focus();
 		return false;
 	}
+
+	if ( ! checkId(true)) {
+        $("#id").focus();
+		return false;
+	}
 	
 	$.ajax({
 		url : "/check/id",
@@ -142,7 +147,7 @@ function clickCorp(corp_id, corp_name) {
 	$("#corp-name").val(corp_name);
 	$("#dialog").dialog("close");
 }
-function checkId() {
+function checkId(checkOnlyPattern) {
     var idVal = $("#id").val();
     var pattern = /^[0-9a-z]+$/;
 
@@ -170,16 +175,19 @@ function checkId() {
         return false;
     }
 
-	if($("#checked-id").val() != $("#id").val()) {
-		$("#is-check-id").val("false");
-	} else {
-		$("#is-check-id").val("true");
-	}
+    if ( ! checkOnlyPattern) {
 
-	if($("#is-check-id").val() == "false") {
-		$("#id").focus();
-		alert("아이디 중복체크를 하세요.");
-		return false;
+        if($("#checked-id").val() != $("#id").val()) {
+            $("#is-check-id").val("false");
+        } else {
+            $("#is-check-id").val("true");
+        }
+
+        if($("#is-check-id").val() == "false") {
+            $("#id").focus();
+            alert("아이디 중복체크를 하세요.");
+            return false;
+        }
 	}
 
 	return true
@@ -223,33 +231,42 @@ function checkPwd() {
 }
 
 function checkEmail() {
-	var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	var emailVal = $("#email-1").val();
+    var pattern1 = /^([0-9A-Za-z_.-])+$/;
+    var pattern2 = /^(([a-zA-Z]{1})|([a-zA-Z]{1}[a-zA-Z]{1})|([a-zA-Z]{1}[0-9]{1})|([0-9]{1}[a-zA-Z]{1})|([a-zA-Z0-9][a-zA-Z0-9-_]{1,61}[a-zA-Z0-9]))\.([a-zA-Z]{2,6}|[a-zA-Z0-9-]{2,30}\.[a-zA-Z]{2,3})$/;
+	var email1Val = $("#email-1").val();
+	var email3Val = $("#email-3").val();
 
-	if ( ! emailVal) {
+	if ( ! email1Val) {
 		$("#email-1").focus();
 		alert("이메일을 입력하세요.");
 		return false;
 	}
 
-    if (emailVal.length > 50) {
+    if (email1Val.length > 50) {
         $("#email-1").focus();
         alert("이메일은 50자 이하여야 합니다.");
         return false;
     }
 
-    if ( ! emailVal.match(pattern)) {
+    if ( ! email1Val.match(pattern1)) {
         $("#email-1").focus();
-        alert("이메일이 올바르지 않습니다.");
+        alert("이메일은 숫자, 영문자, 특수문자(-, _, .)으로 이루어져야합니다.");
         return false;
 	}
 
-	if($("#email-2").val() == '직접입력') {
-		if($("#email-3").val() == '') {
+	if ($("#email-2").val() == '직접입력') {
+
+		if ( ! email3Val) {
 			$("#email-3").focus();
 			alert("이메일 도메인을 입력하세요.");
 			return false;
 		}
+
+        if ( ! email3Val.match(pattern2)) {
+            $("#email-3").focus();
+            alert("도메인 주소가 올바르지 않습니다.");
+            return false;
+        }
 	}
 
 	return true;
