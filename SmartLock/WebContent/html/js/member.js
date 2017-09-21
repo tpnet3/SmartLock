@@ -272,32 +272,34 @@ function checkEmail() {
 	return true;
 }
 
-function checkPhone() {
+function checkPhone(phone2ElemKey, phone3ElemKey) {
+    phone2ElemKey = phone2ElemKey || "#phone-2";
+    phone3ElemKey = phone3ElemKey || "#phone-3";
 
-    var phone2Val = $("#phone-2").val();
-    var phone3Val = $("#phone-3").val();
+    var phone2Val = $(phone2ElemKey).val();
+    var phone3Val = $(phone3ElemKey).val();
 	var pattern = /^[0-9]+$/;
 
 	if( ! phone2Val) {
-		$("#phone-2").focus();
+		$(phone2ElemKey).focus();
 		alert("전화번호를 입력하세요.");
 		return false;
 	}
 
     if(phone2Val.match(pattern)) {
-        $("#phone-2").focus();
+        $(phone2ElemKey).focus();
         alert("전화번호가 올바르지 않습니다.");
         return false;
     }
 
     if( ! phone3Val) {
-        $("#phone-3").focus();
+        $(phone3ElemKey).focus();
         alert("전화번호를 입력하세요.");
         return false;
     }
 
 	if(phone3Val.match(pattern)) {
-		$("#phone-3").focus();
+		$(phone3ElemKey).focus();
         alert("전화번호가 올바르지 않습니다.");
 		return false;
 	}
@@ -352,6 +354,10 @@ function signup(div) {
 				
 		sigupPost(data);
 	} else {
+		if ( ! check("#corp-phone-2", "#corp-phone-3")) {
+			return;
+		}
+
 		var corpPhone = $("#corp-phone-1").val()+"-"+$("#corp-phone-2").val()+"-"+$("#corp-phone-3").val();
 		
 		var corpDate = {
