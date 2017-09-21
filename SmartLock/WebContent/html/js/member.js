@@ -354,7 +354,7 @@ function signup(div) {
 				
 		sigupPost(data);
 	} else {
-		if ( ! check("#corp-phone-2", "#corp-phone-3")) {
+		if ( ! checkPhone("#corp-phone-2", "#corp-phone-3")) {
 			return;
 		}
 
