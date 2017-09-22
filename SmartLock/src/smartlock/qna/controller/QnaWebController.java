@@ -19,13 +19,17 @@ public class QnaWebController {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
 
+        /*
         if (userVO != null && userVO.getAuthority() == 0) {
-            return new ModelAndView("/smartlock/qna_user");
+            //return new ModelAndView("/smartlock/qna_user");
         } else if (userVO != null && userVO.getAuthority() == 1) {
             // TODO: qna_manager
-            return new ModelAndView("/smartlock/qna_user");
+            //return new ModelAndView("/smartlock/qna_user");
         } else {
-            return new ModelAndView("redirect:/");
+            //return new ModelAndView("redirect:/");
         }
+        */
+
+        return new ModelAndView("/smartlock/qna");
     }
 }
