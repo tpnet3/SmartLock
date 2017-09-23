@@ -31,10 +31,10 @@
 		<div align="center"><span class="fa-stack fa-5x">
             		 <img class="fa fa-circle fa-stack-2x" src= "data:image/jpg;base64, ${software.img}"></img>
                         </span></div>
-		<h3 class="text-center">${software.sw_name }</h3>
-		<h5 class="text-center">v${software.version }</h5>
+		<h3 class="text-center">${software.sw_name}</h3>
+		<h5 class="text-center">v${software.version}</h5>
+		<p class="text-center">${software.info}</p>
 		<p>
-		<fmt:message key="${software.sw_name }" />
 		</p>
 		<div align="center">
         <a class="btn btn-md btn-default btn-block" style="width:100px" onclick="request_license('${software.id}', '${software.sw_name }');">신청하기</a>

@@ -12,7 +12,7 @@
     </select>
     
     <select id="softwareListByCorp" parameterType="Integer"
-            resultType="smartlock.software.vo.SoftwareVO">
+            resultType="java.util.Map">
         SELECT *
         FROM software
         WHERE corp_id = #{value}
