@@ -18,7 +18,6 @@
 		</div>
 		<!-- 검색필터-->
 		<div class="row">
-
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 
@@ -92,7 +91,6 @@
 			alert("업로드되었습니다.");
 			
 		}
-		
 		/*
 		 * 입력 필드를 모두 입력하지 않은 경우
 		 */

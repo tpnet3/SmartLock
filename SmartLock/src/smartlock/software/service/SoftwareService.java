@@ -1,6 +1,7 @@
 package smartlock.software.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -23,7 +24,7 @@ public class SoftwareService {
      * @return 결과 List
      * @throws Exception DAO Exception
      */
-    public ArrayList<SoftwareVO> softwareList() throws Exception {
+    public ArrayList<HashMap<String,Object>> softwareList() throws Exception {
         return (ArrayList) commonDAO.selectList("software.softwareList", null);
     }
    

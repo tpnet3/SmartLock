@@ -32,7 +32,7 @@
         <div class="col-md-3 img-portfolio">
             <div align="center">
             	<span class="fa-stack fa-5x">
-            		 <i class="fa fa-circle fa-stack-2x"></i>
+            		 <img class="fa fa-circle fa-stack-2x" src= "data:image/jpg;base64, ${software.img}"></img>
             	</span>
            	</div>
             <h3 class="text-center">${software.sw_name}</h3>

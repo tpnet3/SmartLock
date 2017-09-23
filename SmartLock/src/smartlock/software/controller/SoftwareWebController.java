@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,9 +40,19 @@ public class SoftwareWebController {
     public ModelAndView software(HttpServletRequest request) throws Exception
 	{
 		try{
-				ArrayList<SoftwareVO> softwareList = new ArrayList<SoftwareVO>();
+				ArrayList<HashMap<String, Object>> softwareList = new ArrayList<HashMap<String, Object>>();
 				softwareList = softwareService.softwareList();
 				
+				for(HashMap<String, Object> map : softwareList)
+				{
+					byte[] imageContent = (byte[])map.get("img");	
+					
+					byte[] encoded=Base64.encodeBase64(imageContent);
+					String encodedString = new String(encoded);
+
+					map.put("img", encodedString);
+				}
+				System.out.println("aaaaaaaaa!!!!! " + softwareList);
 				ModelAndView modelAndView = new ModelAndView("smartlock/software");
 				modelAndView.addObject("softwareList", softwareList);
 				
