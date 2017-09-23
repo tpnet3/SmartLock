@@ -28,7 +28,7 @@ public class SoftwareService {
         return (ArrayList) commonDAO.selectList("software.softwareList", null);
     }
    
-    public ArrayList<SoftwareVO> softwareListByCorp(int corp_id) throws Exception {
+    public ArrayList<HashMap<String, Object>> softwareListByCorp(int corp_id) throws Exception {
         return (ArrayList) commonDAO.selectList("software.softwareListByCorp", corp_id);
     }
     

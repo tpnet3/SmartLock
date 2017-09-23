@@ -52,7 +52,6 @@ public class SoftwareWebController {
 
 					map.put("img", encodedString);
 				}
-				System.out.println("aaaaaaaaa!!!!! " + softwareList);
 				ModelAndView modelAndView = new ModelAndView("smartlock/software");
 				modelAndView.addObject("softwareList", softwareList);
 				
@@ -71,8 +70,18 @@ public class SoftwareWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
-				ArrayList<SoftwareVO> softwareList = new ArrayList<SoftwareVO>();
+				ArrayList<HashMap<String, Object>> softwareList = new ArrayList<HashMap<String, Object>>();
 				softwareList = softwareService.softwareListByCorp(userVO.getCorpId());
+				
+				for(HashMap<String, Object> map : softwareList)
+				{
+					byte[] imageContent = (byte[])map.get("img");	
+					
+					byte[] encoded=Base64.encodeBase64(imageContent);
+					String encodedString = new String(encoded);
+
+					map.put("img", encodedString);
+				}
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/software_user");
 				modelAndView.addObject("softwareList", softwareList);
@@ -143,20 +152,25 @@ public class SoftwareWebController {
 	 * @return
 	 */
 	@RequestMapping(value = "/software/manager", method = RequestMethod.GET)
-	public @ResponseBody ModelAndView softwareUpload(
-			HttpServletRequest request) throws Exception{
+	public @ResponseBody ModelAndView softwareUpload( HttpServletRequest request) throws Exception
+	{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		try{
-		
-			if(userVO != null && userVO.getAuthority() == 1){
+			if(userVO != null && userVO.getAuthority() == 1)
+			{
 				ModelAndView modelAndView = new ModelAndView("smartlock/software_upload");
 				String corp_name = softwareService.getCorp_name(userVO.getCorpId());
 				modelAndView.addObject("corp_name", corp_name);
+
 				return modelAndView;
-			} else{
+			} 
+			else
+			{
 				return new ModelAndView("redirect:/");	
 			}
-		}catch(Exception e){
+		}
+		catch(Exception e)
+		{
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");	
 		}
