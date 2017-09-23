@@ -36,7 +36,7 @@
             	</span>
            	</div>
             <h3 class="text-center">${software.sw_name}</h3>
-            <p class="text-center">${software.version}</p>
+            <p class="text-center">v${software.version}</p>
             <p class="text-center">${software.info}</p>
         </div>
     </c:forEach>
