@@ -1,24 +1,25 @@
 package smartlock.software.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import smartlock.license.service.LicenseService;
 import smartlock.member.vo.UserVO;
 import smartlock.software.service.SoftwareService;
 import smartlock.software.vo.SoftwareReqVO;
 import smartlock.software.vo.SoftwareVO;
-
-import java.util.ArrayList;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 // TODO: SoftwareWebController 구현
 
@@ -28,15 +29,24 @@ public class SoftwareWebController {
 	@Resource(name="softwareService")
 	private SoftwareService softwareService;
 
+	/**
+	 * 사용자 화면 - 소프트웨어 목록 조회
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/software", method = RequestMethod.GET)
-    public ModelAndView software(HttpServletRequest request) throws Exception{
+    public ModelAndView software(HttpServletRequest request) throws Exception
+	{
 		try{
 				ArrayList<SoftwareVO> softwareList = new ArrayList<SoftwareVO>();
 				softwareList = softwareService.softwareList();
 				
 				ModelAndView modelAndView = new ModelAndView("smartlock/software");
 				modelAndView.addObject("softwareList", softwareList);
+				
 				return modelAndView;
+				
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");	
@@ -117,11 +127,11 @@ public class SoftwareWebController {
 	}
 	
 	/**
-	 * 관리자 - 소프트웨어 등록
+	 * 관리자 - 소프트웨어 업로드 페이지 
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/software/upload", method = RequestMethod.GET)
+	@RequestMapping(value = "/software/manager", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView softwareUpload(
 			HttpServletRequest request) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
@@ -138,6 +148,49 @@ public class SoftwareWebController {
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");	
+		}
+	}
+	
+	/**
+	 * 관리자 - 소프트웨어 업로드
+	 * @param request
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/software/upload", method = RequestMethod.POST)
+	public ModelAndView softwareUpload
+		(SoftwareVO softwareVO, MultipartHttpServletRequest multipartRequest) throws Exception
+	{
+		/*
+		 * 세션 얻기
+		 */
+		UserVO userVO = (UserVO) multipartRequest.getSession().getAttribute("user");
+		try
+		{
+			/*
+			 * 세션 유지 & 관리자 계정일 경우
+			 */
+			if(userVO != null && userVO.getAuthority() == 1)
+			{				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				map.put("sw_name", softwareVO.getSw_name());
+				map.put("corp_id", userVO.getCorpId());
+				map.put("version", softwareVO.getVersion());
+				map.put("proc_name", softwareVO.getProc_name());
+				map.put("info", softwareVO.getInfo());
+				map.put("img", softwareVO.getSw_img().getBytes());	
+				
+				if(softwareService.softwareInsert(map) > 0)
+				{
+					return new ModelAndView("redirect:/software/manager");	
+				} 
+			}
+			return new ModelAndView("redirect:/software/manager");	
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return new ModelAndView("redirect:/software/manager");	
 		}
 	}
 }

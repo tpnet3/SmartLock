@@ -48,12 +48,28 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
                         class="glyphicon glyphicon-user pull-leftt"></span></a>
+                    <div class="dropdown-menu" style="width: auto; white-space: nowrap;">
+                        <div style="position: relative;">
+                            <div style="padding-left: 80px;">
+                                <div style="padding: 16px;">
+                                    <div style="font-size: 16px;"><%= userVO.getUserName() %>님 (사용자)</div>
+                                    <div style="font-size: 14px;"><%= userVO.getEmail() %></div>
+                                    <div style="padding: 8px 0;"><a href="/profile" class="btn btn-sm btn-default btn-block">마이페이지</a></div>
+                                    <div style="font-size: 12px;"><a href="/logout">로그아웃</a></div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; top: 16px; left: 16px; width: 64px;">
+                                <img src="/html/img/profile.png" alt="profile" style="width: 64px; height: 64px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!--
                     <ul class="dropdown-menu">
-                        <li><br>
+                        <li>
                             <div class="col-md-5">
                                 <img class="img-responsive" style="margin-left: 15px; margin-right: 20px" align="left" width="100px" src="/html/img/profile.png" alt=""></div>
                             <div class="col-md-7">
-                                <h4><%= userVO.getUserName() %> 님</h4>
+                                <h4><%= userVO.getUserName() %> 님 (사용자)</h4>
                                 <h5><%= userVO.getEmail() %></h5>
                                 <a class="btn btn-sm btn-default btn-block" href="/profile">마이페이지</a>
                                 <br>
@@ -62,6 +78,7 @@
                         <li class="divider"></li>
                         <li><a href="/logout">로그아웃</a></li>
                     </ul>
+                    -->
                 </li>
             </ul>
         </div>

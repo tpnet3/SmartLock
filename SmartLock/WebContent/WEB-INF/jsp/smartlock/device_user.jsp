@@ -198,7 +198,7 @@
 	}
 
     /**
-	 * 라이센스 보기 클릭시
+	 * 라이선스 보기 클릭시
      * @param deviceId 디바이스 아이디
      */
 	function clickShowLicense(deviceId) {

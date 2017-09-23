@@ -1,19 +1,29 @@
 package smartlock.software.vo;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+
+
+@Repository("softwareVO")
 public class SoftwareVO {
-
-    private int id;
     private String sw_name;
-    private int corp_id;
     private String version;
-    private String path;
-
-	public int getId() {
-		return id;
+    private String proc_name;
+    private String info;
+    private MultipartFile sw_img;
+    
+	public SoftwareVO() {
+		super();
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public SoftwareVO(String sw_name, String version, String proc_name,
+			String info, MultipartFile sw_img) {
+		super();
+		this.sw_name = sw_name;
+		this.version = version;
+		this.proc_name = proc_name;
+		this.info = info;
+		this.sw_img = sw_img;
 	}
 
 	public String getSw_name() {
@@ -24,14 +34,6 @@ public class SoftwareVO {
 		this.sw_name = sw_name;
 	}
 
-	public int getCorp_id() {
-		return corp_id;
-	}
-
-	public void setCorp_id(int corp_id) {
-		this.corp_id = corp_id;
-	}
-
 	public String getVersion() {
 		return version;
 	}
@@ -40,22 +42,35 @@ public class SoftwareVO {
 		this.version = version;
 	}
 
-	public String getPath() {
-		return path;
+	public String getProc_name() {
+		return proc_name;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setProc_name(String proc_name) {
+		this.proc_name = proc_name;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public MultipartFile getSw_img() {
+		return sw_img;
+	}
+
+	public void setSw_img(MultipartFile sw_img) {
+		this.sw_img = sw_img;
 	}
 
 	@Override
 	public String toString() {
-		return "SoftwareVO{" +
-				"id=" + id +
-				", sw_name='" + sw_name + '\'' +
-				", corp_id=" + corp_id +
-				", version='" + version + '\'' +
-				", path='" + path + '\'' +
-				'}';
+		return "SoftwareVO [sw_name=" + sw_name + ", version=" + version
+				+ ", proc_name=" + proc_name + ", info=" + info
+				+ ", sw_img=" + sw_img + "]";
 	}
+	
 }
