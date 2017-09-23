@@ -202,7 +202,8 @@ public class LicenseWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		try{
 			if(userVO != null && userVO.getAuthority() == 1){
-				return licenseService.permitFull(map);
+				licenseService.permitFull(map);
+				return true;
 			} else{
 				return false;
 			}
@@ -218,7 +219,8 @@ public class LicenseWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		try{
 			if(userVO != null && userVO.getAuthority() == 1){
-				return licenseService.permitDemo(map);
+				licenseService.permitDemo(map);
+				return true;
 			} else{
 				return false;
 			}

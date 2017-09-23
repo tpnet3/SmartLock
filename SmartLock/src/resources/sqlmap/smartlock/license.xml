@@ -7,21 +7,18 @@
 	<select id="selectLicense" parameterType="String"
 		resultType="smartlock.license.vo.LicenseUserVO">
 		SELECT s.sw_name
-			, d.nickname
 			, c.corp_name
 			, l.start_date
 			, l.end_date
 			, l.state
 			, l.sw_id
+			, l.device_count
 		FROM software s
-			, device d
 			, corp c
 			, license l
-		WHERE d.user_id = #{value}
-		AND l.user_id = d.user_id
-		AND d.sw_id = s.id
+		WHERE l.user_id = #{value}
+		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-		AND l.sw_id = d.sw_id
 		ORDER BY s.sw_name ASC;
 	</select>
 	
@@ -29,21 +26,18 @@
 	<select id="selectLicenseOrder" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.LicenseUserVO">
 		SELECT s.sw_name
-			, d.nickname
 			, c.corp_name
 			, l.start_date
 			, l.end_date
 			, l.state
 			, l.sw_id
+			, l.device_count
 		FROM software s
-			, device d
 			, corp c
 			, license l
-		WHERE d.user_id = #{id}
-		AND l.user_id = d.user_id
-		AND d.sw_id = s.id
+		WHERE l.user_id = #{id}
+		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-		AND l.sw_id = d.sw_id
 		ORDER BY l.end_date ${order};
 	</select>
 	
@@ -51,21 +45,18 @@
 	<select id="selectLicenseByName" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.LicenseUserVO">
 		SELECT s.sw_name
-			, d.nickname
 			, c.corp_name
 			, l.start_date
 			, l.end_date
 			, l.state
 			, l.sw_id
+			, l.device_count
 		FROM software s
-			, device d
 			, corp c
 			, license l
-		WHERE d.user_id = #{id}
-		AND l.user_id = d.user_id
-		AND d.sw_id = s.id
+		WHERE l.user_id = #{id}
+		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-		AND l.sw_id = d.sw_id
 		AND l.sw_id = #{sw_id}
 		ORDER BY s.sw_name ASC;
 	</select>
@@ -75,21 +66,18 @@
 	<select id="selectLicenseByNameOrder" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.LicenseUserVO">
 		SELECT s.sw_name
-			, d.nickname
 			, c.corp_name
 			, l.start_date
 			, l.end_date
 			, l.state
 			, l.sw_id
+			, l.device_count
 		FROM software s
-			, device d
 			, corp c
 			, license l
-		WHERE d.user_id = #{id}
-		AND l.user_id = d.user_id
-		AND d.sw_id = s.id
+		WHERE l.user_id = #{id}
+		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-		AND l.sw_id = d.sw_id
 		AND l.sw_id = #{sw_id}
 		ORDER BY l.end_date ${order};
 	</select>
@@ -340,18 +328,18 @@
 	
 	<insert id="permitFull" parameterType="java.util.Map">
 		INSERT INTO license (user_id, start_date, end_date, sw_id, state)
-		VALUES (#{id}, CURDATE(), '9999-00-00', (SELECT id FROM software WHERE sw_name = #{swName}), '1');
+		VALUES (#{req_id}, CURDATE(), '9999-00-00', #{id}, '1');
 	</insert>
 	
 	<insert id="permitDemo" parameterType="java.util.Map">
 		INSERT INTO license (user_id, start_date, end_date, sw_id, state)
-		VALUES (#{id}, CURDATE(), ADDDATE(CURDATE(), INTERVAL 30 DAY), (SELECT id FROM software WHERE sw_name = #{swName}), '2');
+		VALUES (#{req_id}, CURDATE(), ADDDATE(CURDATE(), INTERVAL 30 DAY), #{id}, '2');
 	</insert>
 	
 	<delete id="permitDelete" parameterType="java.util.Map">
 		DELETE FROM req_license
-		WHERE user_id = #{id}
-		AND sw_id = (SELECT id FROM software WHERE sw_name = #{swName});
+		WHERE user_id = #{req_id}
+		AND sw_id = #{id};
 	</delete>
 	
 	<insert id="licenseUserReqDemo" parameterType="java.util.Map">

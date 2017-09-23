@@ -70,11 +70,11 @@
 						<tr>
 							<td width="10px"><h4><b>No.</h4></td>
 							<td width="200px"><h4><b>소프트웨어</h4></td>
-							<td width="180px"><h4><b>단말기명</h4></td>
 							<td width="150px"><h4><b>회사명</h4></td>
 							<td width="150px"><h4><b>시작일자</h4></td>
 							<td width="150px"><h4><b>만료기간</h4></td>
-							<td width="100px"><h4><b>상태</h4></td>
+							<td width="80px"><h4><b>상태</h4></td>
+							<td width="120px"><h4><b>연결된 단말기 수</h4></td>
 						</tr>
 					</thead>
 					<tbody align="center">
@@ -82,7 +82,6 @@
 						<tr>
 							<td data-title="No.">${count.count }</td>
 							<td data-title="소프트웨어">${license.sw_name}</td>
-							<td data-title="단말기명">${license.nickname}</td>
 							<td data-title="회사명">${license.corp_name}</td>
 							<td data-title="시작일자"><fmt:formatDate value="${license.start_date}" pattern="yyyy-MM-dd"/></td>
 							<td data-title="만료기간"><fmt:formatDate value="${license.end_date}" pattern="yyyy-MM-dd"/></td>
@@ -95,10 +94,11 @@
 							<td data-title="상태"><span class="label label-success"
 								onmouseout="this.style.background='#5cb85c';this.innerText='데모 버전';"
 								onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
-								onclick="requestDemo('${license.sw_name}');">
+								onclick="requestDemo('${license.sw_name}', '${ sw_id}');">
 									데모 버전 </span></td>
 							</c:when>
 							</c:choose>
+							<td data-title="회사명">${license.device_count}</td>
 						</tr>
 						
  					</c:forEach>
@@ -118,6 +118,7 @@
 <script>
     function requestDemo(swName) {
     	var state;
+    	
         state = confirm(swName + " 에 대한 데모 기간 연장을 요청합시겠습니까?");
         if(state == true) {
         		$.ajax({

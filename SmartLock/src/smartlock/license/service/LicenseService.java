@@ -134,22 +134,14 @@ public class LicenseService {
 		}
 	}
 	
-	public boolean permitFull(Map<String, String> map) throws Exception{
-		if(commonDAO.update("permitFull", map) != 0){
-			commonDAO.delete("permitDelete", map);
-			return true;
-		} else{
-			return false;
-		}
+	public void permitFull(Map<String, String> map) throws Exception{
+		commonDAO.update("permitFull", map);
+		commonDAO.delete("permitDelete", map);
 	}
 	
-	public boolean permitDemo(Map<String, String> map) throws Exception{
-		if(commonDAO.update("permitDemo", map) != 0){
-			commonDAO.delete("permitDelete", map);
-			return true;
-		} else{
-			return false;
-		}
+	public void permitDemo(Map<String, String> map) throws Exception{
+		commonDAO.update("permitDemo", map);
+		commonDAO.delete("permitDelete", map);
 	}
 	
 	public boolean licenseUserReqDemo(Map<String, String> map) throws Exception {
