@@ -40,10 +40,10 @@
             <p class="text-center">${software.info}</p>
         </div>
     </c:forEach>
-    <hr>
 </div>
-    <!-- Footer -->
-    <jsp:include page="include/_footer_content.jsp" />
+<hr>
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
 
 <!-- /.container -->
 
