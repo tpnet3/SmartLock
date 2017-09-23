@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Repository("softwareVO")
 public class SoftwareVO {
-	private String id;
+	private int id;
     private String sw_name;
     private String version;
     private String proc_name;
@@ -17,7 +17,7 @@ public class SoftwareVO {
 		super();
 	}
 
-	public SoftwareVO(String id, String sw_name, String version,
+	public SoftwareVO(int id, String sw_name, String version,
 			String proc_name, String info, MultipartFile sw_img) {
 		super();
 		this.id = id;
@@ -28,11 +28,11 @@ public class SoftwareVO {
 		this.sw_img = sw_img;
 	}
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

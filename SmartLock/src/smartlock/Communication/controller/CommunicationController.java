@@ -45,7 +45,25 @@ public class CommunicationController {
 		}
 	}
 	
-		
+	//등록가능횟수 초과 > false 리턴 
+		@RequestMapping(value="/check/count", method=RequestMethod.POST)
+		public @ResponseBody boolean checkCount(
+				@RequestBody Map<String, String> map,
+				HttpServletRequest request) throws Exception{
+			String id = map.get("user_id");
+			boolean check = true;
+			int count;
+			try{
+				count = communicationService.getCount(id);
+				if(count == 0){
+					check = false;
+				}
+				return check;
+			} catch(Exception e) {
+				return false;
+			}
+		}
+			
 	
 	//회사의 전체 소프트웨어 프로세스명 리턴 (성공)
 	@RequestMapping(value="/check/all", method = RequestMethod.POST)
@@ -64,28 +82,53 @@ public class CommunicationController {
 		}
 	}
 	
+//	//사용자의 사용 가능한 소프트웨어 프로세스명 리턴 
+//	@RequestMapping(value="/check", method = RequestMethod.POST)
+//	public @ResponseBody ArrayList<String> check(
+//			@RequestBody Map<String, String> map,
+//			HttpServletRequest request) throws Exception{
+//		ArrayList<String> list = new ArrayList<String>();
+//		String mac = map.get("mac");
+//		String id = map.get("user_id");
+//		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+//		try{
+//			list = communicationService.getSoftwareList(id, mac);
+//			return list;
+//		} catch(Exception e){
+//			return null;
+//		}
+//	}
+	
+	
+	
 	//사용자의 사용 가능한 소프트웨어 프로세스명 리턴 
-	@RequestMapping(value="/check", method = RequestMethod.POST)
-	public @ResponseBody ArrayList<String> check(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) throws Exception{
-		ArrayList<String> list = new ArrayList<String>();
-		String mac = map.get("mac");
-		String id = map.get("user_id");
-		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		try{
-			list = communicationService.getSoftwareList(id, mac);
-			return list;
-		} catch(Exception e){
-			return null;
+		@RequestMapping(value="/check", method = RequestMethod.POST)
+		public @ResponseBody boolean check(
+				@RequestBody Map<String, String> map,
+				HttpServletRequest request) throws Exception{
+			boolean check = true;
+			String name;
+			String mac = map.get("mac");
+			String id = map.get("user_id");
+			String proc_name = map.get("name");
+			System.out.println(proc_name);
+			UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+			try{
+				name = communicationService.getSoftware(map);
+				if(name.equals(null))
+					check = false;
+				return check;
+			} catch(Exception e){
+				return false;
+			}
 		}
-	}
 	
 	//디바이스 닉네임 중복 여부 확인 - 닉네임 중복이면  (성공)
 	@RequestMapping(value="/check/nickname", method = RequestMethod.POST)
 	public @ResponseBody boolean checkNickname(
 			@RequestBody Map<String, String> map,
 			HttpServletRequest request) throws Exception{
+		int count = 0;
 		String nickname = map.get("nickname");
 		String id = map.get("user_id");
 		String mac = map.get("map");
@@ -102,6 +145,7 @@ public class CommunicationController {
 			}
 			if(check == false){
 				communicationService.addDevice(map);
+				communicationService.decreaseCount(id);
 			}
 			return check;
 		} catch(Exception e){
