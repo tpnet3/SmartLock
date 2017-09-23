@@ -94,7 +94,7 @@
 							<td data-title="상태"><span class="label label-success"
 								onmouseout="this.style.background='#5cb85c';this.innerText='데모 버전';"
 								onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
-								onclick="requestDemo('${license.sw_name}', '${ sw_id}');">
+								onclick="requestDemo('${license.sw_name}', '${ license.sw_id}');">
 									데모 버전 </span></td>
 							</c:when>
 							</c:choose>
@@ -116,9 +116,9 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
-    function requestDemo(swName) {
+    function requestDemo(swName, sw_id) {
     	var state;
-    	
+    	alert(sw_id);
         state = confirm(swName + " 에 대한 데모 기간 연장을 요청합시겠습니까?");
         if(state == true) {
         		$.ajax({
@@ -126,7 +126,7 @@
 					type:"POST",
 					contentType: "application/json",
 				 	data : JSON.stringify({
-				 		swName : swName
+				 		sw_id : sw_id
 				 	}),
   	      		success : function (data) {
   	      		window.location = "/license/user?name";
