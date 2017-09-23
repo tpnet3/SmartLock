@@ -10,6 +10,14 @@ public class LicenseUserVO {
 	private int state;
 	private String corp_name;
 	private int sw_id;
+	private int device_count;
+	
+	public int getDevice_count() {
+		return device_count;
+	}
+	public void setDevice_count(int device_count) {
+		this.device_count = device_count;
+	}
 	public String getNickname() {
 		return nickname;
 	}
@@ -55,6 +63,9 @@ public class LicenseUserVO {
 	@Override
 	public String toString() {
 		return "LicenseUserVO [nickname=" + nickname + ", sw_name=" + sw_name + ", start_date=" + start_date
-				+ ", end_date=" + end_date + ", state=" + state + ", corp_name=" + corp_name + ", sw_id=" + sw_id + "]";
+				+ ", end_date=" + end_date + ", state=" + state + ", corp_name=" + corp_name + ", sw_id=" + sw_id
+				+ ", device_count=" + device_count + "]";
 	}
+	
+	
 }

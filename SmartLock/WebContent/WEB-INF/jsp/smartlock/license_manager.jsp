@@ -114,10 +114,10 @@
 								</c:choose>
 								<td data-title="요청거절"><span class="label"
 									style="background-color: darkgray; color: black"
-									onclick="licenseReject'${license.sw_name}', '${license.id }');"> 거절하기 </span></td>
+									onclick="licenseReject'${license.sw_name}', '${license.sw_id }');"> 거절하기 </span></td>
 								<td data-title="요청승인"><span class="label"
 									style="background-color: indianred; color: white"
-									onclick="licenseOk('${license.sw_name}', '${license.id }','${license.state }');">
+									onclick="licenseOk('${license.sw_name}', '${license.sw_id }','${license.state }', '${license.id }');">
 										발급하기 </span></td>
 							</tr>
 						</c:forEach>
@@ -144,7 +144,7 @@
 		// TODO: 상세보기
 		alert(swName + " 에 대한 라이선스를 거절하시겠습니까?");
 	}
-	function licenseOk(swName, id, state) {
+	function licenseOk(swName, id, state, req_id) {
 		var check = confirm(swName + " 에 대한 라이선스를 발급하시겠습니까?");
 		if(check == true){
 			if(state == 1){
@@ -154,7 +154,8 @@
 					contentType: "application/json",
 				 	data : JSON.stringify({
 					swName : swName ,
-					id : id
+					id : id,
+					req_id : req_id
 				}),
 	   			success : function (data) {
 	   				alert(swName + " 에 대한 정식버전 라이선스를 발급했습니다.");
@@ -171,7 +172,8 @@
 					contentType: "application/json",
 				 	data : JSON.stringify({
 					swName : swName ,
-					id : id
+					id : id,
+					req_id : req_id
 				}),
 	   			success : function (data) {
 	   				alert(swName + " 에 대한 데모버젼 라이선스를 발급했습니다.");
