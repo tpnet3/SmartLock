@@ -3,7 +3,6 @@
 <%@ page import="smartlock.license.vo.LicenseManagerVO"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="software_upload" />
@@ -14,7 +13,7 @@
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">소프트웨어 업로드</h2>
+			<h2 class="page-header">소프트웨어 정보 등록</h2>
 		</div>
 		<!-- 검색필터-->
 		<div class="row">
@@ -23,16 +22,22 @@
 
 				<div class="panel text-center">
 					<div class="panel-body">
-						<h4>소프트웨어를 업로드 합니다.</h4>
+						<h4>소프트웨어 정보를 업로드합니다.</h4>
 						<hr>
 						<form id="softwareForm" align="left" action="/software/upload" method="POST" enctype="multipart/form-data">
 							<label>회사 명</label>
 							<div class="form-group">
-								<input id="corp_name" value="${corp_name}" style="width: 335px;"
+								<input id="corp_name" value="${softwareList[0].corp_name}" style="width: 335px;"
 									class="form-control input-md" readonly>
 							</div>
 							<label>소프트웨어 명</label>
 							<div class="form-group">
+								<select class="form-control">
+									<option>직접입력</option>
+									<c:forEach var="software" items="${softwareList}">
+									  <option>${software.sw_name}</option>
+									</c:forEach>
+								</select>
 								<input id="sw_name" name="sw_name" placeholder="소프트웨어명을 입력하세요."
 									style="width: 335px;" class="form-control input-md">
 							</div>
@@ -59,7 +64,7 @@
 						<br>
 						<div align="center">
 							<a class="btn btn-lg btn-default btn-block" onclick="request();"
-								style="width: 180px">소프트웨어 업로드</a>
+								style="width: 180px">업로드</a>
 						</div>
 					</div>
 				</div>
@@ -81,22 +86,23 @@
 	 */
 	function request() 
 	{
-		var b = true;
 		/*
-		 * 입력 필드를 다 입력했을 경우
+		 * 필수 입력 필드를 모두 입력하지 않은 경우
 		 */
-		if(b == true)
-		{
-			$("#softwareForm").submit();
-			alert("업로드되었습니다.");
-			
-		}
+		if($('#sw_name').val() == '')
+			alert('소프트웨어 명을 입력해주세요.');
+		else if($('#sw_version').val() == '')
+			alert('소프트웨어 버전을 입력해주세요.');
+		else if($('#proc_name').val() == '')
+			alert('프로세스 명을 입력해주세요.');
 		/*
-		 * 입력 필드를 모두 입력하지 않은 경우
+		 * 입력 필드를 모두 입력했을 경우
 		 */
 		else
 		{
-		 
+			$('#softwareForm').submit();
+			alert('업로드되었습니다.');
+			
 		}
 	}
 </script>

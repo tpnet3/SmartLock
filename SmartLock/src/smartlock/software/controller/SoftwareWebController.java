@@ -40,8 +40,8 @@ public class SoftwareWebController {
     public ModelAndView software(HttpServletRequest request) throws Exception
 	{
 		try{
-				ArrayList<HashMap<String, Object>> softwareList = new ArrayList<HashMap<String, Object>>();
-				softwareList = softwareService.softwareList();
+				ArrayList<HashMap<String, Object>> softwareList
+					= softwareService.softwareList();
 				
 				for(HashMap<String, Object> map : softwareList)
 				{
@@ -70,8 +70,8 @@ public class SoftwareWebController {
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
-				ArrayList<HashMap<String, Object>> softwareList = new ArrayList<HashMap<String, Object>>();
-				softwareList = softwareService.softwareListByCorp(userVO.getCorpId());
+				ArrayList<HashMap<String, Object>> softwareList 
+						= softwareService.softwareListByCorp(userVO.getCorpId());
 				
 				for(HashMap<String, Object> map : softwareList)
 				{
@@ -159,8 +159,9 @@ public class SoftwareWebController {
 			if(userVO != null && userVO.getAuthority() == 1)
 			{
 				ModelAndView modelAndView = new ModelAndView("smartlock/software_upload");
-				String corp_name = softwareService.getCorp_name(userVO.getCorpId());
-				modelAndView.addObject("corp_name", corp_name);
+				ArrayList<SoftwareVO> list = softwareService.getCorp(userVO.getCorpId());
+				
+				modelAndView.addObject("softwareList", list);
 
 				return modelAndView;
 			} 

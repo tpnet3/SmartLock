@@ -57,13 +57,13 @@ public class SoftwareService {
     }
     
     /**
-     * 소프트웨어 기업 아이디로 기업명 조회
+     * 소프트웨어 기업 아이디로 기업명, 기업의 모든 소프트웨어 조회
      * @param corp_id 기업 아이디
      * @return
      * @throws Exception
      */
-    public String getCorp_name(int corp_id) throws Exception{
-    	return (String) commonDAO.selectOne("getCorp_name", corp_id);
+    public ArrayList<SoftwareVO> getCorp(int corp_id) throws Exception{
+    	return (ArrayList) commonDAO.selectList("getCorp", corp_id);
     }
     /**
      * 소프트웨어 등록

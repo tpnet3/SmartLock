@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Repository("softwareVO")
 public class SoftwareVO {
+	private String corp_name;
 	private int id;
     private String sw_name;
     private String version;
@@ -17,9 +18,10 @@ public class SoftwareVO {
 		super();
 	}
 
-	public SoftwareVO(int id, String sw_name, String version,
+	public SoftwareVO(String corp_name, int id, String sw_name, String version,
 			String proc_name, String info, MultipartFile sw_img) {
 		super();
+		this.corp_name = corp_name;
 		this.id = id;
 		this.sw_name = sw_name;
 		this.version = version;
@@ -27,7 +29,15 @@ public class SoftwareVO {
 		this.info = info;
 		this.sw_img = sw_img;
 	}
-	
+
+	public String getCorp_name() {
+		return corp_name;
+	}
+
+	public void setCorp_name(String corp_name) {
+		this.corp_name = corp_name;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -78,8 +88,9 @@ public class SoftwareVO {
 
 	@Override
 	public String toString() {
-		return "SoftwareVO [id=" + id + ", sw_name=" + sw_name + ", version="
-				+ version + ", proc_name=" + proc_name + ", info=" + info
-				+ ", sw_img=" + sw_img + "]";
+		return "SoftwareVO [corp_name=" + corp_name + ", id=" + id
+				+ ", sw_name=" + sw_name + ", version=" + version
+				+ ", proc_name=" + proc_name + ", info=" + info + ", sw_img="
+				+ sw_img + "]";
 	}
 }
