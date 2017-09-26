@@ -64,7 +64,7 @@
 						<br>
 						<div align="center">
 							<a class="btn btn-lg btn-default btn-block" onclick="request();"
-								style="width: 180px">업로드</a>
+								style="width: 180px" data-toggle="tooltip" data-placement="bottom" title="소프트웨어 업로드">업로드</a>
 						</div>
 					</div>
 				</div>

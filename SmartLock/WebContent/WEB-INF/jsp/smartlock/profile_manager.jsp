@@ -53,14 +53,6 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">비밀번호</label>
-                            <div class="col-md-3">
-                            	<input type="password" id="password" class="form-control" placeholder="현재 비밀번호" required autofocus>
-                            </div>
-                        </div>
-
-                        <!-- Text input-->
-                        <div class="form-group">
                             <label class="col-md-5 control-label" for="textinput">이메일</label>
                             <div class="col-md-3">
                             	<input type="text" id="email" class="form-control" value="${email }" required autofocus>
@@ -74,11 +66,19 @@
                                 <input type="text" id="phone_number" class="form-control" value="${phone_number }" required autofocus>
                             </div>
                         </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="textinput">비밀번호</label>
+                            <div class="col-md-3">
+                            	<input type="password" id="password" class="form-control" placeholder="현재 비밀번호" required autofocus>
+                            </div>
+                        </div>
                         <br>
                         <!-- Button -->
                         <div class="form-group" align="center">                            
                             <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
-                            	style="height: 46px; width: 270px">수정</button>
+                            	style="height: 46px; width: 200px"
+                            	data-toggle="tooltip" data-placement="bottom" title="수정">수정</button>
                          </div>
 
                     </fieldset>

@@ -18,7 +18,8 @@
 				<small>발급 완료 현황</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="/license/manager/request?order=DEFAULT">발급 대기 현황</a></li>
+				<li><a href="/license/manager/request?order=DEFAULT"
+				data-toggle="tooltip" data-placement="bottom" title="발급 대기 현황">발급 대기 현황</a></li>
 				<li class="active">발급 완료 현황</li>
 			</ol>
 		</div>
@@ -29,7 +30,7 @@
 				<div class="col-sm-2">
 					<div class="input-group">
 						<select name="" id="sw_list"
-								style="width: 180px; height: 35px;">
+								style="width: 180px; height: 35px;" data-toggle="tooltip" data-placement="bottom" title="소프트웨어">
 							<option value="">소프트웨어명</option>
 							<c:forEach var="sw" items="${swNameList}" varStatus="count">
 								<option value= "${swIdList[count.count-1]}">${sw}</option>
@@ -40,7 +41,7 @@
 				<div class="col-sm-2">
 					<div class="input-group">
 						<select name="" id="order"
-								style="width: 180px; height: 35px;">
+								style="width: 180px; height: 35px;" data-toggle="tooltip" data-placement="bottom" title="만료 날짜">
 							<option value=0>만료 날짜</option>
 							<option value=1>오름차순</option>
 							<option value=2>내림차순</option>
@@ -49,10 +50,10 @@
 				</div>
 				
 				<div class="col-sm-6">
-					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
-						   id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
+					<!-- <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
+						   id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp; -->
 					<button class="btn btn-primary" type="button" id="searchButton" onclick="search();"
-							data-loading-text="Searching..">
+							data-loading-text="Searching.." data-toggle="tooltip" data-placement="bottom" title="검색">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -90,11 +91,11 @@
 						<td data-title="만료날짜"><fmt:formatDate value="${license.end_date}" pattern="yyyy-MM-dd"/></td>
 						<c:choose>
 							<c:when test="${license.state eq 1 }">
-								<td data-title="상태"><span class="label label-success">정식
+								<td data-title="상태"><span class="label label-success" data-toggle="tooltip" data-placement="bottom" title="정식 라이선스 요청">정식
 										라이선스 요청</span></td>
 							</c:when>
 							<c:when test="${license.state eq 2}">
-								<td data-title="상태"><span class="label label-warning">데모
+								<td data-title="상태"><span class="label label-warning" data-toggle="tooltip" data-placement="bottom" title="데모 라이선스 요청">데모
 										라이선스 요청</span></td>
 							</c:when>
 						</c:choose>

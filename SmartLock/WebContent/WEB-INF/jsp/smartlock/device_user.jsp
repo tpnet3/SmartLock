@@ -20,7 +20,8 @@
 			<div class="col-sm-12">
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="sw_list" style="width: 180px; height: 35px;">
+						<select name="" id="sw_list" style="width: 180px; height: 35px;"
+						data-toggle="tooltip" data-placement="bottom" title="소프트웨어">
 							<option>소프트웨어명</option>
 							<c:forEach var="sw" items="${swNameList}">
 								<option>${sw}</option>
@@ -30,7 +31,8 @@
 				</div>
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="order" style="width: 180px; height: 35px;">
+						<select name="" id="order" style="width: 180px; height: 35px;"
+						data-toggle="tooltip" data-placement="bottom" title="날짜">
 							<option>등록날짜</option>
 							<option>오름차순</option>
 							<option>내림차순</option>
@@ -38,10 +40,10 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
-						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
+					<!-- <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
+						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp; -->
 					<button class="btn btn-primary" type="button" id="searchBtn"
-						data-loading-text="Searching.." onclick="search();">
+						data-loading-text="Searching.." onclick="search();" data-toggle="tooltip" data-placement="bottom" title="검색">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -68,22 +70,24 @@
 								<c:when test="${device.type eq 1}">
 									<img src="/html/img/smartphone.png"
 										style="margin-left: auto; margin-right: auto; display: auto"
-										width="100px">
+										width="100px" data-toggle="tooltip" data-placement="bottom" title="모바일">
 								</c:when>
 								<c:when test="${device.type ne 1}">
 									<img src="/html/img/pc.png"
-										style="margin-left: auto; margin-right: auto; display: auto"
-										width="100px">
+										style="margin-left: auto; margin-right: auto; display: auto;"
+										width="100px" data-toggle="tooltip" data-placement="bottom" title="PC">
 								</c:when>
 							</c:choose>
 							<p></p>
 							<p>
 								<a href="#" class="btn btn-warning btn-filter"
 									style="width: 80px"
-									onclick="return clickEdit(${device.id}, '${device.nickname}');">수정</a>&nbsp;
+									onclick="return clickEdit(${device.id}, '${device.nickname}');"
+									data-toggle="tooltip" data-placement="bottom" title="디바이스 수정">수정</a>&nbsp;
 								&nbsp; &nbsp; <a href="#" class="btn btn-danger btn-filter"
 									style="width: 80px"
-									onclick="return clickDelete(${device.id}, '${device.nickname}');">삭제</a>
+									onclick="return clickDelete(${device.id}, '${device.nickname}');"
+									data-toggle="tooltip" data-placement="bottom" title="디바이스 삭제">삭제</a>
 							</p>
 						</div>
 						<div>
@@ -96,7 +100,8 @@
 								<li class="list-group-item"><b>등록일 : </b>${device.reg_date}</li>
 							</ul>
 							<a href="#" class="btn btn-default" style="width: 180px"
-								onclick="return clickShowLicense('${device.id}');">라이선스 조회</a>
+								onclick="return clickShowLicense('${device.id}');"
+								data-toggle="tooltip" data-placement="bottom" title="라이선스 조회">라이선스 조회</a>
 						</div>
 					</div>
 				</div>

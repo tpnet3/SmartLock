@@ -19,7 +19,8 @@
 			</h1>
 			<ol class="breadcrumb">
 				<li class="active">발급 대기 현황</li>
-				<li><a href="/license/manager?order=DEFAULT">발급 완료 현황</a></li>
+				<li><a href="/license/manager?order=DEFAULT"
+				data-toggle="tooltip" data-placement="bottom" title="발급 완료 현황">발급 완료 현황</a></li>
 			</ol>
 		</div>
 	</div>
@@ -28,7 +29,7 @@
 			<div class="col-sm-12">
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select id="sw_list" style="width: 180px; height: 35px;">
+						<select id="sw_list" style="width: 180px; height: 35px;" data-toggle="tooltip" data-placement="bottom" title="소프트웨어">
 							<option value="">소프트웨어명</option>
 							<c:forEach var="sw" items="${swNameList}" varStatus="count">
 								<option value="${swIdList[count.count-1]}">${sw}</option>
@@ -38,7 +39,7 @@
 				</div>
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select id="order" style="width: 180px; height: 35px;">
+						<select id="order" style="width: 180px; height: 35px;" data-toggle="tooltip" data-placement="bottom" title="만료 날짜">
 							<option value=0>만료 날짜</option>
 							<option value=1>오름차순</option>
 							<option value=2>내림차순</option>
@@ -47,10 +48,10 @@
 				</div>
 
 				<div class="col-sm-6">
-					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
-						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
+					<!-- <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
+						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp; -->
 					<button class="btn btn-primary" type="button" id="searchButton" onclick="search();"
-						data-loading-text="Searching..">
+						data-loading-text="Searching.." data-toggle="tooltip" data-placement="bottom" title="검색">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -104,20 +105,24 @@
 										value="${license.request_date}" pattern="yyyy-MM-dd" /></td>
 								<c:choose>
 									<c:when test="${license.state eq 1 }">
-										<td data-title="분류"><span class="label label-success">
+										<td data-title="분류"><span class="label label-success"
+										data-toggle="tooltip" data-placement="bottom" title="정식 라이선스 요청">
 												정식 라이선스 요청 </span></td>
 									</c:when>
 									<c:when test="${license.state eq 2}">
-										<td data-title="분류"><span class="label label-warning">
+										<td data-title="분류"><span class="label label-warning"
+										data-toggle="tooltip" data-placement="bottom" title="데모 라이선스 요청">
 												데모 라이선스 요청</span></td>
 									</c:when>
 								</c:choose>
 								<td data-title="요청거절"><span class="label"
 									style="background-color: darkgray; color: black"
-									onclick="licenseReject'${license.sw_name}', '${license.sw_id }');"> 거절하기 </span></td>
+									onclick="licenseReject'${license.sw_name}', '${license.sw_id }');"
+									data-toggle="tooltip" data-placement="bottom" title="라이선스 거절"> 거절하기 </span></td>
 								<td data-title="요청승인"><span class="label"
 									style="background-color: indianred; color: white"
-									onclick="licenseOk('${license.sw_name}', '${license.sw_id }','${license.state }', '${license.id }');">
+									onclick="licenseOk('${license.sw_name}', '${license.sw_id }','${license.state }', '${license.id }');"
+									data-toggle="tooltip" data-placement="bottom" title="라이선스 발급">
 										발급하기 </span></td>
 							</tr>
 						</c:forEach>
