@@ -98,7 +98,19 @@
 									데모 버전 </span></td>
 							</c:when>
 							</c:choose>
-							<td data-title="회사명">${license.device_count}</td>
+							
+							<c:choose>
+								<c:when test="${license.device_count eq 0}">
+									<td data-title="연결된 단말기 수"><span class="label label-danger"></span>
+									${license.device_count}</td>
+								</c:when>
+								<c:otherwise>
+									<td data-title="연결된 단말기 수"><span class="label label-primary"
+									onmouseout="this.style.background='#1066AE';this.innerText='${license.device_count}';"
+									onmouseover="this.style.background='#1066AE';this.innerText='단말기 추가등록'">
+									${license.device_count}</span></td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 						
  					</c:forEach>
