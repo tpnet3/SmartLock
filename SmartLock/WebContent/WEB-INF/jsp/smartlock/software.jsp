@@ -30,13 +30,8 @@
     <c:forEach var="software" items="${softwareList}" >
         <div class="col-md-3 img-portfolio">
             <div align="center">
-<<<<<<< HEAD
-            	<span class="fa-stack fa-5x">
-            		<img class="fa fa-circle fa-stack-2x" src= "data:image/jpg;base64, ${software.img}"></img>
-=======
             	<span class="fa-stack fa-5x" data-toggle="tooltip" data-placement="bottom" title="${software.sw_name}">
             		 <img class="fa fa-circle fa-stack-2x" src= "data:image/jpg;base64, ${software.img}"></img>
->>>>>>> master
             	</span>
            	</div>
             <h3 class="text-center">${software.sw_name}</h3>
