@@ -13,6 +13,7 @@ $("#login-form").submit(function() {
 			if(data.status == "success" && data.data) {
 				// 메인페이지로이동
                 window.location.href = "/";
+                alert("로그인되었습니다.");
 			} else {
 				alert("아이디 또는 비밀번호가 잘못되었습니다");
 			}

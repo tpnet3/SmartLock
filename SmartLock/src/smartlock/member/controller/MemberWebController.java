@@ -77,6 +77,6 @@ public class MemberWebController {
 	public ModelAndView logout(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("user", null);
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("/smartlock/log_out");
 	}
 }

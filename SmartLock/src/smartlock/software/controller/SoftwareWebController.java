@@ -218,7 +218,7 @@ public class SoftwareWebController {
 				
 				if(softwareVO.getSw_img().isEmpty())
 				{
-					String path = multipartRequest.getSession().getServletContext().getRealPath("img/sw_default.png");
+					String path = multipartRequest.getSession().getServletContext().getRealPath("html/img/sw_default.png");
 					File fi = new File(path);
 					byte[] fileContent = Files.readAllBytes(fi.toPath());
 					map.put("img", fileContent);	
