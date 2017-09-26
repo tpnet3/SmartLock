@@ -15,7 +15,7 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">소프트웨어
+            <h1 class="page-header">소프트웨어 
                 <small>미리보기</small>
             </h1>
             <ol class="breadcrumb">
@@ -26,13 +26,12 @@
         </div>
     </div>
     <!-- /.row -->
-
     <!-- Projects Row -->
     <c:forEach var="software" items="${softwareList}" >
         <div class="col-md-3 img-portfolio">
             <div align="center">
             	<span class="fa-stack fa-5x">
-            		 <img class="fa fa-circle fa-stack-2x" src= "data:image/jpg;base64, ${software.img}"></img>
+            		<img class="fa fa-circle fa-stack-2x" src= "data:image/jpg;base64, ${software.img}"></img>
             	</span>
            	</div>
             <h3 class="text-center">${software.sw_name}</h3>

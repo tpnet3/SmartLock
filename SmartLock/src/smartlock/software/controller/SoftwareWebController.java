@@ -1,5 +1,7 @@
 package smartlock.software.controller;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +51,7 @@ public class SoftwareWebController {
 					
 					byte[] encoded=Base64.encodeBase64(imageContent);
 					String encodedString = new String(encoded);
-
+	
 					map.put("img", encodedString);
 				}
 				ModelAndView modelAndView = new ModelAndView("smartlock/software");
@@ -161,7 +163,16 @@ public class SoftwareWebController {
 				ModelAndView modelAndView = new ModelAndView("smartlock/software_upload");
 				ArrayList<SoftwareVO> list = softwareService.getCorp(userVO.getCorpId());
 				
-				modelAndView.addObject("softwareList", list);
+				String corpName = list.get(0).getCorp_name();
+				HashMap<Integer, SoftwareVO> map = new HashMap<Integer, SoftwareVO>();
+				
+				for(SoftwareVO vo : list)
+				{
+					map.put(vo.getId(), vo);
+				}
+				
+				modelAndView.addObject("softwareList", map);
+				modelAndView.addObject("corp_name", corpName);
 
 				return modelAndView;
 			} 
@@ -204,7 +215,17 @@ public class SoftwareWebController {
 				map.put("version", softwareVO.getVersion());
 				map.put("proc_name", softwareVO.getProc_name());
 				map.put("info", softwareVO.getInfo());
-				map.put("img", softwareVO.getSw_img().getBytes());	
+				
+				if(softwareVO.getSw_img().isEmpty())
+				{
+					String path = multipartRequest.getSession().getServletContext().getRealPath("img/sw_default.png");
+					File fi = new File(path);
+					byte[] fileContent = Files.readAllBytes(fi.toPath());
+					map.put("img", fileContent);	
+				}
+
+				else
+					map.put("img", softwareVO.getSw_img().getBytes());	
 				
 				if(softwareService.softwareInsert(map) > 0)
 				{

@@ -27,19 +27,19 @@
 						<form id="softwareForm" align="left" action="/software/upload" method="POST" enctype="multipart/form-data">
 							<label>회사 명</label>
 							<div class="form-group">
-								<input id="corp_name" value="${softwareList[0].corp_name}" style="width: 335px;"
+								<input id="corp_name" value="${corp_name}" style="width: 335px;"
 									class="form-control input-md" readonly>
 							</div>
 							<label>소프트웨어 명</label>
 							<div class="form-group">
-								<select class="form-control">
-									<option>직접입력</option>
+								<%-- <select id="select" class="form-control" onchange="change(this.value);">
 									<c:forEach var="software" items="${softwareList}">
-									  <option>${software.sw_name}</option>
+									  <option>${software.value.sw_name}</option>
 									</c:forEach>
-								</select>
-								<input id="sw_name" name="sw_name" placeholder="소프트웨어명을 입력하세요."
-									style="width: 335px;" class="form-control input-md">
+									<option>직접입력</option>
+								</select> --%>
+							<input id="sw_id" name="sw_name" placeholder="소프트웨어명을 입력하세요."
+								style="width: 335px;" class="form-control input-md">
 							</div>
 							<label>소프트웨어 버전</label>
 							<div class="form-group">
@@ -54,7 +54,7 @@
 							<label>설명</label>
 							<div class="form-group">
 								<textarea class="form-control" id="info" name="info" rows="5" cols="30"
-								 style="width:335px" placeholder="소프트웨어에 대한 간단한 설명을 입력해주세요."></textarea>
+								 style="width:335px" placeholder="소프트웨어에 대한 간단한 설명을 입력하세요."></textarea>
 							</div>
 							 <div class="form-group">
 							    <label for="exampleInputFile">이미지 파일</label>
@@ -81,6 +81,21 @@
 <!-- /.container -->
 
 <script>
+	/*
+	 * select 바뀔 시
+	 */
+	 function change(name)
+	{
+		if(name == '직접입력')
+		{
+			$('#sw_name').removeAttr('type');	
+		}
+		else
+		{
+			$('#sw_name').attr('type', 'hidden');
+		}
+	}
+	
 	/*
 	 * 업로드 버튼 클릭 시 onclick
 	 */
