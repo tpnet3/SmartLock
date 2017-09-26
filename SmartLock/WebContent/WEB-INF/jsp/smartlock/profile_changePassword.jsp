@@ -18,9 +18,9 @@
         <div class="col-lg-12">
             <h2 class="page-header">마이페이지</h2>
             <ol class="breadcrumb">
-	       		<li><a href="/profile">회원정보 수정</a></li>
+	       		<li><a href="/profile" data-toggle="tooltip" data-placement="bottom" title="회원정보 수정">회원정보 수정</a></li>
 	       		<li class="active">비밀번호 변경</li>
-        		<li><a href="/profile/quit">회원탈퇴</a></li>
+        		<li><a href="/profile/quit" data-toggle="tooltip" data-placement="bottom" title="회원탈퇴">회원탈퇴</a></li>
         	</ol>
         </div>
         <br><br><br><br><br><br>
@@ -33,12 +33,16 @@
 	            <br>
 	        </div>
 	        <form class="form-profile" id="changePassword">
-	            <input type="password" id="password" class="form-control" placeholder="현재 비밀번호" required autofocus>
+	            <input type="password" id="password" class="form-control" placeholder="현재 비밀번호" required autofocus
+	            data-toggle="tooltip" data-placement="bottom" title="현재 비밀번호">
 	            <br>
-	            <input type="password" id="new_password1" class="form-control" placeholder="새 비밀번호" required>
-	            <input type="password" id="new_password2" class="form-control" placeholder="새 비밀번호 확인" required>
+	            <input type="password" id="new_password1" class="form-control" placeholder="새 비밀번호" required
+	            data-toggle="tooltip" data-placement="bottom" title="새 비밀번호">
+	            <input type="password" id="new_password2" class="form-control" placeholder="새 비밀번호 확인" required
+	            data-toggle="tooltip" data-placement="bottom" title="새 비밀번호 확인">
 	            <br>
-	            <button id="profile-btn" type="submit" class="btn btn-lg btn-primary btn-block btn-signin">비밀번호 변경</button>
+	            <button id="profile-btn" type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
+	            data-toggle="tooltip" data-placement="bottom" title="비밀번호 변경">비밀번호 변경</button>
 	        </form><!-- /form -->
 	    </div>		
         

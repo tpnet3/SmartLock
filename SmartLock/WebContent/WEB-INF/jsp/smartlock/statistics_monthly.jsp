@@ -19,7 +19,7 @@
                 <small>월별 발급 현황</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="/statistics">License 사용 통계</a></li>
+                <li><a href="/statistics" data-toggle="tooltip" data-placement="bottom" title="라이선스 통계">License 사용 통계</a></li>
                 <li class="active">월별 License 발급 현황</li>
             </ol>
         </div>

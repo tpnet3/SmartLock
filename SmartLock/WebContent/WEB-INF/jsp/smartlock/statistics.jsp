@@ -18,7 +18,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">License 사용 통계</li>
-                <li><a href="/statistics/monthly">License 사용 통계</a></li>
+                <li><a href="/statistics/monthly" data-toggle="tooltip" data-placement="bottom" title="월별 사용 통계">License 월별 사용 통계</a></li>
             </ol>
         </div>
     </div>
@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-sm-12" align="left">
             <div class="input-group">
-                <select id="select-software" style="width: 180px; height: 35px;">
+                <select id="select-software" style="width: 180px; height: 35px;" data-toggle="tooltip" data-placement="bottom" title="소프트웨어">
                     <option value="0">전체보기</option>
                 </select>
                 <input type="hidden" id="sw_id" value="${sw_id}"/>

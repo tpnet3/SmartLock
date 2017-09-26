@@ -28,19 +28,23 @@
 								<c:when test="${device.type eq 1}">
 									<img src="/html/img/smartphone.png"
 										style="margin-left: auto; margin-right: auto; display: auto"
-										width="100px">
+										width="100px"
+										data-toggle="tooltip" data-placement="bottom" title="모바일">
 								</c:when>
 								<c:when test="${device.type ne 1}">
 									<img src="/html/img/pc.png"
 										style="margin-left: auto; margin-right: auto; display: auto"
-										width="100px">
+										width="100px"
+										data-toggle="tooltip" data-placement="bottom" title="PC">
 								</c:when>
 							</c:choose>
                             <p></p>
 							<p>
 								<a href="#" class="btn btn-warning btn-filter"
-									style="width: 80px">수정</a>&nbsp; &nbsp; &nbsp;
-								<a href="#" class="btn btn-danger btn-filter" style="width: 80px">삭제</a>
+									style="width: 80px"
+									data-toggle="tooltip" data-placement="bottom" title="디바이스 수정">수정</a>&nbsp; &nbsp; &nbsp;
+								<a href="#" class="btn btn-danger btn-filter" style="width: 80px"
+								data-toggle="tooltip" data-placement="bottom" title="디바이스 삭제">삭제</a>
 							</p>
 						</div>
 						<div>
@@ -74,14 +78,16 @@
 	                				<td data-title="만료기간"><fmt:formatDate value="${license.end_date}" pattern="yyyy-MM-dd"/></td>
 	                				<c:choose>
 										<c:when test="${license.state eq 1 }">
-											<td data-title="상태"><span class="label label-success">
+											<td data-title="상태"><span class="label label-success"
+											data-toggle="tooltip" data-placement="bottom" title="발급완료">
 											발급 완료 </span></td>
 										</c:when>
 										<c:when test="${license.state eq 2}">
 										<td data-title="상태"><span class="label label-success"
 										onmouseout="this.style.background='#5cb85c';this.innerText='데모 버전';"
 										onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
-										onclick="requestDemo('${license.sw_name}');">
+										onclick="requestDemo('${license.sw_name}', '${ license.sw_id}');"
+										data-toggle="tooltip" data-placement="bottom" title="데모버젼">
 											데모 버전 </span></td>
 										</c:when>
 									</c:choose>
@@ -97,5 +103,33 @@
 		<hr>
 	</div>
 <!-- Footer -->
+<script>
+
+function requestDemo(swName, sw_id) {
+	var state;
+	alert(sw_id);
+    state = confirm(swName + " 에 대한 데모 기간 연장을 요청합시겠습니까?");
+    if(state == true) {
+    		$.ajax({
+				url:"/license/user/requestDemo" ,
+				type:"POST",
+				contentType: "application/json",
+			 	data : JSON.stringify({
+			 		sw_id : sw_id
+			 	}),
+	      		success : function (data) {
+	      		window.location = "/license/user?name";
+	     	 	alert("요청을 완료했습니다.");
+	   		    },
+		   		error : function(data, textStatus, errorThrown) {
+	      	console.log(data);
+    		}
+			});
+    } else if(state == false) {
+    	alert("연장 요청을 취소합니다.");
+    }
+}
+
+</script>
 <jsp:include page="include/_footer_content.jsp" />
 <jsp:include page="include/_jslib.jsp" />

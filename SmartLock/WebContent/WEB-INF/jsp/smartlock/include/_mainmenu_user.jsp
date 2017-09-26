@@ -23,7 +23,7 @@
                     <a href="/">Home</a>
                 </li>
                 -->
-                <li <%= (_nav != null && _nav.equals("device")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="단말기 조회" title="도움말">
+                <li <%= (_nav != null && _nav.equals("device")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="도움말">
                     <a href="/device">단말기</a>
                 </li>
                 <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="라이선스 조회">
