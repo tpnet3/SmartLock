@@ -12,7 +12,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/" >Smart Lock</a>
+            <a class="navbar-brand" href="/" data-toggle="tooltip" data-placement="bottom" title="홈">Smart Lock</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse"

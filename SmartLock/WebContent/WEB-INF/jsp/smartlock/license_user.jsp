@@ -18,7 +18,7 @@
 			<h2 class="page-header">라이선스 발급현황</h2>
 			<ol class="breadcrumb">
 				<li class="active">라이선스 발급현황</li>
-				<li><a href="/license/user/request?order=DEFAULT">라이선스 요청현황</a></li>
+				<li><a href="/license/user/request?order=DEFAULT" data-toggle="tooltip" data-placement="bottom" title="라이센스 요청현황">라이선스 요청현황</a></li>
 			</ol>
 		</div>
 		<!-- 검색필터-->
@@ -27,7 +27,7 @@
 				<div class="col-sm-2">
 					<div class="input-group">
 						<select name="" id="sw_list" style="width: 180px; height: 35px;">
-							<option value = "">소프트웨어명</option>
+							<option value = "" data-toggle="tooltip" data-placement="bottom" title="소프트웨어명">소프트웨어명</option>
 							<c:forEach var="sw" items="${swNameList}" varStatus="count">
 								<option value= "${swIdList[count.count-1]}">${sw}</option>
 							</c:forEach>
@@ -36,7 +36,7 @@
 				</div>
 				<div class="col-sm-2">
 					<div class="input-group">
-						<select name="" id="order" style="width: 180px; height: 35px;">
+						<select name="" id="order" style="width: 180px; height: 35px;" data-toggle="tooltip" data-placement="bottom" title="날짜">
 							<option value=0>만료 날짜</option>
 							<option value=1>오름차순</option>
 							<option value=2>내림차순</option>
@@ -44,9 +44,9 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
-						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
-					<button class="btn btn-primary" type="button" id="searchButton" onclick="search();">
+					<!-- <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
+						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp; -->
+					<button class="btn btn-primary" type="button" id="searchButton" onclick="search();" data-toggle="tooltip" data-placement="bottom" title="검색">
 						<i class="fa fa-search"></i>
 					</button>
 
