@@ -13,7 +13,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Smart Lock</a>
+            <a class="navbar-brand" href="/" data-toggle="tooltip" data-placement="bottom" title="홈">Smart Lock</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,19 +23,19 @@
                     <a href="/">Home</a>
                 </li>
                 -->
-                <li <%= (_nav != null && _nav.equals("device")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("device")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="단말기 조회" title="도움말">
                     <a href="/device">단말기</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="라이선스 조회">
                     <a href="/license/user?order=DEFAULT">라이선스</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("softwareUser")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("softwareUser")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="소프트웨어">
                     <a href="/software/user">소프트웨어</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("download")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("download")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="에이전트 다운로드">
                     <a href="/download">다운로드</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="도움말">
                     <a href="/qna">도움말</a>
                 </li>
                 <!--
@@ -54,8 +54,9 @@
                                 <div style="padding: 16px;">
                                     <div style="font-size: 16px;"><%= userVO.getUserName() %>님 (사용자)</div>
                                     <div style="font-size: 14px;"><%= userVO.getEmail() %></div>
-                                    <div style="padding: 8px 0;"><a href="/profile" class="btn btn-sm btn-default btn-block">마이페이지</a></div>
-                                    <div style="font-size: 12px;"><a href="/logout">로그아웃</a></div>
+                                    <div style="padding: 8px 0;"><a href="/profile" class="btn btn-sm btn-default btn-block" 
+                                    data-toggle="tooltip" data-placement="bottom" title="마이페이지">마이페이지</a></div>
+                                    <div style="font-size: 12px;"><a href="/logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃">로그아웃</a></div>
                                 </div>
                             </div>
                             <div style="position: absolute; top: 16px; left: 16px; width: 64px;">

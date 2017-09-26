@@ -231,16 +231,14 @@ public class LicenseWebController {
 	
 	@RequestMapping(value = "/license/user/requestDemo", method = RequestMethod.POST)
 	public @ResponseBody boolean licenseUserReqDemo(
-			@RequestBody Map<String, String> name,
+			@RequestBody Map<String, String> map,
 			HttpServletRequest request) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		Map<String, String> map = new HashMap<String, String>();
-		
 		map.put("id", userVO.getId());
-		map.put("name", name.get("swName"));
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
-				return licenseService.licenseUserReqDemo(map);
+				licenseService.licenseUserReqDemo(map);
+				return true;
 			} else{
 				return false;
 			}

@@ -18,7 +18,7 @@
 		<div class="col-lg-12">
 			<h2 class="page-header">라이선스 요청현황</h2>
 			<ol class="breadcrumb">
-				<li><a href="/license/user?name">라이선스 발급현황</a>
+				<li><a href="/license/user?name" data-toggle="tooltip" data-placement="bottom" title="라이선스 발급현황">라이선스 발급현황</a>
 				</li>
 				<li class="active">라이선스 요청현황</li>
 			</ol>
@@ -30,7 +30,7 @@
 				<div class="input-group">
 					<select name="" id="sw_list"
 					style="width: 180px; height: 35px;">
-					<option value="">소프트웨어명</option>
+					<option value="" data-toggle="tooltip" data-placement="bottom" title="소프트웨어">소프트웨어명</option>
 					<c:forEach var="sw" items="${swNameList}" varStatus="count">
 					<option value="${swIdList[count.count-1]}">${sw }</option>
 					</c:forEach>
@@ -40,7 +40,7 @@
 			<div class="col-sm-2">
 				<div class="input-group">
 					<select name="" id="order"
-					style="width: 180px; height: 35px;">
+					style="width: 180px; height: 35px;" data-toggle="tooltip" data-placement="bottom" title="날짜">
 					<option value=0>요청 날짜</option>
 					<option value=1>오름차순</option>
 					<option value=2>내림차순</option>
@@ -48,10 +48,10 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
-			<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
-					id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
+			<!-- <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
+					id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp; -->
 					<button class="btn btn-primary" type="button" id="searchButton" onclick="search();"
-					data-loading-text="Searching..">
+					data-loading-text="Searching.." data-toggle="tooltip" data-placement="bottom" title="검색">
 					<i class="fa fa-search"></i>
 				</button>
 				</div>
@@ -87,14 +87,14 @@
 						<td data-bind="요청일자"><fmt:formatDate value="${license.request_date}" pattern="yyyy-MM-dd"/></td>
 						<c:choose>
 								<c:when test="${license.state eq 1 }">
-						<td data-bind="상태일반요청">
+						<td data-bind="상태일반요청 data-toggle="tooltip" data-placement="bottom" title="일반 요청"">
 							<span class="label label-success">
 								일반 요청
 							</span>
 						</td>
 						</c:when>
 							<c:when test="${license.state eq 2}">
-						<td data-bind="상태데모요청">
+						<td data-bind="상태데모요청" data-toggle="tooltip" data-placement="bottom" title="데모 요청">
 							<span class="label label-success">데모 요청
 							</span>
 						</td>

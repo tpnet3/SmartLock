@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span> <span class="icon-bar"></span> 
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Smart Lock</a>
+            <a class="navbar-brand" href="/" data-toggle="tooltip" data-placement="bottom" title="홈">Smart Lock</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,20 +23,20 @@
                     <a href="/">Home</a>
                 </li>
                 -->
-                <li <%= (_nav != null && _nav.equals("statistics")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("statistics")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="통계 조회">
                     <a href="/statistics">통계</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("license")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="라이선스 조회">
                     <a href="/license/manager/request?order=DEFAULT">라이선스</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("software_upload")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("software_upload")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="소프트웨어 업로드">
                     <a href="/software/manager">소프트웨어</a>
                 </li>
-                <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("qna")) ? "class=\"active\"" : "" %> data-toggle="tooltip" data-placement="bottom" title="도움말">
                     <a href="/qna">도움말</a>
                 </li>
                 <!--
-                <li <%= (_nav != null && _nav.equals("notice")) ? "class=\"active\"" : "" %>>
+                <li <%= (_nav != null && _nav.equals("notice")) ? "class=\"active\"" : "" %>
                     <a href="/notice">Notice</a>
                 </li>
                 -->
@@ -53,8 +53,9 @@
                                 <div style="padding: 16px;">
                                     <div style="font-size: 16px;"><%= userVO.getUserName() %>님 (관리자)</div>
                                     <div style="font-size: 14px;"><%= userVO.getEmail() %></div>
-                                    <div style="padding: 8px 0;"><a href="/profile" class="btn btn-sm btn-default btn-block">마이페이지</a></div>
-                                    <div style="font-size: 12px;"><a href="/logout">로그아웃</a></div>
+                                    <div style="padding: 8px 0;"><a href="/profile" class="btn btn-sm btn-default btn-block" 
+                                    data-toggle="tooltip" data-placement="bottom" title="마이페이지">마이페이지</a></div>
+                                    <div style="font-size: 12px;"><a href="/logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃">로그아웃</a></div>
                                 </div>
                             </div>
                             <div style="position: absolute; top: 16px; left: 16px; width: 64px;">

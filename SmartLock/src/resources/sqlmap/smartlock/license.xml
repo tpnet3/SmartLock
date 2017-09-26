@@ -344,7 +344,7 @@
 	
 	<insert id="licenseUserReqDemo" parameterType="java.util.Map">
 		INSERT INTO req_license (user_id, request_date, sw_id, state)
-		VALUES (#{id}, CURDATE(), (SELECT id FROM software WHERE sw_name = #{name}), '1');
+		VALUES (#{id}, CURDATE(), #{sw_id}, '1');
 	</insert>
 	
 	

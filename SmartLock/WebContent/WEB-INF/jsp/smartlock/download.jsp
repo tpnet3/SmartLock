@@ -30,7 +30,8 @@
                 <hr>
                 <h4>Agent v1.0.1</h4>
                 <p><br>프로그램을 정상적으로 실행시키기 위해 다운받으세요.</p>
-                <a class="btn btn-lg btn-default btn-block" href="/html/img/Microsoft_Excel.png" download>지금 다운로드</a>
+                <a class="btn btn-lg btn-default btn-block" href="/html/img/Microsoft_Excel.png" download
+                data-toggle="tooltip" data-placement="bottom" title="에이전트 다운로드">지금 다운로드</a>
             </div>
         </div>
 
