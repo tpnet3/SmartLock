@@ -31,7 +31,7 @@
     <c:forEach var="software" items="${softwareList}" >
         <div class="col-md-3 img-portfolio">
             <div align="center">
-            	<span class="fa-stack fa-5x">
+            	<span class="fa-stack fa-5x" data-toggle="tooltip" data-placement="bottom" title="${software.sw_name}">
             		 <img class="fa fa-circle fa-stack-2x" src= "data:image/jpg;base64, ${software.img}"></img>
             	</span>
            	</div>
