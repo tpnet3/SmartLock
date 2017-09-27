@@ -54,18 +54,6 @@ public class SearchpwWebController {
             return new ModelAndView("/smartlock/search_pw");
         }
     }
-    
-    @RequestMapping(value="/search_pw/authenticate", method=RequestMethod.GET)
-    public ModelAndView athenticate(HttpServletRequest request) {
-        HttpSession httpSession = request.getSession();
-        UserVO userVO = (UserVO) httpSession.getAttribute("user");
-
-        if (userVO != null) {
-            return new ModelAndView("redirect:/");
-        } else {
-            return new ModelAndView("/smartlock/search_pw_select");
-        }
-    }
         
     // 비밀번호 찾기 : 임시 비밀번호 생성 후 이메일로 전송
     @RequestMapping(value = "/search_pw/email/authenticate", method = RequestMethod.POST)
