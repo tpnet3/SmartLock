@@ -108,7 +108,7 @@
 function requestDemo(swName, sw_id) {
 	var state;
 	alert(sw_id);
-    state = confirm(swName + " 에 대한 데모 기간 연장을 요청합시겠습니까?");
+    state = confirm(swName + " 에 대한 데모 기간 연장을 요청하시겠습니까?");
     if(state == true) {
     		$.ajax({
 				url:"/license/user/requestDemo" ,

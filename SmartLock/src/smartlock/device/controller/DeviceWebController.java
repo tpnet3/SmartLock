@@ -38,7 +38,7 @@ public class DeviceWebController {
 		ArrayList<String> macList = new ArrayList<String>();
 		ArrayList<DeviceVO> oldList = new ArrayList<DeviceVO>();
 		ArrayList<DeviceVO> newList = new ArrayList<DeviceVO>();
-	
+		
 		String order;
 		switch (order_param) {
 		case "ASC":
@@ -70,13 +70,8 @@ public class DeviceWebController {
 						newList.add(oldList.get(i));
 					}
 				}
-
-				for(int i = 0; i < newList.size(); i++) { 
-					if(!swNameList.contains(newList.get(i).getSw_name())){
-						swNameList.add(newList.get(i).getSw_name());
-					} 
-				}
 				
+				swNameList = deviceService.getSwList(userVO.getId());
 				ModelAndView modelAndView = new ModelAndView("smartlock/device_user");
 				modelAndView.addObject("deviceList", newList);
 				modelAndView.addObject("swNameList", swNameList);
