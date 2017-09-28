@@ -112,17 +112,15 @@
 			</div>
 		</c:forEach>
 	</div>
-	<br>
-    <div class="row">
-        <hr>
-    </div>
 	<!-- Footer -->
 	<jsp:include page="include/_footer_content.jsp" />
-	
 </div>
-	
+<!-- /.container -->
+
+
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />
+
 <script>
 
 	if('${sw}' == "") {
@@ -252,6 +250,7 @@
     			order: order
     		},
     		success: function (data) {
+    				console.log(data);
     				$("#pageContainer").html(data);
     		},
     		error: function (data, textStatus, errorThrown) {
@@ -261,4 +260,3 @@
     }
 
 </script>
-

@@ -72,7 +72,7 @@ public class DeviceWebController {
 				}
 				
 				swNameList = deviceService.getSwList(userVO.getId());
-				ModelAndView modelAndView = new ModelAndView("smartlock/device_user");
+				ModelAndView modelAndView = new ModelAndView("/smartlock/device_user");
 				modelAndView.addObject("deviceList", newList);
 				modelAndView.addObject("swNameList", swNameList);
 				modelAndView.addObject("sw",sw);
@@ -94,7 +94,7 @@ public class DeviceWebController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("user");
 		
-		ModelAndView modelAndView = new ModelAndView("smartlock/device_detail_user");
+		ModelAndView modelAndView = new ModelAndView("/smartlock/device_detail_user");
 		ArrayList<LicenseUserVO> licenseList = new ArrayList<LicenseUserVO>();
 		try {
 			DeviceVO device = deviceService.getDevice(userVO.getId(), deviceId);
