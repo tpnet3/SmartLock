@@ -59,6 +59,10 @@ public class DeviceService {
 		return (ArrayList)commonDAO.selectList("device.selectLicense", map);
 	}
 
+	public ArrayList<String> getSwList(String userId) throws Exception{
+		return (ArrayList)commonDAO.selectList("device.selectDeviceSwList", userId);
+	}
+	
 	/**
 	 * 디바이스 삭제
 	 * @param id 디바이스 아이디

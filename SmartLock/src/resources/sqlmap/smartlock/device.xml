@@ -29,15 +29,13 @@
 	<select id="selectDeviceList"
 			parameterType="java.util.Map"
 			resultType="smartlock.device.vo.DeviceVO">
-		SELECT d.id
-			,  s.sw_name
-			,  d.nickname
-			,  d.reg_date
-			,  d.type
-			,  d.mac
-		FROM device d, software s
-	   WHERE d.sw_id = s.id
-		 AND user_id = #{id}
+		SELECT id
+			,  nickname
+			,  reg_date
+			,  type
+			,  mac
+		FROM device
+	   WHERE user_id = #{id}
 	   ORDER BY ${order};
 	   
 	</select>
@@ -58,6 +56,16 @@
 	   	 				  FROM software
 	   	 			     WHERE sw_name = #{sw})
 	   ORDER BY ${order};
+	   <!-- sw_name을 sw_id로 바꾸는것을 권장 -->
+	</select>
+	
+	<select id="selectDeviceSwList"
+			parameterType="String"
+			resultType="String">
+		SELECT DISTINCT sw_id 
+		  FROM device
+		 WHERE user_id = #{id}
+		   AND sw_id is not null;
 	</select>
 
 	<select id="selectLicense"
