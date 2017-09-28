@@ -28,7 +28,11 @@
 	<div class="col-lg-12" align="center">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4" align="center">
-			<form action="/search_pw/email/authenticate" id="findForm" method="post">
+			<form class="form-inline" action="/search_pw/email/authenticate" id="findForm" method="post">
+  <div class="form-group">
+    <label for="exampleInputName2">아이</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+  </div>
 					<input type="id" id="id" name="id" class="form-control" placeholder="아이디" style="height:50px"
 							required autofocus> <br>
 					<input type="email" id="email" name="email" class="form-control" placeholder="이메일" style="height:50px"

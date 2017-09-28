@@ -25,7 +25,7 @@
 				   <br>
 						<div><a class="btn btn-lg btn-default btn-block"
 			style="margin-right:10px; display: inline-block;width: 100px; "
-			href="/html/img/Microsoft_Excel.png" download>다운로드</a>
+			href="/html/exe/SmartLockAgent.exe" download>다운로드</a>
 			<a class="btn btn-lg btn-default btn-block"
 			style="margin-left: auto; margin-right: auto; display: inline-block;width: 100px; "
 			href="download.jsp">취소</a></div>

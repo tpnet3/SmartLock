@@ -109,7 +109,6 @@
 		</c:forEach>
 		<hr>
 	</div>
-	<div class="row"></div>
 </div>
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
