@@ -13,7 +13,6 @@
 			<h1 class="page-header" align="center">아직 회원이 아니신가요?</h1>
 		</div>
 	</div>
-
 	<br>
 
 	<div class="col-lg-2"></div>
@@ -39,18 +38,11 @@
 				<h4>소프트웨어 관리자 회원가입</h4>
 			</button>
 	</div>
-	<div class="col-lg-2"></div>
-
-	<div class="col-md-12">
-		<br> <br>
-		<hr>
-	</div>
-
-	<!-- Footer -->
-	<jsp:include page="include/_footer_content.jsp" />
-
 </div>
 <!-- /.container -->
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
+
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />

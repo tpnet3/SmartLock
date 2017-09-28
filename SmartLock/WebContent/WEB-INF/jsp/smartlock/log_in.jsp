@@ -20,9 +20,9 @@
             <p>아직 회원이 아니신가요? <a href="/signup" data-toggle="tooltip" data-placement="bottom" title="회원가입">지금 가입하세요</a></p>
         </div>
     </div>
+
 </div>
 <!-- /.container -->
-
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 

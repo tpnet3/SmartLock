@@ -110,10 +110,7 @@
 		<hr>
 	</div>
 	<div class="row"></div>
-
-	<hr>
 </div>
-
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 

@@ -131,14 +131,9 @@
 				</table>
 			</div>
 		</div>
-
 	</div>
 </div>
 <!-- /.container -->
-
-<!-- /.row -->
-<hr>
-
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 

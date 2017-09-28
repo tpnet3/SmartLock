@@ -95,6 +95,7 @@ public class StatisticsWebController {
         	ArrayList<StatisticsMonthlyVO> dataList 
         		= statisticsMonthlyService.viewStatisticsMonthly(userVO.getCorpId());
         
+        	System.out.println("#############" + dataList);
         	HashMap<Integer, String> swList = new HashMap<Integer, String>();
     		GregorianCalendar cal = new GregorianCalendar();
     		int[] monthCnt = new int[12]; 
@@ -117,6 +118,7 @@ public class StatisticsWebController {
         		
         	}        	
         	
+        	System.out.println("********************" + swList);
         	ModelAndView modelAndView = new ModelAndView("/smartlock/statistics_monthly");
         	modelAndView.addObject("monthCnt", monthCnt);
         	modelAndView.addObject("swList",swList);

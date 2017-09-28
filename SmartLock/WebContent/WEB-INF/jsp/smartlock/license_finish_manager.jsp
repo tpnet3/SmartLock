@@ -105,18 +105,11 @@
 				</table>
 			</div>
 		</div>
-
 	</div>
 </div>
-<!-- /.row -->
-
-<!-- /.row -->
-<hr>
-
+<!-- /.container -->
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
-
-<!-- /.container -->
 
 <script>
     function detail(swName) {

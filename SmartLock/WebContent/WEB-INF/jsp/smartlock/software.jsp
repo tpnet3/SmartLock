@@ -40,11 +40,9 @@
         </div>
     </c:forEach>
 </div>
-<hr>
+<!-- /.container -->
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
-
-<!-- /.container -->
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />

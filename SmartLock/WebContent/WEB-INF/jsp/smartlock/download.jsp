@@ -34,19 +34,12 @@
                 data-toggle="tooltip" data-placement="bottom" title="에이전트 다운로드">지금 다운로드</a>
             </div>
         </div>
-
     </div>
-
-    <div class="col-md-12">
-        <br> <br>
-        <hr>
-    </div>
-
-    <!-- Footer -->
-    <jsp:include page="include/_footer_content.jsp" />
 
 </div>
 <!-- /.container -->
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
 
 <jsp:include page="include/_jslib.jsp" />
 

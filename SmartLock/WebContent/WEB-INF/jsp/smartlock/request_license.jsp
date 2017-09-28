@@ -71,13 +71,11 @@
 
 			<!-- 검색필터-->
 		</div>
-
-	</div>
-<hr>
+</div>
+<!-- /.container -->
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 
-<!-- /.container -->
 
 <script>
 	function request(){

@@ -36,12 +36,11 @@
 		<br>
 		<hr>
 	</div>
-
-	<!-- Footer -->
-	<jsp:include page="include/_footer_content.jsp" />
-
 </div>
 <!-- /.container -->
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
+
 
 <jsp:include page="include/_jslib.jsp">
 	<jsp:param name="_js" value="/html/js/member.js" />

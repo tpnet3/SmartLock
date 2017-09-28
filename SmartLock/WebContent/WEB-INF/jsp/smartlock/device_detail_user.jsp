@@ -99,10 +99,10 @@
 			<hr>
 		</div>
 		<div class="row"></div>
-
-		<hr>
-	</div>
+</div>
 <!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
+
 <script>
 
 function requestDemo(swName, sw_id) {
@@ -131,5 +131,4 @@ function requestDemo(swName, sw_id) {
 }
 
 </script>
-<jsp:include page="include/_footer_content.jsp" />
 <jsp:include page="include/_jslib.jsp" />
