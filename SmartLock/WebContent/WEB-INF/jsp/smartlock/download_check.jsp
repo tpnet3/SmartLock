@@ -23,9 +23,8 @@
 			width="100px" src="/html/img/Microsoft_Excel.png" alt="">
 						<h3>Microsoft Excel</h3>
 				   <br>
-						<div><a class="btn btn-lg btn-default btn-block"
-			style="margin-right:10px; display: inline-block;width: 100px; "
-			href="/html/exe/SmartLockAgent.exe" download>다운로드</a>
+						<div> <a class="btn btn-lg btn-default btn-block" href="/fileDownload?path=/html/exe&fileName=SmartLockAgent.exe"
+                data-toggle="tooltip" data-placement="bottom" title="에이전트 다운로드">지금 다운로드</a>
 			<a class="btn btn-lg btn-default btn-block"
 			style="margin-left: auto; margin-right: auto; display: inline-block;width: 100px; "
 			href="download.jsp">취소</a></div>
