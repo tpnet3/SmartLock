@@ -72,13 +72,11 @@
 			</div>
 		</div>
 	</div>
-
 </div>
-<hr>
+<!-- /.container -->
+
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
-
-<!-- /.container -->
 
 <script>
 	/*

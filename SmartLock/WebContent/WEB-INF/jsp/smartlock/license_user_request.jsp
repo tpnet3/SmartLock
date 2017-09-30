@@ -118,9 +118,7 @@
 	</div>
 </div>
 </div>
-
-<hr>
-
+<br><br>
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 

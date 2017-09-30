@@ -33,13 +33,10 @@
 
 	<div class="col-md-12">
 		<br>
-		<hr>
 	</div>
-
-	<!-- Footer -->
-	<jsp:include page="include/_footer_content.jsp" />
-
 </div>
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
 <!-- /.container -->
 
 <jsp:include page="include/_footer.jsp" />

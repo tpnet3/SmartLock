@@ -31,15 +31,10 @@
                 <p>화면을 아직 안만들었어요.</p>
             </div>
         </div>
-
     </div>
-    <!-- /.row -->
-    <hr>
-
-    <!-- Footer -->
-    <jsp:include page="include/_footer_content.jsp" />
-
 </div>
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />

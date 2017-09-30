@@ -13,7 +13,6 @@
 			<h1 class="page-header" align="center">아직 회원이 아니신가요?</h1>
 		</div>
 	</div>
-
 	<br>
 
 	<div class="col-lg-2"></div>
@@ -23,7 +22,7 @@
 				onclick="location.href='/signup/user' ">
 				<img class="img-responsive"
 					style="margin-left: auto; margin-right: auto; display: block;"
-					width="100px" src="/html/img/user.png" alt="">
+					width="100px" src="/html/img/sign_user.png" alt="">
 				<h2>사용자 회원</h2>
 				<h4>일반 사용자 회원가입</h4>
 			</button>
@@ -34,23 +33,16 @@
 				onclick="location.href='/signup/manager'">
 				<img class="img-responsive"
 					style="margin-left: auto; margin-right: auto; display: block;"
-					width="100px" src="/html/img/building.png" alt="">
+					width="100px" src="/html/img/sign_manager.png" alt="">
 				<h2>관리자 회원</h2>
 				<h4>소프트웨어 관리자 회원가입</h4>
 			</button>
 	</div>
-	<div class="col-lg-2"></div>
-
-	<div class="col-md-12">
-		<br> <br>
-		<hr>
-	</div>
-
-	<!-- Footer -->
-	<jsp:include page="include/_footer_content.jsp" />
-
 </div>
 <!-- /.container -->
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
+
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />

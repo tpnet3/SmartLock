@@ -158,8 +158,6 @@
         </ul>
     </div>
 </div>
-<!-- /.row -->
-<hr>
 
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />

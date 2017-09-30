@@ -18,14 +18,16 @@
     <!-- /.row -->
 
     <!-- Image Header -->
-    
-    <c:forEach var="i" begin="1" end="17" step="1">
+    <div class="col-lg-12" align="center">
+	  <img class="img-responsive" src="/html/img/introduce.png" alt="">
+	</div>
+    <%-- <c:forEach var="i" begin="1" end="17" step="1">
 	    <div class="row" align="center">
 	        <div class="col-lg-12">
 	            <img class="img-responsive" src="/html/img/about-us/aboutUs${i}.png" alt="">
 	        </div>
 	    </div>
-    </c:forEach>
+    </c:forEach> --%>
     
     <!-- /.row -->
 
@@ -169,11 +171,11 @@
 
     <hr>
 
-    <!-- Footer -->
-    <jsp:include page="include/_footer_content.jsp" />
 
 </div>
 <!-- /.container -->
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />

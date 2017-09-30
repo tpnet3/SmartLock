@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="card card-container">
-        <img id="logo-img" class="logo-img" src="/html/img/login.png" />
+        <img id="logo-img" class="logo-img" src="/html/img/login_designer.png" />
         <form class="form-signin" id="login-form">
             <input type="text" id="id" class="form-control" placeholder="아이디" required autofocus data-toggle="tooltip" data-placement="bottom" title="아이디">
             <input type="password" id="pwd" class="form-control" placeholder="비밀번호" required data-toggle="tooltip" data-placement="bottom" title="비밀번호">
@@ -20,9 +20,9 @@
             <p>아직 회원이 아니신가요? <a href="/signup" data-toggle="tooltip" data-placement="bottom" title="회원가입">지금 가입하세요</a></p>
         </div>
     </div>
+
 </div>
 <!-- /.container -->
-
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
 

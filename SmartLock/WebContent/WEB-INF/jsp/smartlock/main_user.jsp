@@ -102,7 +102,6 @@
 
     <br>
 
-    <hr>
 </div>
 <!-- /.container -->
 

@@ -5,8 +5,6 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<fmt:bundle basename="resources/properties/softwareInfo">
-
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="softwareUser" />
 </jsp:include>
@@ -43,12 +41,9 @@
 	</div>
 	</c:forEach>
 </div>
-<hr>
-</fmt:bundle>
+<!-- /.container -->
 <!-- Footer -->
 <jsp:include page="include/_footer_content.jsp" />
-
-<!-- /.container -->
 
 <script>
 	function request_license(sw_id, sw_name){

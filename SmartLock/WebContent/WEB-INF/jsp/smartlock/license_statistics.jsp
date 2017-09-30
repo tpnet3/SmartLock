@@ -64,14 +64,11 @@
 			</div>
 		</div>
 	</div>
-
-	<hr>
-
-	<!-- Footer -->
-	<jsp:include page="include/_footer_content.jsp" />
-
-</div>
 <!-- /.container -->
+</div>
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
+
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />

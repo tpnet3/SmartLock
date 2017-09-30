@@ -21,7 +21,7 @@
 				<div class="col-sm-2">
 					<div class="input-group">
 						<select name="" id="sw_list" style="width: 180px; height: 35px;"
-						data-toggle="tooltip" data-placement="bottom" title="소프트웨어">
+							data-toggle="tooltip" data-placement="bottom" title="소프트웨어">
 							<option>소프트웨어명</option>
 							<c:forEach var="sw" items="${swNameList}">
 								<option>${sw}</option>
@@ -32,7 +32,7 @@
 				<div class="col-sm-2">
 					<div class="input-group">
 						<select name="" id="order" style="width: 180px; height: 35px;"
-						data-toggle="tooltip" data-placement="bottom" title="날짜">
+							data-toggle="tooltip" data-placement="bottom" title="날짜">
 							<option>등록날짜</option>
 							<option>오름차순</option>
 							<option>내림차순</option>
@@ -43,7 +43,8 @@
 					<!-- <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
 						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp; -->
 					<button class="btn btn-primary" type="button" id="searchBtn"
-						data-loading-text="Searching.." onclick="search();" data-toggle="tooltip" data-placement="bottom" title="검색">
+						data-loading-text="Searching.." onclick="search();"
+						data-toggle="tooltip" data-placement="bottom" title="검색">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -70,12 +71,14 @@
 								<c:when test="${device.type eq 1}">
 									<img src="/html/img/smartphone.png"
 										style="margin-left: auto; margin-right: auto; display: auto"
-										width="100px" data-toggle="tooltip" data-placement="bottom" title="모바일">
+										width="100px" data-toggle="tooltip" data-placement="bottom"
+										title="모바일">
 								</c:when>
 								<c:when test="${device.type ne 1}">
 									<img src="/html/img/pc.png"
 										style="margin-left: auto; margin-right: auto; display: auto;"
-										width="100px" data-toggle="tooltip" data-placement="bottom" title="PC">
+										width="100px" data-toggle="tooltip" data-placement="bottom"
+										title="PC">
 								</c:when>
 							</c:choose>
 							<p></p>
@@ -101,23 +104,22 @@
 							</ul>
 							<a href="#" class="btn btn-default" style="width: 180px"
 								onclick="return clickShowLicense('${device.id}');"
-								data-toggle="tooltip" data-placement="bottom" title="라이선스 조회">라이선스 조회</a>
+								data-toggle="tooltip" data-placement="bottom" title="라이선스 조회">라이선스
+								조회</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
-		<hr>
 	</div>
-	<div class="row"></div>
-
-	<hr>
+	<!-- Footer -->
+	<jsp:include page="include/_footer_content.jsp" />
 </div>
+<!-- /.container -->
 
-<!-- Footer -->
-<jsp:include page="include/_footer_content.jsp" />
 
 <jsp:include page="include/_jslib.jsp" />
+<jsp:include page="include/_footer.jsp" />
 
 <script>
 
@@ -248,6 +250,7 @@
     			order: order
     		},
     		success: function (data) {
+    				console.log(data);
     				$("#pageContainer").html(data);
     		},
     		error: function (data, textStatus, errorThrown) {
@@ -257,5 +260,3 @@
     }
 
 </script>
-
-<jsp:include page="include/_footer.jsp" />

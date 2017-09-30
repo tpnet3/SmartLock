@@ -23,9 +23,8 @@
 			width="100px" src="/html/img/Microsoft_Excel.png" alt="">
 						<h3>Microsoft Excel</h3>
 				   <br>
-						<div><a class="btn btn-lg btn-default btn-block"
-			style="margin-right:10px; display: inline-block;width: 100px; "
-			href="/html/img/Microsoft_Excel.png" download>다운로드</a>
+						<div> <a class="btn btn-lg btn-default btn-block" href="/fileDownload?path=/html/exe&fileName=SmartLockAgent.exe"
+                data-toggle="tooltip" data-placement="bottom" title="에이전트 다운로드">지금 다운로드</a>
 			<a class="btn btn-lg btn-default btn-block"
 			style="margin-left: auto; margin-right: auto; display: inline-block;width: 100px; "
 			href="download.jsp">취소</a></div>
@@ -33,14 +32,13 @@
 
 	<div class="col-md-12">
 		<br> <br>
-		<hr>
 	</div>
 
-	<!-- Footer -->
-	<jsp:include page="include/_footer_content.jsp" />
 
 </div>
 <!-- /.container -->
+<!-- Footer -->
+<jsp:include page="include/_footer_content.jsp" />
 
 <jsp:include page="include/_jslib.jsp" />
 <jsp:include page="include/_footer.jsp" />

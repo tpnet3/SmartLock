@@ -13,7 +13,9 @@
                 <span class="icon-bar"></span> <span class="icon-bar"></span> 
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/" data-toggle="tooltip" data-placement="bottom" title="홈">Smart Lock</a>
+            <a href="/" data-toggle="tooltip" data-placement="bottom" title="홈">
+            	<img src="/html/img/logo_design.png" style="width: 160px; height:50px;"/>
+	        </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
