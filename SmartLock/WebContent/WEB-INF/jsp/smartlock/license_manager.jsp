@@ -89,9 +89,6 @@
 							<td width="100px"><h4>
 									<b>상세보기
 								</h4></td>
-							<td width="100px"><h4>
-									<b>처리
-								</h4></td>
 						</tr>
 					</thead>
 					<tbody align="center">
@@ -114,12 +111,17 @@
 										data-toggle="tooltip" data-placement="bottom" title="데모 라이선스 요청">
 												데모 라이선스 요청</span></td>
 									</c:when>
+									<c:when test="${license.state eq 3}">
+										<td data-title="분류"><span class="label label-danger"
+										data-toggle="tooltip" data-placement="bottom" title="요청 거절">
+												라이선스 요청 거절</span></td>
+									</c:when>
 								</c:choose>
 								<td data-title="요청처리"><span class="label"
 									style="background-color: indianred; color: white"
 									onclick="licenseOk('${license.sw_name}', '${license.sw_id }','${license.state }', '${license.id }');"
 									data-toggle="tooltip" data-placement="bottom" title="라이선스 발급">
-									발급하기 </span>
+									발급하기 </span>&nbsp;
 									<span class="label"
 									style="background-color: darkgray; color: black"
 									onclick="licenseReject('${license.sw_name}', '${license.sw_id }', '${license.id }');"
@@ -142,8 +144,27 @@
 
 <script>
 	function licenseReject(swName, sw_id, id) {
-		// TODO: 상세보기
-		var check = alert(swName + " 에 대한 라이선스를 거절하시겠습니까?"+ id);
+		var check = confirm(swName + " 에 대한 라이선스를 거절하시겠습니까?"+ id);
+		if(check == true){
+			$.ajax({
+				url:"/reject",
+				type:"POST",
+				contentType: "application/json",
+			 	data : JSON.stringify({
+				swName : swName ,
+				sw_id : sw_id,
+				id : id
+			}),
+   			success : function (data) {
+   				alert("거절을 완료했습니다.");
+ 	  			},
+ 			error : function(data, textStatus, errorThrown) {
+       			console.log(data);
+   				}
+			});
+		} else {
+			alert("취소합니다.");
+		}
 		
 	}
 	function licenseOk(swName, id, state, req_id) {

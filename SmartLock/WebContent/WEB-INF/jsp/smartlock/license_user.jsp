@@ -256,11 +256,12 @@
 				type : "POST",
 				contentType : "application/json",
 				data : JSON.stringify({
-					sw_id : sw_id
+					sw_id : sw_id,
 					mac : mac
 				}),
 				success : function(data) {
 					alert("디바이스에 라이선스를 등록했습니다.");
+					window.location = "/license/user?name";
 				},
 				error : function(data, textStatus, errorThrown) {
 					console.log(data);

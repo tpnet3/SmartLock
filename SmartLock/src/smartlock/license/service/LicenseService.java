@@ -24,8 +24,15 @@ public class LicenseService {
 	private CommonDAO commonDAO;
 
 	public void licenseMatch(Map<String, String> map) throws Exception {
-		commonDAO.update("license.checkSw", map);
-		commonDAO.selectList("license.makeMatch", map);
+		if(commonDAO.update("license.licenseCheck", map) != 1){
+
+			commonDAO.selectList("license.copyLicense", map);
+			commonDAO.selectList("license.licenseCheck", map);
+		}
+	}
+	
+	public void licenseReject(Map<String, String> map) throws Exception{
+		commonDAO.update("license.reject", map);
 	}
 	
 	public ArrayList<DeviceRequestVO> getDevice(Map<String, String> map) throws Exception {

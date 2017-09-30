@@ -3,6 +3,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="license">
 	
+	<update id="reject" parameterType="java.util.Map">
+		UPDATE req_license
+		SET state = '3'
+		WHERE user_id = #{id}
+ 		AND sw_id = #{sw_id};
+	</update>
 	
 	<update id="licenseCheck" parameterType="java.util.Map">
 		UPDATE device
@@ -10,6 +16,14 @@
 		WHERE sw_id is null
  		AND mac = #{mac};
 	</update>
+	
+	<insert id="copyLicense" parameterType="java.util.Map">
+		INSERT INTO device (user_id, nickname, reg_date, type, mac)
+ 		SELECT  user_id, nickname, reg_date,  type, mac
+ 		FROM device
+ 		WHERE mac = #{mac}
+ 		ORDER BY reg_date LIMIT 1;
+	</insert>
 	
 	<select id="getDevice" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.DeviceRequestVO">

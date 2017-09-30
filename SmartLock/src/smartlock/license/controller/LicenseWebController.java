@@ -267,4 +267,21 @@ public class LicenseWebController {
 			return false;
 		}
 	}
+	
+	@RequestMapping(value = "/reject", method = RequestMethod.POST)
+	public @ResponseBody boolean reject(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		try{
+			if(userVO != null && userVO.getAuthority() == 1){
+				licenseService.licenseReject(map);
+				return true;
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
 }
