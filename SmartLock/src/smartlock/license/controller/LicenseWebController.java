@@ -44,9 +44,11 @@ public class LicenseWebController {
 				ArrayList<Integer> swIdList = new ArrayList<Integer>();
 				ArrayList<String> swNameList = new ArrayList<String>();
 				ArrayList<LicenseUserVO> licenseUserList;
+				ArrayList<DeviceRequestVO> deviceList = new ArrayList<DeviceRequestVO>();
 				Map<String, String> map = new HashMap<String, String>();
 				map.put("order",  order);
 				map.put("id", userVO.getId());
+				deviceList = licenseService.getDevice(map);
 				licenseUserList = licenseService.viewUserLicense(map);
 				for(int i = 0; i < licenseUserList.size(); i++) { 
 					if(!swIdList.contains(licenseUserList.get(i).getSw_id())){
@@ -59,6 +61,7 @@ public class LicenseWebController {
 					licenseUserList = licenseService.viewUserLicenseByName(map);
 				}
 				ModelAndView modelAndView = new ModelAndView("smartlock/license_user");
+				modelAndView.addObject("deviceList", deviceList);
 				modelAndView.addObject("licenseUserList", licenseUserList);
 				modelAndView.addObject("swNameList", swNameList);
 				modelAndView.addObject("swIdList", swIdList);
@@ -238,6 +241,24 @@ public class LicenseWebController {
 		try{
 			if(userVO != null && userVO.getAuthority() == 0){
 				licenseService.licenseUserReqDemo(map);
+				return true;
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
+	@RequestMapping(value = "/match", method = RequestMethod.POST)
+	public @ResponseBody boolean match(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		map.put("id", userVO.getId());
+		try{
+			if(userVO != null && userVO.getAuthority() == 0){
+				licenseService.licenseMatch(map);
 				return true;
 			} else{
 				return false;

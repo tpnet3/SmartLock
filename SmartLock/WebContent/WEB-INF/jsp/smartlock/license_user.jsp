@@ -70,25 +70,25 @@
 					<thead class="cf" align="center">
 						<tr>
 							<td width="10px"><h4>
-									<b>No.
+									<b>No. 
 								</h4></td>
 							<td width="200px"><h4>
-									<b>소프트웨어
+									<b>소프트웨어 
 								</h4></td>
 							<td width="150px"><h4>
-									<b>회사명
+									<b>회사명 
 								</h4></td>
 							<td width="150px"><h4>
-									<b>시작일
+									<b>시작일 
 								</h4></td>
 							<td width="150px"><h4>
-									<b>만료일
+									<b>만료일 
 								</h4></td>
 							<td width="80px"><h4>
-									<b>상태
+									<b>상태 
 								</h4></td>
 							<td width="120px"><h4>
-									<b>연결된 단말기 수
+									<b>연결된 단말기 수 
 								</h4></td>
 						</tr>
 					</thead>
@@ -131,7 +131,7 @@
 																, '<fmt:formatDate
 											value="${license.start_date}" pattern="yyyy-MM-dd" />'
 																, '<fmt:formatDate
-											value="${license.end_date}" pattern="yyyy-MM-dd" />');">
+											value="${license.end_date}" pattern="yyyy-MM-dd" />', '${license.sw_id }');">
 												${license.device_count}</span></td>
 									</c:otherwise>
 								</c:choose>
@@ -163,55 +163,87 @@
 				<h4 class="modal-title" id="myModalLabel">단말기 추가등록</h4>
 			</div>
 			<div class="modal-body">
-				<div class="row">
-					<div class="form-group">
-						<label class="col-md-2 control-label col-xs-4">소프트웨어</label>
-						<div class="col-md-4  col-xs-4">
-							<input id="m_swName" type="text"
-								class="form-control input-md"
-								readonly style="background: #ffffff">
+				<h2 class="modal-title" id="myModalLabel">소프트웨어 정보</h2>
+				<br>
+				<div class="container">
+					<input id="m_swId" style="display:none">
+					<div class="row">
+						<div class="form-group">
+							<label class="col-md-2 control-label col-xs-4">소프트웨어</label>
+							<div class="col-md-4  col-xs-4">
+								<input id="m_swName" type="text" class="form-control input-md" value="m_swId"
+									readonly style="background: #ffffff">
+							</div>
 						</div>
 					</div>
-				</div>
-				<p></p>
-				<div class="row">
-					<div class="form-group">
-						<label class="col-md-2 control-label col-xs-4">회사명</label>
-						<div class="col-md-4  col-xs-4">
-							<input id="m_corpName" type="text" 
-								class="form-control input-md"
-								readonly style="background: #ffffff">
+					<p></p>
+					<div class="row">
+						<div class="form-group">
+							<label class="col-md-2 control-label col-xs-4">회사명</label>
+							<div class="col-md-4  col-xs-4">
+								<input id="m_corpName" type="text" class="form-control input-md"
+									readonly style="background: #ffffff">
+							</div>
 						</div>
 					</div>
-				</div>
-				<p></p>
-				<div class="row">
-					<div class="form-group">
-						<label class="col-md-2 control-label col-xs-4">시작일</label>
-						<div class="col-md-4  col-xs-4">
-							<input id="m_startDate" type="text" 
-								class="form-control input-md"
-								readonly style="background: #ffffff">
+					<p></p>
+					<div class="row">
+						<div class="form-group">
+							<label class="col-md-2 control-label col-xs-4">시작일</label>
+							<div class="col-md-4  col-xs-4">
+								<input id="m_startDate" type="text"
+									class="form-control input-md" readonly
+									style="background: #ffffff">
+							</div>
 						</div>
 					</div>
+					<p></p>
+					<div class="row">
+						<div class="form-group">
+							<label class="col-md-2 control-label col-xs-4">만료일</label>
+							<div class="col-md-4  col-xs-4">
+								<input id="m_endDate" type="text" class="form-control input-md"
+									readonly style="background: #ffffff">
+							</div>
+						</div>
+					</div>
+
 				</div>
-				<p></p>
-				<div class="row">
-					<div class="form-group">
-						<label class="col-md-2 control-label col-xs-4">만료일</label>
-						<div class="col-md-4  col-xs-4">
-							<input id="m_endDate" type="text"
-								class="form-control input-md"
-								readonly style="background: #ffffff">
+				<hr>
+				<h2 class="modal-title" id="myModalLabel">디바이스 선택</h2>
+				<br>
+				<div class="container">
+					<div class="row">
+						<div class="form-group">
+							<label class="col-md-2 control-label col-xs-4">디바이스</label>
+							<div class="col-md-4  col-xs-4">
+								<div class="input-group">
+									<select name="" id="device" style="width: 360px; height: 35px;"
+										data-toggle="tooltip" data-placement="bottom" title="단말기">
+										<c:forEach var="device" items="${deviceList}">
+											<option value="${device.mac }" >
+												<c:choose>
+													<c:when test="${device.type eq 1}">
+														(모바일)
+													</c:when>
+													<c:when test="${device.type ne 1}">
+														(PC)
+													</c:when>
+												</c:choose> ${device.nickname } (mac : ${device.mac})
+											</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				<hr>
-				
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary">등록</button>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary"
+					onclick="match_device($('#m_swId').val())">등록</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -219,11 +251,30 @@
 
 
 <script>
-	function openModal(swName, corpName, startDate, endDate) {
+	function match_device(sw_id){
+		 var mac = $("#device option:selected").val();
+		 $.ajax({
+				url : "/match",
+				type : "POST",
+				contentType : "application/json",
+				data : JSON.stringify({
+					sw_id : sw_id
+					mac : mac
+				}),
+				success : function(data) {
+					alert("디바이스에 라이선스를 등록했습니다.");
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log(data);
+				}
+			});
+	}
+	function openModal(swName, corpName, startDate, endDate, sw_id) {
 		$('#m_swName').val(swName);
 		$('#m_corpName').val(corpName);
 		$('#m_startDate').val(startDate);
 		$('#m_endDate').val(endDate);
+		$('#m_swId').val(sw_id);
 		
 		$('#myModal').modal();
 	}

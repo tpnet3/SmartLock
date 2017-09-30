@@ -115,15 +115,16 @@
 												데모 라이선스 요청</span></td>
 									</c:when>
 								</c:choose>
-								<td data-title="요청거절"><span class="label"
-									style="background-color: darkgray; color: black"
-									onclick="licenseReject'${license.sw_name}', '${license.sw_id }');"
-									data-toggle="tooltip" data-placement="bottom" title="라이선스 거절"> 거절하기 </span></td>
-								<td data-title="요청승인"><span class="label"
+								<td data-title="요청처리"><span class="label"
 									style="background-color: indianred; color: white"
 									onclick="licenseOk('${license.sw_name}', '${license.sw_id }','${license.state }', '${license.id }');"
 									data-toggle="tooltip" data-placement="bottom" title="라이선스 발급">
-										발급하기 </span></td>
+									발급하기 </span>
+									<span class="label"
+									style="background-color: darkgray; color: black"
+									onclick="licenseReject('${license.sw_name}', '${license.sw_id }', '${license.id }');"
+									data-toggle="tooltip" data-placement="bottom" title="라이선스 거절"> 
+									거절하기 </span></td>
 							</tr>
 						</c:forEach>
 
@@ -145,9 +146,10 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
-	function licenseReject(swName, swId) {
+	function licenseReject(swName, sw_id, id) {
 		// TODO: 상세보기
-		alert(swName + " 에 대한 라이선스를 거절하시겠습니까?");
+		var check = alert(swName + " 에 대한 라이선스를 거절하시겠습니까?"+ id);
+		
 	}
 	function licenseOk(swName, id, state, req_id) {
 		var check = confirm(swName + " 에 대한 라이선스를 발급하시겠습니까?");

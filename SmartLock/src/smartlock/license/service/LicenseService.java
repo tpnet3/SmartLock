@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import smartlock.license.vo.DeviceRequestVO;
 import smartlock.license.vo.LicenseManagerReqVO;
 import smartlock.license.vo.LicenseManagerVO;
 import smartlock.license.vo.LicenseUserReqVO;
@@ -22,6 +23,16 @@ public class LicenseService {
 	@Resource(name = "commonDAO")
 	private CommonDAO commonDAO;
 
+	public void licenseMatch(Map<String, String> map) throws Exception {
+		commonDAO.update("license.checkSw", map);
+		commonDAO.selectList("license.makeMatch", map);
+	}
+	
+	public ArrayList<DeviceRequestVO> getDevice(Map<String, String> map) throws Exception {
+		return (ArrayList) commonDAO.selectList("license.getDevice", map.get("id"));
+	}
+	
+	
 	/**
 	 * 사용자 발급현황 전체 조회 
 	 * @param String id

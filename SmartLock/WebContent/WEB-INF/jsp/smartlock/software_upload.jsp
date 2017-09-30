@@ -27,7 +27,7 @@
 						<form id="softwareForm" align="left" action="/software/upload" method="POST" enctype="multipart/form-data">
 							<label>회사 명</label>
 							<div class="form-group">
-								<input id="corp_name" value="${corp_name}" style="width: 335px;"
+								<input id="corp_name" value="${corp_name}" style="width: 335px; background: #ffffff"
 									class="form-control input-md" readonly>
 							</div>
 							<label>소프트웨어 명</label>
