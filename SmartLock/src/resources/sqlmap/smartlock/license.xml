@@ -38,7 +38,9 @@
 			, type
 			, nickname
 		 FROM device
-		WHERE user_id=#{id};
+		WHERE user_id = #{id}
+		  AND not sw_id = #{sw_id}
+		   OR sw_id is null;
 	</select>
 	
 	<!-- 개인 발급완료 라이센스 전체 조회 -->

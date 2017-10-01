@@ -50,16 +50,14 @@
 						onclick="search();">
 						<i class="fa fa-search"></i>
 					</button>
-
 				</div>
 			</div>
-
 		</div>
 		<br>
 		<!-- 검색필터-->
 	</div>
 
-	<div class="container">
+	<div class="container col-lg-12">
 		<div class="row">
 			<div class="col-md-12">
 				<h2 class="text-center"></h2>
@@ -161,8 +159,8 @@
 				<h4 class="modal-title" id="myModalLabel">단말기 추가등록</h4>
 			</div>
 			<div class="modal-body">
-				<h2 class="modal-title" id="myModalLabel">소프트웨어 정보</h2>
-				<br>
+				<h2 class="modal-title" id="myModalLabel">소프트웨어 정보</h2> 선택한 소프트웨어의 정보입니다
+				<hr>
 				<div class="container">
 					<input id="m_swId" style="display:none">
 					<div class="row">
@@ -208,12 +206,12 @@
 
 				</div>
 				<hr>
-				<h2 class="modal-title" id="myModalLabel">디바이스 선택</h2>
-				<br>
+				<h2 class="modal-title" id="myModalLabel">단말기 선택</h2> 연결 가능한 단말기 목록이 표시됩니다
+				<hr>
 				<div class="container">
 					<div class="row">
 						<div class="form-group">
-							<label class="col-md-2 control-label col-xs-4">디바이스</label>
+							<label class="col-md-2 control-label col-xs-4">단말기</label>
 							<div class="col-md-4  col-xs-4">
 								<div class="input-group">
 									<select name="" id="device" style="width: 360px; height: 35px;"
@@ -236,7 +234,7 @@
 						</div>
 					</div>
 				</div>
-				<hr>
+				<br>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary"
@@ -274,6 +272,21 @@
 		$('#m_startDate').val(startDate);
 		$('#m_endDate').val(endDate);
 		$('#m_swId').val(sw_id);
+		
+		$.ajax({
+			url : "/getModalDevice",
+			type : "POST",
+			contentType : "application/json",
+			data : JSON.stringify({
+				sw_id : sw_id
+			}),
+			success : function(data) {
+				console.log(data);
+			},
+			error : function(data, textStatus, errorThrown) {
+				console.log(data);
+			}
+		});
 		
 		$('#myModal').modal();
 	}
