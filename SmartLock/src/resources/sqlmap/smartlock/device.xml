@@ -62,10 +62,11 @@
 	<select id="selectDeviceSwList"
 			parameterType="String"
 			resultType="String">
-		SELECT DISTINCT sw_id 
-		  FROM device
-		 WHERE user_id = #{id}
-		   AND sw_id is not null;
+		SELECT DISTINCT s.sw_name
+		  FROM device d, software s
+		 WHERE d.user_id = #{id}
+		   AND d.sw_id is not null
+		   AND s.id = d.sw_id;
 	</select>
 
 	<select id="selectLicense"
