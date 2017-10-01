@@ -25,12 +25,19 @@
  		ORDER BY reg_date LIMIT 1;
 	</insert>
 	
+	<update id="updateCount" parameterType="java.util.Map">
+		UPDATE license
+ 		   SET device_count = device_count-1
+ 		 WHERE user_id = #{id}
+ 		   AND sw_id = #{sw_id};
+	</update>
+	
 	<select id="getDevice" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.DeviceRequestVO">
-		SELECT nickname
+		SELECT distinct mac
 			, type
-			, mac
-		FROM device
+			, nickname
+		 FROM device
 		WHERE user_id=#{id};
 	</select>
 	

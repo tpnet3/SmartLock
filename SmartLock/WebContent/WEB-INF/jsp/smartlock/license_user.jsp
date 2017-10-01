@@ -120,7 +120,7 @@
 								<c:choose>
 									<c:when test="${license.device_count eq 0}">
 										<td data-title="연결된 단말기 수"><span
-											class="label label-danger"></span> ${license.device_count}</td>
+											class="label label-warning" >${license.device_count}</span></td>
 									</c:when>
 									<c:otherwise>
 										<td data-title="연결된 단말기 수"><span
@@ -219,7 +219,7 @@
 									<select name="" id="device" style="width: 360px; height: 35px;"
 										data-toggle="tooltip" data-placement="bottom" title="단말기">
 										<c:forEach var="device" items="${deviceList}">
-											<option value="${device.mac }" >
+											<option value="${device.mac}" >
 												<c:choose>
 													<c:when test="${device.type eq 1}">
 														(모바일)
