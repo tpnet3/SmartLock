@@ -25,10 +25,10 @@ public class LicenseService {
 
 	public void licenseMatch(Map<String, String> map) throws Exception {
 		if(commonDAO.update("license.licenseCheck", map) != 1){
-
 			commonDAO.selectList("license.copyLicense", map);
 			commonDAO.selectList("license.licenseCheck", map);
 		}
+		commonDAO.update("license.updateCount", map);
 	}
 	
 	public void licenseReject(Map<String, String> map) throws Exception{
@@ -36,7 +36,7 @@ public class LicenseService {
 	}
 	
 	public ArrayList<DeviceRequestVO> getDevice(Map<String, String> map) throws Exception {
-		return (ArrayList) commonDAO.selectList("license.getDevice", map.get("id"));
+		return (ArrayList) commonDAO.selectList("license.getDevice", map);
 	}
 	
 	

@@ -3,12 +3,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
+<!-- Page Content -->
+<div id="pageContainer" class="container">
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="device" />
 </jsp:include>
-
-<!-- Page Content -->
-<div id="pageContainer" class="container">
 	<!-- Service Panels -->
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
@@ -225,6 +224,10 @@
     	 });
 	}
     
+    
+   /*
+   	* 검색버튼 클릭 - 소프트웨어 별 단말기 조회, 닉네임으로 오름차순 내림차순 정렬
+    */
     function search() {
     	var swIndex = $("#sw_list option").index($("#sw_list option:selected"));
     	var sw = $("#sw_list option:selected").val();

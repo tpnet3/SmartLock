@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import smartlock.member.vo.*;
 import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
+import smartlock.license.vo.DeviceRequestVO;
 import smartlock.license.vo.LicenseManagerReqVO;
 import smartlock.license.vo.LicenseManagerVO;
 import smartlock.license.vo.LicenseUserReqVO;
@@ -29,16 +30,36 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LicenseApiController {
 	
-	/*
+	
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
-*/
-	/**
-	 * 아이디로 라이센스 정보
-	 * @param userVO {@link UserVO#id}
-	 * @return {@link ArrayList<LicenseUserVO>}
-	 * @throws Exception DAO Exception
-	 */
+	
+	@RequestMapping(value="/getModalDevice", method = RequestMethod.POST) 
+	public @ResponseBody ArrayList<DeviceRequestVO> getModalDevice(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) {
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		LicenseService licenseService = new LicenseService();
+		ArrayList<DeviceRequestVO> deviceList = new ArrayList<DeviceRequestVO>();
+		map.put("id", userVO.getId());
+		try {
+			deviceList = licenseService.getDevice(map);
+			System.out.println("오마갓"+deviceList.get(0));
+			return deviceList;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	
+//	/**
+//	 * 아이디로 라이센스 정보
+//	 * @param userVO {@link UserVO#id}
+//	 * @return {@link ArrayList<LicenseUserVO>}
+//	 * @throws Exception DAO Exception
+//	 */
 //	@RequestMapping(
 //			value = "/license/by_id",
 //			method = RequestMethod.POST
