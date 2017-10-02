@@ -4,7 +4,7 @@
 	<jsp:param name="_title" value="" />
 	<jsp:param name="_nav" value="" />
 </jsp:include>
-
+<meta http-equiv="refresh" content="3; url = /" />
 <!-- Navigation -->
 <!--
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -42,8 +42,7 @@
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
 		<div class="col-lg-12">
-		<br><br>
-		<hr><br>
+		<br><br><br>
 			<img class="img-responsive" style="margin-left: auto; margin-right: auto; display: block;"
 			 width="100px"  src="/html/img/success.png" alt="">
 			 <br>
@@ -67,7 +66,6 @@
 
 	<div class="col-md-12">
 		<br>
-		<hr>
 	</div>
 
 </div>
