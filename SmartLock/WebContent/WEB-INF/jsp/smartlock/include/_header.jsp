@@ -10,7 +10,7 @@
 <html lang="ko">
 
 <head>
-
+	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,8 @@
     <% } else { %>
         <title>SmartLock</title>
     <% } %>
-
+	<!-- customized alert -->
+	
     <!-- Bootstrap Core CSS -->
     <link href="/html/css/bootstrap.min.css" rel="stylesheet">
 
@@ -70,3 +71,6 @@
 <% } else { %>
     <jsp:include page="_mainmenu_guest.jsp" />
 <% } %>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
