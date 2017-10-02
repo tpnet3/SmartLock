@@ -59,7 +59,7 @@
 		WHERE l.user_id = #{value}
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-        AND end_date > CURDATE()
+        
 		ORDER BY s.sw_name ASC;
 	</select>
 	
@@ -79,7 +79,6 @@
 		WHERE l.user_id = #{id}
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-        AND end_date > CURDATE()
 		ORDER BY l.end_date ${order};
 	</select>
 	
@@ -100,7 +99,6 @@
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id = #{sw_id}
-        AND end_date > CURDATE()
 		ORDER BY s.sw_name ASC;
 	</select>
 	
@@ -122,7 +120,6 @@
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id = #{sw_id}
-        AND end_date > CURDATE()
 		ORDER BY l.end_date ${order};
 	</select>
 	
@@ -140,7 +137,6 @@
 		WHERE l.user_id = #{value}
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-        AND end_date > CURDATE()
 		ORDER BY s.sw_name ASC;
 	</select>
 	
@@ -158,7 +154,6 @@
 		WHERE l.user_id = #{id}
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
-        AND end_date > CURDATE() - 30
 		ORDER BY l.request_date ${order};
 	</select>
 	
@@ -177,7 +172,6 @@
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id =  #{sw_id}
-        AND end_date > CURDATE()-30
 		ORDER BY s.sw_name ASC;
 	</select>
 	
@@ -196,7 +190,6 @@
 		AND l.sw_id = s.id
 		AND s.corp_id = c.id
 		AND l.sw_id =  #{sw_id}
-        AND end_date > CURDATE()-30
 		ORDER BY l.request_date ${order};
 	</select>
 	
@@ -220,7 +213,6 @@
 		AND s.corp_id = c.id
 		AND l.sw_id = s.id
 		AND u.id = l.user_id
-        AND end_date > CURDATE()-30
 		ORDER BY s.sw_name ASC;
 	</select>
 	

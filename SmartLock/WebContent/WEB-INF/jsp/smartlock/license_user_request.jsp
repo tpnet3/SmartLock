@@ -18,7 +18,7 @@
 		<div class="col-lg-12">
 			<h2 class="page-header">라이선스 요청현황</h2>
 			<ol class="breadcrumb">
-				<li><a href="/license/user?name" data-toggle="tooltip" data-placement="bottom" title="라이선스 발급현황">라이선스 발급현황</a>
+				<li><a href="/license/user?order=DEFAULT" data-toggle="tooltip" data-placement="bottom" title="라이선스 발급현황">라이선스 발급현황</a>
 				</li>
 				<li class="active">라이선스 요청현황</li>
 			</ol>

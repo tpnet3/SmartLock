@@ -30,7 +30,6 @@
 	</div>
 	<div class="col-md-5">
 	</div>
-	<br>
 
 	<div class="col-md-12">
 		<br>
