@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.amazonaws.util.json.JSONArray;
-
-import smartlock.common.vo.DataResVO;
 import smartlock.license.service.LicenseService;
 import smartlock.license.vo.*;
 import smartlock.member.vo.UserVO;
@@ -32,6 +28,37 @@ public class LicenseWebController {
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
 
+//	for(int i = 0; i < licenseUserList.size(); i++) { 
+//		if(!swIdList.contains(licenseUserList.get(i).getSw_id())){
+//			swIdList.add(licenseUserList.get(i).getSw_id());
+//			swNameList.add(licenseUserList.get(i).getSw_name());
+//			} 
+//	}
+	@RequestMapping(value="/getModalDevice", method = RequestMethod.POST) 
+	public @ResponseBody ArrayList<DeviceRequestVO> getModalDevice(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) {
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		//System.out.println("!!!!!!!!!!"+ map.get("sw_id"));
+		ArrayList<DeviceRequestVO> deviceList = new ArrayList<DeviceRequestVO>();
+		//System.out.println("@@@@@@@@@@"+userVO.getId());
+		try {
+			if(userVO != null && userVO.getAuthority() == 0){
+				map.put("id", userVO.getId());
+				deviceList = licenseService.getDevice(map);
+				for(int i = 0; i < deviceList.size(); i++){
+					System.out.println("오마갓"+deviceList.get(i));
+				}
+				return deviceList;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@RequestMapping(value = "/license/user", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView viewUserLicense(
 			HttpServletRequest request,

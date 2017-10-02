@@ -36,7 +36,9 @@ public class LicenseService {
 	}
 	
 	public ArrayList<DeviceRequestVO> getDevice(Map<String, String> map) throws Exception {
+		System.out.println(map.get("id") + "!!!!!!!!"+ map.get("sw_id"));
 		return (ArrayList) commonDAO.selectList("license.getDevice", map);
+		
 	}
 	
 	

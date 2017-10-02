@@ -34,23 +34,25 @@ public class LicenseApiController {
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
 	
-	@RequestMapping(value="/getModalDevice", method = RequestMethod.POST) 
-	public @ResponseBody ArrayList<DeviceRequestVO> getModalDevice(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) {
-		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		LicenseService licenseService = new LicenseService();
-		ArrayList<DeviceRequestVO> deviceList = new ArrayList<DeviceRequestVO>();
-		map.put("id", userVO.getId());
-		try {
-			deviceList = licenseService.getDevice(map);
-			System.out.println("오마갓"+deviceList.get(0));
-			return deviceList;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+//	@RequestMapping(value="/getModalDevice", method = RequestMethod.POST) 
+//	public @ResponseBody ArrayList<DeviceRequestVO> getModalDevice(
+//			@RequestBody Map<String, String> map,
+//			HttpServletRequest request) {
+//		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+//		//System.out.println("!!!!!!!!!!"+ map.get("sw_id"));
+//		LicenseService licenseService = new LicenseService();
+//		ArrayList<DeviceRequestVO> deviceList = new ArrayList<DeviceRequestVO>();
+//		//System.out.println("@@@@@@@@@@"+userVO.getId());
+//		map.put("id", userVO.getId());
+//		try {
+//			deviceList = licenseService.getDevice(map);
+//			System.out.println("오마갓"+deviceList.get(0));
+//			return deviceList;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 	
 	
 	

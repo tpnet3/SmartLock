@@ -225,7 +225,8 @@
 													<c:when test="${device.type ne 1}">
 														(PC)
 													</c:when>
-												</c:choose> ${device.nickname } (mac : ${device.mac})
+												</c:choose> 
+												${device.nickname } (mac : ${device.mac})
 											</option>
 										</c:forEach>
 									</select>
@@ -266,6 +267,7 @@
 				}
 			});
 	}
+	
 	function openModal(swName, corpName, startDate, endDate, sw_id) {
 		$('#m_swName').val(swName);
 		$('#m_corpName').val(corpName);
