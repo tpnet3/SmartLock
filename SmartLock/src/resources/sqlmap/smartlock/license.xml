@@ -32,7 +32,7 @@
  		   AND sw_id = #{sw_id};
 	</update>
 	
-	<select id="getDevice" parameterType="java.util.Map"
+	<select id="selectDeviceListBySw" parameterType="java.util.Map"
 		resultType="smartlock.license.vo.DeviceRequestVO">
 		SELECT distinct mac
 			, type

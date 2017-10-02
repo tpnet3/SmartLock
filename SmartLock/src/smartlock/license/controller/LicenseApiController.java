@@ -1,31 +1,20 @@
 package smartlock.license.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import smartlock.member.vo.*;
-import smartlock.common.vo.DataResVO;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import smartlock.license.service.LicenseService;
 import smartlock.license.vo.DeviceRequestVO;
-import smartlock.license.vo.LicenseManagerReqVO;
-import smartlock.license.vo.LicenseManagerVO;
-import smartlock.license.vo.LicenseUserReqVO;
-import smartlock.license.vo.LicenseUserVO;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import smartlock.member.vo.UserVO;
 
 @Controller
 public class LicenseApiController {
@@ -34,27 +23,115 @@ public class LicenseApiController {
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
 	
-//	@RequestMapping(value="/getModalDevice", method = RequestMethod.POST) 
-//	public @ResponseBody ArrayList<DeviceRequestVO> getModalDevice(
-//			@RequestBody Map<String, String> map,
-//			HttpServletRequest request) {
-//		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-//		//System.out.println("!!!!!!!!!!"+ map.get("sw_id"));
-//		LicenseService licenseService = new LicenseService();
-//		ArrayList<DeviceRequestVO> deviceList = new ArrayList<DeviceRequestVO>();
-//		//System.out.println("@@@@@@@@@@"+userVO.getId());
-//		map.put("id", userVO.getId());
-//		try {
-//			deviceList = licenseService.getDevice(map);
-//			System.out.println("오마갓"+deviceList.get(0));
-//			return deviceList;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
+	@RequestMapping(value="/getModalDevice", method = RequestMethod.POST) 
+	public @ResponseBody ArrayList<DeviceRequestVO> getModalDevice(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) {
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		ArrayList<DeviceRequestVO> deviceList = new ArrayList<DeviceRequestVO>();
+		try {
+			if(userVO != null && userVO.getAuthority() == 0){
+				map.put("id", userVO.getId());
+				deviceList = licenseService.getDevice(map);
+				for(int i=0; i<deviceList.size(); i++) {
+					System.out.println(i+" : "+deviceList.get(i));
+				}
+				return deviceList;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
+	@RequestMapping(value = "/permit/full", method = RequestMethod.POST)
+	public @ResponseBody boolean permit(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		try{
+			if(userVO != null && userVO.getAuthority() == 1){
+				licenseService.permitFull(map);
+				return true;
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
 	
+	@RequestMapping(value = "/permit/demo", method = RequestMethod.POST)
+	public @ResponseBody boolean permitDemo(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		try{
+			if(userVO != null && userVO.getAuthority() == 1){
+				licenseService.permitDemo(map);
+				return true;
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
+	@RequestMapping(value = "/license/user/requestDemo", method = RequestMethod.POST)
+	public @ResponseBody boolean licenseUserReqDemo(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		map.put("id", userVO.getId());
+		try{
+			if(userVO != null && userVO.getAuthority() == 0){
+				licenseService.licenseUserReqDemo(map);
+				return true;
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
+	@RequestMapping(value = "/match", method = RequestMethod.POST)
+	public @ResponseBody boolean match(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		map.put("id", userVO.getId());
+		try{
+			if(userVO != null && userVO.getAuthority() == 0){
+				licenseService.licenseMatch(map);
+				return true;
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
+	@RequestMapping(value = "/reject", method = RequestMethod.POST)
+	public @ResponseBody boolean reject(
+			@RequestBody Map<String, String> map,
+			HttpServletRequest request) throws Exception{
+		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+		try{
+			if(userVO != null && userVO.getAuthority() == 1){
+				licenseService.licenseReject(map);
+				return true;
+			} else{
+				return false;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
 	
 //	/**
 //	 * 아이디로 라이센스 정보

@@ -118,7 +118,7 @@
 								<c:choose>
 									<c:when test="${license.device_count eq 0}">
 										<td data-title="연결된 단말기 수"><span
-											class="label label-warning" >${license.device_count}</span></td>
+											class="label label-warning">${license.device_count}</span></td>
 									</c:when>
 									<c:otherwise>
 										<td data-title="연결된 단말기 수"><span
@@ -159,16 +159,17 @@
 				<h4 class="modal-title" id="myModalLabel">단말기 추가등록</h4>
 			</div>
 			<div class="modal-body">
-				<h2 class="modal-title" id="myModalLabel">소프트웨어 정보</h2> 선택한 소프트웨어의 정보입니다
+				<h2 class="modal-title" id="myModalLabel">소프트웨어 정보</h2>
+				선택한 소프트웨어의 정보입니다
 				<hr>
 				<div class="container">
-					<input id="m_swId" style="display:none">
+					<input id="m_swId" style="display: none">
 					<div class="row">
 						<div class="form-group">
 							<label class="col-md-2 control-label col-xs-4">소프트웨어</label>
 							<div class="col-md-4  col-xs-4">
-								<input id="m_swName" type="text" class="form-control input-md" value="m_swId"
-									readonly style="background: #ffffff">
+								<input id="m_swName" type="text" class="form-control input-md"
+									value="m_swId" readonly style="background: #ffffff">
 							</div>
 						</div>
 					</div>
@@ -206,7 +207,8 @@
 
 				</div>
 				<hr>
-				<h2 class="modal-title" id="myModalLabel">단말기 선택</h2> 연결 가능한 단말기 목록이 표시됩니다
+				<h2 class="modal-title" id="myModalLabel">단말기 선택</h2>
+				연결 가능한 단말기 목록이 표시됩니다
 				<hr>
 				<div class="container">
 					<div class="row">
@@ -214,9 +216,10 @@
 							<label class="col-md-2 control-label col-xs-4">단말기</label>
 							<div class="col-md-4  col-xs-4">
 								<div class="input-group">
-									<select name="" id="device" style="width: 360px; height: 35px;"
-										data-toggle="tooltip" data-placement="bottom" title="단말기">
-										<c:forEach var="device" items="${deviceList}">
+									<select id="modalDeviceSelect"
+										style="width: 360px; height: 35px;" data-toggle="tooltip"
+										data-placement="bottom" title="단말기">
+										<%-- <c:forEach var="device" items="${deviceList}">
 											<option value="${device.mac}" >
 												<c:choose>
 													<c:when test="${device.type eq 1}">
@@ -228,7 +231,7 @@
 												</c:choose> 
 												${device.nickname } (mac : ${device.mac})
 											</option>
-										</c:forEach>
+										</c:forEach> --%>
 									</select>
 								</div>
 							</div>
@@ -239,7 +242,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary"
-					onclick="match_device($('#m_swId').val())">등록</button>
+						onclick="match_device($('#m_swId').val())">등록</button>
 				</div>
 			</div>
 		</div>
@@ -249,7 +252,7 @@
 
 <script>
 	function match_device(sw_id){
-		 var mac = $("#device option:selected").val();
+		 var mac = $("#modalDeviceSelect option:selected").val();
 		 $.ajax({
 				url : "/match",
 				type : "POST",
@@ -283,7 +286,15 @@
 				sw_id : sw_id
 			}),
 			success : function(data) {
-				console.log(data);
+				$("#modalDeviceSelect").find("option").remove();
+				for(var i=0; i<data.length; i++) {
+					if(data[i]['type'] == 0) {
+						$('#modalDeviceSelect').append("<option value="+data[i]['mac']+">"+"(PC) "+data[i]['nickname']+" (mac : "+data[i]['mac']+")</option>");
+					} else {
+						$('#modalDeviceSelect').append("<option value="+data[i]['mac']+">"+"(모바일) "+data[i]['nickname']+" (mac : "+data[i]['mac']+")</option>");
+					}
+				}
+			
 			},
 			error : function(data, textStatus, errorThrown) {
 				console.log(data);

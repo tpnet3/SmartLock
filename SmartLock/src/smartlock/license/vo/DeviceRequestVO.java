@@ -4,6 +4,7 @@ public class DeviceRequestVO {
 	private String mac;
 	private int type;
 	private String nickname;
+	
 	public String getMac() {
 		return mac;
 	}

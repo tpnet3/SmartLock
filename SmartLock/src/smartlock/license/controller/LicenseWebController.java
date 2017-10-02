@@ -27,37 +27,6 @@ public class LicenseWebController {
 	
 	@Resource(name="licenseService")
 	private LicenseService licenseService;
-
-//	for(int i = 0; i < licenseUserList.size(); i++) { 
-//		if(!swIdList.contains(licenseUserList.get(i).getSw_id())){
-//			swIdList.add(licenseUserList.get(i).getSw_id());
-//			swNameList.add(licenseUserList.get(i).getSw_name());
-//			} 
-//	}
-	@RequestMapping(value="/getModalDevice", method = RequestMethod.POST) 
-	public @ResponseBody ArrayList<DeviceRequestVO> getModalDevice(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) {
-		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		//System.out.println("!!!!!!!!!!"+ map.get("sw_id"));
-		ArrayList<DeviceRequestVO> deviceList = new ArrayList<DeviceRequestVO>();
-		//System.out.println("@@@@@@@@@@"+userVO.getId());
-		try {
-			if(userVO != null && userVO.getAuthority() == 0){
-				map.put("id", userVO.getId());
-				deviceList = licenseService.getDevice(map);
-				for(int i = 0; i < deviceList.size(); i++){
-					System.out.println("오마갓"+deviceList.get(i));
-				}
-				return deviceList;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 	
 	@RequestMapping(value = "/license/user", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView viewUserLicense(
@@ -222,93 +191,6 @@ public class LicenseWebController {
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ModelAndView("redirect:/");	
-		}
-	}
-	
-	@RequestMapping(value = "/permit/full", method = RequestMethod.POST)
-	public @ResponseBody boolean permit(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) throws Exception{
-		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		try{
-			if(userVO != null && userVO.getAuthority() == 1){
-				licenseService.permitFull(map);
-				return true;
-			} else{
-				return false;
-			}
-		}catch(Exception e){
-			return false;
-		}
-	}
-	
-	@RequestMapping(value = "/permit/demo", method = RequestMethod.POST)
-	public @ResponseBody boolean permitDemo(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) throws Exception{
-		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		try{
-			if(userVO != null && userVO.getAuthority() == 1){
-				licenseService.permitDemo(map);
-				return true;
-			} else{
-				return false;
-			}
-		}catch(Exception e){
-			return false;
-		}
-	}
-	
-	@RequestMapping(value = "/license/user/requestDemo", method = RequestMethod.POST)
-	public @ResponseBody boolean licenseUserReqDemo(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) throws Exception{
-		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		map.put("id", userVO.getId());
-		try{
-			if(userVO != null && userVO.getAuthority() == 0){
-				licenseService.licenseUserReqDemo(map);
-				return true;
-			} else{
-				return false;
-			}
-		}catch(Exception e){
-			return false;
-		}
-	}
-	
-	@RequestMapping(value = "/match", method = RequestMethod.POST)
-	public @ResponseBody boolean match(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) throws Exception{
-		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		map.put("id", userVO.getId());
-		try{
-			if(userVO != null && userVO.getAuthority() == 0){
-				licenseService.licenseMatch(map);
-				return true;
-			} else{
-				return false;
-			}
-		}catch(Exception e){
-			return false;
-		}
-	}
-	
-	@RequestMapping(value = "/reject", method = RequestMethod.POST)
-	public @ResponseBody boolean reject(
-			@RequestBody Map<String, String> map,
-			HttpServletRequest request) throws Exception{
-		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-		try{
-			if(userVO != null && userVO.getAuthority() == 1){
-				licenseService.licenseReject(map);
-				return true;
-			} else{
-				return false;
-			}
-		}catch(Exception e){
-			return false;
 		}
 	}
 }
