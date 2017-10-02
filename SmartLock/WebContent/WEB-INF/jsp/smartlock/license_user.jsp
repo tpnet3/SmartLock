@@ -140,10 +140,12 @@
 				</table>
 			</div>
 		</div>
+		<br>
 	</div>
+	<!-- Footer -->
+	<jsp:include page="include/_footer_content.jsp" />
 </div>
-<!-- Footer -->
-<jsp:include page="include/_footer_content.jsp" />
+<jsp:include page="include/_footer.jsp" />
 <jsp:include page="include/_jslib.jsp" />
 
 <!-- Modal -->
@@ -358,6 +360,3 @@
 		});
 	}
 </script>
-
-
-<jsp:include page="include/_footer.jsp" />

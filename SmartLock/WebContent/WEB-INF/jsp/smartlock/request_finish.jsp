@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<br><br>
-			<hr>><br> 
+			<hr><br> 
 			<img class="img-responsive"
 				style="margin-left: auto; margin-right: auto; display: block;"
 				width="100px" src="/html/img/success.png" alt="">
