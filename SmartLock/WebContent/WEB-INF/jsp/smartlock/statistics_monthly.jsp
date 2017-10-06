@@ -171,6 +171,7 @@
 				contentType: 'application/json',
 				success:function(data){
 					$("#con").html(data);
+					$(".dropdown-toggle").dropdown();
 				},
 				error:function(data, textStatus, errorThrown){
 					console.log(data);

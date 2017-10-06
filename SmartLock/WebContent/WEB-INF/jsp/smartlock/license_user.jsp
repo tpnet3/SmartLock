@@ -353,6 +353,7 @@
 			},
 			success : function(data) {
 				$("#pageContainer").html(data);
+				$(".dropdown-toggle").dropdown();
 			},
 			error : function(data, textStatus, errorThrown) {
 				console.log(data);
