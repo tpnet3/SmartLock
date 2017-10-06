@@ -69,12 +69,12 @@
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-5 control-label" for="email">이메일</label>
-							<div class="col-md-3">
+							<div id="email-div" class="col-md-5" style="display:inline">
 								<!-- <input id="email" name="textinput" type="text" placeholder="이메일을 입력하세요." class="form-control input-md"> -->
-								<input id="email-1" type="text" style="width:40%; display:inline; text-align:center" class="form-control input-md"  placeholder="이메일을 입력하세요.">
+								<input id="email-1" type="text" style="width:35%; display:inline; text-align:center" class="form-control input-md"  placeholder="이메일을 입력하세요.">
 								<b style="width:5%">@</b>
-								<input id="email-3" type="text" style="width:33%; text-align:center; display: none;" class="form-control input-md">
-								<select id="email-2" style="width:45%; display:inline; text-align-last:center;" class="form-control input-md">
+								<input id="email-3" type="text" style="width:28.9%; text-align:center; display: none;" class="form-control input-md">
+								<select id="email-2" style="width:35%; display:inline; text-align-last:center;" class="form-control input-md">
 									<option>naver.com</option>
 									<option>daum.net</option>
 									<option>gmail.com</option>

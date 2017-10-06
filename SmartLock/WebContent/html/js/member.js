@@ -15,6 +15,8 @@ $("#login-form").submit(function() {
                 window.location.href = "/";
                 alert("로그인되었습니다.");
 			} else {
+				$("#id").val("");
+				$("#pwd").val("");
 				alert("아이디 또는 비밀번호가 잘못되었습니다");
 			}
 		},
@@ -423,10 +425,14 @@ function maxLengthCheck(object) {
 
 $("#email-2").on("change", function() {
 	if($(this).val() == '직접입력') {
+		document.getElementById('email-div').className="col-md-6";
+		$("#email-1").css("width", "28.9%");
 		$("#email-2").css("width","15%");
 		$("#email-3").css("display", "inline");
 	} else {
-		$("#email-2").css("width","45%");
+		document.getElementById('email-div').className="col-md-5";
+		$("#email-1").css("width", "35%");
+		$("#email-2").css("width","35%");
 		$("#email-3").val("");
 		$("#email-3").css("display", "none");
 	}
