@@ -16,11 +16,10 @@
             data-toggle="tooltip" data-placement="bottom" title="로그인">로그인</button>
         </form><!-- /form -->
         <div class="login-help">
-            <p>비밀번호를 잊으셨나요? <a href="/search_pw" data-toggle="tooltip" data-placement="bottom" title="비밀번호 찾기">여기를 클릭하세요</a></p>
+            <!-- <p>비밀번호를 잊으셨나요? <a href="/search_pw" data-toggle="tooltip" data-placement="bottom" title="비밀번호 찾기">여기를 클릭하세요</a></p> -->
             <p>아직 회원이 아니신가요? <a href="/signup" data-toggle="tooltip" data-placement="bottom" title="회원가입">지금 가입하세요</a></p>
         </div>
     </div>
-
 </div>
 <!-- /.container -->
 <!-- Footer -->

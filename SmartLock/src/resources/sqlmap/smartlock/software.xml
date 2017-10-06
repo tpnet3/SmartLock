@@ -41,8 +41,8 @@
     
     <select id="softwareFinal"  parameterType="java.util.Map"
             resultType="java.lang.Integer">
-        INSERT INTO req_license (id, user_id, request_date, sw_id, state) 
-        VALUES("1", #{id}, CURDATE(), #{sw_id}, #{state});
+        INSERT INTO req_license (user_id, request_date, sw_id, state) 
+        VALUES(#{id}, CURDATE(), #{sw_id}, #{state});
     </select>
     
      <select id="getCorp"  parameterType="Integer"

@@ -5,7 +5,7 @@
 	<jsp:param name="_nav" value="" />
 	<jsp:param name="_css" value="/html/css/login.css" />
 </jsp:include>
-
+<meta http-equiv="refresh" content="3; url = /" />
 <!-- Page Content -->
 <div class="container">
 
@@ -33,7 +33,6 @@
 
 	<div class="col-md-12">
 		<br>
-		<hr>
 	</div>
 </div>
 <!-- /.container -->

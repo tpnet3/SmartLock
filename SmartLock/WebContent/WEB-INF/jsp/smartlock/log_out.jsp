@@ -4,7 +4,7 @@
 	<jsp:param name="_title" value="" />
 	<jsp:param name="_nav" value="" />
 </jsp:include>
-<meta http-equiv="refresh" content="3; url = /" />
+<meta http-equiv="refresh" content="2; url = /" />
 <!-- Navigation -->
 <!--
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">

@@ -44,8 +44,8 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
-						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp;
+					<!-- <input type="text" class="col-md-4" placeholder="검색어를 입력하세요"
+						id="searchField" style="width: 300px; height: 35px;">&nbsp;&nbsp; -->
 					<button class="btn btn-primary" type="button" id="searchButton"
 						onclick="search();">
 						<i class="fa fa-search"></i>
