@@ -67,7 +67,7 @@ $("#check-id-btn").on("click",function(){
 	});
 });
 
-$("#copr-searh-btn").on("click",function(){
+$("#corp-searh-btn").on("click",function(){
 	//var buttonText = "Ok" ;
     var title = "The page says:";
 
@@ -175,6 +175,7 @@ function checkId(checkOnlyPattern) {
     if ( ! idVal.match(pattern)) {
         $("#id").focus();
         alert("아이디는 영문 소문자와 숫자로 이루어져야합니다.");
+        $("#id").val("");
         return false;
     }
 
