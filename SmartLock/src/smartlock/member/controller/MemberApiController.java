@@ -25,23 +25,42 @@ public class MemberApiController {
      * 로그인
      * @param loginReqVO {@link LoginReqVO#id},
      *                   {@link LoginReqVO#pwd}
-     * @return {@link UserInfoVO}
+     * @return {@link UserVO}
      */
-    @RequestMapping(
-            value = "/login",
-            method = RequestMethod.POST
-    )
-    public @ResponseBody DataResVO loginPost(
-            HttpServletRequest request,
-            @RequestBody LoginReqVO loginReqVO) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public @ResponseBody String loginPost(
+    		HttpServletRequest request, @RequestBody LoginReqVO loginReqVO) throws Exception{
+	        System.out.println(loginReqVO);
+	        UserVO userVO = null;
 
-        System.out.println(loginReqVO);
+	        Boolean checkPassword = userService.checkPassword(loginReqVO);
+	        
+	        System.out.println("***checkPassword: " + checkPassword);
+	        
+	       
+	        /* 아이디, 비밀번호 일치할 경우 true - 로그인 */
+	        if(checkPassword != null && checkPassword)
+	        {
+	            userVO = userService.getUserVO(loginReqVO.getId());
+	            userVO.setPassword(null);
+	            request.getSession().setAttribute("user", userVO);
+	            
+	            return "SUCCESS";
+	        }
+	        
+	        /* 비밀번호가 일치하지 않을 경우 */
+	        else if(checkPassword != null && !checkPassword)
+	            return "FAIL-WRONG-PW";
+	        
+	        /* 아이디에 해당하는 회원정보가 없을 경우 */
+	        else
+	        	return "FAIL-NO-INFO";
 
-        return new DataResVO(request, sessionUserVO -> {
+        	/*
             boolean checkPassword = userService.checkPassword(loginReqVO);
 
             // 비밀번호가 일치하지 않을 경우 null
-            if ( ! checkPassword) return null;
+            if (!checkPassword) return null;
 
             // 로그인시 Session data
             UserVO userVO = userService.getUserVO(loginReqVO.getId());
@@ -56,9 +75,8 @@ public class MemberApiController {
             UserInfoVO userInfoVO = userService.getUserInfoVO(loginReqVO.getId());
 
             System.out.println(userInfoVO);
-
             return userInfoVO;
-        });
+            */
 
         /*
         try {

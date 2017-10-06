@@ -9,16 +9,34 @@ $("#login-form").submit(function() {
 		type : "POST",
         contentType: "application/json",
 		data : JSON.stringify(data),
-		success : function (data) {
-			if(data.status == "success" && data.data) {
+		success: function(data) 
+		{
+			if(data == "SUCCESS") 
+			{
 				// 메인페이지로이동
                 window.location.href = "/";
                 alert("로그인되었습니다.");
-			} else {
-				alert("아이디 또는 비밀번호가 잘못되었습니다");
+			} 
+			else if(data == "FAIL-WRONG-PW")
+			{
+				$("#login-form").each(function() {  
+			           this.reset();  
+			    });  
+				 
+				alert("비밀번호가 잘못되었습니다.");
 			}
+			else
+			{
+				$("#login-form").each(function() {  
+			           this.reset();  
+			    });  
+				 
+				alert("아이디가 존재하지않습니다.");
+			}
+			
 		},
-		error : function(data, textStatus, errorThrown) {
+		error : function(data, textStatus, errorThrown)
+		{
 			console.log(data);
 		}
 	});
@@ -430,4 +448,14 @@ $("#email-2").on("change", function() {
 		$("#email-3").val("");
 		$("#email-3").css("display", "none");
 	}
-})
+});
+
+/*
+ * 폼 리셋 함수
+ */
+function formReset(form)
+{
+	   form.each(function() {  
+           this.reset();  
+       });  
+ }

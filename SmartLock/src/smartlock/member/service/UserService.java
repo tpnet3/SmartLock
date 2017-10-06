@@ -57,9 +57,14 @@ public class UserService {
 	 * @return 올바른 비밀번호 인지 여부
 	 * @throws Exception DAO Exception
 	 */
-	public boolean checkPassword(LoginReqVO loginReqVO) throws Exception {
-		UserVO userVO = getUserVO(loginReqVO.getId());
-		return userVO != null && userVO.getPassword().equals(Util.encrypt(loginReqVO.getPwd()));
+	public Boolean checkPassword(LoginReqVO loginReqVO) throws Exception {
+		String id = loginReqVO.getId();
+		String pw = (String) commonDAO.selectOne("user.selectPassword", id);
+		
+		if(pw != null)
+			return pw.equals(Util.encrypt(loginReqVO.getPwd()));
+		else 
+			return null;
 	}
 
 	/**
