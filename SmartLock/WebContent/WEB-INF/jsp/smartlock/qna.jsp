@@ -92,7 +92,7 @@
                 <div style="background-color: #FAFAFA; border: 1px solid #EEEEEE;">
                     <div style="padding: 96px 0;">
                         <div style="font-size: 36px;">
-                            <a href="/html/doc/manual.doc" style="color: #000; text-underline: none;" download>매뉴얼 다운로드</a>
+                            <a href="/html/doc/smartlock-manual-20171006.docx" style="color: #000; text-underline: none;" download>매뉴얼 다운로드</a>
                         </div>
                     </div>
                 </div>
