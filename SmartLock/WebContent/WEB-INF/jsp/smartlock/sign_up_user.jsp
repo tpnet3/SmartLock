@@ -69,12 +69,12 @@
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-5 control-label" for="email">이메일</label>
-							<div class="col-md-3">
+							<div id="email-div" class="col-md-5" style="display:inline">
 								<!-- <input id="email" name="textinput" type="text" placeholder="이메일을 입력하세요." class="form-control input-md"> -->
-								<input id="email-1" type="text" style="width:40%; display:inline; text-align:center" class="form-control input-md"  placeholder="이메일을 입력하세요.">
+								<input id="email-1" type="text" style="width:35%; display:inline; text-align:center" class="form-control input-md"  placeholder="이메일을 입력하세요.">
 								<b style="width:5%">@</b>
-								<input id="email-3" type="text" style="width:33%; text-align:center; display: none;" class="form-control input-md">
-								<select id="email-2" style="width:45%; display:inline; text-align-last:center;" class="form-control input-md">
+								<input id="email-3" type="text" style="width:28.9%; text-align:center; display: none;" class="form-control input-md">
+								<select id="email-2" style="width:35%; display:inline; text-align-last:center;" class="form-control input-md">
 									<option>naver.com</option>
 									<option>daum.net</option>
 									<option>gmail.com</option>
@@ -98,9 +98,15 @@
 									<option>019</option>
 								</select>
 								<b style="width:5%">-</b>
-								<input id="phone-2" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+								<input id="phone-2" type="text" style="ime-mode:disable; width:28%; display:inline; text-align:center " class="form-control input-md" maxlength="4"
+										onkeydown="return onlyNumber(event)"
+										onkeyup="removeChar(event)"
+										oninput="maxLengthCheck(this)">
 								<b style="width:5%">-</b>
-								<input id="phone-3" type="number" style="width:28%; display:inline; text-align:center" class="form-control input-md" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+								<input id="phone-3" type="text" style="ime-mode:disable; width:28%; display:inline; text-align:center" class="form-control input-md" maxlength="4"
+										onkeydown="return onlyNumber(event)"
+										onkeyup="removeChar(event)"
+										oninput="maxLengthCheck(this)">
 							</div>
 						</div>
 	
@@ -111,7 +117,7 @@
 							<div class="col-md-3">
 								<div class="input-append">
 									<input id="corp-name" type="text" class="form-control input-md" placeholder="기업명을 입력해주세요." readonly style="width:70%; float:left">
-									<button id="copr-searh-btn" type="button" class="btn" style="width:30%">기업검색</button>
+									<button id="corp-searh-btn" type="button" class="btn" style="width:30%">기업검색</button>
 									<input id="corp-id" style="display:none"/>
 									<!-- <input id="checked-corp" style="display:none"/>
 									<input id="is-check-corp" value="false" style="display:none"/> -->
@@ -140,3 +146,22 @@
 </jsp:include>
 
 <jsp:include page="include/_footer.jsp" />
+
+<script>
+	function onlyNumber(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+			return;
+		else
+			return false;
+	}
+	function removeChar(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+			return;
+		else
+			event.target.value = event.target.value.replace(/[^0-9]/g, "");
+	}
+</script>

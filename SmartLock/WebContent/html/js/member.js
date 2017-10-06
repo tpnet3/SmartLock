@@ -83,7 +83,7 @@ $("#check-id-btn").on("click",function(){
 	});
 });
 
-$("#copr-searh-btn").on("click",function(){
+$("#corp-searh-btn").on("click",function(){
 	//var buttonText = "Ok" ;
     var title = "The page says:";
 
@@ -191,6 +191,7 @@ function checkId(checkOnlyPattern) {
     if ( ! idVal.match(pattern)) {
         $("#id").focus();
         alert("아이디는 영문 소문자와 숫자로 이루어져야합니다.");
+        $("#id").val("");
         return false;
     }
 
@@ -441,10 +442,14 @@ function maxLengthCheck(object) {
 
 $("#email-2").on("change", function() {
 	if($(this).val() == '직접입력') {
+		document.getElementById('email-div').className="col-md-6";
+		$("#email-1").css("width", "28.9%");
 		$("#email-2").css("width","15%");
 		$("#email-3").css("display", "inline");
 	} else {
-		$("#email-2").css("width","45%");
+		document.getElementById('email-div').className="col-md-5";
+		$("#email-1").css("width", "35%");
+		$("#email-2").css("width","35%");
 		$("#email-3").val("");
 		$("#email-3").css("display", "none");
 	}
