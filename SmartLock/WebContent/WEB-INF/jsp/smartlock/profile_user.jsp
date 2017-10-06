@@ -23,53 +23,53 @@
         	</ol>
         </div>
         <div class="row">
-        	
             <div class="col-lg-12">
-	            <form class="form-horizontal" id="updateProfile">
+            <div class="card card-container">
+			<form class="form-horizontal" id="updateProfile">
                     <fieldset>
                         <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">이름</label>
-                            <div class="col-md-7">
-                                <label class="control-label" for="textinput">${user_name}</label>
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="textinput">이름</label>
+								<div class="col-md-8">
+									<label class="control-label" for="textinput">${user_name}</label>
+								</div>
+							</div>
 
-                        <!-- Text input-->
+							<!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">소속</label>
-                            <div class="col-md-7">
+                            <label class="col-md-4 control-label" for="textinput">소속</label>
+                            <div class="col-md-8">
                                 <label class="control-label" for="textinput">${corp_name}</label>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">아이디</label>
-                            <div class="col-md-7">
+                            <label class="col-md-4 control-label" for="textinput">아이디</label>
+                            <div class="col-md-8">
                                 <label class="control-label" for="textinput">${id}</label>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">이메일</label>
-                            <div class="col-md-3">
+                            <label class="col-md-4 control-label" for="textinput">이메일</label>
+                            <div class="col-md-8">
                             	<input type="text" id="email" class="form-control" value="${email}" required autofocus>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">전화번호</label>
-                            <div class="col-md-3">                                
+                            <label class="col-md-4 control-label" for="textinput">전화번호</label>
+                            <div class="col-md-8">                                
                                 <input type="text" id="phone_number" class="form-control" value="${phone_number}" required autofocus>
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">비밀번호</label>
-                            <div class="col-md-3">
+                            <label class="col-md-4 control-label" for="textinput">비밀번호</label>
+                            <div class="col-md-8">
                             	<input type="password" id="password" class="form-control" placeholder="현재 비밀번호" required autofocus>
                             </div>
                         </div>
@@ -77,14 +77,14 @@
                         <!-- Button -->
                         <div class="form-group" align="center">                            
                             <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
-                            	style="height: 46px; width: 200px"
+                            	style="background-color:#4090A5" 
                             	data-toggle="tooltip" data-placement="bottom" title="정보 수정">수정</button>
                          </div>
-
+						
                     </fieldset>
                 </form>
-
-            </div>
+	    	</div>	
+	    </div>
         </div>
     </div>
 </div>

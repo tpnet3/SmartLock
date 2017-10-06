@@ -5,6 +5,7 @@
 	<jsp:param name="_nav" value="" />
 	<jsp:param name="_css" value="/html/css/login.css" />
 </jsp:include>
+<meta http-equiv="refresh" content="2; url = /" />
 
 <!-- Page Content -->
 <div class="container">
