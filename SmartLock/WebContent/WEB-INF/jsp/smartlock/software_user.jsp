@@ -25,15 +25,15 @@
 	<!-- Projects Row -->
 	<c:forEach var="software" items="${softwareList}" varStatus="count">
 	
-	<div class="col-md-3 img-portfolio">
+	<div class="col-md-3 img-portfolio" >
+		<div style="height:263px; overflow:auto">
 		<div align="center"><span class="fa-stack fa-5x" data-toggle="tooltip" data-placement="bottom" title="${software.sw_name }">
             		 <img class="fa fa-circle fa-stack-2x" src= "data:image/jpg;base64, ${software.img}"></img>
                         </span></div>
 		<h3 class="text-center">${software.sw_name}</h3>
 		<h5 class="text-center">v${software.version}</h5>
-		<p class="text-center">${software.info}</p>
-		<p>		</p>
-
+		<p class="text-center" style="overflow:auto">${software.info}</p>
+		</div>
 		<div align="center">
         <a class="btn btn-md btn-default btn-block" style="width:100px" onclick="request_license('${software.id}', '${software.sw_name }');"
         data-toggle="tooltip" data-placement="bottom" title="라이센스 신청하기">신청하기</a>
