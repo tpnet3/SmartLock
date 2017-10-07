@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -117,7 +116,8 @@ public class LicenseWebController {
 	public @ResponseBody ModelAndView viewManagerReqLicense(
 			HttpServletRequest request,
 			@RequestParam(value="sw_id", required=false, defaultValue="") String sw_id,
-			@RequestParam(value="order", required=false, defaultValue="") String order) throws Exception{
+			@RequestParam(value="order", required=false, defaultValue="") String order,
+			@RequestParam(value="state", required=true, defaultValue="WAIT") String state) throws Exception{
 		UserVO userVO = (UserVO) request.getSession().getAttribute("user");
 
 		try{
@@ -139,7 +139,17 @@ public class LicenseWebController {
 					map.put("sw_id", sw_id);
 					licenseManagerReqList = licenseService.viewManagerReqLicenseByName(map);
 				} 
-				ModelAndView modelAndView = new ModelAndView("smartlock/license_manager");
+				
+				ModelAndView modelAndView = null;
+				
+				/*
+				 * 라이선스 대기현황 페이지로 갈 것인지, 거절현황 페이지로 갈 것인지.
+				 */
+				if(state.equals("WAIT"))
+					modelAndView = new ModelAndView("smartlock/license_manager");
+				else
+					modelAndView = new ModelAndView("smartlock/license_refuse_manager");
+				
 				modelAndView.addObject("licenseManagerReqList", licenseManagerReqList);
 				modelAndView.addObject("swNameList", swNameList);
 				modelAndView.addObject("swIdList", swIdList);
@@ -180,7 +190,9 @@ public class LicenseWebController {
 					map.put("sw_id", sw_id);
 					licenseManagerList = licenseService.viewManagerLicenseByName(map);
 				} 
+				
 				ModelAndView modelAndView = new ModelAndView("smartlock/license_finish_manager");
+				
 				modelAndView.addObject("licenseManagerList", licenseManagerList);
 				modelAndView.addObject("swNameList", swNameList);
 				modelAndView.addObject("swIdList", swIdList);

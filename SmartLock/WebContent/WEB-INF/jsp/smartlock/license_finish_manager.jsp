@@ -18,9 +18,11 @@
 				<small>발급 완료 현황</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="/license/manager/request?order=DEFAULT"
+				<li><a href="/license/manager/request?order=DEFAULT&state=WAIT"
 				data-toggle="tooltip" data-placement="bottom" title="발급 대기 현황">발급 대기 현황</a></li>
 				<li class="active">발급 완료 현황</li>
+				<li><a href="/license/manager/request?order=DEFAULT&state=REFUSE"
+				data-toggle="tooltip" data-placement="bottom" title="발급 대기 현황">발급 거절 현황</a></li>
 			</ol>
 		</div>
 	</div>

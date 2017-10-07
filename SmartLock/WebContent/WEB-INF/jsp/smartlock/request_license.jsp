@@ -15,10 +15,12 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h2 class="page-header">라이선스 요청</h2>
+				<!--
 				<ol class="breadcrumb">
 					<li><a href="License_user.html">라이선스 발급현황</a></li>
 					<li><a href="License_user_request.html">라이선스 요청현황</a></li>
 				</ol>
+				-->
 			</div>
 			<!-- 검색필터-->
 			<div class="row">
