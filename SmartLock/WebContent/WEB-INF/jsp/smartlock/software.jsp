@@ -18,11 +18,6 @@
             <h1 class="page-header">소프트웨어 
                 <small>미리보기</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a>
-                </li>
-                <li class="active">Softwares</li>
-            </ol>
         </div>
     </div>
     <!-- /.row -->
