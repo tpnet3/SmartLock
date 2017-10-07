@@ -17,7 +17,7 @@
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">마이페이지</h2>
+			<h1 class="page-header">마이페이지</h1>
 			<ol class="breadcrumb">
 				<li class="active">회원정보 수정</li>
 				<li><a href="/profile/changePassword">비밀번호 변경</a></li>

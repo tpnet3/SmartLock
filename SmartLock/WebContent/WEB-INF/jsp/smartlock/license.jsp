@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">라이선스 관리</h2>
+            <h1 class="page-header">라이선스 관리</h1>
         </div>
         <!-- 검색필터-->
         <div class="row">

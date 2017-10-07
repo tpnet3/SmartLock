@@ -16,7 +16,7 @@
     <div class="row">
         <!-- 탭메뉴 -->
         <div class="col-lg-12">
-            <h2 class="page-header">마이페이지</h2>
+            <h1 class="page-header">마이페이지</h1>
             <ol class="breadcrumb">
 	       		<li><a href="/profile" data-toggle="tooltip" data-placement="bottom" title="회원정보 수정">회원정보 수정</a></li>	       		
         		<li><a href="/profile/changePassword" data-toggle="tooltip" data-placement="bottom" title="비밀번호 변경">비밀번호 변경</a></li>
