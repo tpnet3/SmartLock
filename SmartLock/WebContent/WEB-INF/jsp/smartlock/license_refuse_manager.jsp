@@ -94,29 +94,20 @@
 						</tr>
 					</thead>
 					<tbody align="center">
-						<c:forEach var="license" items="${licenseManagerReqList}"
-							varStatus="count">
+						<c:set var="cnt" value="1"/>
+						<c:forEach var="license" items="${licenseManagerReqList}" varStatus="count">
 							<c:if test="${license.state eq 3}">
 							<tr>
-								<td data-title="No.">${count.count }</td>
-								<td data-title="소프트웨어">${license.sw_name }</td>
+								<td data-title="No.">${cnt}</td>
+								<td data-title="소프트웨어">${license.sw_name}</td>
 								<td data-title="이름">${license.user_name}</td>
 								<td data-title="신청날짜"><fmt:formatDate
 										value="${license.request_date}" pattern="yyyy-MM-dd" /></td>
 								<td data-title="분류"><span class="label label-danger"
 										data-toggle="tooltip" data-placement="bottom" title="요청 거절">
 												라이선스 요청 거절</span></td>
-								<%-- <td data-title="요청처리"><span class="label"
-									style="background-color: indianred; color: white"
-									onclick="licenseOk('${license.sw_name}', '${license.sw_id }','${license.state }', '${license.id }');"
-									data-toggle="tooltip" data-placement="bottom" title="라이선스 발급">
-									발급하기 </span>&nbsp;
-									<span class="label"
-									style="background-color: darkgray; color: black"
-									onclick="licenseReject('${license.sw_name}', '${license.sw_id }', '${license.id }');"
-									data-toggle="tooltip" data-placement="bottom" title="라이선스 거절"> 
-									거절하기 </span></td> --%>
 							</tr>
+							<c:set var="cnt" value="${cnt + 1}"/>
 							</c:if>
 						</c:forEach>
 

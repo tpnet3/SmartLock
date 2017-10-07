@@ -94,11 +94,12 @@
 						</tr>
 					</thead>
 					<tbody align="center">
+						<c:set var="cnt" value="1"/>
 						<c:forEach var="license" items="${licenseManagerReqList}"
 							varStatus="count">
 							<c:if test="${license.state ne 3}">
 							<tr>
-								<td data-title="No.">${count.count }</td>
+								<td data-title="No.">${cnt}</td>
 								<td data-title="소프트웨어">${license.sw_name }</td>
 								<td data-title="이름">${license.user_name}</td>
 								<td data-title="신청날짜"><fmt:formatDate
@@ -114,7 +115,6 @@
 										data-toggle="tooltip" data-placement="bottom" title="데모 라이선스 요청">
 												데모 라이선스 요청</span></td>
 									</c:when>
-									
 								</c:choose>
 								<td data-title="요청처리"><span class="label"
 									style="background-color: indianred; color: white"
@@ -127,6 +127,7 @@
 									data-toggle="tooltip" data-placement="bottom" title="라이선스 거절"> 
 									거절하기 </span></td>
 							</tr>
+							<c:set var="cnt" value="${cnt + 1}"/>
 							</c:if>
 						</c:forEach>
 
