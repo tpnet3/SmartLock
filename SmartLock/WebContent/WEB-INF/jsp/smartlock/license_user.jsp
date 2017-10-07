@@ -121,7 +121,7 @@
 											class="label label-warning">${license.device_count}</span></td>
 									</c:when>
 									<c:otherwise>
-										<td data-title="등록 가능 단말기 수"><span
+										<td data-title="등록 가능 단말기 수" ><span
 											class="label label-primary"
 											onmouseout="this.style.background='#1066AE';this.innerText='${license.device_count}';"
 											onmouseover="this.style.background='#1066AE';this.innerText='단말기 추가등록';"

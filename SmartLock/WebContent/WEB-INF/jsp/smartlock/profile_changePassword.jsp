@@ -25,24 +25,26 @@
         </div>
         <br><br><br><br><br><br>
 		<!-- Form -->
-		<div class="card card-container">
+		<div class="col-lg-4"></div>
+		<div class="card col-lg-4" align="center">
 			<div class="profile-help">
-	            <p>안전한 비밀번호로 내정보를 보호하세요.</p>
+	            <h4><b>안전한 비밀번호로 내정보를 보호하세요.</b></h4>
 	            <p>다른 아이디/사이트에서 사용한 적 없는 비밀번호</p>
 	            <p>이전에 사용한 적 없는 비밀번호가 안전합니다.</p>
 	            <br>
 	        </div>
-	        <form class="form-profile" id="changePassword">
+	        <form class="form-profile" id="changePassword" >
 	            <input type="password" id="password" class="form-control" placeholder="현재 비밀번호" required autofocus
 	            data-toggle="tooltip" data-placement="bottom" title="현재 비밀번호">
 	            <br>
 	            <input type="password" id="new_password1" class="form-control" placeholder="새 비밀번호" required
 	            data-toggle="tooltip" data-placement="bottom" title="새 비밀번호">
+	            <p></p>
 	            <input type="password" id="new_password2" class="form-control" placeholder="새 비밀번호 확인" required
 	            data-toggle="tooltip" data-placement="bottom" title="새 비밀번호 확인">
 	            <br>
 	            <button id="profile-btn" type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
-	            data-toggle="tooltip" data-placement="bottom" title="비밀번호 변경">비밀번호 변경</button>
+	            data-toggle="tooltip" data-placement="bottom" title="비밀번호 변경" style="width:300px">비밀번호 변경</button>
 	        </form><!-- /form -->
 	    </div>		
     </div>
