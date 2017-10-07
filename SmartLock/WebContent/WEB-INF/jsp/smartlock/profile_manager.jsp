@@ -31,32 +31,32 @@
 						<fieldset>
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">이름</label>
-								<div class="col-md-8">
+								<label class="col-md-3 control-label" for="textinput">이름</label>
+								<div class="col-md-9">
 									<label class="control-label" for="textinput">${user_name }</label>
 								</div>
 							</div>
 
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">소속</label>
-								<div class="col-md-8">
+								<label class="col-md-3 control-label" for="textinput">소속</label>
+								<div class="col-md-9">
 									<label class="control-label" for="textinput">${corp_name }</label>
 								</div>
 							</div>
 
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">아이디</label>
-								<div class="col-md-8">
+								<label class="col-md-3 control-label" for="textinput">아이디</label>
+								<div class="col-md-9">
 									<label class="control-label" for="textinput">${id }</label>
 								</div>
 							</div>
 
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">이메일</label>
-								<div class="col-md-8">
+								<label class="col-md-3 control-label" for="textinput">이메일</label>
+								<div class="col-md-9">
 									<input type="text" id="email" class="form-control"
 										value="${email }" required autofocus>
 								</div>
@@ -64,16 +64,16 @@
 
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">전화번호</label>
-								<div class="col-md-8">
+								<label class="col-md-3 control-label" for="textinput">전화번호</label>
+								<div class="col-md-9">
 									<input type="text" id="phone_number" class="form-control"
 										value="${phone_number }" required autofocus>
 								</div>
 							</div>
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">비밀번호</label>
-								<div class="col-md-8">
+								<label class="col-md-3 control-label" for="textinput">비밀번호</label>
+								<div class="col-md-9">
 									<input type="password" id="password" class="form-control"
 										placeholder="현재 비밀번호" required autofocus>
 								</div>
