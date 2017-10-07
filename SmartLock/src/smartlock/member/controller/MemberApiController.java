@@ -35,9 +35,6 @@ public class MemberApiController {
 
 	        Boolean checkPassword = userService.checkPassword(loginReqVO);
 	        
-	        System.out.println("***checkPassword: " + checkPassword);
-	        
-	       
 	        /* 아이디, 비밀번호 일치할 경우 true - 로그인 */
 	        if(checkPassword != null && checkPassword)
 	        {
