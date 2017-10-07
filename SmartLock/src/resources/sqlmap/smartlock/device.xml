@@ -77,6 +77,7 @@
 			,  l.end_date
 			,  l.state
 			,  c.corp_name
+			,  l.sw_id
 		  FROM license l, device d, corp c, software s
 		 WHERE d.nickname = (SELECT nickname
 		 					   FROM device

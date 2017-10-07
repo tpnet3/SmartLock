@@ -73,7 +73,7 @@
 							<td width="200px"><h4>
 									<b>소프트웨어 
 								</h4></td>
-							<td width="150px"><h4>
+							<td width="120px"><h4>
 									<b>회사명 
 								</h4></td>
 							<td width="150px"><h4>
@@ -85,7 +85,7 @@
 							<td width="80px"><h4>
 									<b>상태 
 								</h4></td>
-							<td width="120px"><h4>
+							<td width="130px"><h4>
 									<b>등록 가능 단말기 수
 								</h4></td>
 						</tr>
@@ -315,7 +315,7 @@
 	}
 	
 	function requestDemo(swName, sw_id) {
-		var state;
+		//var state;
 
 		//state = confirm(swName + " 에 대한 데모 기간 연장을 요청합시겠습니까?");
 		

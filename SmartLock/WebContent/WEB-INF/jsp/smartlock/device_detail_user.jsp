@@ -106,28 +106,52 @@
 <script>
 
 function requestDemo(swName, sw_id) {
-	var state;
-	alert(sw_id);
-    state = confirm(swName + " 에 대한 데모 기간 연장을 요청하시겠습니까?");
-    if(state == true) {
-    		$.ajax({
-				url:"/license/user/requestDemo" ,
-				type:"POST",
-				contentType: "application/json",
-			 	data : JSON.stringify({
-			 		sw_id : sw_id
-			 	}),
-	      		success : function (data) {
-	      		window.location = "/license/user?name";
-	     	 	alert("요청을 완료했습니다.");
-	   		    },
-		   		error : function(data, textStatus, errorThrown) {
-	      	console.log(data);
-    		}
-			});
-    } else if(state == false) {
-    	alert("연장 요청을 취소합니다.");
-    }
+	swal({
+			text: swName + " 에 대한 데모 기간 연장을 요청하시겠습니까?",
+			icon: "info",	//error, success, info, warning
+			buttons : {
+		  cancel : "취소",
+		  confirm : "확인",
+	  },
+		  dangerMode: false,
+		}).then(function(isConfirm){
+			if(isConfirm == true)
+				$.ajax({
+					url : "/license/user/requestDemo",
+					type : "POST",
+					contentType : "application/json",
+					data : JSON.stringify({
+						swName : swName,
+						sw_id : sw_id
+					}),
+					success : function(data) {
+						//window.location = "/license/user?name";
+						//alert("요청을 완료했습니다.");
+						
+						swal({
+				  			text: "요청을 완료했습니다.",
+				  			icon: "success",	//error, success, info, warning
+				  			button : {
+							  confirm : "확인",
+						  },
+				  		  dangerMode: false,
+				  		});
+						setTimout(2000);
+					},
+					error : function(data, textStatus, errorThrown) {
+						console.log(data);
+					}
+				});
+			else
+				swal({
+		  			text: "연장 요청을 취소합니다.",
+		  			icon: "info",	//error, success, info, warning
+		  			button : {
+					  confirm : "확인",
+				  },
+		  		  dangerMode: false,
+		  		});
+		});
 }
 
 </script>

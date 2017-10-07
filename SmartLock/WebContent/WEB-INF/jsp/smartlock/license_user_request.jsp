@@ -102,9 +102,7 @@
 							<c:when test="${license.state eq 3}">
 						<td data-bind="상태발급거절">
 							<span class="label label-danger"
-								  onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';"
-								  onmouseover="this.style.background='#58ACFA';this.innerText='발급 재요청';"
-								  onclick="return requestLicense('${license.sw_name}');">
+								  onmouseout="this.style.background='#DF5A5A';this.innerText='발급 거절';">
 								발급거절
 							</span>
 						</td>
@@ -126,14 +124,6 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
-    function requestDemo(swName) {
-        alert(swName + " 에 대한 데모 기간 연장을 요청합니다.");
-    }
-
-    function requestLicense(swName) {
-        alert(swName + " 에 대한 라이선스를 요청합니다.");
-    }
-    
     function search() {
     	var sw_id = $("#sw_list option:selected").val();
     	var sw_name = $("#sw_list option:selected").text();
