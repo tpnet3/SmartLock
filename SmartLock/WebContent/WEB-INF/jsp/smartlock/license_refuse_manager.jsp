@@ -15,14 +15,14 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				라이선스 관리 <small>발급 대기 현황</small>
+				라이선스 관리 <small>발급 거절 현황</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li class="active">발급 대기 현황</li>
+				<li><a href="/license/manager/request?order=DEFAULT&state=WAIT"
+				data-toggle="tooltip" data-placement="bottom" title="발급 대기 현황">발급 대기 현황</a></li>
 				<li><a href="/license/manager?order=DEFAULT"
 				data-toggle="tooltip" data-placement="bottom" title="발급 완료 현황">발급 완료 현황</a></li>
-				<li><a href="/license/manager/request?order=DEFAULT&state=REFUSE"
-				data-toggle="tooltip" data-placement="bottom" title="발급 거절 현황">발급 거절 현황</a></li>
+				<li class="active">발급 거절 현황</li>
 			</ol>
 		</div>
 	</div>
@@ -88,35 +88,25 @@
 							<td width="150px"><h4>
 									<b>분류
 								</h4></td>
-							<td width="100px"><h4>
+ 							<!-- <td width="100px"><h4>
 									<b>상세보기
-								</h4></td>
+								</h4></td> -->
 						</tr>
 					</thead>
 					<tbody align="center">
 						<c:forEach var="license" items="${licenseManagerReqList}"
 							varStatus="count">
-							<c:if test="${license.state ne 3}">
+							<c:if test="${license.state eq 3}">
 							<tr>
 								<td data-title="No.">${count.count }</td>
 								<td data-title="소프트웨어">${license.sw_name }</td>
 								<td data-title="이름">${license.user_name}</td>
 								<td data-title="신청날짜"><fmt:formatDate
 										value="${license.request_date}" pattern="yyyy-MM-dd" /></td>
-								<c:choose>
-									<c:when test="${license.state eq 1 }">
-										<td data-title="분류"><span class="label label-success"
-										data-toggle="tooltip" data-placement="bottom" title="정식 라이선스 요청">
-												정식 라이선스 요청 </span></td>
-									</c:when>
-									<c:when test="${license.state eq 2}">
-										<td data-title="분류"><span class="label label-warning"
-										data-toggle="tooltip" data-placement="bottom" title="데모 라이선스 요청">
-												데모 라이선스 요청</span></td>
-									</c:when>
-									
-								</c:choose>
-								<td data-title="요청처리"><span class="label"
+								<td data-title="분류"><span class="label label-danger"
+										data-toggle="tooltip" data-placement="bottom" title="요청 거절">
+												라이선스 요청 거절</span></td>
+								<%-- <td data-title="요청처리"><span class="label"
 									style="background-color: indianred; color: white"
 									onclick="licenseOk('${license.sw_name}', '${license.sw_id }','${license.state }', '${license.id }');"
 									data-toggle="tooltip" data-placement="bottom" title="라이선스 발급">
@@ -125,7 +115,7 @@
 									style="background-color: darkgray; color: black"
 									onclick="licenseReject('${license.sw_name}', '${license.sw_id }', '${license.id }');"
 									data-toggle="tooltip" data-placement="bottom" title="라이선스 거절"> 
-									거절하기 </span></td>
+									거절하기 </span></td> --%>
 							</tr>
 							</c:if>
 						</c:forEach>
@@ -143,6 +133,7 @@
 <jsp:include page="include/_jslib.jsp" />
 
 <script>
+	/*
 	function licenseReject(swName, sw_id, id) {
 		var check = confirm(swName + " 에 대한 라이선스를 거절하시겠습니까?"+ id);
 		if(check == true){
@@ -167,7 +158,7 @@
 		}
 		
 	}
-	function licenseOk(swName, id, state, req_id) {
+	 function licenseOk(swName, id, state, req_id) {
 		var check = confirm(swName + " 에 대한 라이선스를 발급하시겠습니까?");
 		if(check == true){
 			if(state == 1){
@@ -211,7 +202,7 @@
 		} else{
 			alert("라이선스 발급을 취소합니다.");
 		}
-	}
+	} */
 	
 	function search() {
 		var sw_id = $("#sw_list option:selected").val();
