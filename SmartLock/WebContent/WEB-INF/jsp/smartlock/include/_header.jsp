@@ -56,7 +56,7 @@
             phoneNumber: '<%= userVO.getPhoneNumber() %>',
             email: '<%= userVO.getEmail() %>',
             corpId: '<%= userVO.getCorpId()%>',
-            name: '<%= userVO.getUserName() %>'
+            name: '<%= userVO.getUser_name() %>'
         };
         <% } %>
     </script>

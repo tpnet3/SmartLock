@@ -17,17 +17,19 @@ public class MainWebController {
     public ModelAndView home(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         UserVO userVO = (UserVO) httpSession.getAttribute("user");
-
+        ModelAndView modelAndView;
         if (userVO != null && userVO.getAuthority() == 0) {
             //return new ModelAndView("/smartlock/main_user");
-            return new ModelAndView("redirect:/device");
+        	modelAndView = new ModelAndView("redirect:/device");
         } else if (userVO != null && userVO.getAuthority() == 1) {
             //return new ModelAndView("/smartlock/main_manager");
-            return new ModelAndView("redirect:/statistics");
+            modelAndView = new ModelAndView("redirect:/statistics");
         } else {
             //return new ModelAndView("/smartlock/main");
-            return new ModelAndView("redirect:/about_us");
+            modelAndView = new ModelAndView("redirect:/about_us");
         }
+        modelAndView.addObject("user", userVO);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/about_us", method = RequestMethod.GET)
