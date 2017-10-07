@@ -115,10 +115,6 @@
 
 
 <script>
-    function detail(swName) {
-        // TODO: 상세보기
-        alert(swName + " 에 대한 상세보기를 클릭했습니다.");
-    }
     
     function search() {
     	var sw_id = $("#sw_list option:selected").val();

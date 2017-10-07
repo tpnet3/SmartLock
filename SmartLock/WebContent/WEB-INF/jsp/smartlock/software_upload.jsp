@@ -122,9 +122,8 @@
 			 		confirm : "확인",
 		 			},
 		  		dangerMode: false,
-		  		timer:2000,
 			});
-			
+			setTimout(3000);
 		}
 	}
 	/*

@@ -141,31 +141,87 @@
 	 * @return {boolean} False
 	 */
 	function clickEdit(deviceId, oldNickname) {
-        var newNickname = prompt("닉네임을 입력해주세요...", oldNickname);
-
-        if (newNickname && newNickname != oldNickname) {
-            $.ajax({
-                url : "/device/update/nickname",
-                type : "POST",
-                contentType: "application/json",
-                data : JSON.stringify({
-                    id: deviceId,
-                    nickname: newNickname
-                }),
-                success : function (data) {
-                    if(data.status == "success") {
-                        alert("단말기 닉네임이 수정되었습니다.");
-                        location.reload();
-                    } else {
-                        alert("단말기 닉네임을 수정하는데 실패했습니다.");
-                    }
-                },
-                error : function(data, textStatus, errorThrown) {
-                    console.log(data);
-                }
-            });
-        }
-
+        //var newNickname = prompt("닉네임을 입력해주세요...", oldNickname);
+        var name;
+        
+        swal({
+	  		  text: "닉네임을 변경하시겠습니까?",
+	  		  icon: "info",	//error, success, info, warning
+	  		  buttons: {
+	  			  cancel : "취소",
+	  			  confirm : "확인",
+	  		  },
+	  		  dangerMode: false,
+	  		}).then(function(isConfirm){
+	  			if(isConfirm == null){
+	  				 swal({
+	  			  		  text: "변경을 취소합니다.",
+	  			  		  icon: "info",	//error, success, info, warning
+	  			  		  button: {
+	  			  			  confirm : "확인",
+	  			  		  },
+	  			  		  dangerMode: false,
+	  			  		});
+	  			} else {
+	  				swal({
+	  		  		  text: "닉네임을 입력해주세요.",
+	  		  		  icon: "info",	//error, success, info, warning
+	  		  		  button: {
+	  		  			  confirm : "확인",
+	  		  		  },
+	  		  		  dangerMode: false,
+	  		  			content: {
+	  		  		    	element: "input",
+	  		  		   	 	attributes: {
+	  		  		   	   		placeholder: "닉네임을 입력하세요.",
+	  		  		    	},
+	  		  		  },
+	  		  		}).then(newNickname =>{
+		  		  		if (newNickname && newNickname != oldNickname) {
+		  		            $.ajax({
+		  		                url : "/device/update/nickname",
+		  		                type : "POST",
+		  		                contentType: "application/json",
+		  		                data : JSON.stringify({
+		  		                    id: deviceId,
+		  		                    nickname: newNickname
+		  		                }),
+		  		                success : function (data) {
+		  		                    if(data.status == "success") {
+		  		                        //alert("단말기 닉네임이 수정되었습니다.");
+		  		                      swal({
+		  			  			  		  text: "단말기 닉네임이 수정되었습니다.",
+		  			  			  		  icon: "success",	//error, success, info, warning
+		  			  			  		  button: {
+		  			  			  			  confirm : "확인",
+		  			  			  		  },
+		  			  			  		  dangerMode: false,
+		  			  			  		});
+		  		                      setTimeout(3000);
+		  		                        location.reload();
+		  		                    } else {
+		  		                        //alert("단말기 닉네임을 수정하는데 실패했습니다.");
+		  		                      	swal({
+		  			  			  		  text: "단말기 닉네임을 수정하는데 실패했습니다..",
+		  			  			  		  icon: "error",	//error, success, info, warning
+		  			  			  		  button: {
+		  			  			  			  confirm : "확인",
+		  			  			  		  },
+		  			  			  		  dangerMode: false,
+		  			  			  		});
+		  		                      setTimeout(3000);
+		  		                    }
+		  		                },
+		  		                error : function(data, textStatus, errorThrown) {
+		  		                    console.log(data);
+		  		                }
+		  		            });
+		  		        }
+	  		  		});
+	  			}
+	  		});
+        
+       
 		return false;
 	}
 
