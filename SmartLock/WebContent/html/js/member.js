@@ -44,6 +44,22 @@ $("#login-form").submit(function() {
 	return false;
 });
 
+/*
+ * 폼 리셋 함수
+ */
+function formReset(form)
+{
+	   form.each(function() {  
+           this.reset();  
+       });  
+ }
+
+
+/*
+ * 
+ * 기업명 검색
+ * 
+ */
 $("#corp-searh-btn").on("click",function(){
 	//var buttonText = "Ok" ;
     var title = "The page says:";
@@ -125,201 +141,62 @@ $("#corp-searh-btn").on("click",function(){
 function clickCorp(corp_id, corp_name) {
 	$("#corp-id").val(corp_id);
 	$("#corp-name").val(corp_name);
+	$("#corpWarning").text("");
 	$("#dialog").dialog("close");
 }
-function checkId(checkOnlyPattern) {
-    var idVal = $("#id").val();
-    var pattern = /^[0-9a-z]+$/;
 
-	if ( ! idVal) {
-		$("#id").focus();
-		alert("아이디를 입력하세요.");
-		return false;
-	}
-
-    if (idVal.length < 6) {
-        $("#id").focus();
-        alert("아이디는 6자 이상이어야 합니다..");
-        return false;
-    }
-
-    if (idVal.length > 20) {
-        $("#id").focus();
-        alert("아이디는 20자 이하여야 합니다.");
-        return false;
-    }
-
-    if ( ! idVal.match(pattern)) {
-        $("#id").focus();
-        alert("아이디는 영문 소문자와 숫자로 이루어져야합니다.");
-        $("#id").val("");
-        return false;
-    }
-
-    if ( ! checkOnlyPattern) {
-
-        if($("#checked-id").val() != $("#id").val()) {
-            $("#is-check-id").val("false");
-        } else {
-            $("#is-check-id").val("true");
-        }
-
-        if($("#is-check-id").val() == "false") {
-            $("#id").focus();
-            alert("아이디 중복체크를 하세요.");
-            return false;
-        }
-	}
-
-	return true
-}
-
-function checkPwd() {
-	var pwdVal = $("#pwd").val();
-
-	if ( ! pwdVal) {
-		$("#pwd").focus();
-		alert("비밀번호를 입력하세요.");
-		return false;
-	}
-
-    if (pwdVal.length < 8) {
-        $("#pwd").focus();
-        alert("비밀번호는 8자 이상이어야 합니다.");
-        return false;
-    }
-
-    if (pwdVal.length > 100) {
-        $("#pwd").focus();
-        alert("비밀번호는 100자 이하여야 합니다.");
-        return false;
-    }
-
-	if($("#check-pwd").val() == '') {
-		$("#check-pwd").focus();
-		alert("비밀번호 확인을 입력하세요.");
-		return false;
-	}
-
-	if($("#pwd").val() != $("#check-pwd").val()) {
-		$("#check-pwd").focus();
-		alert("비밀번호가 다릅니다.");
-		return false;
-	}
-
-	return true;
-}
-
-function checkEmail() {
-    var pattern1 = /^([0-9A-Za-z_.-])+$/;
-    var pattern2 = /^(([a-zA-Z]{1})|([a-zA-Z]{1}[a-zA-Z]{1})|([a-zA-Z]{1}[0-9]{1})|([0-9]{1}[a-zA-Z]{1})|([a-zA-Z0-9][a-zA-Z0-9-_]{1,61}[a-zA-Z0-9]))\.([a-zA-Z]{2,6}|[a-zA-Z0-9-]{2,30}\.[a-zA-Z]{2,3})$/;
-	var email1Val = $("#email-1").val();
-	var email3Val = $("#email-3").val();
-
-	if ( ! email1Val) {
-		$("#email-1").focus();
-		alert("이메일을 입력하세요.");
-		return false;
-	}
-
-    if (email1Val.length > 50) {
-        $("#email-1").focus();
-        alert("이메일은 50자 이하여야 합니다.");
-        return false;
-    }
-
-    if ( ! email1Val.match(pattern1)) {
-        $("#email-1").focus();
-        alert("이메일은 숫자, 영문자, 특수문자(-, _, .)으로 이루어져야합니다.");
-        return false;
-	}
-
-	if ($("#email-2").val() == '직접입력') {
-
-		if ( ! email3Val) {
-			$("#email-3").focus();
-			alert("이메일 도메인을 입력하세요.");
-			return false;
-		}
-
-        if ( ! email3Val.match(pattern2)) {
-            $("#email-3").focus();
-            alert("도메인 주소가 올바르지 않습니다.");
-            return false;
-        }
-	}
-
-	return true;
-}
-
-function checkPhone(phone2ElemKey, phone3ElemKey) {
-    phone2ElemKey = phone2ElemKey || "#phone-2";
-    phone3ElemKey = phone3ElemKey || "#phone-3";
-
-    var phone2Val = $(phone2ElemKey).val();
-    var phone3Val = $(phone3ElemKey).val();
-	var pattern = /^[0-9]+$/;
-
-	if( ! phone2Val) {
-		$(phone2ElemKey).focus();
-		alert("전화번호를 입력하세요.");
-		return false;
-	}
-
-    if( ! phone2Val.match(pattern)) {
-        $(phone2ElemKey).focus();
-        alert("전화번호가 올바르지 않습니다.");
-        return false;
-    }
-
-    if( ! phone3Val) {
-        $(phone3ElemKey).focus();
-        alert("전화번호를 입력하세요.");
-        return false;
-    }
-
-	if( ! phone3Val.match(pattern)) {
-		$(phone3ElemKey).focus();
-        alert("전화번호가 올바르지 않습니다.");
-		return false;
-	}
-
-	return true;
-}
-
-function signup(div) {
+function signup(identify) {
 	// check validation
-	if(!checkId()){
-		return false;
-	}
-	if(!checkPwd()){
-		return false;
-	}
-	if($("#name").val() == '') {
-		$("#name").focus();
-		alert("이름을 입력하세요.");
-		return false;
-	}
-	if(!checkEmail()){
-		return false;
-	}
-	if(!checkPhone()){
-		return false;
-	}
+	var validation = true;
 	
-	var phone = $("#phone-1").val()+"-"+$("#phone-2").val()+"-"+$("#phone-3").val();
+	var authority = 1;
+	if(identify == 'user') {
+		authority = 0;
+	}
+	if(!is_id_checked){
+		$('#idWarning').text("아이디 중복체크는 필수입니다.");
+		validation = false;
+	}
+	if(!is_correct_pwd) {
+		$('#pwdCheckWarning').text("비밀번호를 확인해주세요.");
+		validation = false;
+	}
 	var email;
-	
-	if($("#email-2").val() == '직접입력') {
-		email = $("#email-1").val()+"@"+ $("#email-3").val();
+	if($("#email-1").val() == "") {
+		eamil = null;
 	} else {
-		email = $("#email-1").val()+"@"+ $("#email-2").val();
+		if($("#email-2").val() == '직접입력') {
+			email = $("#email-1").val()+"@"+ $("#email-3").val();
+		} else {
+			email = $("#email-1").val()+"@"+ $("#email-2").val();
+		}
 	}
 	
-	if(div == 'user') {
+	var phone;
+	if(!is_correct_phoneNumber) {
+		validation = false;
+	} else {
+		if($("#phone-2").val() == "") {
+			phone = null;
+		} else {
+			phone = $("#phone-1").val()+"-"+$("#phone-2").val()+"-"+$("#phone-3").val();
+		}
+	}
+	
+	if(authority == 0) {
+		if($("#id").val() == '') {
+			var idWarning = document.getElementById("idWarning");
+			idWarning.style.color = "red";
+			$("#nameWarning").text("이름은 필수항목입니다.");
+			validation = false;
+		} 
 		if($("#corp-id").val() == '') {
-			$("#corp_name").focus();
-			alert("기업명을 입력하세요.");
+			var corpWarning = document.getElementById("corpWarning");
+			corpWarning.style.color = "red";
+			$("#corpWarning").text("기업명은 필수항목입니다.");
+			validation = false;
+		}
+		if(!validation) {
 			return false;
 		}
 		var data = {
@@ -331,7 +208,6 @@ function signup(div) {
 		    "corp_id" : $("#corp-id").val(),
 		    "authority" : $("#authority").val()
 		};
-				
 		sigupPost(data);
 	} else {
 		if ( ! checkPhone("#corp-phone-2", "#corp-phone-3")) {
@@ -375,16 +251,17 @@ function signup(div) {
 	}
 }
 
+/* 회원가입 */
 function sigupPost(data) {
 	$.ajax({
 		url : "/signup",
 		type : "POST",
-        contentType: "application/json",
+		contentType : "application/json",
 		dataType : "json",
 		data : JSON.stringify(data),
-		success : function (data){
+		success : function(data) {
 			//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
-			location.href="/signup/ok";
+			location.href = "/signup/ok";
 		},
 		error : function(data, textStatus, errorThrown) {
 		}
@@ -396,28 +273,3 @@ function maxLengthCheck(object) {
 		object.value = object.value.slice(0, object.maxLength);
 	}
 }
-
-$("#email-2").on("change", function() {
-	if($(this).val() == '직접입력') {
-		document.getElementById('email-div').className="col-md-6";
-		$("#email-1").css("width", "28.9%");
-		$("#email-2").css("width","15%");
-		$("#email-3").css("display", "inline");
-	} else {
-		document.getElementById('email-div').className="col-md-5";
-		$("#email-1").css("width", "35%");
-		$("#email-2").css("width","35%");
-		$("#email-3").val("");
-		$("#email-3").css("display", "none");
-	}
-});
-
-/*
- * 폼 리셋 함수
- */
-function formReset(form)
-{
-	   form.each(function() {  
-           this.reset();  
-       });  
- }
