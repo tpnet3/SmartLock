@@ -25,7 +25,7 @@ public class MemberApiController {
      * 로그인
      * @param loginReqVO {@link LoginReqVO#id},
      *                   {@link LoginReqVO#pwd}
-     * @return {@link UserInfoVO}
+     * @return {@link UserVO}
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody String loginPost(
