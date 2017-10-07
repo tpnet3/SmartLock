@@ -25,21 +25,22 @@
         </div>
         <br><br><br><br><br><br>
 		<!-- Form -->
-		<div class="card card-container">
+		<div class="col-lg-4"></div>
+		<div class="card col-lg-4" align="center">
 			<div class="profile-help">
-	            <p>회원탈퇴를 위한 회원정보 인증절차</p>
+	            <h4><b>회원탈퇴를 위한 회원정보 인증절차</b></h4>
 	            <p>회원가입 시 등록한 정보를 입력해주세요.</p>
 	            <br>
 	        </div>
 	        <form class="form-profile" id="removeUser">
 	            <input type="password" id="password1" class="form-control" placeholder="현재 비밀번호" required autofocus
 	            data-toggle="tooltip" data-placement="bottom" title="현재 비밀번호">
-	            <br>
+	            <p></p>
 	            <input type="password" id="password2" class="form-control" placeholder="현재 비밀번호 확인" required
 	            data-toggle="tooltip" data-placement="bottom" title="현재 비밀번호 확인">
 	            <br>
 	            <button id="profile-btn" type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
-	            data-toggle="tooltip" data-placement="bottom" title="회원탈퇴">회원탈퇴</button>
+	            data-toggle="tooltip" data-placement="bottom" title="회원탈퇴" style="width:300px">회원탈퇴</button>
 	        </form><!-- /form -->
 	    </div>		
     </div>

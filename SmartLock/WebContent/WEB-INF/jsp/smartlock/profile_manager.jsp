@@ -25,9 +25,8 @@
 			</ol>
 		</div>
 		<div class="row">
-
-			<div class="col-lg-12">
-				<div class="card card-container">
+				<div class="col-lg-4"></div>
+				<div class="card col-lg-4" align="center">
 					<form class="form-horizontal" id="updateProfile">
 						<fieldset>
 							<!-- Text input-->
@@ -84,13 +83,13 @@
 							<div class="form-group" align="center">
 								<button type="submit"
 									class="btn btn-lg btn-primary btn-block btn-signin"
-									style="background-color:#4090A5" data-toggle="tooltip"
+									style="background-color:#4090A5; width:300px" data-toggle="tooltip"
 									data-placement="bottom" title="수정">수정</button>
 							</div>
 
 						</fieldset>
 					</form>
-				</div>
+				
 			</div>
 		</div>
 	</div>
