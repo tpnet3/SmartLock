@@ -19,7 +19,7 @@
 			<div class="col-lg-12">
 				<form class="form-horizontal" id="signup-form">
 					<fieldset>
-						<input type="hidden" id="authority" value="0" /> <br>
+						<br>
 
 						<!-- Text input-->
 						<div class="form-group">
@@ -137,9 +137,11 @@
 								<div class="input-append">
 									<input id="corp-name" type="text" class="form-control input-md"
 										placeholder="기업명을 입력해주세요." readonly
-										style="width: 70%; float: left">
+										style="width: 70%; float: left; background: #ffffff;">
 									<button id="corp-searh-btn" type="button" class="btn"
 										style="width: 30%">기업검색</button>
+									<h6 id="corpWarning"
+										style="color: #ff0000; font-size: 40%; display: inline;"></h6>
 									<input id="corp-id" style="display: none" />
 									<!-- <input id="checked-corp" style="display:none"/>
 									<input id="is-check-corp" value="false" style="display:none"/> -->
@@ -172,6 +174,7 @@
 
 <script>
 	var is_id_checked = false;
+	var is_correct_pwd = false;
 
 	$("#check-id-btn").on("click", function() {
 		var msg = document.getElementById("idWarning");
@@ -235,7 +238,11 @@
 		var reg_pwd = /^[0-9a-zA-Z\~\!\@\#\$\%\^\&\*\(\)\_\+\`\-\=\<\>\,\.\?\/\\\|\{\}\[\]\:\;\"\']{8,20}$/;
 		var msg = "비밀번호는 8~20자의 영문자, 숫자, 특수문자를 사용하세요.";
 		if (!pwdVal.match(reg_pwd)) {
-			$('#pwdWarning').text(msg);
+			if (pwdVal.length == 0) {
+				$('#pwdWarning').text("비밀번호를 입력하세요.");
+			} else {
+				$('#pwdWarning').text(msg);
+			}
 		} else {
 			$('#pwdWarning').text("");
 		}
@@ -244,9 +251,10 @@
 		var pwd = $('#pwd').val();
 		var pwdCheck = $("#check-pwd").val();
 		var msg = "비밀번호가 서로 다릅니다.";
-		if (pwd != pwdCheck) {
+		if (pwd != pwdCheck || pwd.length == 0) {
 			$('#pwdCheckWarning').text(msg);
 		} else {
+			is_correct_pwd = true;
 			$('#pwdCheckWarning').text("");
 		}
 	}
@@ -281,36 +289,19 @@
 		}
 	}
 
-	/* 회원가입 */
-	function sigupPost(data) {
-		$.ajax({
-			url : "/signup",
-			type : "POST",
-			contentType : "application/json",
-			dataType : "json",
-			data : JSON.stringify(data),
-			success : function(data) {
-				//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
-				location.href = "/signup/ok";
-			},
-			error : function(data, textStatus, errorThrown) {
-			}
-		});
-	}
-	
 	/* 이메일 css조정 */
 	$("#email-2").on("change", function() {
-		if($(this).val() == '직접입력') {
-			document.getElementById('email-div').className="col-md-6";
+		if ($(this).val() == '직접입력') {
+			document.getElementById('email-div').className = "col-md-6";
 			$("#email-1").css("width", "28.9%");
-			$("#email-2").css("width","15%");
+			$("#email-2").css("width", "15%");
 			$("#email-3").css("display", "inline");
 		} else {
-			document.getElementById('email-div').className="col-md-5";
+			document.getElementById('email-div').className = "col-md-5";
 			$("#email-1").css("width", "35%");
-			$("#email-2").css("width","35%");
+			$("#email-2").css("width", "35%");
 			$("#email-3").val("");
 			$("#email-3").css("display", "none");
 		}
-	})
+	});
 </script>
