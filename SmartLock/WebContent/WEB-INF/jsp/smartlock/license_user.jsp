@@ -86,7 +86,7 @@
 									<b>상태 
 								</h4></td>
 							<td width="120px"><h4>
-									<b>연결된 단말기 수 
+									<b>등록 가능 단말기 수
 								</h4></td>
 						</tr>
 					</thead>
@@ -117,11 +117,11 @@
 
 								<c:choose>
 									<c:when test="${license.device_count eq 0}">
-										<td data-title="연결된 단말기 수"><span
+										<td data-title="등록 가능 단말기 수"><span
 											class="label label-warning">${license.device_count}</span></td>
 									</c:when>
 									<c:otherwise>
-										<td data-title="연결된 단말기 수"><span
+										<td data-title="등록 가능 단말기 수"><span
 											class="label label-primary"
 											onmouseout="this.style.background='#1066AE';this.innerText='${license.device_count}';"
 											onmouseover="this.style.background='#1066AE';this.innerText='단말기 추가등록';"
