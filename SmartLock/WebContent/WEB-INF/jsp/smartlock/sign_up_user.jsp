@@ -116,16 +116,22 @@
 									<option>017</option>
 									<option>018</option>
 									<option>019</option>
-								</select> <b style="width: 5%">-</b> <input id="phone-2" type="text"
+								</select>
+								<b style="width: 5%">-</b> <input id="phone-2" type="text"
 									style="ime-mode: disable; width: 28%; display: inline; text-align: center"
 									class="form-control input-md" maxlength="4"
 									onkeydown="return onlyNumber(event)"
-									onkeyup="removeChar(event)" oninput="maxLengthCheck(this)">
+									onkeyup="removeChar(event)" oninput="maxLengthCheck(this)"
+									onblur="phoneCheck()">
 								<b style="width: 5%">-</b> <input id="phone-3" type="text"
 									style="ime-mode: disable; width: 28%; display: inline; text-align: center"
 									class="form-control input-md" maxlength="4"
 									onkeydown="return onlyNumber(event)"
-									onkeyup="removeChar(event)" oninput="maxLengthCheck(this)">
+									onkeyup="removeChar(event)" oninput="maxLengthCheck(this)"
+									onblur="phoneCheck()">
+							<br>
+							<h6 id="phoneWarning"
+									style="color: #ff0000; font-size: 40%; display: inline;"></h6>
 							</div>
 						</div>
 
@@ -175,6 +181,7 @@
 <script>
 	var is_id_checked = false;
 	var is_correct_pwd = false;
+	var is_correct_phoneNumber = true;
 
 	$("#check-id-btn").on("click", function() {
 		var msg = document.getElementById("idWarning");
@@ -193,6 +200,7 @@
 				} else {
 					msg.style.color = "red";
 					$('#idWarning').text("이미 등록된 아이디 입니다.");
+					is_id_checked = false;
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
@@ -253,6 +261,7 @@
 		var msg = "비밀번호가 서로 다릅니다.";
 		if (pwd != pwdCheck || pwd.length == 0) {
 			$('#pwdCheckWarning').text(msg);
+			is_correct_pwd = false;
 		} else {
 			is_correct_pwd = true;
 			$('#pwdCheckWarning').text("");
@@ -272,7 +281,9 @@
 		var emailValFront = $('#email-1').val();
 		var reg_email_front = /^([0-9A-Za-z_.-])+$/;
 		var msg = "이메일은 숫자,영문자, 특수문자(-, _, .)으로 이루어져야합니다.";
-		if (!emailValFront.match(reg_email_front)) {
+		if(emailValFront == "") {
+			$('#emailWarning').text("");
+		} else if (!emailValFront.match(reg_email_front)) {
 			$('#emailWarning').text(msg);
 		} else {
 			$('#emailWarning').text("");
@@ -286,6 +297,19 @@
 			$('#emailWarning').text(msg);
 		} else {
 			$('#emailWarning').text("");
+		}
+	}
+	function phoneCheck() {
+		var phone, phoneFront, phoneBack;
+		phoneFront = $("#phone-2").val();
+		phoneBack = $("#phone-3").val();
+		if(phoneFront == "" && phoneBack == "" || phoneFront != "" && phoneBack != "") {
+			$("#phoneWarning").text("");
+			is_correct_phoneNumber = true;
+		}
+		if((phoneFront == "" && phoneBack != "") || (phoneFront != "" && phoneBack == "")) {
+			$("#phoneWarning").text("번호를 모두 입력하세요.");
+			is_correct_phoneNumber = false;
 		}
 	}
 
