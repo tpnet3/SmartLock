@@ -54,8 +54,8 @@
                         <div style="position: relative;">
                             <div style="padding-left: 80px;">
                                 <div style="padding: 16px;">
-                                    <div style="font-size: 16px;"><%= userVO.getUserName() %>님 (사용자)</div>
-                                    <div style="font-size: 14px;"><%= userVO.getEmail() %></div>
+                                    <div style="font-size: 16px;" id = "name"><%= userVO.getUserName() %>님 (사용자)</div>
+                                    <div style="font-size: 14px;" id = "email"><%= userVO.getEmail() %></div>
                                     <div style="padding: 8px 0;"><a href="/profile" class="btn btn-sm btn-default btn-block" 
                                     data-toggle="tooltip" data-placement="bottom" title="마이페이지">마이페이지</a></div>
                                     <div style="font-size: 12px;"><a href="/logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃">로그아웃</a></div>
@@ -89,3 +89,7 @@
     </div>
     <!-- /.container -->
 </nav>
+
+<script>
+ // 스클립틀릿수정하기 - email null
+</script>
