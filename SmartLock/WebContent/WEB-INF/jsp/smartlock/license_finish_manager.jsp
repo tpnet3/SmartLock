@@ -108,10 +108,11 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="include/_footer_content.jsp" />
 </div>
 <!-- /.container -->
 <!-- Footer -->
-<jsp:include page="include/_footer_content.jsp" />
+
 
 <script>
     function detail(swName) {

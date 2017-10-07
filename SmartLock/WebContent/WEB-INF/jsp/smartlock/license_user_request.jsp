@@ -16,7 +16,7 @@
 <div class="container" id="pageContainer">
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">라이선스 요청현황</h2>
+			<h1 class="page-header">라이선스 요청현황</h1>
 			<ol class="breadcrumb">
 				<li><a href="/license/user?order=DEFAULT" data-toggle="tooltip" data-placement="bottom" title="라이선스 발급현황">라이선스 발급현황</a>
 				</li>
@@ -117,10 +117,11 @@
 		</div>
 	</div>
 </div>
+<jsp:include page="include/_footer_content.jsp" />
 </div>
 <br><br>
 <!-- Footer -->
-<jsp:include page="include/_footer_content.jsp" />
+
 
 <jsp:include page="include/_jslib.jsp" />
 

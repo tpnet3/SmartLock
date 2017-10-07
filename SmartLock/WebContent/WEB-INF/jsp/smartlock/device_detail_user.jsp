@@ -14,7 +14,7 @@
 		<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">내 단말기 관리</h2>
+				<h1 class="page-header">내 단말기 관리</h1>
 			</div>
 			<br> <br>
 			<div class="col-md-3 col-sm-7">

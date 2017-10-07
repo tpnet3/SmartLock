@@ -9,7 +9,7 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">다운로드</h2>
+            <h1 class="page-header">다운로드</h1>
         </div>
 
         <br> <br>

@@ -135,10 +135,11 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="include/_footer_content.jsp" />
 </div>
 <!-- /.container -->
 <!-- Footer -->
-<jsp:include page="include/_footer_content.jsp" />
+
 
 <jsp:include page="include/_jslib.jsp" />
 
@@ -173,8 +174,8 @@
 	  					  confirm : "확인"
 	  				  },
 	  		  		  dangerMode: false,
-	  		  			timer:3000,
 	  		  		});
+	  	   			setTimout(3000);
 	  	   			location.reload();
 	  	 	  			},
 	  	 			error : function(data, textStatus, errorThrown) {
@@ -224,8 +225,8 @@
 		  			 		confirm : "확인",
 		  		 			},
 		    		  		dangerMode: false,
-		    		  		timer:3000,
 		    			});
+  		   			setTimout(3000);
   		   				window.location = "/license/manager/request?name";
   		 	  			},
   		 			error : function(data, textStatus, errorThrown) {
@@ -251,8 +252,8 @@
   		  			 		confirm : "확인",
   		  		 			},
   		    		  		dangerMode: false,
-  		    		  		timer:3000,
   		    			});
+  		   			setTimout(3000);
   		   				window.location = "/license/manager/request?name";
   		 	  			},
   		 			error : function(data, textStatus, errorThrown) {

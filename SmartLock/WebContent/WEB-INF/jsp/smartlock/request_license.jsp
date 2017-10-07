@@ -14,7 +14,7 @@
 		<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">라이선스 요청</h2>
+				<h1 class="page-header">라이선스 요청</h1>
 				<!--
 				<ol class="breadcrumb">
 					<li><a href="License_user.html">라이선스 발급현황</a></li>

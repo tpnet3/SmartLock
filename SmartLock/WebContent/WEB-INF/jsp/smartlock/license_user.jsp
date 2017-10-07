@@ -15,7 +15,7 @@
 	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">라이선스 발급현황</h2>
+			<h1 class="page-header">라이선스 발급현황</h1>
 			<ol class="breadcrumb">
 				<li class="active">라이선스 발급현황</li>
 				<li><a href="/license/user/request?order=DEFAULT">라이선스 요청현황</a></li>
@@ -264,7 +264,15 @@
 					mac : mac
 				}),
 				success : function(data) {
-					alert("디바이스에 라이선스를 등록했습니다.");
+					//alert("디바이스에 라이선스를 등록했습니다.");
+					swal({
+			  			text: "디바이스에 라이선스를 등록했습니다.",
+			  			icon: "success",	//error, success, info, warning
+			  			button : {
+						  confirm : "확인",
+					  	},
+					});
+					setTimout(3000);
 					window.location = "/license/user?name";
 				},
 				error : function(data, textStatus, errorThrown) {
@@ -340,7 +348,8 @@
   							  confirm : "확인",
   						  },
   				  		  dangerMode: false,
-  				  		})
+  				  		});
+  						setTimout(2000);
   					},
   					error : function(data, textStatus, errorThrown) {
   						console.log(data);
