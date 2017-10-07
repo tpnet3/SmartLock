@@ -38,7 +38,7 @@
 									</c:forEach>
 									<option>직접입력</option>
 								</select> --%>
-							<input id="sw_id" name="sw_name" placeholder="소프트웨어명을 입력하세요."
+							<input id="sw_name" name="sw_name" placeholder="소프트웨어명을 입력하세요."
 								style="width: 335px;" class="form-control input-md">
 							</div>
 							<label>소프트웨어 버전</label>

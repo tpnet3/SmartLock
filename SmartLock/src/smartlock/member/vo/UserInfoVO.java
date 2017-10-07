@@ -8,64 +8,74 @@ public class UserInfoVO {
     private String email;
     private String phone;
     private String company;
+    
+	public UserInfoVO() {
+		super();
+	}
+	
+	public UserInfoVO(String id, String user_name, int authority,
+			String email, String phone, String company) {
+		super();
+		this.id = id;
+		this.user_name = user_name;
+		this.authority = authority;
+		this.email = email;
+		this.phone = phone;
+		this.company = company;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getUserName() {
-        return user_name;
-    }
+	public String getUser_name() {
+		return user_name;
+	}
 
-    public void setUserName(String userName) {
-        this.user_name = userName;
-    }
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 
-    public int getAuthority() {
-        return authority;
-    }
+	public int getAuthority() {
+		return authority;
+	}
 
-    public void setAuthority(int authority) {
-        this.authority = authority;
-    }
+	public void setAuthority(int authority) {
+		this.authority = authority;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public String getCompany() {
-        return company;
-    }
+	public String getCompany() {
+		return company;
+	}
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
+	public void setCompany(String company) {
+		this.company = company;
+	}
 
-    @Override
-    public String toString() {
-        return "UserInfoVO{" +
-                "id='" + id + '\'' +
-                ", user_name='" + user_name + '\'' +
-                ", authority=" + authority +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", company='" + company + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "UserInfoVO [id=" + id + ", user_name="
+				+ user_name + ", authority=" + authority + ", email=" + email
+				+ ", phone=" + phone + ", company=" + company + "]";
+	}
 }
