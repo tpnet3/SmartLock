@@ -61,7 +61,7 @@
     		parameterType="smartlock.profile.vo.PasswordVO">
     	UPDATE user
 		SET password=#{new_password}
-		WHERE id=#{id} AND password=#{password};
+		WHERE id=#{id} AND password=#{password}
     </update>
     
     
@@ -69,14 +69,14 @@
     		parameterType="smartlock.member.vo.UserVO">
     	DELETE
     	FROM user
-    	WHERE id=#{id} AND password=#{password};
+    	WHERE id=#{id} AND password=#{password}
     </delete>
     
     <update id="changeRanPassword"
     		parameterType="smartlock.searchpw.vo.SearchpwVO">
     	UPDATE user
     	SET password=#{password}
-    	WHERE id=#{id};
+    	WHERE id=#{id}
     </update>
     
     <select id="checkEmail"
@@ -84,6 +84,14 @@
     		resultType="String">
     	SELECT MAX(email)
     	FROM user
-    	WHERE id=#{id} AND email=#{email};
+    	WHERE id=#{id} AND email=#{email}
+    </select>
+    
+    <select id="selectPassword" 
+    		parameterType="String" 
+    		resultType="String">
+    	SELECT password
+    	FROM user
+    	WHERE id=#{id}
     </select>
 </mapper>

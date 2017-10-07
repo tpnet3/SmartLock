@@ -15,14 +15,7 @@ public class MemberWebController {
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request) {
-		HttpSession httpSession = request.getSession();
-		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-		
-		if (userVO != null) {
-			return new ModelAndView("redirect:/");
-		} else {
-			return new ModelAndView("/smartlock/log_in");
-		}
+		return new ModelAndView("/smartlock/log_in");
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)

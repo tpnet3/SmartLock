@@ -9,16 +9,34 @@ $("#login-form").submit(function() {
 		type : "POST",
         contentType: "application/json",
 		data : JSON.stringify(data),
-		success : function (data) {
-			if(data.status == "success" && data.data) {
+		success: function(data) 
+		{
+			if(data == "SUCCESS") 
+			{
 				// 메인페이지로이동
                 window.location.href = "/";
                 alert("로그인되었습니다.");
-			} else {
-				alert("아이디 또는 비밀번호가 잘못되었습니다");
+			} 
+			else if(data == "FAIL-WRONG-PW")
+			{
+				$("#login-form").each(function() {  
+			           this.reset();  
+			    });  
+				 
+				alert("비밀번호가 잘못되었습니다.");
 			}
+			else
+			{
+				$("#login-form").each(function() {  
+			           this.reset();  
+			    });  
+				 
+				alert("아이디가 존재하지않습니다.");
+			}
+			
 		},
-		error : function(data, textStatus, errorThrown) {
+		error : function(data, textStatus, errorThrown)
+		{
 			console.log(data);
 		}
 	});
@@ -26,46 +44,7 @@ $("#login-form").submit(function() {
 	return false;
 });
 
-$("#check-id-btn").on("click",function(){
-	if($("#id").val() == '') {
-		$("#id").focus();
-		return false;
-	}
-
-	if ( ! checkId(true)) {
-        $("#id").focus();
-		return false;
-	}
-	
-	$.ajax({
-		url : "/check/id",
-		type : "GET",
-		dataType : "json",
-		data : {
-			"id" : $("#id").val(),
-		},
-		success : function (data){
-			if(data.status == "success") {
-				if(data.data == "ok") {
-					alert("사용가능한 아이디 입니다.");
-					$("#is-ckeck-id").val("true");
-					$("#checked-id").val($("#id").val());
-				} else {
-					alert("중복된 아이디 입니다.");
-					$("#is-ckeck-id").val("false");
-					$("#checked-id").val();
-				}
-			} else {
-				
-			}
-		},
-		error : function(data, textStatus, errorThrown) {
-			
-		}
-	});
-});
-
-$("#copr-searh-btn").on("click",function(){
+$("#corp-searh-btn").on("click",function(){
 	//var buttonText = "Ok" ;
     var title = "The page says:";
 
@@ -173,6 +152,7 @@ function checkId(checkOnlyPattern) {
     if ( ! idVal.match(pattern)) {
         $("#id").focus();
         alert("아이디는 영문 소문자와 숫자로 이루어져야합니다.");
+        $("#id").val("");
         return false;
     }
 
@@ -403,12 +383,8 @@ function sigupPost(data) {
 		dataType : "json",
 		data : JSON.stringify(data),
 		success : function (data){
-			if(data.status == "success") {
-				//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
-				location.href="/signup/ok";
-			} else {
-				
-			}
+			//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
+			location.href="/signup/ok";
 		},
 		error : function(data, textStatus, errorThrown) {
 		}
@@ -423,11 +399,25 @@ function maxLengthCheck(object) {
 
 $("#email-2").on("change", function() {
 	if($(this).val() == '직접입력') {
+		document.getElementById('email-div').className="col-md-6";
+		$("#email-1").css("width", "28.9%");
 		$("#email-2").css("width","15%");
 		$("#email-3").css("display", "inline");
 	} else {
-		$("#email-2").css("width","45%");
+		document.getElementById('email-div').className="col-md-5";
+		$("#email-1").css("width", "35%");
+		$("#email-2").css("width","35%");
 		$("#email-3").val("");
 		$("#email-3").css("display", "none");
 	}
-})
+});
+
+/*
+ * 폼 리셋 함수
+ */
+function formReset(form)
+{
+	   form.each(function() {  
+           this.reset();  
+       });  
+ }
