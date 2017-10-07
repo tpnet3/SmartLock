@@ -28,45 +28,6 @@ $("#login-form").submit(function() {
 	return false;
 });
 
-$("#check-id-btn").on("click",function(){
-	if($("#id").val() == '') {
-		$("#id").focus();
-		return false;
-	}
-
-	if ( ! checkId(true)) {
-        $("#id").focus();
-		return false;
-	}
-	
-	$.ajax({
-		url : "/check/id",
-		type : "GET",
-		dataType : "json",
-		data : {
-			"id" : $("#id").val(),
-		},
-		success : function (data){
-			if(data.status == "success") {
-				if(data.data == "ok") {
-					alert("사용가능한 아이디 입니다.");
-					$("#is-ckeck-id").val("true");
-					$("#checked-id").val($("#id").val());
-				} else {
-					alert("중복된 아이디 입니다.");
-					$("#is-ckeck-id").val("false");
-					$("#checked-id").val();
-				}
-			} else {
-				
-			}
-		},
-		error : function(data, textStatus, errorThrown) {
-			
-		}
-	});
-});
-
 $("#corp-searh-btn").on("click",function(){
 	//var buttonText = "Ok" ;
     var title = "The page says:";
@@ -406,12 +367,8 @@ function sigupPost(data) {
 		dataType : "json",
 		data : JSON.stringify(data),
 		success : function (data){
-			if(data.status == "success") {
-				//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
-				location.href="/signup/ok";
-			} else {
-				
-			}
+			//회원가입 성공 페이지로 이동(로그인페이지이동버튼제공)
+			location.href="/signup/ok";
 		},
 		error : function(data, textStatus, errorThrown) {
 		}
