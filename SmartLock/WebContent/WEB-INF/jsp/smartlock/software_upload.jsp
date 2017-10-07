@@ -114,7 +114,16 @@
 		else
 		{
 			$('#softwareForm').submit();
-			alert('업로드되었습니다.');
+			//alert('업로드되었습니다.');
+			swal({
+				text: "업로드되었습니다.",
+				icon: "success",	//error, success, info, warning
+				button : {
+			 		confirm : "확인",
+		 			},
+		  		dangerMode: false,
+		  		timer:2000,
+			});
 			
 		}
 	}
