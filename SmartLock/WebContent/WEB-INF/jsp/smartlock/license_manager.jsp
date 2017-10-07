@@ -144,73 +144,134 @@
 
 <script>
 	function licenseReject(swName, sw_id, id) {
-		var check = confirm(swName + " 에 대한 라이선스를 거절하시겠습니까?"+ id);
-		if(check == true){
-			$.ajax({
-				url:"/reject",
-				type:"POST",
-				contentType: "application/json",
-			 	data : JSON.stringify({
-				swName : swName ,
-				sw_id : sw_id,
-				id : id
-			}),
-   			success : function (data) {
-   				alert("거절을 완료했습니다.");
- 	  			},
- 			error : function(data, textStatus, errorThrown) {
-       			console.log(data);
-   				}
-			});
-		} else {
-			alert("취소합니다.");
-		}
-		
+		//var check = confirm(swName + " 에 대한 라이선스를 거절하시겠습니까?"+ id);
+		swal({
+	  			text: swName + " 에 대한 라이선스를 거절하시겠습니까?",
+	  			icon: "info",	//error, success, info, warning
+	  			buttons : {
+				  cancel : "취소",
+				  confirm : "확인",
+			  },
+	  		  dangerMode: false,
+	  		}).then(function(isConfirm){
+	  			if(isConfirm == true){
+	  				$.ajax({
+	  					url:"/reject",
+	  					type:"POST",
+	  					contentType: "application/json",
+	  				 	data : JSON.stringify({
+	  					swName : swName ,
+	  					sw_id : sw_id,
+	  					id : id
+	  				}),
+	  	   			success : function (data) {
+	  	   				//alert("거절을 완료했습니다.");
+	  	   			swal({
+	  		  			text: "거절을 완료했습니다.",
+	  		  			icon: "success",	//error, success, info, warning
+	  		  			button : {
+	  					  confirm : "확인"
+	  				  },
+	  		  		  dangerMode: false,
+	  		  			timer:3000,
+	  		  		});
+	  	   			location.reload();
+	  	 	  			},
+	  	 			error : function(data, textStatus, errorThrown) {
+	  	       			console.log(data);
+	  	   				}
+	  				});
+	  			} else {
+	  				swal({
+	  		  			text: "취소합니다.",
+	  		  			icon: "info",	//error, success, info, warning
+	  		  			button : {
+	  					  confirm : "확인"
+	  				  },
+	  		  		  dangerMode: false,
+	  		  		});
+	  			}
+	  		});
 	}
 	function licenseOk(swName, id, state, req_id) {
-		var check = confirm(swName + " 에 대한 라이선스를 발급하시겠습니까?");
-		if(check == true){
-			if(state == 1){
-				$.ajax({
-					url:"/permit/full",
-					type:"POST",
-					contentType: "application/json",
-				 	data : JSON.stringify({
-					swName : swName ,
-					id : id,
-					req_id : req_id
-				}),
-	   			success : function (data) {
-	   				alert(swName + " 에 대한 정식버전 라이선스를 발급했습니다.");
-	   				window.location = "/license/manager/request?name";
-	 	  			},
-	 			error : function(data, textStatus, errorThrown) {
-	       			console.log(data);
-	   				}
-				});
-			} else {
-				$.ajax({
-					url:"/permit/demo",
-					type:"POST",
-					contentType: "application/json",
-				 	data : JSON.stringify({
-					swName : swName ,
-					id : id,
-					req_id : req_id
-				}),
-	   			success : function (data) {
-	   				alert(swName + " 에 대한 데모버젼 라이선스를 발급했습니다.");
-	   				window.location = "/license/manager/request?name";
-	 	  			},
-	 			error : function(data, textStatus, errorThrown) {
-	       			console.log(data);
-	   				}
-				});
-			} 
-			
-		} else{
-			alert("라이선스 발급을 취소합니다.");
-		}
+		//var check = confirm(swName + " 에 대한 라이선스를 발급하시겠습니까?");
+		swal({
+  			text: swName + " 에 대한 라이선스를 발급하시겠습니까?",
+  			icon: "info",	//error, success, info, warning
+  			buttons : {
+			  cancel : "취소",
+			  confirm : "확인",
+		  },
+  		  dangerMode: false,
+  		}).then(function(isConfirm){
+  			if(isConfirm == true){
+  				if(state == 1){
+  					$.ajax({
+  						url:"/permit/full",
+  						type:"POST",
+  						contentType: "application/json",
+  					 	data : JSON.stringify({
+  						swName : swName ,
+  						id : id,
+  						req_id : req_id
+  					}),
+  		   			success : function (data) {
+  		   				//alert(swName + " 에 대한 정식버전 라이선스를 발급했습니다.");
+  		   				swal({
+		    				text: swName + " 에 대한 정식버전 라이선스를 발급했습니다.",
+		    				icon: "success",	//error, success, info, warning
+		    				button : {
+		  			 		confirm : "확인",
+		  		 			},
+		    		  		dangerMode: false,
+		    		  		timer:3000,
+		    			});
+  		   				window.location = "/license/manager/request?name";
+  		 	  			},
+  		 			error : function(data, textStatus, errorThrown) {
+  		       			console.log(data);
+  		   				}
+  					});
+  				} else {
+  					$.ajax({
+  						url:"/permit/demo",
+  						type:"POST",
+  						contentType: "application/json",
+  					 	data : JSON.stringify({
+  						swName : swName ,
+  						id : id,
+  						req_id : req_id
+  					}),
+  		   			success : function (data) {
+  		   				//alert(swName + " 에 대한 데모버젼 라이선스를 발급했습니다.");
+  		   				swal({
+  		    				text: swName + " 에 대한 데모버젼 라이선스를 발급했습니다.",
+  		    				icon: "success",	//error, success, info, warning
+  		    				button : {
+  		  			 		confirm : "확인",
+  		  		 			},
+  		    		  		dangerMode: false,
+  		    		  		timer:3000,
+  		    			});
+  		   				window.location = "/license/manager/request?name";
+  		 	  			},
+  		 			error : function(data, textStatus, errorThrown) {
+  		       			console.log(data);
+  		   				}
+  					});
+  				} 
+  			} else {
+  				//alert("라이선스 발급을 취소합니다.");
+  				swal({
+	    				text: "라이선스 발급을 취소합니다.",
+	    				icon: "info",	//error, success, info, warning
+	    				button : {
+	  			 		confirm : "확인",
+	  		 			},
+	    		  		dangerMode: false,
+	    			});
+  			}
+  		});
 	}
 	
 	function search() {

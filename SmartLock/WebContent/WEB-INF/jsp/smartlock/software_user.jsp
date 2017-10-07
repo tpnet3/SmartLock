@@ -47,26 +47,44 @@
 
 <script>
 	function request_license(sw_id, sw_name){
-		var state;
-		state = confirm(sw_name+"에 대한 라이선스 요청을 하시겠습니까?");
-		if(state == true){
-			$.ajax({
-				url:"/software/user/request?id="+sw_id ,
-				type:"GET",
-				contentType: "application/json",
-			 	data : {
-			 		id : sw_id
-			 	},
-	      		success : function (data) {
-	      		window.location = "/software/user/request?id="+sw_id;
-	   		    },
-		   		error : function(data, textStatus, errorThrown) {
-	     	 	console.log(data);
-    			}
-			});
-		} else {
-			alert("요청을 취소합니다.");
-		}
+		//var state;
+		//state = confirm(sw_name+"에 대한 라이선스 요청을 하시겠습니까?");
+		swal({
+  			text: sw_name+"에 대한 라이선스 요청을 하시겠습니까?",
+  			icon: "info",	//error, success, info, warning
+  			buttons : {
+			  cancel : "취소",
+			  confirm : "확인",
+		  },
+  		  dangerMode: false,
+		}).then(function(isConfirm){
+			if(isConfirm == true){
+				$.ajax({
+					url:"/software/user/request?id="+sw_id ,
+					type:"GET",
+					contentType: "application/json",
+				 	data : {
+				 		id : sw_id
+				 	},
+		      		success : function (data) {
+		      			window.location = "/software/user/request?id="+sw_id;
+		   		    },
+			   		error : function(data, textStatus, errorThrown) {
+		     	 		console.log(data);
+	    			}
+				});
+			} else {
+				swal({
+		  			text: "요청을 취소합니다.",
+		  			icon: "info",	//error, success, info, warning
+		  			button : {
+					  confirm : "확인",
+				  },
+		  		  dangerMode: false,
+				});
+			}
+		});
+		
 	}
 </script>
 

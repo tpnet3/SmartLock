@@ -176,10 +176,27 @@
      * @return {boolean} False
      */
 	function clickDelete(deviceId, nickname) {
-        var checkDelete = confirm(nickname + " 를 삭제하시겠습니까?");
-
-        if (checkDelete) {
-            $.ajax({
+        //var checkDelete = confirm(nickname + " 를 삭제하시겠습니까?");
+        swal({
+  			text: nickname + "를 삭제하시겠습니까?",
+  			icon: "warning",	//error, success, info, warning
+  			buttons : {
+			  cancel : "취소",
+			  confirm : "확인",
+		  },
+  		  dangerMode: false,
+  		}).then(function(isConfirm){
+  		  if(isConfirm == null)
+  			swal({
+  	  		  text: "취소되었습니다",
+  	  		  icon: "info",	//error, success, info, warning
+  	  		button: {
+	  			  confirm : "확인",
+	  		  },
+  	  		  dangerMode: false,
+  	  		});
+  		  else
+  			$.ajax({
                 url : "/device/delete",
                 type : "POST",
                 contentType: "application/json",
@@ -188,19 +205,33 @@
 				}),
                 success : function (data) {
                     if(data.status == "success") {
-						alert("단말기가 삭제되었습니다.");
+						//alert("단말기가 삭제되었습니다.");
+						swal({
+				  	  		  text: "단말기가 삭제되었습니다.",
+				  	  		  icon: "success",	//error, success, info, warning
+				  	  		  button: {
+				  	  			  confirm : "확인",
+				  	  		  },
+				  	  		  dangerMode: false,
+				  	  		});
 						location.reload();
                     } else {
-                        alert("단말기를 삭제하는데 실패했습니다.");
+                        //alert("단말기를 삭제하는데 실패했습니다.");
+                        swal({
+				  	  		  text: "단말기를 삭제하는데 실패했습니다.",
+				  	  		  icon: "error",	//error, success, info, warning
+				  	  		  button: {
+				  	  			  confirm : "확인",
+				  	  		  },
+				  	  		  dangerMode: false,
+				  	  		});
                     }
                 },
                 error : function(data, textStatus, errorThrown) {
                     console.log(data);
                 }
             });
-		}
-
-        return false;
+  	  });
 	}
 
     /**
