@@ -2,8 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% String _nav = request.getParameter("_nav"); %>
-<% UserVO userVO = (UserVO) session.getAttribute("user"); %>
-
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,8 +52,8 @@
                         <div style="position: relative;">
                             <div style="padding-left: 80px;">
                                 <div style="padding: 16px;">
-                                    <div style="font-size: 16px;" id = "name"><%= userVO.getUserName() %>님 (사용자)</div>
-                                    <div style="font-size: 14px;" id = "email"><%= userVO.getEmail() %></div>
+                                    <div style="font-size: 16px;" id = "name">${user.user_name}님 (사용자)</div>
+                                    <div style="font-size: 14px;" id = "email">${user.email}</div>
                                     <div style="padding: 8px 0;"><a href="/profile" class="btn btn-sm btn-default btn-block" 
                                     data-toggle="tooltip" data-placement="bottom" title="마이페이지">마이페이지</a></div>
                                     <div style="font-size: 12px;"><a href="/logout" data-toggle="tooltip" data-placement="bottom" title="로그아웃">로그아웃</a></div>
@@ -66,22 +64,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--
-                    <ul class="dropdown-menu">
-                        <li>
-                            <div class="col-md-5">
-                                <img class="img-responsive" style="margin-left: 15px; margin-right: 20px" align="left" width="100px" src="/html/img/profile.png" alt=""></div>
-                            <div class="col-md-7">
-                                <h4><%= userVO.getUserName() %> 님 (사용자)</h4>
-                                <h5><%= userVO.getEmail() %></h5>
-                                <a class="btn btn-sm btn-default btn-block" href="/profile">마이페이지</a>
-                                <br>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="/logout">로그아웃</a></li>
-                    </ul>
-                    -->
                 </li>
             </ul>
         </div>
@@ -89,7 +71,3 @@
     </div>
     <!-- /.container -->
 </nav>
-
-<script>
- // 스클립틀릿수정하기 - email null
-</script>

@@ -69,12 +69,12 @@ public class UserVO {
 		this.corp_id = corp_id;
 	}
 
-	public String getUserName() {
+	public String getUser_name() {
 		return user_name;
 	}
 
-	public void setUserName(String userName) {
-		this.user_name = userName;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
 	@Override
@@ -89,4 +89,6 @@ public class UserVO {
 				", user_name='" + user_name + '\'' +
 				'}';
 	}
+
+	
 }
