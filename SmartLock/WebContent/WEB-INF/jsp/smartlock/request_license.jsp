@@ -84,35 +84,57 @@
 		var tmp = document.getElementById("state");
 		var state = tmp.options[tmp.selectedIndex].value;
 		if(state == 0){
-			alert("라이선스 형태를 선택해주세요.");
-		} else {
-			var result = confirm(
-					/* "[회사명] : ${software.corp_name} \n"+
-					"[소프트웨어명] : ${software.sw_name} \n"+
-					"[형태] : "+ tmp.options[tmp.selectedIndex].text)+"\n"+ */
-					"요청하시겠습니까?");
-			if(result == true){
-				$.ajax({
-					url:"/software/user/request/final",
-					type:"POST",
-					contentType: "application/json",
-				 	data : JSON.stringify({
-				 		corp_name : '${software.corp_name}',
-				 		sw_name : '${software.sw_name}',
-				 		sw_id : '${sw_id}', 
-				 		state : state
-				}),
-	         success : function (data) {
-	        	 window.location = "/software/user/request/final";
-	         },
-	         error : function(data, textStatus, errorThrown) {
-	             console.log(data);
-	         }
+			//alert("라이선스 형태를 선택해주세요.");
+			swal({
+	  			text: "라이선스 형태를 선택해주세요.",
+	  			icon: "warning",	//error, success, info, warning
+	  			button : {
+				  confirm : "확인",
+			  },
+	  		  dangerMode: false,
 			});
-			} else {
-				alert("요청을 취소합니다.");
-				window.location="/software/user";
-			}
+		} else {
+			//var result = confirm("요청하시겠습니까?");
+			swal({
+	  			text: "요청하시겠습니까?",
+	  			icon: "info",	//error, success, info, warning
+	  			buttons : {
+				  	cancel : "취소",
+	  				confirm : "확인",
+			  },
+	  		  dangerMode: false,
+			}).then(function(isConfirm){
+				if(isConfirm == true){
+					$.ajax({
+						url:"/software/user/request/final",
+						type:"POST",
+						contentType: "application/json",
+					 	data : JSON.stringify({
+					 		corp_name : '${software.corp_name}',
+					 		sw_name : '${software.sw_name}',
+					 		sw_id : '${sw_id}', 
+					 		state : state
+					}),
+		         success : function (data) {
+		        	 window.location = "/software/user/request/final";
+		         },
+		         error : function(data, textStatus, errorThrown) {
+		             console.log(data);
+		         }
+				});
+				} else {
+					//alert("요청을 취소합니다.");
+					swal({
+			  			text: "요청을 취소합니다.",
+			  			icon: "info",	//error, success, info, warning
+			  			button : {
+			  				confirm : "확인",
+					  },
+					  dangerMode: false,
+					});
+					window.location="/software/user";
+				}
+			});
 		}
 	}
 </script>

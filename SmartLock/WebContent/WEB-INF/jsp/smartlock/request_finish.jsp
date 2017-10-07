@@ -5,6 +5,8 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<meta http-equiv="refresh" content="2; url = /" />
+
 <jsp:include page="include/_header.jsp">
 	<jsp:param name="_nav" value="softwareUser" />
 </jsp:include>
@@ -15,7 +17,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<br><br>
-			<hr><br> 
+			<br> 
 			<img class="img-responsive"
 				style="margin-left: auto; margin-right: auto; display: block;"
 				width="100px" src="/html/img/success.png" alt="">
@@ -36,7 +38,7 @@
 
 	<div class="col-md-12">
 		<br>
-		<hr>
+		
 	</div>
 </div>
 	<!-- /.container -->

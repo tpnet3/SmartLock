@@ -22,10 +22,9 @@
         		<li><a href="/profile/quit" data-toggle="tooltip" data-placement="bottom" title="회원탈퇴">회원탈퇴</a></li>
         	</ol>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
+        <div class="col-lg-12">
             <div class="card card-container">
-			<form class="form-horizontal" id="updateProfile">
+				<form class="form-horizontal" id="updateProfile">
                     <fieldset>
                         <!-- Text input-->
 							<div class="form-group">
@@ -85,7 +84,6 @@
                 </form>
 	    	</div>	
 	    </div>
-        </div>
     </div>
 </div>
 

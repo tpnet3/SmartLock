@@ -5,36 +5,7 @@
 	<jsp:param name="_nav" value="" />
 </jsp:include>
 <meta http-equiv="refresh" content="2; url = /" />
-<!-- Navigation -->
-<!--
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="main.html">Smart Lock</a>
-		</div>
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-left">
-				<li><a href="Main.html">Home</a></li>
-				<li><a href="about_us.jsp">About Us</a></li>
-				<li><a href="software.jsp">Software</a></li>
-				<li><a href="download.jsp">Download</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/login">로그인</a></li>
-				<li class="divider-vertical"></li>
-				<li><a href="sign_up_select.jsp">회원가입</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
--->
+
 
 <!-- Page Content -->
 <div class="container">
