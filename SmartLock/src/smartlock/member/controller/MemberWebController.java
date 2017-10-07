@@ -17,7 +17,7 @@ public class MemberWebController {
 	public ModelAndView login(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
 		UserVO userVO = (UserVO) httpSession.getAttribute("user");
-
+		
 		if (userVO != null) {
 			return new ModelAndView("redirect:/");
 		} else {

@@ -110,7 +110,7 @@
 										<td data-title="상태"><span class="label label-success"
 											onmouseout="this.style.background='#5cb85c';this.innerText='데모 버전';"
 											onmouseover="this.style.background='#58ACFA';this.innerText='연장 요청';"
-											onclick="requestDemo('${license.sw_name}', '${sw_id}');">
+											onclick="requestDemo('${license.sw_name}', '${license.sw_id}');">
 												데모 버전 </span></td>
 									</c:when>
 								</c:choose>
@@ -305,29 +305,58 @@
 		
 		$('#myModal').modal();
 	}
-	function requestDemo(swName) {
+	
+	function requestDemo(swName, sw_id) {
 		var state;
 
-		state = confirm(swName + " 에 대한 데모 기간 연장을 요청합시겠습니까?");
-		if (state == true) {
-			$.ajax({
-				url : "/license/user/requestDemo",
-				type : "POST",
-				contentType : "application/json",
-				data : JSON.stringify({
-					swName : swName
-				}),
-				success : function(data) {
-					window.location = "/license/user?name";
-					alert("요청을 완료했습니다.");
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				}
-			});
-		} else if (state == false) {
-			alert("연장 요청을 취소합니다.");
-		}
+		//state = confirm(swName + " 에 대한 데모 기간 연장을 요청합시겠습니까?");
+		
+		swal({
+  			text: swName + " 에 대한 데모 기간 연장을 요청하시겠습니까?",
+  			icon: "info",	//error, success, info, warning
+  			buttons : {
+			  cancel : "취소",
+			  confirm : "확인",
+		  },
+  		  dangerMode: false,
+  		}).then(function(isConfirm){
+  			if(isConfirm == true)
+  				$.ajax({
+  					url : "/license/user/requestDemo",
+  					type : "POST",
+  					contentType : "application/json",
+  					data : JSON.stringify({
+  						swName : swName,
+  						sw_id : sw_id
+  					}),
+  					success : function(data) {
+  						//window.location = "/license/user?name";
+  						//alert("요청을 완료했습니다.");
+  						
+  						swal({
+  				  			text: "요청을 완료했습니다.",
+  				  			icon: "success",	//error, success, info, warning
+  				  			button : {
+  							  confirm : "확인",
+  						  },
+  				  		  dangerMode: false,
+  				  		})
+  					},
+  					error : function(data, textStatus, errorThrown) {
+  						console.log(data);
+  					}
+  				});
+  			else
+  				swal({
+  		  			text: "연장 요청을 취소합니다.",
+  		  			icon: "info",	//error, success, info, warning
+  		  			button : {
+  					  confirm : "확인",
+  				  },
+  		  		  dangerMode: false,
+  		  		});
+  		});
+  		
 	}
 
 	function search() {

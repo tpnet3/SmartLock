@@ -1,3 +1,5 @@
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <footer class="text-center">

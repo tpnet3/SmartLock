@@ -34,12 +34,12 @@ public class MemberApiController {
     public @ResponseBody DataResVO loginPost(
             HttpServletRequest request,
             @RequestBody LoginReqVO loginReqVO) {
-
+    	
         System.out.println(loginReqVO);
-
+        
         return new DataResVO(request, sessionUserVO -> {
             boolean checkPassword = userService.checkPassword(loginReqVO);
-
+            //System.out.println(">>>>>>>>>>>>>>>>>>@@@@@@@@@@@@@@@ id : "+request.getParameter("id")+"pwd : "+request.getParameter("pwd"));
             // 비밀번호가 일치하지 않을 경우 null
             if ( ! checkPassword) return null;
 

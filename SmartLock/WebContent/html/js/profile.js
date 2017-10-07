@@ -4,13 +4,27 @@ function checkEamil(newEmail) {
 
 	if ( ! emailVal) {
         newEmail.focus();
-        alert("이메일을 입력하세요.");
+        //alert("이메일을 입력하세요.");
+        swal({
+	  		  text: "이메일을 입력하세요.",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
         return false;
 	}
 
     if ( ! emailVal.match(pattern)) {
         newEmail.focus();
-        alert("이메일 패턴이 올바르지 않습니다.");
+        //alert("이메일 패턴이 올바르지 않습니다.");
+        swal({
+	  		  text: "이메일 패턴이 올바르지 않습니다.",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
         return false;
     }
 
@@ -23,13 +37,27 @@ function checkPhone(newPhone) {
 
     if ( ! phoneVal) {
         newPhone.focus();
-        alert("전화번호를 입력하세요.");
+        //alert("전화번호를 입력하세요.");
+        swal({
+	  		  text: "전화번호를 입력하세요",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
         return false;
     }
 
     if ( ! phoneVal.match(pattern)) {
         newPhone.focus();
-        alert("전화번호 패턴이 올바르지 않습니다.");
+        //alert("전화번호 패턴이 올바르지 않습니다.");
+        swal({
+	  		  text: "전화번호 패턴이 올바르지 않습니다.",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
         return false;
     }
 
@@ -41,19 +69,40 @@ function checkPwd(newPwd) {
 
     if ( ! pwdVal) {
         newPwd.focus();
-        alert("비밀번호를 입력하세요.");
+        //alert("비밀번호를 입력하세요.");
+        swal({
+	  		  text: "비밀번호를 입력하세요",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
         return false;
     }
 
     if (pwdVal.length < 8) {
         newPwd.focus();
-        alert("비밀번호는 8자 이상이어야 합니다.");
+        //alert("비밀번호는 8자 이상이어야 합니다.");
+        swal({
+	  		  text: "비밀번호는 8자 이상이어야 합니다.",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
         return false;
     }
 
     if (pwdVal.length > 100) {
         newPwd.focus();
-        alert("비밀번호는 100자 이하여야 합니다.");
+        //alert("비밀번호는 100자 이하여야 합니다.");
+        swal({
+	  		  text: "비밀번호는 100자 이하여야 합니다.",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
         return false;
     }
 
@@ -89,7 +138,14 @@ $("#updateProfile").submit(function() {
 				location.href="/profile/ok";
 			} else {
 				$("#password").focus();
-				alert("현재 비밀번호가 일치하지 않습니다.")
+				//alert("현재 비밀번호가 일치하지 않습니다.")
+				swal({
+			  		  text: "현재 비밀번호가 일치하지 않습니다.",
+			  		  icon: "warning",	//error, success, info, warning
+			  		  button: {
+			  			  confirm : "확인",
+			  		  },
+			  		});
 			}
 		},
 		error : function(data, textStatus, errorThrown) {
@@ -103,7 +159,14 @@ $("#updateProfile").submit(function() {
 $("#changePassword").submit(function() {
 	if ($("#new_password1").val() != $("#new_password2").val()) {
         $("#new_password2").focus();
-        alert("새 비밀번호가 일치하지 않습니다.");
+        //alert("새 비밀번호가 일치하지 않습니다.");
+        swal({
+	  		  text: "새 비밀번호가 일치하지 않습니다.",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
         return false;
 	}
 
@@ -127,7 +190,14 @@ $("#changePassword").submit(function() {
             }
             else {
                 $("#password").focus();
-                alert("현재 비밀번호가 일치하지 않습니다.")
+                //alert("현재 비밀번호가 일치하지 않습니다.")
+                swal({
+      	  		  text: "현재 비밀번호가 일치하지 않습니다.",
+      	  		  icon: "warning",	//error, success, info, warning
+      	  		  button: {
+      	  			  confirm : "확인",
+      	  		  },
+      	  		});
             }
         },
         error : function(data, textStatus, errorThrown) {
@@ -141,7 +211,14 @@ $("#changePassword").submit(function() {
 $("#removeUser").submit(function() {
 	if($("#password1").val()!=$("#password2").val()){
 		$("#password2").focus();
-		alert("비밀번호가 일치하지 않습니다.");
+		//alert("비밀번호가 일치하지 않습니다.");
+		swal({
+	  		  text: "비밀번호가 일치하지 않습니다.",
+	  		  icon: "warning",	//error, success, info, warning
+	  		  button: {
+	  			  confirm : "확인",
+	  		  },
+	  		});
 		return false;
 	}
 	else{
@@ -160,7 +237,14 @@ $("#removeUser").submit(function() {
 				}
 				else{
 					$("#password1").focus();
-					alert("비밀번호를 다시 확인해주세요.")
+					//alert("비밀번호를 다시 확인해주세요.")
+					swal({
+				  		  text: "비밀번호를 다시 확인해주세요.",
+				  		  icon: "warning",	//error, success, info, warning
+				  		  button: {
+				  			  confirm : "확인",
+				  		  },
+				  		});
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
