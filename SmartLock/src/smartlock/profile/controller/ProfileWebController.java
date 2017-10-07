@@ -32,7 +32,7 @@ public class ProfileWebController {
         	ModelAndView profile_user = new ModelAndView("/smartlock/profile_user");
         	
         	profile_user.addObject("id", userVO.getId());
-            profile_user.addObject("user_name", userVO.getUserName());
+            profile_user.addObject("user_name", userVO.getUser_name());
             profile_user.addObject("phone_number", userVO.getPhoneNumber());
             profile_user.addObject("email", userVO.getEmail());
         	
@@ -51,7 +51,7 @@ public class ProfileWebController {
         	ModelAndView profile_manager = new ModelAndView("/smartlock/profile_manager");
         	
         	profile_manager.addObject("id", userVO.getId());
-        	profile_manager.addObject("user_name", userVO.getUserName());
+        	profile_manager.addObject("user_name", userVO.getUser_name());
         	profile_manager.addObject("phone_number", userVO.getPhoneNumber());
         	profile_manager.addObject("email", userVO.getEmail());
         	

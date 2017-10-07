@@ -68,7 +68,8 @@
 		WHERE license.sw_id = software.id
         AND sw_id = ANY(SELECT id FROM software WHERE corp_id = #{id})
         AND start_date >= date_add(now(), interval -12 month)
-        AND start_date <= curdate();
+        AND start_date <= curdate()
+        ORDER BY sw_name ASC;
         ]]>
 	</select>
 	
