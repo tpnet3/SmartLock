@@ -129,12 +129,25 @@ public class LicenseWebController {
 				map.put("order",  order);
 				map.put("id", userVO.getId());
 				licenseManagerReqList = licenseService.viewManagerReqLicense(map);
-				for(int i = 0; i < licenseManagerReqList.size(); i++) { 
-					if(!swIdList.contains(licenseManagerReqList.get(i).getSw_id())){
-						swIdList.add(licenseManagerReqList.get(i).getSw_id());
-						swNameList.add(licenseManagerReqList.get(i).getSw_name());
-						} 
+				
+				for(int i = 0; i < licenseManagerReqList.size(); i++) 
+				{
+					LicenseManagerReqVO license = licenseManagerReqList.get(i);
+					if(!swIdList.contains(license.getSw_id()))
+					{
+						if(state.equals("WAIT") && license.getState() != 3)
+						{
+							swIdList.add(license.getSw_id());
+							swNameList.add(license.getSw_name());
+						}
+						else if(state.equals("REFUSE") && license.getState() == 3)
+						{
+							swIdList.add(license.getSw_id());
+							swNameList.add(license.getSw_name());
+						}
+					} 
 				}
+				
 				if(!sw_id.equals("")){
 					map.put("sw_id", sw_id);
 					licenseManagerReqList = licenseService.viewManagerReqLicenseByName(map);
