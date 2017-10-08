@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -95,8 +96,7 @@ public class StatisticsWebController {
         	ArrayList<StatisticsMonthlyVO> dataList 
         		= statisticsMonthlyService.viewStatisticsMonthly(userVO.getCorpId());
         
-        	System.out.println("#############" + dataList);
-        	HashMap<Integer, String> swList = new HashMap<Integer, String>();
+        	LinkedHashMap<Integer, String> swList = new LinkedHashMap<Integer, String>();
     		GregorianCalendar cal = new GregorianCalendar();
     		int[] monthCnt = new int[12]; 
     		int swID;
@@ -113,12 +113,11 @@ public class StatisticsWebController {
             	 * SW목록 뽑기
             	 */
         		swID = vo.getSw_id();
-        		if(swList.get(swID) == null)
+        		//if(swList.get(swID) == null)
         			swList.put(swID, vo.getSw_name());
         		
         	}        	
         	
-        	System.out.println("********************" + swList);
         	ModelAndView modelAndView = new ModelAndView("/smartlock/statistics_monthly");
         	modelAndView.addObject("monthCnt", monthCnt);
         	modelAndView.addObject("swList",swList);

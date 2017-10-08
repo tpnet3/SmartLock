@@ -38,15 +38,9 @@
 										data-toggle="tooltip" data-placement="bottom" title="PC">
 								</c:when>
 							</c:choose>
-                            <p></p>
-							<p>
-								<a href="#" class="btn btn-warning btn-filter"
-									style="width: 80px"
-									data-toggle="tooltip" data-placement="bottom" title="디바이스 수정">수정</a>&nbsp; &nbsp; &nbsp;
-								<a href="#" class="btn btn-danger btn-filter" style="width: 80px"
-								data-toggle="tooltip" data-placement="bottom" title="디바이스 삭제">삭제</a>
-							</p>
+                           
 						</div>
+						 <br>
 						<div>
 							<ul class="list-group text-center">
 								<li class="list-group-item"><b>단말기정보 : </b>${device.mac}</li>
@@ -153,6 +147,7 @@ function requestDemo(swName, sw_id) {
 		  		});
 		});
 }
+
 
 </script>
 <jsp:include page="include/_jslib.jsp" />
