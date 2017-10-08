@@ -116,21 +116,19 @@
 									<option>017</option>
 									<option>018</option>
 									<option>019</option>
-								</select>
-								<b style="width: 5%">-</b> <input id="phone-2" type="text"
+								</select> <b style="width: 5%">-</b> <input id="phone-2" type="text"
 									style="ime-mode: disable; width: 28%; display: inline; text-align: center"
 									class="form-control input-md" maxlength="4"
 									onkeydown="return onlyNumber(event)"
 									onkeyup="removeChar(event)" oninput="maxLengthCheck(this)"
-									onblur="phoneCheck()">
-								<b style="width: 5%">-</b> <input id="phone-3" type="text"
+									onblur="phoneCheck()"> <b style="width: 5%">-</b> <input
+									id="phone-3" type="text"
 									style="ime-mode: disable; width: 28%; display: inline; text-align: center"
 									class="form-control input-md" maxlength="4"
 									onkeydown="return onlyNumber(event)"
 									onkeyup="removeChar(event)" oninput="maxLengthCheck(this)"
-									onblur="phoneCheck()">
-							<br>
-							<h6 id="phoneWarning"
+									onblur="phoneCheck()"> <br>
+								<h6 id="phoneWarning"
 									style="color: #ff0000; font-size: 40%; display: inline;"></h6>
 							</div>
 						</div>
@@ -177,155 +175,3 @@
 </jsp:include>
 
 <jsp:include page="include/_footer.jsp" />
-
-<script>
-	var is_id_checked = false;
-	var is_correct_pwd = false;
-	var is_correct_phoneNumber = true;
-
-	$("#check-id-btn").on("click", function() {
-		var msg = document.getElementById("idWarning");
-		$.ajax({
-			url : "/check/id",
-			type : "GET",
-			dataType : "json",
-			data : {
-				"id" : $("#id").val(),
-			},
-			success : function(data) {
-				if (data.data == "ok") {
-					msg.style.color = "blue";
-					$('#idWarning').text("사용할 수 있는 아이디 입니다.");
-					is_id_checked = true;
-				} else {
-					msg.style.color = "red";
-					$('#idWarning').text("이미 등록된 아이디 입니다.");
-					is_id_checked = false;
-				}
-			},
-			error : function(data, textStatus, errorThrown) {
-			}
-		});
-	});
-
-	function onlyNumber(event) {
-		event = event || window.event;
-		var keyID = (event.which) ? event.which : event.keyCode;
-		if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
-				|| keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
-			return;
-		else
-			return false;
-	}
-	function removeChar(event) {
-		event = event || window.event;
-		var keyID = (event.which) ? event.which : event.keyCode;
-		if (keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
-			return;
-		else
-			event.target.value = event.target.value.replace(/[^0-9]/g, "");
-	}
-
-	/* 정규식 */
-	function idRegFunc() {
-		var idWarning = document.getElementById("idWarning");
-		idWarning.style.color = "red";
-
-		var idVal = $('#id').val();
-		var reg_id = /^[0-9a-z]{6,20}$/;
-		var msg = "아이디는 6~20자의 영문 소문자, 숫자만 사용 가능합니다.";
-		if (!idVal.match(reg_id)) {
-			$('#idWarning').text(msg);
-		} else {
-			$('#idWarning').text("");
-		}
-	}
-
-	function pwdRegFunc() {
-		var pwdVal = $('#pwd').val();
-		var reg_pwd = /^[0-9a-zA-Z\~\!\@\#\$\%\^\&\*\(\)\_\+\`\-\=\<\>\,\.\?\/\\\|\{\}\[\]\:\;\"\']{8,20}$/;
-		var msg = "비밀번호는 8~20자의 영문자, 숫자, 특수문자를 사용하세요.";
-		if (!pwdVal.match(reg_pwd)) {
-			if (pwdVal.length == 0) {
-				$('#pwdWarning').text("비밀번호를 입력하세요.");
-			} else {
-				$('#pwdWarning').text(msg);
-			}
-		} else {
-			$('#pwdWarning').text("");
-		}
-	}
-	function pwdCheck() {
-		var pwd = $('#pwd').val();
-		var pwdCheck = $("#check-pwd").val();
-		var msg = "비밀번호가 서로 다릅니다.";
-		if (pwd != pwdCheck || pwd.length == 0) {
-			$('#pwdCheckWarning').text(msg);
-			is_correct_pwd = false;
-		} else {
-			is_correct_pwd = true;
-			$('#pwdCheckWarning').text("");
-		}
-	}
-	function nameCheck() {
-		var nameVal = $('#name').val();
-		var reg_name = /^[가-힣a-zA-Z]{3,20}/;
-		var msg = "이름은 3~20자의 한글과 영문자를 사용하세요. (공백문자 불가)";
-		if (!nameVal.match(reg_name)) {
-			$('#nameWarning').text(msg);
-		} else {
-			$('#nameWarning').text("");
-		}
-	}
-	function emailCheckFront() {
-		var emailValFront = $('#email-1').val();
-		var reg_email_front = /^([0-9A-Za-z_.-])+$/;
-		var msg = "이메일은 숫자,영문자, 특수문자(-, _, .)으로 이루어져야합니다.";
-		if(emailValFront == "") {
-			$('#emailWarning').text("");
-		} else if (!emailValFront.match(reg_email_front)) {
-			$('#emailWarning').text(msg);
-		} else {
-			$('#emailWarning').text("");
-		}
-	}
-	function emailCheckBack() {
-		var emailValBack = $('#email-3').val();
-		var reg_email_back = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		var msg = "도메인 주소가 올바르지 않습니다.";
-		if (!emailValBack.match(reg_email_back)) {
-			$('#emailWarning').text(msg);
-		} else {
-			$('#emailWarning').text("");
-		}
-	}
-	function phoneCheck() {
-		var phone, phoneFront, phoneBack;
-		phoneFront = $("#phone-2").val();
-		phoneBack = $("#phone-3").val();
-		if(phoneFront == "" && phoneBack == "" || phoneFront != "" && phoneBack != "") {
-			$("#phoneWarning").text("");
-			is_correct_phoneNumber = true;
-		}
-		if((phoneFront == "" && phoneBack != "") || (phoneFront != "" && phoneBack == "")) {
-			$("#phoneWarning").text("번호를 모두 입력하세요.");
-			is_correct_phoneNumber = false;
-		}
-	}
-
-	/* 이메일 css조정 */
-	$("#email-2").on("change", function() {
-		if ($(this).val() == '직접입력') {
-			document.getElementById('email-div').className = "col-md-6";
-			$("#email-1").css("width", "28.9%");
-			$("#email-2").css("width", "15%");
-			$("#email-3").css("display", "inline");
-		} else {
-			document.getElementById('email-div').className = "col-md-5";
-			$("#email-1").css("width", "35%");
-			$("#email-2").css("width", "35%");
-			$("#email-3").val("");
-			$("#email-3").css("display", "none");
-		}
-	});
-</script>
