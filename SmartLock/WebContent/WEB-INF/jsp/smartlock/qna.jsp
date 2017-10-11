@@ -86,19 +86,22 @@
         </div>
         <div class="col-md-5" style="text-align: center;">
             <div style="padding: 8px;">
-                <div style="background-color: #FAFAFA; border: 1px solid #EEEEEE;">
-                    <div style="padding: 96px 0;">
-                        <div style="font-size: 36px;">
-                            <a href="/html/doc/smartlock-manual-20171006.docx" style="color: #000; text-underline: none;" download>매뉴얼 다운로드</a>
+                <a href="/html/doc/smartlock-manual-20171011-2.pdf" style="color: #000; text-underline: none; display: block;" download>
+                    <div style="background-color: #FAFAFA; border: 1px solid #EEEEEE;">
+                        <div style="padding: 96px 0;">
+                            <div style="font-size: 36px;">
+                                매뉴얼 다운로드
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div style="padding: 8px;">
                 <div style="background-color: #FAFAFA; border: 1px solid #EEEEEE;">
-                    <div style="padding: 96px 0;">
-                        <div style="font-size: 32px;">1:1 문의</div>
-                        <div style="font-size: 16px;">support@cadserv.co.kr</div>
+                    <div style="padding: 96px 0; line-height: 1.4;">
+                        <div style="font-size: 32px;">기술 지원 센터</div>
+                        <div style="font-size: 24px;">email : cadserv@nate.com</div>
+                        <div style="font-size: 24px;">H.P : 010-6286-7339</div>
                     </div>
                 </div>
             </div>
